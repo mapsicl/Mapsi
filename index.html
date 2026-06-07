@@ -2,9 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Maximiliano Jiménez — Psicólogo, Coach PNL y Magíster en Liderazgo. Ayudo a profesionales a reconquistar su vida y alcanzar sus metas con claridad." />
-  <title>Maximiliano Jiménez — Psicólogo & Coach</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#080808" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="Maximiliano Jiménez — Psicólogo, Coach PNL y Magíster en Liderazgo. Coaching para inserción laboral, desarrollo profesional y marca personal en Chile. +3.700 personas impactadas." />
+  <meta name="keywords" content="coach inserción laboral Chile, coaching desarrollo profesional, marca personal LinkedIn Chile, psicólogo coach PNL, coach para entrevistas de trabajo, coaching carrera profesional, cómo conseguir primer empleo, coach profesional La Serena" />
+  <meta name="author" content="Maximiliano Jiménez Rojas" />
+  <meta property="og:title" content="Maximiliano Jiménez — Psicólogo & Coach PNL" />
+  <meta property="og:description" content="Coaching para inserción laboral, desarrollo profesional y marca personal. +3.700 personas impactadas en Chile." />
+  <meta property="og:type" content="website" />
+  <title>Maximiliano Jiménez — Psicólogo & Coach PNL | La Serena, Chile</title>
 
   <!-- Fonts: DM Sans (moderna, legible, cálida) + DM Serif Display (titulares editoriales) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -74,7 +82,7 @@
     }
     body.on-hover #c-dot { width: 10px; height: 10px; }
     body.on-hover #c-ring { width: 58px; height: 58px; border-color: var(--gold); }
-    @media (hover:none) { #c-dot,#c-ring { display: none; } body { cursor: auto; } }
+    @media (hover:none), (pointer:coarse) { #c-dot,#c-ring { display: none; } body { cursor: auto; } }
 
     /* =============================================
        SPLASH
@@ -125,7 +133,9 @@
     ============================================= */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
-      z-index: 900; padding: 1.2rem 5vw;
+      z-index: 900;
+      padding: 1.2rem 5vw;
+      padding-top: calc(1.2rem + env(safe-area-inset-top));
       display: flex; align-items: center; justify-content: space-between;
       transition: background .4s, border-color .4s, backdrop-filter .4s;
       border-bottom: 1px solid transparent;
@@ -181,8 +191,8 @@
        SHARED LAYOUT
     ============================================= */
     .wrap { max-width: 1360px; margin: 0 auto; padding: 0 5vw; }
-    .sec { padding: clamp(5rem,10vw,9rem) 0; }
-    .sec-full { padding: clamp(5rem,10vw,9rem) 5vw; }
+    .sec { padding: clamp(3.5rem,8vw,7rem) 0; }
+    .sec-full { padding: clamp(3.5rem,8vw,7rem) 5vw; }
     .label {
       display: inline-flex; align-items: center; gap: .8rem;
       font-size: .7rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
@@ -259,7 +269,8 @@
     .hero-inner {
       position: relative; z-index: 1;
       max-width: 1360px; margin: 0 auto; padding: 0 5vw;
-      padding-top: 8rem; padding-bottom: 6rem;
+      padding-top: clamp(5.5rem, 12vw, 8rem);
+      padding-bottom: clamp(3.5rem, 7vw, 6rem);
       width: 100%;
     }
     .hero-badge {
@@ -286,10 +297,16 @@
       transition: opacity .7s var(--ease), transform .7s var(--ease);
     }
     .hero-h1 .word.show { opacity: 1; transform: translateY(0); }
+    .hero-pre-sub {
+      font-family: var(--font-d); font-style: italic;
+      font-size: clamp(1.05rem, 2vw, 1.45rem);
+      color: var(--gold); margin-top: 1rem; margin-bottom: .3rem;
+      letter-spacing: .01em;
+    }
     .hero-sub {
       font-size: clamp(.95rem,1.6vw,1.2rem); font-weight: 300;
       color: var(--grey1); max-width: 520px; line-height: 1.85;
-      margin-top: 1.8rem; margin-bottom: 2.8rem;
+      margin-top: .6rem; margin-bottom: 2.8rem;
     }
     .hero-sub strong { color: var(--white); font-weight: 400; }
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
@@ -405,12 +422,236 @@
     .pillar-ic { font-size: 1.2rem; margin-bottom: .5rem; }
     .pillar-t { font-size: .76rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
     .pillar-d { font-size: .78rem; color: var(--grey1); line-height: 1.55; }
-    @media (max-width:900px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .about-badge { right: 1rem; }
-      .fc1,.fc2 { display: none; }
+    /* About bullets */
+    .about-bullets {
+      list-style: none;
+      display: flex; flex-direction: column; gap: .75rem;
+      margin-bottom: 2rem;
     }
-    @media (max-width:600px) { .pillars { grid-template-columns: 1fr; } }
+    .about-bullets li {
+      display: flex; align-items: flex-start; gap: .85rem;
+      padding: .75rem 1rem;
+      background: var(--bg3); border: 1px solid var(--border2);
+      border-radius: 3px;
+      font-size: .86rem; color: var(--grey1); line-height: 1.55;
+      transition: border-color .3s, background .3s, transform .25s;
+    }
+    .about-bullets li:hover {
+      border-color: var(--border);
+      background: var(--bg4);
+      transform: translateX(4px);
+    }
+    .ab-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .about-bullets li strong { color: var(--white); font-weight: 500; }
+
+    /* ==============================================
+       RESPONSIVE COMPLETO
+       Breakpoints: 1024 tablet-h | 768 tablet-v | 600 móvil-h | 430 móvil-v | 380 pequeño
+    =============================================== */
+
+    /* ── TABLET HORIZONTAL (1024px) ── */
+    @media (max-width:1024px) {
+      .about-grid { gap: 4vw; }
+      .svc-grid { grid-template-columns: repeat(2,1fr); }
+      .logros-grid { grid-template-columns: repeat(3,1fr); }
+    }
+
+    /* ── TABLET VERTICAL (768px) ── */
+    @media (max-width:900px) {
+      /* Layout general */
+      .wrap { padding: 0 4.5vw; }
+      .sec { padding: clamp(2.8rem,6vw,5rem) 0; }
+      .sec-full { padding: clamp(2.8rem,6vw,5rem) 4.5vw; }
+      .h2 { font-size: clamp(1.8rem, 4.5vw, 3rem); }
+
+      /* Nav */
+      .nav-links, .nav-wa { display: none; }
+      .burger { display: flex; }
+      nav { padding: 1rem 4.5vw; padding-top: calc(1rem + env(safe-area-inset-top)); }
+
+      /* Hero */
+      .hero-inner { padding-top: 6.5rem; padding-bottom: 4rem; }
+      .hero-pre-sub { font-size: 1rem; }
+      .hero-sub { font-size: .95rem; max-width: 100%; }
+      .hero-stats { gap: 1.4rem; flex-wrap: wrap; padding-top: 1.5rem; margin-top: clamp(2rem,4vw,3.5rem); }
+      .h-stat-n { font-size: clamp(1.6rem,3vw,2.2rem); }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-card { aspect-ratio: 4/3; max-height: 400px; }
+      .about-badge { right: 1rem; }
+      .fc1, .fc2 { display: none; }
+      .pillars { grid-template-columns: repeat(2,1fr); }
+
+      /* Conoce */
+      .conoce-header { padding-bottom: 1.2rem; }
+
+      /* Áreas */
+      .area-card { width: 75vw; }
+
+      /* Servicios */
+      .services-intro-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+      .svc-grid { grid-template-columns: repeat(2,1fr); gap: 1rem; }
+
+      /* Logros */
+      .logros-grid { grid-template-columns: repeat(2,1fr); }
+
+      /* Proceso */
+      .proceso-steps { grid-template-columns: 1fr; gap: 2rem; }
+      .proc-road { display: none; }
+      .p-step { flex-direction: row; align-items: flex-start; text-align: left; gap: 1.4rem; padding: 0; }
+      .p-lantern-wrap { flex-shrink: 0; }
+      .p-card { max-width: 100%; }
+      .p-connector { display: none; }
+      .proceso-map-wrap { margin-top: 2.5rem; }
+
+      /* Testimonios */
+      .testi-card { min-width: calc(80% - .5rem); }
+
+      /* Redes */
+      .redes-grid { grid-template-columns: repeat(2,1fr); }
+
+      /* Footer */
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+      .f-copy { text-align: left; padding-top: 1rem; }
+    }
+
+    /* ── MÓVIL HORIZONTAL / TABLET PEQUEÑA (600px) ── */
+    @media (max-width:640px) {
+      .wrap { padding: 0 5vw; }
+      .sec { padding: clamp(2.2rem,5vw,3.5rem) 0; }
+
+      /* Nav */
+      .nav-logo { font-size: .95rem; }
+
+      /* Hero */
+      .hero-h1 { font-size: clamp(2.4rem, 11vw, 3.5rem); letter-spacing: -.01em; }
+      .hero-pre-sub { font-size: .92rem; }
+      .hero-sub { font-size: .88rem; margin-bottom: 2rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: .75rem; }
+      .btn-wa { justify-content: center; font-size: .8rem; padding: .9rem 1.2rem; }
+      .btn-outline { justify-content: center; text-align: center; }
+      .hero-stats { gap: 1rem; }
+      .h-stat-l { font-size: .65rem; }
+      .scroll-cue { display: none; }
+
+      /* About */
+      .about-card { aspect-ratio: 3/2; max-height: 280px; }
+      .about-bullets li { font-size: .8rem; padding: .6rem .85rem; }
+      .pillars { grid-template-columns: 1fr; gap: .6rem; }
+      .pillar { padding: .9rem 1rem; }
+
+      /* Áreas */
+      .area-card { width: 82vw; }
+      .drag-hint { font-size: .65rem; }
+
+      /* Servicios */
+      .svc-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .svc-name { font-size: 1.1rem; }
+      .svc-level-label { font-size: .58rem; }
+
+      /* Logros */
+      .logros-grid { grid-template-columns: repeat(2,1fr); }
+      .logro { padding: 1.8rem 1rem; }
+      .logro-n { font-size: clamp(1.8rem,6vw,2.4rem); }
+
+      /* Proceso */
+      .p-num { width: 48px; height: 48px; font-size: 1.1rem; }
+      .p-card { padding: 1.2rem 1rem; }
+      .p-title { font-size: .72rem; }
+      .p-desc { font-size: .8rem; }
+
+      /* Testimonios */
+      .testi-card { min-width: 100%; padding: 1.5rem 1.3rem; }
+      .testi-text { font-size: .9rem; }
+
+      /* Redes */
+      .redes-grid { grid-template-columns: 1fr; }
+
+      /* CTA */
+      .cta-h { font-size: clamp(1.5rem, 6.5vw, 2.2rem); }
+      .cta-sub { font-size: .88rem; }
+
+      /* Footer */
+      .f-links { gap: 1rem; }
+      .f-links a { font-size: .7rem; }
+    }
+
+    /* ── MÓVIL VERTICAL (430px) ── */
+    @media (max-width:430px) {
+      .wrap { padding: 0 4.5vw; }
+      .sec { padding: 2rem 0; }
+
+      .hero-h1 { font-size: clamp(2rem, 12vw, 2.8rem); }
+      .hero-pre-sub { font-size: .85rem; }
+      .hero-stats { gap: .9rem; }
+      .h-stat-n { font-size: clamp(1.4rem,7vw,2rem); }
+      .h-stat-l { font-size: .6rem; }
+
+      .h2 { font-size: clamp(1.6rem, 7.5vw, 2.2rem); margin-bottom: 1rem; }
+      .label { font-size: .62rem; letter-spacing: .2em; margin-bottom: .9rem; }
+      .body-text { font-size: .88rem; }
+
+      /* About */
+      .about-card { aspect-ratio: unset; height: 260px; }
+      .about-blockquote { font-size: 1rem; padding-left: 1rem; }
+      .about-bullets { gap: .55rem; }
+      .about-bullets li { font-size: .78rem; gap: .65rem; padding: .55rem .8rem; }
+      .pillars { gap: .5rem; }
+
+      /* Conoce */
+      .conoce-hint { display: none; }
+      .cc { width: clamp(200px,78vw,270px); height: clamp(300px,55vw,380px); }
+
+      /* Areas */
+      .area-card { width: 88vw; }
+
+      /* Servicios */
+      .svc-head { padding: 1.4rem 1.4rem 1.2rem; }
+      .svc-body { padding: 1.2rem 1.4rem; }
+      .svc-foot { padding: 1rem 1.4rem 1.4rem; }
+      .svc-qualify-inner { padding: 1.1rem 1.4rem 1.4rem; }
+      .svc-qualify-btn { padding: .75rem 1.4rem; font-size: .68rem; }
+      .process-note { padding: 1rem 1.2rem; font-size: .82rem; }
+
+      /* Logros */
+      .logros-grid { grid-template-columns: 1fr; }
+      .logro { padding: 1.5rem 1rem; }
+
+      /* Proceso */
+      .p-step { gap: 1rem; }
+      .p-num { width: 44px; height: 44px; font-size: 1rem; }
+      .p-lantern-wrap { width: 44px; height: 44px; }
+      .p-bloom { width: 44px; height: 44px; }
+
+      /* Testimonios */
+      .stars { font-size: .72rem; }
+
+      /* CTA */
+      .cta-inner { padding: 0; }
+
+      /* Footer */
+      .footer-inner { gap: 1rem; }
+      .f-socials { gap: .6rem; }
+    }
+
+    /* ── MÓVIL MUY PEQUEÑO (360px) ── */
+    @media (max-width:380px) {
+      .hero-h1 { font-size: clamp(1.75rem, 12vw, 2.4rem); }
+      .wrap { padding: 0 4vw; }
+      .btn-wa { font-size: .75rem; padding: .8rem 1rem; }
+    }
+
+    /* ── LANDSCAPE MÓVIL — altura reducida ── */
+    @media (max-height:500px) and (orientation:landscape) {
+      #hero { min-height: auto; padding: 5rem 0 3rem; }
+      .hero-inner { padding-top: 4rem; padding-bottom: 2rem; }
+      .hero-h1 { font-size: clamp(1.8rem, 6vw, 2.8rem); }
+      .hero-stats { margin-top: 1.5rem; padding-top: 1.2rem; }
+      .scroll-cue { display: none; }
+      .sec { padding: 2rem 0; }
+      .proc-topo { opacity: .04; }
+    }
 
     /* =============================================
        CONOCE A MAX — horizontal scroll carousel
@@ -427,22 +668,29 @@
       display: flex; align-items: center; gap: .6rem;
       font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--grey2);
     }
-    .conoce-track-outer { position: relative; }
+    .conoce-track-outer {
+      position: relative;
+      overflow: hidden;
+    }
     .conoce-track-outer::before,
     .conoce-track-outer::after {
-      content: ''; position: absolute; top: 0; bottom: 2rem; width: 90px; z-index: 2; pointer-events: none;
+      content: ''; position: absolute; top: 0; bottom: 2rem; width: 120px; z-index: 2; pointer-events: none;
     }
     .conoce-track-outer::before { left:  0; background: linear-gradient(to right, var(--bg), transparent); }
     .conoce-track-outer::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
     .conoce-track {
       display: flex; gap: 1.1rem;
-      padding: 0 5vw 2rem;
-      overflow-x: auto; overflow-y: visible;
-      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      padding: .5rem 0 2rem;
+      width: max-content;
+      animation: conoce-scroll 40s linear infinite;
       cursor: grab; user-select: none;
     }
+    .conoce-track:hover { animation-play-state: paused; }
     .conoce-track:active { cursor: grabbing; }
-    .conoce-track::-webkit-scrollbar { display: none; }
+    @keyframes conoce-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
     /* Card */
     .cc {
       flex-shrink: 0;
@@ -641,48 +889,120 @@
     }
 
     /* =============================================
-       ÁREAS DE TRABAJO — horizontal scroll cards
+       ÁREAS DE TRABAJO — visual cards
     ============================================= */
     #que-hago { background: var(--bg); }
+
+    /* Gradient palette — verde tierra → dorado */
+    :root {
+      --g1a: #0d1f10; --g1b: #1a3518; --g1c: rgba(200,168,75,.18);
+      --g2a: #0f1d0a; --g2b: #253d12; --g2c: rgba(188,152,60,.2);
+      --g3a: #1a1a08; --g3b: #3a3210; --g3c: rgba(226,192,106,.22);
+      --g4a: #181508; --g4b: #2e2608; --g4c: rgba(200,168,75,.16);
+      --g5a: #111a0c; --g5b: #243314; --g5c: rgba(174,138,50,.18);
+    }
+
     .areas-scroll-wrap {
       overflow-x: auto; overflow-y: visible;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding-bottom: .5rem;
-      margin-top: 3rem;
+      margin-top: 2rem;
       cursor: grab;
     }
     .areas-scroll-wrap:active { cursor: grabbing; }
     .areas-scroll-wrap::-webkit-scrollbar { display: none; }
     .areas-track {
-      display: flex; gap: 1.2rem;
-      width: max-content; padding: .5rem .1rem 1.5rem;
+      display: flex; gap: 1.4rem;
+      width: max-content; padding: .8rem .1rem 2rem;
     }
+
+    /* Base card */
     .area-card {
-      width: 300px; flex-shrink: 0;
-      background: var(--bg2); border: 1px solid var(--border2);
-      border-radius: 3px; padding: 2.2rem 1.8rem;
-      transition: border-color .35s, transform .35s, box-shadow .35s;
+      width: 290px; flex-shrink: 0;
+      border-radius: 16px;
+      padding: 0;
       position: relative; overflow: hidden;
+      border: 1px solid transparent;
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s;
+      cursor: default;
     }
+    .area-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 28px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(200,168,75,.25);
+      border-color: rgba(200,168,75,.3);
+    }
+
+    /* Per-card gradient backgrounds */
+    .area-card:nth-child(1) { background: linear-gradient(145deg, var(--g1a) 0%, var(--g1b) 55%, var(--g1c) 100%); }
+    .area-card:nth-child(2) { background: linear-gradient(145deg, var(--g2a) 0%, var(--g2b) 55%, var(--g2c) 100%); }
+    .area-card:nth-child(3) { background: linear-gradient(145deg, var(--g3a) 0%, var(--g3b) 55%, var(--g3c) 100%); }
+    .area-card:nth-child(4) { background: linear-gradient(145deg, var(--g4a) 0%, var(--g4b) 55%, var(--g4c) 100%); }
+    .area-card:nth-child(5) { background: linear-gradient(145deg, var(--g5a) 0%, var(--g5b) 55%, var(--g5c) 100%); }
+
+    /* Gold shimmer top bar */
     .area-card::before {
-      content: ''; position: absolute;
-      bottom: 0; left: 0; width: 0; height: 2px;
-      background: var(--gold); transition: width .4s var(--ease);
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--gold2) 70%, transparent 100%);
+      opacity: 0; transition: opacity .4s;
     }
-    .area-card:hover { border-color: var(--border); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.45); }
-    .area-card:hover::before { width: 100%; }
+    .area-card:hover::before { opacity: 1; }
+
+    /* Noise texture overlay */
+    .area-card::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px 200px; opacity: .5; mix-blend-mode: overlay;
+      border-radius: 16px;
+    }
+
+    /* Card content wrapper */
+    .area-card-inner { padding: 2rem 1.8rem 2.2rem; position: relative; z-index: 1; }
+
+    /* Icon badge */
+    .area-ic {
+      width: 46px; height: 46px; border-radius: 12px; margin-bottom: 1.4rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Big ghost number */
     .area-n {
-      font-family: var(--font-d); font-size: 4.5rem; font-style: italic;
-      color: rgba(200,168,75,.1); line-height: 1; margin-bottom: 1.2rem;
+      position: absolute; top: .8rem; right: 1.2rem;
+      font-family: var(--font-d); font-size: 5.5rem; font-style: italic;
+      line-height: 1; pointer-events: none; user-select: none;
+      background: linear-gradient(135deg, rgba(200,168,75,.18) 0%, rgba(200,168,75,.05) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+
+    /* Title */
     .area-t {
-      font-size: .82rem; font-weight: 500; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--white); margin-bottom: .8rem;
+      font-size: .78rem; font-weight: 600; letter-spacing: .16em;
+      text-transform: uppercase; margin-bottom: .9rem;
+      background: linear-gradient(90deg, var(--gold2), var(--gold3));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .area-d { font-size: .86rem; color: var(--grey1); line-height: 1.8; }
+
+    /* Description */
+    .area-d {
+      font-size: .86rem; color: rgba(242,240,235,.65); line-height: 1.82;
+    }
+
+    /* Bottom gradient fade */
+    .area-card-fade {
+      height: 60px;
+      background: linear-gradient(to top, rgba(0,0,0,.35), transparent);
+      position: relative; z-index: 1;
+    }
+
     .drag-hint {
-      margin-top: 1rem; font-size: .7rem; letter-spacing: .18em;
+      margin-top: 1.2rem; font-size: .7rem; letter-spacing: .18em;
       text-transform: uppercase; color: var(--grey2);
       display: flex; align-items: center; gap: .6rem;
     }
@@ -702,58 +1022,221 @@
       font-size: .88rem; color: var(--white); line-height: 1.75;
     }
     .process-note strong { color: var(--gold); font-weight: 500; display: block; margin-bottom: .3rem; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; }
+    /* ── SERVICIOS GRID ── */
     .svc-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 1.2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 1.4rem;
+      align-items: start;
     }
+
+    /* ── BASE CARD ── */
     .svc-card {
-      background: var(--bg3); border: 1px solid var(--border2);
-      border-radius: 3px; overflow: hidden; display: flex; flex-direction: column;
-      transition: border-color .3s, transform .3s, box-shadow .3s;
+      border-radius: 18px; overflow: hidden;
+      display: flex; flex-direction: column;
       position: relative;
+      border: 1px solid transparent;
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s;
     }
     .svc-card:hover {
-      border-color: rgba(200,168,75,.38);
-      transform: translateY(-5px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(200,168,75,.08);
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 32px 80px rgba(0,0,0,.65);
     }
-    .svc-card.feat { border-color: rgba(200,168,75,.3); background: linear-gradient(140deg, rgba(200,168,75,.08) 0%, var(--bg3) 55%); }
+
+    /* ── PROGRESSION GRADIENTS ── */
+    /* Card 1 — Verde fresco · recién egresado */
+    .svc-card:nth-child(1) {
+      background: linear-gradient(160deg,
+        #081a09 0%, #0f2a10 35%, #1a3d18 65%, rgba(180,155,60,.12) 100%);
+      border-color: rgba(100,160,90,.18);
+    }
+    .svc-card:nth-child(1):hover { border-color: rgba(120,190,100,.35); box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 60px rgba(80,160,70,.08); }
+
+    /* Card 2 — Olivo maduro · profesional estancado */
+    .svc-card:nth-child(2) {
+      background: linear-gradient(160deg,
+        #111a06 0%, #223010 35%, #3a4e18 60%, rgba(200,170,60,.15) 100%);
+      border-color: rgba(140,160,60,.2);
+    }
+    .svc-card:nth-child(2):hover { border-color: rgba(180,200,80,.35); box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 60px rgba(160,190,60,.07); }
+
+    /* Card 3 — Tierra dorada · marca personal */
+    .svc-card:nth-child(3) {
+      background: linear-gradient(160deg,
+        #191208 0%, #2e2008 35%, #4a340a 60%, rgba(220,185,70,.18) 100%);
+      border-color: rgba(180,145,50,.22);
+    }
+    .svc-card:nth-child(3):hover { border-color: rgba(220,185,80,.4); box-shadow: 0 32px 80px rgba(0,0,0,.65), 0 0 60px rgba(200,160,50,.1); }
+
+    /* Card 4 — Bronce élite · team building */
+    .svc-card:nth-child(4) {
+      background: linear-gradient(160deg,
+        #160f04 0%, #2a1a05 35%, #422808 60%, rgba(200,168,75,.25) 100%);
+      border-color: rgba(200,168,75,.28);
+    }
+    .svc-card:nth-child(4):hover { border-color: rgba(226,192,106,.5); box-shadow: 0 32px 80px rgba(0,0,0,.7), 0 0 80px rgba(200,168,75,.14); }
+
+    /* ── SHIMMER TOP BAR per card ── */
+    .svc-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      opacity: 0; transition: opacity .4s;
+    }
+    .svc-card:nth-child(1)::before { background: linear-gradient(90deg, transparent, #6fa860, #a8d890, transparent); }
+    .svc-card:nth-child(2)::before { background: linear-gradient(90deg, transparent, #9ab840, #c8e060, transparent); }
+    .svc-card:nth-child(3)::before { background: linear-gradient(90deg, transparent, var(--gold), var(--gold2), transparent); }
+    .svc-card:nth-child(4)::before { background: linear-gradient(90deg, transparent, var(--gold2), var(--gold3), transparent); }
+    .svc-card:hover::before { opacity: 1; }
+
+    /* ── FEAT TAG ── */
     .svc-feat-tag {
-      position: absolute; top: 1.1rem; right: 1.1rem;
-      background: var(--gold); color: var(--bg);
-      font-size: .6rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-      padding: .28rem .65rem; border-radius: 1px;
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      color: var(--bg);
+      font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      padding: .3rem .75rem; border-radius: 20px;
+      box-shadow: 0 4px 14px rgba(200,168,75,.4);
     }
-    .svc-head { padding: 1.8rem 1.8rem 1.4rem; border-bottom: 1px solid var(--border2); }
-    .svc-icon { font-size: 1.8rem; margin-bottom: 1rem; }
-    .svc-name { font-family: var(--font-d); font-size: 1.3rem; color: var(--white); margin-bottom: .35rem; line-height: 1.3; }
-    .svc-sub { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
-    .svc-body { padding: 1.4rem 1.8rem; flex: 1; }
-    .svc-desc { font-size: .87rem; color: var(--grey1); line-height: 1.85; margin-bottom: 1.3rem; }
-    .pkg-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
+
+    /* ── LEVEL BAR ── */
+    .svc-level-bar {
+      height: 3px; background: rgba(255,255,255,.07);
+      border-radius: 2px; overflow: hidden; margin-bottom: 1.2rem;
+    }
+    .svc-level-bar span {
+      display: block; height: 100%; border-radius: 2px;
+      box-shadow: 0 0 8px rgba(200,168,75,.5);
+    }
+    .svc-level-label {
+      font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(200,168,75,.5); margin-bottom: 1.4rem; font-weight: 500;
+    }
+
+    /* ── HEAD ── */
+    .svc-head {
+      padding: 1.6rem 1.8rem 1.4rem;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .svc-icon {
+      font-size: 2rem; margin-bottom: 1.1rem;
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 52px; height: 52px; border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .svc-name {
+      font-family: var(--font-d); font-size: 1.25rem;
+      color: var(--white); margin-bottom: .4rem; line-height: 1.25;
+    }
+    .svc-sub {
+      font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(200,168,75,.75);
+    }
+
+    /* ── BODY ── */
+    .svc-body { padding: 1.5rem 1.8rem; flex: 1; }
+    .svc-desc { font-size: .87rem; color: rgba(242,240,235,.6); line-height: 1.88; margin-bottom: 1.3rem; }
+
+    /* Package pills */
+    .pkg-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
     .pkg {
-      font-size: .66rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
-      padding: .28rem .7rem; border-radius: 20px;
+      font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      padding: .3rem .8rem; border-radius: 20px;
     }
-    .pkg-fill { background: var(--gold); color: var(--bg); }
-    .pkg-line { background: transparent; color: var(--gold); border: 1px solid var(--border); }
-    .svc-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
-    .svc-list li { font-size: .82rem; color: var(--grey1); display: flex; gap: .6rem; align-items: baseline; }
-    .svc-list li::before { content: '—'; color: var(--gold); flex-shrink: 0; font-size: .7rem; }
+    .pkg-fill { background: linear-gradient(90deg, var(--gold), var(--gold2)); color: var(--bg); }
+    .pkg-line { background: transparent; color: var(--gold); border: 1px solid rgba(200,168,75,.35); }
+
+    /* List items */
+    .svc-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+    .svc-list li {
+      font-size: .82rem; color: rgba(242,240,235,.65);
+      display: flex; gap: .65rem; align-items: flex-start; line-height: 1.55;
+    }
+    .svc-list li::before {
+      content: ''; flex-shrink: 0;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      margin-top: .42rem;
+    }
+
+    /* ── FOOT ── */
     .svc-foot {
-      padding: 1.3rem 1.8rem 1.8rem;
-      border-top: 1px solid var(--border2);
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 1.3rem 1.8rem 1.7rem;
+      border-top: 1px solid rgba(255,255,255,.06);
+      display: flex; flex-direction: column; gap: .85rem;
     }
-    .svc-price { font-family: var(--font-d); font-style: italic; font-size: 1.05rem; color: var(--gold); }
+    .svc-price {
+      font-family: var(--font-d); font-style: italic;
+      font-size: .95rem; color: var(--gold2);
+      letter-spacing: .04em;
+    }
     .btn-svc {
-      display: inline-flex; align-items: center; gap: .4rem;
-      border: 1px solid var(--border); color: var(--gold);
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      width: 100%;
+      border: 1px solid rgba(200,168,75,.4); color: var(--gold);
       font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
-      padding: .6rem 1.1rem; border-radius: 2px;
-      transition: background .3s, color .3s, border-color .3s;
-      white-space: nowrap;
+      padding: .78rem 1rem; border-radius: 10px;
+      transition: background .3s, color .3s, border-color .3s, box-shadow .3s;
+      white-space: normal; text-align: center; line-height: 1.35;
+      background: rgba(200,168,75,.06);
     }
-    .btn-svc:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+    .btn-svc:hover {
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      color: var(--bg); border-color: transparent;
+      box-shadow: 0 6px 24px rgba(200,168,75,.35);
+    }
+    /* ── SERVICE QUALIFY PANEL ── */
+    .svc-qualify-btn {
+      display: flex; align-items: center; justify-content: center; gap: .5rem;
+      width: 100%; padding: .85rem 1.8rem;
+      background: transparent; border: none; border-top: 1px solid rgba(255,255,255,.06);
+      color: var(--grey1); font-family: var(--font-s); font-size: .72rem;
+      letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+      transition: color .3s, background .3s; flex-shrink: 0;
+    }
+    .svc-qualify-btn:hover { color: var(--gold); background: var(--gold-dim); }
+    .svc-qualify-btn .qbtn-icon {
+      width: 18px; height: 18px; border: 1px solid currentColor;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: transform .35s var(--ease);
+    }
+    .svc-card.q-open .svc-qualify-btn { color: var(--gold); background: var(--gold-dim); }
+    .svc-card.q-open .svc-qualify-btn .qbtn-icon { transform: rotate(45deg); }
+
+    .svc-qualify-panel {
+      max-height: 0; overflow: hidden;
+      transition: max-height .52s var(--ease);
+      border-top: none;
+    }
+    .svc-card:nth-child(1) .svc-qualify-panel { background: rgba(80,140,70,.07); }
+    .svc-card:nth-child(2) .svc-qualify-panel { background: rgba(140,170,50,.07); }
+    .svc-card:nth-child(3) .svc-qualify-panel { background: rgba(200,168,75,.06); }
+    .svc-card:nth-child(4) .svc-qualify-panel { background: rgba(200,168,75,.09); }
+    .svc-card.q-open .svc-qualify-panel { max-height: 600px; }
+
+    .svc-qualify-inner { padding: 1.4rem 1.8rem 1.8rem; }
+    .svc-qualify-title {
+      font-size: .68rem; font-weight: 600; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+    }
+    .svc-q-list { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+    .svc-q-list li {
+      display: flex; gap: .7rem; align-items: flex-start;
+      font-size: .83rem; color: var(--white); line-height: 1.55;
+    }
+    .svc-q-check {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 1.5px solid var(--border); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: .1rem; transition: border-color .3s, background .3s;
+    }
+    .svc-q-list li:hover .svc-q-check { border-color: var(--gold); background: var(--gold-dim); }
+    .svc-qualify-cta {
+      margin-top: 1.3rem; padding-top: 1.1rem;
+      border-top: 1px solid var(--border2);
+      font-size: .8rem; color: var(--grey1); line-height: 1.6;
+    }
+    .svc-qualify-cta strong { color: var(--gold); font-weight: 500; }
+
     @media (max-width:900px) { .services-intro-grid { grid-template-columns: 1fr; } }
 
     /* =============================================
@@ -763,7 +1246,7 @@
     .logros-grid {
       display: grid;
       grid-template-columns: repeat(3,1fr);
-      gap: 1px; margin-top: 3.5rem;
+      gap: 1px; margin-top: 2rem;
       border: 1px solid var(--border2); border-radius: 3px; overflow: hidden;
     }
     .logro {
@@ -794,46 +1277,166 @@
     @media (max-width:480px) { .logros-grid { grid-template-columns: 1fr; } }
 
     /* =============================================
-       PROCESO
+       PROCESO — mapa iluminado
     ============================================= */
-    #proceso { background: var(--bg2); }
+    #proceso {
+      background: #06090a;
+      position: relative; overflow: hidden;
+    }
+
+    /* Topographic map texture */
+    .proc-topo {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='440'%3E%3Cg fill='none' stroke='%23c8a84b' stroke-width='0.7' opacity='1'%3E%3Cellipse cx='160' cy='220' rx='155' ry='78'/%3E%3Cellipse cx='160' cy='220' rx='115' ry='56'/%3E%3Cellipse cx='160' cy='220' rx='78' ry='37'/%3E%3Cellipse cx='160' cy='220' rx='46' ry='21'/%3E%3Cellipse cx='160' cy='220' rx='20' ry='9'/%3E%3Cellipse cx='620' cy='160' rx='190' ry='90'/%3E%3Cellipse cx='620' cy='160' rx='145' ry='67'/%3E%3Cellipse cx='620' cy='160' rx='102' ry='47'/%3E%3Cellipse cx='620' cy='160' rx='62' ry='28'/%3E%3Cellipse cx='620' cy='160' rx='28' ry='13'/%3E%3Cellipse cx='420' cy='370' rx='130' ry='52'/%3E%3Cellipse cx='420' cy='370' rx='90' ry='36'/%3E%3Cellipse cx='420' cy='370' rx='54' ry='21'/%3E%3Cellipse cx='780' cy='390' rx='95' ry='42'/%3E%3Cellipse cx='780' cy='390' rx='62' ry='27'/%3E%3Cellipse cx='780' cy='390' rx='32' ry='14'/%3E%3Cellipse cx='50' cy='60' rx='70' ry='32'/%3E%3Cellipse cx='50' cy='60' rx='44' ry='20'/%3E%3Cellipse cx='850' cy='60' rx='60' ry='28'/%3E%3Cellipse cx='850' cy='60' rx='38' ry='17'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: cover;
+      opacity: .06;
+    }
+
+    /* Dark vignette overlay so content stays readable */
+    .proc-topo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 30%, #06090a 100%);
+    }
+
+    /* Content above texture */
+    #proceso .wrap { position: relative; z-index: 1; }
+
+    /* Map wrap */
+    .proceso-map-wrap { margin-top: 3rem; position: relative; }
+
+    /* ── Animated path connector ── */
+    .proc-road {
+      position: absolute;
+      top: 29px; /* center of the 58px lantern circle */
+      left: calc(16.67% + 29px);
+      right: calc(16.67% + 29px);
+      height: 2px; z-index: 0;
+    }
+    /* Dashed base line */
+    .proc-road::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-top: 1px dashed rgba(200,168,75,.2);
+    }
+    /* Animated gold fill */
+    .proc-road-fill {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, #6fa860, var(--gold), var(--gold2));
+      transform-origin: left center;
+      transform: scaleX(0);
+      transition: transform 1.8s cubic-bezier(.16,1,.3,1);
+      border-radius: 2px;
+    }
+    .proceso-map-wrap.lit .proc-road-fill { transform: scaleX(1); }
+
+    /* ── STEPS GRID ── */
     .proceso-steps {
       display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 0; margin-top: 4rem; position: relative;
+      gap: 0; position: relative; z-index: 1;
     }
-    .proceso-steps::before {
-      content: ''; position: absolute;
-      top: 2.8rem; left: calc(16.5% + 1rem); right: calc(16.5% + 1rem);
-      height: 1px; background: var(--border2);
+    .p-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 1.8rem 2rem; }
+
+    /* ── LANTERN node ── */
+    .p-lantern-wrap {
+      position: relative; width: 58px; height: 58px;
+      margin-bottom: 2rem; flex-shrink: 0;
     }
-    .p-step { text-align: center; padding: 0 1.5rem 2rem; }
+
+    /* Bloom: expands when lit */
+    .p-bloom {
+      position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 58px; height: 58px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,168,75,.55) 0%, rgba(200,168,75,.18) 40%, transparent 70%);
+      opacity: 0; transition: opacity .6s, width 1s var(--ease), height 1s var(--ease);
+    }
+    .p-step.lit .p-bloom {
+      opacity: 1; width: 200px; height: 200px;
+    }
+
+    /* Outer ring pulse */
+    .p-ring {
+      position: absolute; inset: -8px; border-radius: 50%;
+      border: 1px solid rgba(200,168,75,0);
+      transition: border-color .6s;
+    }
+    .p-step.lit .p-ring {
+      border-color: rgba(200,168,75,.25);
+      animation: ring-pulse 3s ease-in-out 1s infinite;
+    }
+    @keyframes ring-pulse {
+      0%,100% { transform: scale(1); opacity: 1; }
+      50%      { transform: scale(1.35); opacity: 0; }
+    }
+
+    /* Lantern circle */
     .p-num {
-      width: 58px; height: 58px; border: 1px solid var(--border);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-d); font-size: 1.3rem; color: var(--gold);
-      background: var(--bg2); margin: 0 auto 1.6rem; position: relative; z-index: 1;
-      transition: background .3s, border-color .3s, box-shadow .3s;
+      width: 58px; height: 58px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-d); font-size: 1.3rem; color: rgba(200,168,75,.5);
+      background: rgba(8,8,8,.9);
+      border: 1px solid rgba(200,168,75,.25);
+      position: relative; z-index: 2;
+      transition: color .6s, border-color .6s, background .6s, box-shadow .6s;
     }
-    .p-step:hover .p-num {
-      background: var(--gold-dim); border-color: var(--gold);
-      box-shadow: 0 0 0 6px var(--gold-dim);
+    .p-step.lit .p-num {
+      color: var(--bg);
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      border-color: var(--gold2);
+      box-shadow: 0 0 0 3px rgba(200,168,75,.2), 0 0 30px rgba(200,168,75,.5), 0 0 60px rgba(200,168,75,.2);
     }
-    .p-title { font-size: .82rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--white); margin-bottom: .7rem; }
-    .p-desc { font-size: .84rem; color: var(--grey1); line-height: 1.78; }
-    .p-tag { display: inline-block; margin-top: .8rem; font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); }
+
+    /* ── CARD content ── */
+    .p-card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(200,168,75,.08);
+      border-radius: 14px; padding: 1.6rem 1.4rem;
+      width: 100%; max-width: 260px;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease), border-color .6s, box-shadow .6s;
+    }
+    .p-step.lit .p-card {
+      opacity: 1; transform: translateY(0);
+      border-color: rgba(200,168,75,.18);
+      box-shadow: 0 8px 32px rgba(0,0,0,.4), inset 0 1px 0 rgba(200,168,75,.1);
+    }
+
+    .p-title {
+      font-size: .78rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--white); margin-bottom: .8rem;
+    }
+    .p-desc { font-size: .84rem; color: rgba(242,240,235,.55); line-height: 1.82; margin-bottom: .9rem; }
+    .p-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold); opacity: .8;
+    }
+
+    /* Connector line between lantern and card */
+    .p-connector {
+      width: 1px; height: 1.8rem;
+      background: linear-gradient(to bottom, rgba(200,168,75,.3), transparent);
+      margin: -.5rem 0 -.5rem;
+      opacity: 0; transition: opacity .6s .3s;
+    }
+    .p-step.lit .p-connector { opacity: 1; }
+
+    /* ── MOBILE ── */
     @media (max-width:700px) {
-      .proceso-steps { grid-template-columns: 1fr; }
-      .proceso-steps::before { display: none; }
-      .p-step { display: flex; gap: 1.5rem; text-align: left; padding: 0 0 2rem; border-bottom: 1px solid var(--border2); }
-      .p-step:last-child { border-bottom: none; }
-      .p-num { flex-shrink: 0; margin: 0; }
+      .proceso-steps { grid-template-columns: 1fr; gap: 2rem; }
+      .proc-road { display: none; }
+      .p-step { flex-direction: row; align-items: flex-start; text-align: left; gap: 1.4rem; padding: 0; }
+      .p-lantern-wrap { flex-shrink: 0; }
+      .p-card { max-width: 100%; }
+      .p-connector { display: none; }
     }
 
     /* =============================================
        TESTIMONIOS — carousel
     ============================================= */
     #testimonios { background: var(--bg); overflow: hidden; }
-    .testi-carousel-wrap { position: relative; margin-top: 3.5rem; }
+    .testi-carousel-wrap { position: relative; margin-top: 2.2rem; }
     .testi-track-outer { overflow: hidden; }
     .testi-track {
       display: flex; gap: 1.5rem;
@@ -889,7 +1492,7 @@
     #redes { background: var(--bg2); }
     .redes-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-      gap: 1.2rem; margin-top: 3.5rem;
+      gap: 1.2rem; margin-top: 2rem;
     }
     .red-card {
       background: var(--bg3); border: 1px solid var(--border2);
@@ -959,7 +1562,9 @@
 
     /* Floating WA button */
     #wa-float {
-      position: fixed; bottom: 1.8rem; right: 1.8rem;
+      position: fixed;
+      bottom: calc(1.8rem + env(safe-area-inset-bottom));
+      right: calc(1.8rem + env(safe-area-inset-right));
       width: 54px; height: 54px; background: #25D366;
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
       z-index: 800; box-shadow: 0 4px 20px rgba(37,211,102,.4);
@@ -1092,32 +1697,33 @@
       <span class="word"> tu</span>
       <span class="italic"><span class="word">mapa.</span></span>
     </h1>
+    <p class="hero-pre-sub rv d2">El problema casi nunca es lo que sabes.</p>
     <p class="hero-sub rv d3">
-      Acompaño a <strong>profesionales y equipos</strong> a tomar conciencia de lo que los aleja —o acerca— de sus metas. Con psicología, PNL y liderazgo estratégico.
+      Es la confianza, la claridad y la autovaloración. Acompaño a <strong>profesionales y recién egresados</strong> a desbloquear eso que los tiene parados — con psicología, PNL y estrategia real.
     </p>
     <div class="hero-actions rv d4">
       <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-wa" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.1 1.508 5.836L.057 23.5a.5.5 0 0 0 .61.61l5.666-1.451A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.002-1.371l-.357-.212-3.727.955.974-3.655-.233-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
         Agenda tu llamada gratuita de 30 min
       </a>
-      <a href="#sobre-mi" class="btn-outline">Conoce mi historia →</a>
+      <a href="#servicios" class="btn-outline">Ver mis servicios →</a>
     </div>
     <div class="hero-stats">
       <div class="rv d2">
-        <div class="h-stat-n" data-count="10">0</div>
-        <div class="h-stat-l">Años de experiencia</div>
+        <div class="h-stat-n" data-count="3700" data-suffix="+">0</div>
+        <div class="h-stat-l">Personas impactadas</div>
       </div>
       <div class="rv d3">
-        <div class="h-stat-n">PNL</div>
-        <div class="h-stat-l">Coach certificado</div>
+        <div class="h-stat-n" data-count="300" data-suffix="+">0</div>
+        <div class="h-stat-l">Asesorías realizadas</div>
       </div>
       <div class="rv d4">
-        <div class="h-stat-n" data-count="4">0</div>
-        <div class="h-stat-l">Servicios activos</div>
+        <div class="h-stat-n" data-count="10" data-suffix="k+">0</div>
+        <div class="h-stat-l">Comunidad en redes</div>
       </div>
       <div class="rv d5">
-        <div class="h-stat-n" data-count="14">0</div>
-        <div class="h-stat-l">Años disciplina física</div>
+        <div class="h-stat-n" data-count="10">0</div>
+        <div class="h-stat-l">Años de experiencia</div>
       </div>
     </div>
   </div>
@@ -1131,30 +1737,30 @@
 <div class="marquee-wrap" aria-hidden="true">
   <div class="marquee-track" id="mq">
     <!-- items duplicated by JS -->
-    <span class="m-item">Psicología Clínica <span class="m-dot"></span></span>
-    <span class="m-item">Coaching PNL <span class="m-dot"></span></span>
-    <span class="m-item">Liderazgo Estratégico <span class="m-dot"></span></span>
-    <span class="m-item">Marca Personal <span class="m-dot"></span></span>
-    <span class="m-item">Team Building <span class="m-dot"></span></span>
-    <span class="m-item">Apresto Laboral <span class="m-dot"></span></span>
+    <span class="m-item">Inserción Laboral <span class="m-dot"></span></span>
+    <span class="m-item">Coaching PNL · SCPNL <span class="m-dot"></span></span>
     <span class="m-item">Desarrollo Profesional <span class="m-dot"></span></span>
+    <span class="m-item">Marca Personal LinkedIn <span class="m-dot"></span></span>
+    <span class="m-item">+3.700 Personas Impactadas <span class="m-dot"></span></span>
+    <span class="m-item">Preparación para Entrevistas <span class="m-dot"></span></span>
+    <span class="m-item">Confianza · Claridad · Acción <span class="m-dot"></span></span>
+    <span class="m-item">Psicólogo Certificado <span class="m-dot"></span></span>
     <span class="m-item">Universidad de La Serena <span class="m-dot"></span></span>
-    <span class="m-item">10 Años de Experiencia <span class="m-dot"></span></span>
-    <span class="m-item">Retiro de Silencio 7 Días <span class="m-dot"></span></span>
-    <span class="m-item">Embajador de Marca <span class="m-dot"></span></span>
-    <span class="m-item">Magíster en Comunicación <span class="m-dot"></span></span>
-    <span class="m-item">Psicología Clínica <span class="m-dot"></span></span>
-    <span class="m-item">Coaching PNL <span class="m-dot"></span></span>
-    <span class="m-item">Liderazgo Estratégico <span class="m-dot"></span></span>
-    <span class="m-item">Marca Personal <span class="m-dot"></span></span>
-    <span class="m-item">Team Building <span class="m-dot"></span></span>
-    <span class="m-item">Apresto Laboral <span class="m-dot"></span></span>
+    <span class="m-item">+300 Asesorías Realizadas <span class="m-dot"></span></span>
+    <span class="m-item">Comunidad +10k <span class="m-dot"></span></span>
+    <span class="m-item">Magíster en Liderazgo <span class="m-dot"></span></span>
+    <span class="m-item">Inserción Laboral <span class="m-dot"></span></span>
+    <span class="m-item">Coaching PNL · SCPNL <span class="m-dot"></span></span>
     <span class="m-item">Desarrollo Profesional <span class="m-dot"></span></span>
+    <span class="m-item">Marca Personal LinkedIn <span class="m-dot"></span></span>
+    <span class="m-item">+3.700 Personas Impactadas <span class="m-dot"></span></span>
+    <span class="m-item">Preparación para Entrevistas <span class="m-dot"></span></span>
+    <span class="m-item">Confianza · Claridad · Acción <span class="m-dot"></span></span>
+    <span class="m-item">Psicólogo Certificado <span class="m-dot"></span></span>
     <span class="m-item">Universidad de La Serena <span class="m-dot"></span></span>
-    <span class="m-item">10 Años de Experiencia <span class="m-dot"></span></span>
-    <span class="m-item">Retiro de Silencio 7 Días <span class="m-dot"></span></span>
-    <span class="m-item">Embajador de Marca <span class="m-dot"></span></span>
-    <span class="m-item">Magíster en Comunicación <span class="m-dot"></span></span>
+    <span class="m-item">+300 Asesorías Realizadas <span class="m-dot"></span></span>
+    <span class="m-item">Comunidad +10k <span class="m-dot"></span></span>
+    <span class="m-item">Magíster en Liderazgo <span class="m-dot"></span></span>
   </div>
 </div>
 
@@ -1195,17 +1801,19 @@
         <p class="label rv">Quién soy</p>
         <div class="gold-dash rv d1"></div>
         <blockquote class="about-blockquote rv d2">
-          "No me interesa guiarte hacia donde creo que debes ir. Me interesa alumbrar tu mapa para que llegues donde tú decides."
+          "No me interesa guiarte hacia donde <em>yo</em> creo que debes ir.<br/>Me interesa alumbrarte tu mapa, para que llegues donde <em>tú</em> decides."
         </blockquote>
-        <p class="about-p rv d3">
-          Soy <strong>Maximiliano Jiménez</strong>, psicólogo con más de 10 años de experiencia, Coach PNL y Magíster en Liderazgo, Dirección y Comunicación Estratégica. Trabajo en la Universidad de La Serena coordinando la red de titulados, y en paralelo acompaño a personas y organizaciones a crecer con propósito.
-        </p>
-        <p class="about-p rv d3">
-          De niño enfrenté el cáncer y perdí un riñón. Esa experiencia no me quebró — me enseñó a mirar hacia adentro. Llevo <strong>14 años entrenando</strong>, fui embajador de marca, viví un retiro de 7 días completamente desconectado y me formé en 4 programas continuos de marca personal con David Ávila.
-        </p>
-        <p class="about-p rv d4">
-          Todo eso me convirtió en quien soy: alguien que aprendió a <strong>leer su propio mapa primero</strong>, para poder ayudarte a leer el tuyo.
-        </p>
+        <ul class="about-bullets rv d3">
+          <li><span class="ab-icon">🎓</span><span><strong>Psicólogo y Lic. en Psicología</strong> — Universidad Santo Tomás, 2016</span></li>
+          <li><span class="ab-icon">📐</span><span><strong>Magíster en Liderazgo</strong>, Dirección y Comunicación Estratégica — ULS, 2019</span></li>
+          <li><span class="ab-icon">🔑</span><span><strong>Coach en PNL</strong> Certificado por SCPNL, 2022 — Herramientas y técnicas para el cambio</span></li>
+          <li><span class="ab-icon">📊</span><span>Más de <strong>300 asesorías</strong> de apresto laboral · <strong>+3.700 personas</strong> impactadas en charlas y talleres</span></li>
+          <li><span class="ab-icon">📱</span><span><strong>Creador de contenido</strong> con comunidad de más de 10k en redes sociales</span></li>
+          <li><span class="ab-icon">🏛️</span><span>Coordinador de la <strong>Red de Titulados</strong> — Universidad de La Serena (Oficina Alumni)</span></li>
+          <li><span class="ab-icon">💪</span><span><strong>14 años</strong> de disciplina física · Ex Embajador de marca deportiva por 5 años</span></li>
+          <li><span class="ab-icon">🏔️</span><span>Viví un retiro de <strong>7 días en silencio</strong> total — Sí, el silencio puede hablarte fuerte</span></li>
+          <li><span class="ab-icon">🌟</span><span>Miembro del equipo de <strong>Marca Personal con David Ávila</strong> (Macro Creador Chileno) · 5 versiones</span></li>
+        </ul>
         <div class="pillars rv d4">
           <div class="pillar"><div class="pillar-ic">🧠</div><div class="pillar-t">Psicología</div><div class="pillar-d">Base científica para entender conductas, emociones y patrones</div></div>
           <div class="pillar"><div class="pillar-ic">🔑</div><div class="pillar-t">PNL</div><div class="pillar-d">Herramientas de reprogramación y comunicación efectiva</div></div>
@@ -1226,7 +1834,7 @@
     </div>
     <div class="conoce-hint rv d2">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      Desliza o pasa el mouse — clic para ampliar
+      Pasa el mouse para pausar · Clic para ampliar
     </div>
   </div>
   <div class="conoce-track-outer">
@@ -1353,39 +1961,59 @@
 </section>
 
 <!-- ===================== ÁREAS ===================== -->
-<section id="que-hago" style="background:var(--bg)">
+<section id="que-hago" style="background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26,53,24,.35) 0%, var(--bg) 65%);">
   <div class="wrap sec">
     <p class="label rv">Áreas de trabajo</p>
-    <h2 class="h2 rv d1">Donde <em>genero impacto</em></h2>
-    <p class="body-text rv d2">Desliza para explorar las áreas en las que trabajo con personas y organizaciones.</p>
+    <h2 class="h2 rv d1">Tres perfiles. <em>Un denominador común.</em></h2>
+    <p class="body-text rv d2">Confianza, claridad y autovaloración. Eso es lo que desbloqueo — sin importar en qué etapa profesional estés.</p>
   </div>
   <div class="wrap" style="overflow:visible">
     <div class="areas-scroll-wrap rv d2" id="areas-scroll">
       <div class="areas-track" id="areas-track">
         <div class="area-card">
           <div class="area-n">01</div>
-          <div class="area-t">Apresto Laboral 1:1</div>
-          <div class="area-d">Para jóvenes profesionales que buscan su primer trabajo o entrar a un programa de atracción temprana. Autoconocimiento, posicionamiento y estrategia.</div>
+          <div class="area-card-inner">
+            <div class="area-ic">🎯</div>
+            <div class="area-t">Inserción Laboral</div>
+            <div class="area-d">Para recién egresados de 18 a 25 años. +300 asesorías. El problema no es el CV — es la confianza frente al entrevistador.</div>
+          </div>
+          <div class="area-card-fade"></div>
         </div>
         <div class="area-card">
           <div class="area-n">02</div>
-          <div class="area-t">Coaching de Desarrollo</div>
-          <div class="area-d">Proceso estructurado para avanzar en un objetivo concreto. Combinamos psicología, PNL y estrategia para tu próximo salto.</div>
+          <div class="area-card-inner">
+            <div class="area-ic">🧭</div>
+            <div class="area-t">Desarrollo Profesional</div>
+            <div class="area-d">Para profesionales de 31 a 40 estancados. Metodología DISC, inteligencia emocional y herramientas concretas para el siguiente salto.</div>
+          </div>
+          <div class="area-card-fade"></div>
         </div>
         <div class="area-card">
           <div class="area-n">03</div>
-          <div class="area-t">Marca Personal</div>
-          <div class="area-d">Descubrimiento y proyección de tu identidad profesional única. Posiciónate con autenticidad y diferenciación real.</div>
+          <div class="area-card-inner">
+            <div class="area-ic">✨</div>
+            <div class="area-t">Marca Personal</div>
+            <div class="area-d">Para quien quiere visibilidad en LinkedIn pero cree que no tiene nada valioso que mostrar. El bloqueo es autovaloración — no técnica.</div>
+          </div>
+          <div class="area-card-fade"></div>
         </div>
         <div class="area-card">
           <div class="area-n">04</div>
-          <div class="area-t">Team Building</div>
-          <div class="area-d">Charlas y talleres para construir equipos con propósito, mejorar la comunicación y tomar mejores decisiones colectivas.</div>
+          <div class="area-card-inner">
+            <div class="area-ic">🤝</div>
+            <div class="area-t">Charlas & Team Building</div>
+            <div class="area-d">Para organizaciones que quieren equipos con propósito real. Comunicación honesta y cohesión desde la confianza.</div>
+          </div>
+          <div class="area-card-fade"></div>
         </div>
         <div class="area-card">
           <div class="area-n">05</div>
-          <div class="area-t">Contenido & Bienestar</div>
-          <div class="area-d">Creación de contenido de psicología y bienestar orientado a que las personas reconquisten su vida con conciencia y acción.</div>
+          <div class="area-card-inner">
+            <div class="area-ic">📱</div>
+            <div class="area-t">Contenido & Comunidad</div>
+            <div class="area-d">+10k de comunidad. Contenido de psicología y desarrollo profesional que activa, no que entretiene. Relator en conferencias nacionales.</div>
+          </div>
+          <div class="area-card-fade"></div>
         </div>
       </div>
     </div>
@@ -1401,113 +2029,192 @@
   <div class="wrap sec">
     <div class="services-intro-grid">
       <div>
-        <p class="label rv">Servicios & Paquetes</p>
-        <h2 class="h2 rv d1">Invierte en <em>quien quieres ser</em></h2>
+        <p class="label rv">3 Servicios · 3 Perfiles</p>
+        <h2 class="h2 rv d1">El bloqueo no es<br/><em>lo que falta saber.</em></h2>
       </div>
       <div class="rv d2">
-        <p class="body-text" style="max-width:100%;margin-bottom:1.2rem;">Cada proceso comienza con una conversación honesta. Antes de cualquier compromiso, agendamos una llamada gratuita de 30 minutos.</p>
+        <p class="body-text" style="max-width:100%;margin-bottom:1.2rem;">Casi siempre es confianza, claridad o autovaloración. Antes de cualquier compromiso, conversamos 30 minutos sin costo — para saber si soy la persona indicada para acompañarte.</p>
         <div class="process-note">
-          <strong>🎁 Primera sesión sin costo</strong>
-          30 min por WhatsApp para identificar qué necesitas y si somos el match correcto. Sin presión, sin compromiso.
+          <strong>🎁 Llamada gratuita de 30 min — siempre</strong>
+          Cuéntame dónde estás y hacia dónde quieres ir. Sin presión. Solo una conversación honesta.
         </div>
       </div>
     </div>
     <div class="svc-grid">
-      <!-- Card 1 -->
+
+      <!-- Servicio 1: Inserción Laboral -->
       <div class="svc-card rv d1">
         <div class="svc-head">
-          <div class="svc-icon">🎓</div>
-          <div class="svc-name">Apresto Laboral 1:1</div>
-          <div class="svc-sub">Jóvenes profesionales</div>
+          <div class="svc-level-bar"><span style="width:25%; background:linear-gradient(90deg,#6fa860,#a8d890);"></span></div>
+          <div class="svc-level-label">Nivel · Inicio de carrera</div>
+          <div class="svc-icon">🎯</div>
+          <div class="svc-name">Coaching para la Inserción Laboral</div>
+          <div class="svc-sub">Para recién egresados · 18 a 25 años</div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">Ideal si buscas tu primer trabajo o quieres entrar a un programa de atracción temprana. Estrategia, autoconocimiento y propuesta de valor clara.</p>
+          <p class="svc-desc">¿Llegas a las entrevistas y te bloqueas? El problema no es tu CV — es la confianza frente al entrevistador. Trabajamos eso juntos, con resultados rápidos y concretos.</p>
           <ul class="svc-list">
-            <li>Diagnóstico de perfil y fortalezas</li>
-            <li>Preparación de entrevistas y CV</li>
-            <li>Estrategia de búsqueda laboral</li>
-            <li>Sesiones individuales a tu ritmo</li>
+            <li>Cómo venderte sin sentirte impostora/or</li>
+            <li>Simulación de entrevistas reales</li>
+            <li>CV y propuesta de valor diferenciada</li>
+            <li>Estrategia de búsqueda paso a paso</li>
+            <li>+300 asesorías de experiencia respaldando</li>
           </ul>
         </div>
         <div class="svc-foot">
           <div class="svc-price">A consultar</div>
-          <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-svc" target="_blank" rel="noopener">Consultar →</a>
+          <a href="https://wa.me/message/76VA3UZJMWUKB1?text=Hola%20Maxi%2C%20soy%20reci%C3%A9n%20egresado%20y%20quiero%20hablar%20sobre%20inserci%C3%B3n%20laboral" class="btn-svc" target="_blank" rel="noopener">Quiero mi primer empleo →</a>
+        </div>
+        <button class="svc-qualify-btn" aria-expanded="false">
+          <span class="qbtn-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+          ¿Es este servicio para mí?
+        </button>
+        <div class="svc-qualify-panel" aria-hidden="true">
+          <div class="svc-qualify-inner">
+            <p class="svc-qualify-title">✓ Este servicio es para ti si…</p>
+            <ul class="svc-q-list">
+              <li><span class="svc-q-check"></span>Terminaste de estudiar hace menos de 2 años y aún no consigues empleo formal</li>
+              <li><span class="svc-q-check"></span>En las entrevistas te bloqueas y no sabes cómo presentarte sin sentirte impostora/or</li>
+              <li><span class="svc-q-check"></span>Tienes el CV listo pero no sabes cómo diferenciarte del resto de candidatos</li>
+              <li><span class="svc-q-check"></span>Sientes que "ya deberías tener trabajo" y esa presión te paraliza en lugar de moverte</li>
+            </ul>
+            <div class="svc-qualify-cta">Si marcaste 2 o más, <strong>este proceso es para ti.</strong> La llamada de 30 min es gratis — sin compromiso.</div>
+          </div>
         </div>
       </div>
-      <!-- Card 2 – featured -->
+
+      <!-- Servicio 2: Desarrollo Profesional — FEATURED -->
       <div class="svc-card feat rv d2">
         <div class="svc-feat-tag">Más solicitado</div>
         <div class="svc-head">
-          <div class="svc-icon">🚀</div>
-          <div class="svc-name">Coaching Desarrollo Profesional</div>
-          <div class="svc-sub">Programa de acompañamiento</div>
+          <div class="svc-level-bar"><span style="width:55%; background:linear-gradient(90deg,#9ab840,#c8e060,var(--gold));"></span></div>
+          <div class="svc-level-label">Nivel · Carrera en desarrollo</div>
+          <div class="svc-icon">🧭</div>
+          <div class="svc-name">Coaching para el Desarrollo Profesional</div>
+          <div class="svc-sub">Para profesionales estancados · 31 a 40 años</div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">Proceso estructurado para avanzar en un objetivo concreto con seguimiento posterior a precio preferencial.</p>
+          <p class="svc-desc">¿Sabes lo que vales pero no sabes hacia dónde ir? Tienes el talento — te falta claridad y la confianza para el siguiente salto. No es solo reflexión: es equipamiento con herramientas reales.</p>
           <div class="pkg-row">
             <span class="pkg pkg-fill">4 sesiones</span>
             <span class="pkg pkg-line">6 sesiones</span>
             <span class="pkg pkg-line">8 sesiones</span>
           </div>
           <ul class="svc-list">
-            <li>Diagnóstico inicial y objetivo claro</li>
-            <li>Herramientas PNL y psicología aplicada</li>
-            <li>Seguimiento post-programa rebajado</li>
-            <li>Recursos y ejercicios entre sesiones</li>
+            <li>Metodología DISC aplicada a tu carrera</li>
+            <li>Inteligencia emocional en el trabajo</li>
+            <li>Liderazgo de equipos y relaciones laborales</li>
+            <li>Técnicas concretas de gestión profesional</li>
+            <li>Seguimiento post-programa a precio preferencial</li>
           </ul>
         </div>
         <div class="svc-foot">
           <div class="svc-price">A consultar</div>
-          <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-svc" target="_blank" rel="noopener">Consultar →</a>
+          <a href="https://wa.me/message/76VA3UZJMWUKB1?text=Hola%20Maxi%2C%20quiero%20hablar%20sobre%20mi%20desarrollo%20profesional" class="btn-svc" target="_blank" rel="noopener">Quiero claridad profesional →</a>
+        </div>
+        <button class="svc-qualify-btn" aria-expanded="false">
+          <span class="qbtn-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+          ¿Es este servicio para mí?
+        </button>
+        <div class="svc-qualify-panel" aria-hidden="true">
+          <div class="svc-qualify-inner">
+            <p class="svc-qualify-title">✓ Este servicio es para ti si…</p>
+            <ul class="svc-q-list">
+              <li><span class="svc-q-check"></span>Tienes más de 5 años de experiencia pero sientes que llevas tiempo estancado/a</li>
+              <li><span class="svc-q-check"></span>Sabes que tienes talento, pero no tienes claridad sobre tu próximo paso</li>
+              <li><span class="svc-q-check"></span>Te has preguntado más de una vez: "¿esto es todo?"</li>
+              <li><span class="svc-q-check"></span>Es la primera vez que consideras buscar apoyo externo para tu carrera</li>
+            </ul>
+            <div class="svc-qualify-cta">Si algo de esto te resuena, <strong>ya es momento de conversarlo.</strong> 30 min gratuitas para entender si somos el match correcto.</div>
+          </div>
         </div>
       </div>
-      <!-- Card 3 -->
+
+      <!-- Servicio 3: Marca Personal -->
       <div class="svc-card rv d3">
         <div class="svc-head">
+          <div class="svc-level-bar"><span style="width:75%; background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold3));"></span></div>
+          <div class="svc-level-label">Nivel · Visibilidad profesional</div>
           <div class="svc-icon">✨</div>
-          <div class="svc-name">Coaching Marca Personal</div>
-          <div class="svc-sub">Identidad profesional única</div>
+          <div class="svc-name">Coaching para tu Marca Personal</div>
+          <div class="svc-sub">Para profesionales que quieren visibilidad real</div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">Descubre, construye y proyecta tu marca personal 1:1. Para profesionales que quieren destacar con coherencia y propósito.</p>
+          <p class="svc-desc">Tienes más valor del que crees — solo necesitas saber cómo mostrarlo. El bloqueo no es técnico: es autovaloración. Construimos tu marca en LinkedIn desde la autenticidad, no desde el ruido.</p>
           <div class="pkg-row">
             <span class="pkg pkg-fill">4 sesiones</span>
             <span class="pkg pkg-line">6 sesiones</span>
             <span class="pkg pkg-line">8 sesiones</span>
           </div>
           <ul class="svc-list">
-            <li>Valores y propósito único</li>
-            <li>Estrategia de contenido y visibilidad</li>
-            <li>Posicionamiento en redes profesionales</li>
-            <li>Plan de acción concreto y medible</li>
+            <li>Descubrir tu diferenciador real y genuino</li>
+            <li>Posicionamiento auténtico en LinkedIn</li>
+            <li>Estrategia de contenido que representa quién eres</li>
+            <li>De la invisibilidad a la presencia con propósito</li>
           </ul>
         </div>
         <div class="svc-foot">
           <div class="svc-price">A consultar</div>
-          <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-svc" target="_blank" rel="noopener">Consultar →</a>
+          <a href="https://wa.me/message/76VA3UZJMWUKB1?text=Hola%20Maxi%2C%20quiero%20construir%20mi%20marca%20personal" class="btn-svc" target="_blank" rel="noopener">Quiero que me vean →</a>
+        </div>
+        <button class="svc-qualify-btn" aria-expanded="false">
+          <span class="qbtn-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+          ¿Es este servicio para mí?
+        </button>
+        <div class="svc-qualify-panel" aria-hidden="true">
+          <div class="svc-qualify-inner">
+            <p class="svc-qualify-title">✓ Este servicio es para ti si…</p>
+            <ul class="svc-q-list">
+              <li><span class="svc-q-check"></span>Quieres visibilidad en LinkedIn pero no sabes cómo empezar o no tienes consistencia</li>
+              <li><span class="svc-q-check"></span>Sientes que no tienes nada "suficientemente valioso" que mostrar al mundo</li>
+              <li><span class="svc-q-check"></span>Hay una oportunidad próxima —entrevista, ascenso, proyecto— y necesitas que te vean</li>
+              <li><span class="svc-q-check"></span>Has intentado construir tu marca solo/a pero algo siempre te detiene</li>
+            </ul>
+            <div class="svc-qualify-cta">El bloqueo no es técnico — es de autovaloración. <strong>Eso es exactamente lo que trabajamos juntos.</strong></div>
+          </div>
         </div>
       </div>
-      <!-- Card 4 -->
+
+      <!-- Servicio 4: Team Building -->
       <div class="svc-card rv d4">
         <div class="svc-head">
+          <div class="svc-level-bar"><span style="width:100%; background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold3),#fff8e0);"></span></div>
+          <div class="svc-level-label">Nivel · Liderazgo & Élite organizacional</div>
           <div class="svc-icon">🤝</div>
-          <div class="svc-name">Team Building Empresarial</div>
-          <div class="svc-sub">Para organizaciones</div>
+          <div class="svc-name">Charlas & Team Building</div>
+          <div class="svc-sub">Para organizaciones y equipos</div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">Charlas y talleres para construir equipos desde el propósito. Comunicación, toma de decisiones y cultura organizacional real.</p>
+          <p class="svc-desc">Charlas y talleres que van más allá de la motivación: conversaciones honestas que hacen que los equipos se entiendan de otra manera. Presencial o en línea.</p>
           <ul class="svc-list">
-            <li>Diagnóstico del equipo y objetivos</li>
-            <li>Taller presencial o en línea</li>
-            <li>Dinámicas de cohesión y comunicación</li>
+            <li>Diagnóstico del equipo y objetivos claros</li>
+            <li>Comunicación y cohesión desde el propósito</li>
+            <li>Toma de decisiones colectiva más efectiva</li>
             <li>Plan de seguimiento para líderes</li>
           </ul>
         </div>
         <div class="svc-foot">
           <div class="svc-price">Cotizar</div>
-          <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-svc" target="_blank" rel="noopener">Cotizar →</a>
+          <a href="https://wa.me/message/76VA3UZJMWUKB1?text=Hola%20Maxi%2C%20quiero%20cotizar%20una%20charla%20o%20taller%20para%20mi%20equipo" class="btn-svc" target="_blank" rel="noopener">Cotizar para mi equipo →</a>
+        </div>
+        <button class="svc-qualify-btn" aria-expanded="false">
+          <span class="qbtn-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+          ¿Es esto para mi organización?
+        </button>
+        <div class="svc-qualify-panel" aria-hidden="true">
+          <div class="svc-qualify-inner">
+            <p class="svc-qualify-title">✓ Esta experiencia es para tu equipo si…</p>
+            <ul class="svc-q-list">
+              <li><span class="svc-q-check"></span>Tu equipo tiene talento pero le cuesta comunicarse o tomar decisiones colectivas</li>
+              <li><span class="svc-q-check"></span>Buscas algo más profundo y honesto que un taller de motivación estándar</li>
+              <li><span class="svc-q-check"></span>Quieres mejorar la cohesión sin perder el tiempo de tu gente</li>
+              <li><span class="svc-q-check"></span>Necesitas un formato presencial o en línea adaptado a tu realidad organizacional</li>
+            </ul>
+            <div class="svc-qualify-cta">Cotización personalizada según tu equipo y objetivos. <strong>Conversamos y lo armamos juntos.</strong></div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1519,40 +2226,40 @@
     <h2 class="h2 rv d1">Formación & <em>trayectoria</em></h2>
     <div class="logros-grid">
       <div class="logro rv-z d1">
-        <div class="logro-ic">🎓</div>
-        <div class="logro-n">Mg.</div>
-        <div class="logro-t">Liderazgo & Comunicación</div>
-        <div class="logro-d">Magíster en Liderazgo, Dirección y Comunicación Estratégica</div>
+        <div class="logro-ic">👥</div>
+        <div class="logro-n" data-count="3700" data-suffix="+">0</div>
+        <div class="logro-t">Personas impactadas</div>
+        <div class="logro-d">En charlas, talleres y procesos de coaching a lo largo de Chile</div>
       </div>
       <div class="logro rv-z d2">
-        <div class="logro-ic">🧩</div>
+        <div class="logro-ic">💼</div>
+        <div class="logro-n" data-count="300" data-suffix="+">0</div>
+        <div class="logro-t">Asesorías de apresto laboral</div>
+        <div class="logro-d">En los últimos 5 años acompañando a jóvenes a conseguir su primer empleo</div>
+      </div>
+      <div class="logro rv-z d3">
+        <div class="logro-ic">📱</div>
+        <div class="logro-n" data-count="10" data-suffix="k+">0</div>
+        <div class="logro-t">Comunidad en redes</div>
+        <div class="logro-d">Creador de contenido de psicología, bienestar y desarrollo profesional</div>
+      </div>
+      <div class="logro rv-z d1">
+        <div class="logro-ic">🎓</div>
+        <div class="logro-n">Mg.</div>
+        <div class="logro-t">Magíster en Liderazgo</div>
+        <div class="logro-d">Dirección y Comunicación Estratégica — ULS 2019</div>
+      </div>
+      <div class="logro rv-z d2">
+        <div class="logro-ic">🔑</div>
         <div class="logro-n">PNL</div>
-        <div class="logro-t">Coach certificado</div>
-        <div class="logro-d">Programación Neurolingüística para desarrollo personal y profesional</div>
+        <div class="logro-t">Coach Certificado SCPNL</div>
+        <div class="logro-d">Programación Neurolingüística · Certificado 2022</div>
       </div>
       <div class="logro rv-z d3">
         <div class="logro-ic">🏛️</div>
-        <div class="logro-n">ULS</div>
-        <div class="logro-t">Universidad de La Serena</div>
-        <div class="logro-d">Psicólogo Coordinador Red de Titulados – Oficina Alumni</div>
-      </div>
-      <div class="logro rv-z d1">
-        <div class="logro-ic">💪</div>
-        <div class="logro-n" data-count="14">0</div>
-        <div class="logro-t">Años disciplina física</div>
-        <div class="logro-d">Embajador de marca deportiva por 5 años consecutivos</div>
-      </div>
-      <div class="logro rv-z d2">
-        <div class="logro-ic">🌟</div>
-        <div class="logro-n" data-count="4">0</div>
-        <div class="logro-t">Programas de Marca Personal</div>
-        <div class="logro-d">Formación continua con David Ávila, referente latinoamericano</div>
-      </div>
-      <div class="logro rv-z d3">
-        <div class="logro-ic">🏔️</div>
-        <div class="logro-n" data-count="7">0</div>
-        <div class="logro-t">Días de retiro en silencio</div>
-        <div class="logro-d">Desconexión total para reconquistar mente, cuerpo y propósito</div>
+        <div class="logro-n" data-count="10">0</div>
+        <div class="logro-t">Años de experiencia</div>
+        <div class="logro-d">Psicólogo Coordinador Alumni — Universidad de La Serena</div>
       </div>
     </div>
   </div>
@@ -1561,57 +2268,90 @@
 <!-- MARQUEE 2 (reverse) -->
 <div class="marquee-wrap" aria-hidden="true" style="background:var(--bg2)">
   <div class="marquee-track" style="animation-direction:reverse; animation-duration:22s;">
-    <span class="m-item">Reconquista tu vida <span class="m-dot"></span></span>
-    <span class="m-item">Conciencia & Acción <span class="m-dot"></span></span>
-    <span class="m-item">Propósito profesional <span class="m-dot"></span></span>
-    <span class="m-item">Bienestar integral <span class="m-dot"></span></span>
-    <span class="m-item">Senderismo & naturaleza <span class="m-dot"></span></span>
-    <span class="m-item">Resiliencia <span class="m-dot"></span></span>
-    <span class="m-item">Disciplina = libertad <span class="m-dot"></span></span>
-    <span class="m-item">La Serena, Chile <span class="m-dot"></span></span>
-    <span class="m-item">Reconquista tu vida <span class="m-dot"></span></span>
-    <span class="m-item">Conciencia & Acción <span class="m-dot"></span></span>
-    <span class="m-item">Propósito profesional <span class="m-dot"></span></span>
-    <span class="m-item">Bienestar integral <span class="m-dot"></span></span>
-    <span class="m-item">Senderismo & naturaleza <span class="m-dot"></span></span>
-    <span class="m-item">Resiliencia <span class="m-dot"></span></span>
-    <span class="m-item">Disciplina = libertad <span class="m-dot"></span></span>
-    <span class="m-item">La Serena, Chile <span class="m-dot"></span></span>
+    <span class="m-item">El bloqueo no es lo que te falta saber <span class="m-dot"></span></span>
+    <span class="m-item">Confianza · Claridad · Autovaloración <span class="m-dot"></span></span>
+    <span class="m-item">¿Llegas a entrevistas y te bloqueas? <span class="m-dot"></span></span>
+    <span class="m-item">¿Sabes lo que vales pero no sabes hacia dónde ir? <span class="m-dot"></span></span>
+    <span class="m-item">Tienes más valor del que crees <span class="m-dot"></span></span>
+    <span class="m-item">Desbloquear personas es mi trabajo <span class="m-dot"></span></span>
+    <span class="m-item">La Serena · Chile · @mapsicl <span class="m-dot"></span></span>
+    <span class="m-item">El bloqueo no es lo que te falta saber <span class="m-dot"></span></span>
+    <span class="m-item">Confianza · Claridad · Autovaloración <span class="m-dot"></span></span>
+    <span class="m-item">¿Llegas a entrevistas y te bloqueas? <span class="m-dot"></span></span>
+    <span class="m-item">¿Sabes lo que vales pero no sabes hacia dónde ir? <span class="m-dot"></span></span>
+    <span class="m-item">Tienes más valor del que crees <span class="m-dot"></span></span>
+    <span class="m-item">Desbloquear personas es mi trabajo <span class="m-dot"></span></span>
+    <span class="m-item">La Serena · Chile · @mapsicl <span class="m-dot"></span></span>
   </div>
 </div>
 
 <!-- ===================== PROCESO ===================== -->
-<section id="proceso" style="background:var(--bg2)">
+<section id="proceso">
+  <!-- Topographic map texture -->
+  <div class="proc-topo" aria-hidden="true"></div>
+
   <div class="wrap sec">
     <p class="label rv">Cómo trabajo</p>
-    <h2 class="h2 rv d1">Un proceso <em>diseñado para ti</em></h2>
-    <p class="body-text rv d2" style="margin-bottom:0">Antes de cualquier proceso, nos conocemos. Sin compromiso, sin presión. Solo una conversación honesta.</p>
-    <div class="proceso-steps">
-      <div class="p-step">
-        <div class="p-num rv-z d1">1</div>
-        <div>
-          <div class="p-title rv d2">Llamada gratuita de 30 min</div>
-          <p class="p-desc rv d2">Agendas por WhatsApp. Conversamos sobre tu situación y metas. Sin costo, sin presión.</p>
-          <span class="p-tag rv d3">🎁 Gratis — siempre</span>
-        </div>
+    <h2 class="h2 rv d1">Así ilumino <em>tu mapa</em></h2>
+    <p class="body-text rv d2" style="margin-bottom:0">
+      Antes de cualquier proceso, nos conocemos. No para venderte algo — sino para ver juntos dónde estás parado/a y hacia dónde quieres ir. El mapa ya existe. Solo hay que alumbrarlo.
+    </p>
+
+    <div class="proceso-map-wrap" id="proceso-map">
+      <!-- Animated road between lanterns -->
+      <div class="proc-road" aria-hidden="true">
+        <div class="proc-road-fill"></div>
       </div>
-      <div class="p-step">
-        <div class="p-num rv-z d2">2</div>
-        <div>
-          <div class="p-title rv d3">Programa a tu medida</div>
-          <p class="p-desc rv d3">Definimos juntos el servicio, sesiones y ritmo. Diseñado para tu realidad, no para una plantilla.</p>
-          <span class="p-tag rv d4">Flexible · Personalizado</span>
+
+      <div class="proceso-steps">
+
+        <!-- Paso 1 -->
+        <div class="p-step" id="pstep-1">
+          <div class="p-lantern-wrap">
+            <div class="p-bloom"></div>
+            <div class="p-ring"></div>
+            <div class="p-num">1</div>
+          </div>
+          <div class="p-connector"></div>
+          <div class="p-card">
+            <div class="p-title">La conversación inicial</div>
+            <p class="p-desc">30 minutos por WhatsApp. Me cuentas dónde estás y hacia dónde quieres ir. Sin costo. Sin compromiso. Solo honestidad.</p>
+            <span class="p-tag">🎁 Gratis — siempre</span>
+          </div>
         </div>
-      </div>
-      <div class="p-step">
-        <div class="p-num rv-z d3">3</div>
-        <div>
-          <div class="p-title rv d4">Acompañamiento & transformación</div>
-          <p class="p-desc rv d4">Sesiones de profundidad real. Seguimiento posterior a precio preferencial para consolidar el cambio.</p>
-          <span class="p-tag rv d5">Seguimiento post-programa</span>
+
+        <!-- Paso 2 -->
+        <div class="p-step" id="pstep-2">
+          <div class="p-lantern-wrap">
+            <div class="p-bloom"></div>
+            <div class="p-ring"></div>
+            <div class="p-num">2</div>
+          </div>
+          <div class="p-connector"></div>
+          <div class="p-card">
+            <div class="p-title">Diseñamos el camino</div>
+            <p class="p-desc">Definimos juntos el servicio, el ritmo y las sesiones. Diseñado para tu realidad — no para una plantilla genérica.</p>
+            <span class="p-tag">🗺️ Flexible · Personalizado</span>
+          </div>
         </div>
-      </div>
-    </div>
+
+        <!-- Paso 3 -->
+        <div class="p-step" id="pstep-3">
+          <div class="p-lantern-wrap">
+            <div class="p-bloom"></div>
+            <div class="p-ring"></div>
+            <div class="p-num">3</div>
+          </div>
+          <div class="p-connector"></div>
+          <div class="p-card">
+            <div class="p-title">Caminamos juntos</div>
+            <p class="p-desc">Sesiones de profundidad real. Te acompaño mientras recorres el tramo — y seguimos en contacto después para consolidar el cambio.</p>
+            <span class="p-tag">🔦 Seguimiento post-proceso</span>
+          </div>
+        </div>
+
+      </div><!-- /proceso-steps -->
+    </div><!-- /proceso-map-wrap -->
   </div>
 </section>
 
@@ -1623,36 +2363,40 @@
     <div class="testi-carousel-wrap rv d2">
       <div class="testi-track-outer">
         <div class="testi-track" id="testi-track">
+          <!-- Perfil 1: Inserción laboral -->
           <div class="testi-card active">
             <div class="stars">★★★★★</div>
-            <p class="testi-text">"Maximiliano tiene una habilidad única para hacerte ver lo que no querías mirar, y acompañarte a atravesarlo sin juzgarte. Mi proceso de coaching cambió cómo me relaciono conmigo mismo y con mi equipo."</p>
-            <div class="testi-author">
-              <div class="testi-av">CR</div>
-              <div><div class="testi-name">Carlos R.</div><div class="testi-role">Jefe de proyectos · Empresa tecnológica</div></div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="stars">★★★★★</div>
-            <p class="testi-text">"Llegué sin saber si estaba lista para mi primer trabajo. Con Maxi trabajé mi propuesta de valor y entré a un programa de atracción temprana en menos de 2 meses."</p>
+            <p class="testi-text">"Llegué a las entrevistas y me bloqueaba. No sabía cómo hablar de mí sin sentirme impostora. Con Maxi trabajé eso desde adentro — a las 6 semanas entré a un programa de atracción temprana."</p>
             <div class="testi-author">
               <div class="testi-av">VA</div>
-              <div><div class="testi-name">Valentina A.</div><div class="testi-role">Ingeniera comercial · Recién titulada</div></div>
+              <div><div class="testi-name">Valentina A.</div><div class="testi-role">Ingeniera Comercial · Recién egresada</div></div>
             </div>
           </div>
+          <!-- Perfil 2: Desarrollo profesional -->
           <div class="testi-card">
             <div class="stars">★★★★★</div>
-            <p class="testi-text">"El taller de Team Building fue exactamente lo que necesitábamos. No fue un taller más de motivación — fue una conversación honesta que nos hizo entendernos de otra manera."</p>
+            <p class="testi-text">"Llevaba años preguntándome si esto era todo. Tenía el talento pero no tenía claridad. Maxi no me dijo qué hacer — me ayudó a entender quién quería ser en mi carrera. Eso lo cambió todo."</p>
+            <div class="testi-author">
+              <div class="testi-av">CR</div>
+              <div><div class="testi-name">Carlos R.</div><div class="testi-role">Jefe de Proyectos · Empresa tecnológica</div></div>
+            </div>
+          </div>
+          <!-- Perfil 3: Marca personal -->
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"Siempre creí que no tenía nada valioso que mostrar. El proceso con Maxi me hizo ver que el bloqueo era de autovaloración, no de contenido. Hoy tengo presencia en LinkedIn y me siento auténtica."</p>
+            <div class="testi-author">
+              <div class="testi-av">RM</div>
+              <div><div class="testi-name">Rosario M.</div><div class="testi-role">Consultora · Construyendo marca personal</div></div>
+            </div>
+          </div>
+          <!-- Perfil 4: Team Building -->
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"No fue un taller de motivación más. Fue una conversación honesta que hizo que mi equipo se entendiera de otra manera. Lo que Maxi genera en una sala es difícil de explicar — hay que vivirlo."</p>
             <div class="testi-author">
               <div class="testi-av">PM</div>
               <div><div class="testi-name">Patricia M.</div><div class="testi-role">Gerente RRHH · Empresa retail</div></div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="stars">★★★★★</div>
-            <p class="testi-text">"Trabajé mi marca personal con Maximiliano y por primera vez entendí cuál es mi diferenciador real. El proceso fue intenso, estructurado y muy humano a la vez."</p>
-            <div class="testi-author">
-              <div class="testi-av">RM</div>
-              <div><div class="testi-name">Rodrigo M.</div><div class="testi-role">Consultor independiente · Santiago</div></div>
             </div>
           </div>
         </div>
@@ -1738,16 +2482,16 @@
 <section id="cta-final" class="sec-full">
   <div class="cta-bg"></div>
   <div class="cta-inner">
-    <p class="label rv" style="justify-content:center">Primer paso</p>
-    <h2 class="cta-h rv d1">Tu mapa ya existe.<br/><em>Solo necesitas a alguien que te ayude a leerlo.</em></h2>
-    <p class="cta-sub rv d2">Agenda tu llamada gratuita de 30 minutos. Sin compromiso. Solo tú, yo, y una conversación honesta sobre hacia dónde quieres ir.</p>
+    <p class="label rv" style="justify-content:center">El primer paso</p>
+    <h2 class="cta-h rv d1">No sé si soy la persona indicada para ti.<br/><em>Por eso la primera conversación es gratis.</em></h2>
+    <p class="cta-sub rv d2">30 minutos por WhatsApp. Me cuentas dónde estás y hacia dónde quieres ir. Yo te digo con honestidad si puedo ayudarte — y cómo.</p>
     <div class="rv d3">
       <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-wa" target="_blank" rel="noopener" style="font-size:.9rem;padding:1.1rem 2.2rem;display:inline-flex;">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.1 1.508 5.836L.057 23.5a.5.5 0 0 0 .61.61l5.666-1.451A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.002-1.371l-.357-.212-3.727.955.974-3.655-.233-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
-        Agenda tu llamada gratuita de 30 min
+        Agendar mi llamada gratuita de 30 min
       </a>
     </div>
-    <p class="cta-note rv d4">Respondo en menos de 24 horas · 100% sin compromiso</p>
+    <p class="cta-note rv d4">Respondo en menos de 24 horas · Sin compromiso · Siempre gratis</p>
   </div>
 </section>
 
@@ -1983,81 +2727,84 @@
     startAuto();
   }, 'carousel');
 
-  /* ── AUTO-SCROLL CAROUSEL ── */
-  safe(function initCarouselScroll() {
+  /* ── CONOCE A MAX — duplicate cards for seamless CSS loop ── */
+  safe(function initConoceLoop() {
     var track = document.getElementById('conoce-track');
     if (!track) return;
-
-    // Duplicate cards for seamless infinite loop
+    // Clone all cards and append (CSS animation uses translateX(-50%))
     var origCards = Array.from(track.children);
     origCards.forEach(function(c) {
       var clone = c.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
-      // Remove lightbox click from clones
       clone.removeAttribute('data-tag');
       clone.removeAttribute('data-title');
       clone.removeAttribute('data-desc');
       track.appendChild(clone);
     });
-
-    var speed = 0.6; // px per frame — ajusta aquí la velocidad
-    var paused = false, isDown = false, startX, scrollLeft;
-    var halfW = track.scrollWidth / 2;
-
-    function step() {
-      if (!paused && !isDown) {
-        track.scrollLeft += speed;
-        if (track.scrollLeft >= halfW) {
-          track.scrollLeft -= halfW; // seamless loop
-        }
-      }
-      requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-
-    // Pause on hover
-    track.addEventListener('mouseenter', function() { paused = true; });
-    track.addEventListener('mouseleave', function() { paused = false; });
-
-    // Drag with mouse
-    track.addEventListener('mousedown', function(e) {
-      isDown = true;
-      track.style.cursor = 'grabbing';
-      startX = e.pageX - track.offsetLeft;
-      scrollLeft = track.scrollLeft;
-    });
-    document.addEventListener('mouseup', function() {
-      isDown = false;
-      track.style.cursor = 'grab';
-    });
-    track.addEventListener('mousemove', function(e) {
-      if (!isDown) return;
-      e.preventDefault();
-      track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.4;
-    });
-
-    // Touch scroll
-    var tx = null;
-    track.addEventListener('touchstart', function(e) {
-      tx = e.touches[0].clientX; paused = true;
+    // Touch: pause animation while swiping
+    track.addEventListener('touchstart', function() {
+      track.style.animationPlayState = 'paused';
     }, { passive: true });
     track.addEventListener('touchend', function() {
-      paused = false; tx = null;
+      track.style.animationPlayState = 'running';
     });
-    track.addEventListener('touchmove', function(e) {
-      if (tx === null) return;
-      var dx = tx - e.touches[0].clientX;
-      track.scrollLeft += dx * 1.2;
-      tx = e.touches[0].clientX;
-    }, { passive: true });
+  }, 'conoce-loop');
 
-    // Re-wire lightbox clicks on originals only
-    origCards.forEach(function(card, i) {
-      if (card.hasAttribute('data-skip-lb')) return;
-      if (!card.querySelector('img')) return;
-      // clicks handled by existing lightbox init
+  /* ── PROCESO MAP — lantern animation ── */
+  safe(function() {
+    var mapWrap = document.getElementById('proceso-map');
+    if (!mapWrap) return;
+    var steps = mapWrap.querySelectorAll('.p-step');
+
+    var triggered = false;
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting || triggered) return;
+        triggered = true;
+        obs.unobserve(e.target);
+
+        // 1. Draw the road
+        mapWrap.classList.add('lit');
+
+        // 2. Light each lantern sequentially
+        steps.forEach(function(step, i) {
+          setTimeout(function() {
+            step.classList.add('lit');
+          }, 300 + i * 700);
+        });
+      });
+    }, { threshold: 0.25 });
+
+    obs.observe(mapWrap);
+  }, 'proc-map');
+
+  /* ── SERVICE QUALIFY PANELS ── */
+  safe(function() {
+    document.querySelectorAll('.svc-qualify-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var card  = btn.closest('.svc-card');
+        var panel = card.querySelector('.svc-qualify-panel');
+        var isOpen = card.classList.contains('q-open');
+
+        // Close all other open panels first
+        document.querySelectorAll('.svc-card.q-open').forEach(function(c) {
+          c.classList.remove('q-open');
+          c.querySelector('.svc-qualify-btn').setAttribute('aria-expanded', 'false');
+          c.querySelector('.svc-qualify-panel').setAttribute('aria-hidden', 'true');
+        });
+
+        if (!isOpen) {
+          card.classList.add('q-open');
+          btn.setAttribute('aria-expanded', 'true');
+          panel.setAttribute('aria-hidden', 'false');
+          // Smooth scroll so panel is visible
+          setTimeout(function() {
+            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 120);
+        }
+      });
     });
-  }, 'carousel-scroll');
+  }, 'qualify');
 
   /* ── LIGHTBOX ── */
   safe(function initLightbox() {
