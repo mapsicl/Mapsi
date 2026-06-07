@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Maximiliano Jiménez — Psicólogo, Coach PNL y Magíster en Liderazgo. Ayudo a profesionales a reconquistar su vida y alcanzar sus metas con claridad." />
+  <title>Maximiliano Jiménez — Psicólogo & Coach</title>
+
+  <!-- Fonts: DM Sans (moderna, legible, cálida) + DM Serif Display (titulares editoriales) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =============================================
+       CSS VARIABLES
+    ============================================= */
+    :root {
+      --bg:        #080808;
+      --bg2:       #0f0f0f;
+      --bg3:       #161616;
+      --bg4:       #1c1c1c;
+      --gold:      #c8a84b;
+      --gold2:     #e2c06a;
+      --gold3:     #f0d48a;
+      --gold-dim:  rgba(200,168,75,0.12);
+      --gold-glow: rgba(200,168,75,0.22);
+      --white:     #f2f0eb;
+      --grey1:     #9e9e96;
+      --grey2:     #5a5a54;
+      --grey3:     #2e2e2a;
+      --border:    rgba(200,168,75,0.16);
+      --border2:   rgba(255,255,255,0.06);
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --ease2:     cubic-bezier(0.4, 0, 0.2, 1);
+      --font-d:    'DM Serif Display', Georgia, serif;
+      --font-s:    'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-s);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--gold); color: var(--bg); }
+
+    /* =============================================
+       CURSOR
+    ============================================= */
+    #c-dot {
+      position: fixed; top: 0; left: 0;
+      width: 7px; height: 7px;
+      background: var(--gold); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%,-50%);
+      transition: width .2s, height .2s;
+    }
+    #c-ring {
+      position: fixed; top: 0; left: 0;
+      width: 38px; height: 38px;
+      border: 1.5px solid rgba(200,168,75,.45);
+      border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%,-50%);
+      transition: width .3s var(--ease), height .3s var(--ease), border-color .3s, opacity .3s;
+    }
+    body.on-hover #c-dot { width: 10px; height: 10px; }
+    body.on-hover #c-ring { width: 58px; height: 58px; border-color: var(--gold); }
+    @media (hover:none) { #c-dot,#c-ring { display: none; } body { cursor: auto; } }
+
+    /* =============================================
+       SPLASH
+    ============================================= */
+    #splash {
+      position: fixed; inset: 0;
+      background: var(--bg); z-index: 10000;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1.2rem;
+    }
+    #splash.hide { animation: sp-hide .7s var(--ease) forwards; }
+    @keyframes sp-hide { to { opacity: 0; pointer-events: none; visibility: hidden; } }
+    #sp-name {
+      font-family: var(--font-d); font-size: clamp(1.5rem,3.5vw,2.6rem);
+      letter-spacing: .12em; color: var(--white);
+      opacity: 0; animation: sp-in .8s .3s var(--ease) forwards;
+    }
+    #sp-bar {
+      width: 0; height: 1px; background: var(--gold);
+      animation: sp-bar 1s .8s var(--ease) forwards;
+    }
+    #sp-sub {
+      font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
+      opacity: 0; animation: sp-in .6s 1.5s ease forwards;
+    }
+    @keyframes sp-in  { to { opacity: 1; } }
+    @keyframes sp-bar { to { width: 140px; } }
+
+    /* =============================================
+       SCROLL REVEALS
+    ============================================= */
+    .rv, .rv-z, .rv-l, .rv-r {
+      opacity: 0; transition: opacity .85s var(--ease), transform .85s var(--ease);
+    }
+    .rv   { transform: translateY(40px); }
+    .rv-z { transform: scale(.93); }
+    .rv-l { transform: translateX(-50px); }
+    .rv-r { transform: translateX(50px); }
+    .rv.on, .rv-z.on, .rv-l.on, .rv-r.on { opacity: 1; transform: none; }
+    .d1 { transition-delay: .08s; }
+    .d2 { transition-delay: .18s; }
+    .d3 { transition-delay: .30s; }
+    .d4 { transition-delay: .44s; }
+    .d5 { transition-delay: .60s; }
+
+    /* =============================================
+       NAV
+    ============================================= */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 900; padding: 1.2rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .4s, border-color .4s, backdrop-filter .4s;
+      border-bottom: 1px solid transparent;
+    }
+    nav.solid {
+      background: rgba(8,8,8,.85);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-bottom-color: var(--border2);
+    }
+    .nav-logo {
+      font-family: var(--font-d); font-size: 1.15rem; letter-spacing: .04em;
+    }
+    .nav-logo em { font-style: italic; color: var(--gold); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: .76rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--grey1); transition: color .3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-wa {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .76rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+      background: var(--gold); color: var(--bg);
+      padding: .6rem 1.3rem; border-radius: 2px;
+      transition: background .3s, transform .2s;
+    }
+    .nav-wa:hover { background: var(--gold2); transform: translateY(-1px); }
+    .burger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .burger span { display: block; width: 22px; height: 1px; background: var(--white); transition: transform .3s, opacity .3s; }
+    .burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    .mob-menu {
+      display: none; position: fixed; inset: 0;
+      background: rgba(8,8,8,.97); z-index: 800;
+      flex-direction: column; align-items: center; justify-content: center; gap: 2.8rem;
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu a {
+      font-family: var(--font-d); font-size: 2rem; font-style: italic;
+      transition: color .3s;
+    }
+    .mob-menu a:hover { color: var(--gold); }
+    @media (max-width:900px) {
+      .nav-links, .nav-wa { display: none; }
+      .burger { display: flex; }
+    }
+
+    /* =============================================
+       SHARED LAYOUT
+    ============================================= */
+    .wrap { max-width: 1360px; margin: 0 auto; padding: 0 5vw; }
+    .sec { padding: clamp(5rem,10vw,9rem) 0; }
+    .sec-full { padding: clamp(5rem,10vw,9rem) 5vw; }
+    .label {
+      display: inline-flex; align-items: center; gap: .8rem;
+      font-size: .7rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .label::before { content:''; display: block; width: 24px; height: 1px; background: var(--gold); }
+    .h2 {
+      font-family: var(--font-d);
+      font-size: clamp(2rem, 4.5vw, 3.8rem);
+      font-weight: 400; line-height: 1.15; color: var(--white); margin-bottom: 1.4rem;
+    }
+    .h2 em { font-style: italic; color: var(--gold); }
+    .body-text { font-size: clamp(.92rem,1.3vw,1.02rem); color: var(--grey1); line-height: 1.95; max-width: 600px; }
+    .gold-dash { width: 40px; height: 1px; background: var(--gold); margin-bottom: 1.8rem; }
+
+    /* =============================================
+       MARQUEE / TICKER
+    ============================================= */
+    .marquee-wrap {
+      border-top: 1px solid var(--border2);
+      border-bottom: 1px solid var(--border2);
+      background: var(--bg2);
+      overflow: hidden; padding: 1rem 0;
+    }
+    .marquee-track {
+      display: flex; gap: 0;
+      animation: marquee 28s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+    }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .m-item {
+      display: inline-flex; align-items: center; gap: 1rem;
+      padding: 0 2.5rem;
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--grey2);
+    }
+    .m-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+    /* =============================================
+       HERO
+    ============================================= */
+    #hero {
+      position: relative; min-height: 100svh;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    /* Animated gradient mesh */
+    .hero-mesh {
+      position: absolute; inset: 0; z-index: 0; overflow: hidden;
+    }
+    .mesh-blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(90px); opacity: .18;
+      animation: blob-drift 14s ease-in-out infinite alternate;
+    }
+    .mb1 { width: 55vw; height: 55vw; background: var(--gold); top: -15%; left: 30%; animation-delay: 0s; }
+    .mb2 { width: 35vw; height: 35vw; background: #8b6914; bottom: 0; left: -5%; animation-delay: -5s; }
+    .mb3 { width: 25vw; height: 25vw; background: var(--gold2); top: 50%; right: 5%; animation-delay: -9s; }
+    @keyframes blob-drift {
+      0%   { transform: translate(0,0) scale(1); }
+      50%  { transform: translate(3%,5%) scale(1.06); }
+      100% { transform: translate(-3%,-4%) scale(.96); }
+    }
+    /* Grid overlay */
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(200,168,75,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,168,75,.04) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 80% 80% at center, black 20%, transparent 70%);
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1360px; margin: 0 auto; padding: 0 5vw;
+      padding-top: 8rem; padding-bottom: 6rem;
+      width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .6rem;
+      border: 1px solid var(--border);
+      background: rgba(200,168,75,.06);
+      padding: .45rem 1rem .45rem .6rem;
+      border-radius: 100px; margin-bottom: 2.2rem;
+      font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold);
+    }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.8); } }
+    .hero-h1 {
+      font-family: var(--font-d);
+      font-size: clamp(3.4rem,8.5vw,8rem);
+      font-weight: 400; line-height: 1.02; letter-spacing: -.015em;
+      color: var(--white); margin-bottom: .5rem;
+    }
+    .hero-h1 .italic { font-style: italic; color: var(--gold); display: block; }
+    /* Word reveal */
+    .hero-h1 .word {
+      display: inline-block;
+      opacity: 0; transform: translateY(30px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    .hero-h1 .word.show { opacity: 1; transform: translateY(0); }
+    .hero-sub {
+      font-size: clamp(.95rem,1.6vw,1.2rem); font-weight: 300;
+      color: var(--grey1); max-width: 520px; line-height: 1.85;
+      margin-top: 1.8rem; margin-bottom: 2.8rem;
+    }
+    .hero-sub strong { color: var(--white); font-weight: 400; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: .7rem;
+      background: #25D366; color: #fff;
+      font-size: .82rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+      padding: .95rem 1.8rem; border-radius: 3px;
+      transition: background .3s, transform .2s, box-shadow .3s;
+    }
+    .btn-wa:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 10px 36px rgba(37,211,102,.28); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--grey1); font-size: .82rem; letter-spacing: .08em; text-transform: uppercase;
+      border-bottom: 1px solid var(--grey2); padding-bottom: 2px;
+      transition: color .3s, border-color .3s;
+    }
+    .btn-outline:hover { color: var(--white); border-color: var(--white); }
+    /* Hero stats */
+    .hero-stats {
+      display: flex; gap: clamp(1.5rem,4vw,3.5rem);
+      margin-top: clamp(3rem,6vw,5rem);
+      padding-top: 2rem; border-top: 1px solid var(--border2);
+    }
+    .h-stat-n {
+      font-family: var(--font-d); font-size: clamp(2rem,3.5vw,2.8rem);
+      color: var(--gold); line-height: 1; margin-bottom: .3rem;
+    }
+    .h-stat-l {
+      font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--grey2);
+    }
+    /* Scroll cue */
+    .scroll-cue {
+      position: absolute; bottom: 2.5rem; left: 5vw; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: .6rem;
+    }
+    .scroll-cue span { font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; color: var(--grey2); }
+    .scroll-line { width: 1px; height: 48px; background: linear-gradient(to bottom, transparent, var(--grey2)); animation: sc-line 1.6s ease-in-out infinite alternate; }
+    @keyframes sc-line { from { opacity: .3; transform: scaleY(.5); } to { opacity: 1; transform: scaleY(1); } }
+
+    /* =============================================
+       SOBRE MÍ
+    ============================================= */
+    #sobre-mi { background: var(--bg2); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: start;
+    }
+    /* Portrait card */
+    .about-card {
+      position: relative;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 3px; overflow: hidden;
+      aspect-ratio: 3/4;
+      display: flex; align-items: flex-end;
+    }
+    .about-card-bg {
+      position: absolute; inset: 0;
+      background: linear-gradient(150deg, rgba(200,168,75,.1) 0%, rgba(200,168,75,.02) 50%, transparent 100%);
+    }
+    .about-initials {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-d); font-size: clamp(6rem,14vw,12rem);
+      font-style: italic; color: rgba(200,168,75,.06); line-height: 1;
+      pointer-events: none; user-select: none;
+    }
+    .about-card-info {
+      position: relative; z-index: 1;
+      padding: 1.5rem 1.8rem;
+      background: linear-gradient(to top, rgba(8,8,8,.95) 60%, transparent);
+      width: 100%;
+    }
+    .about-card-name { font-family: var(--font-d); font-size: 1.1rem; margin-bottom: .2rem; }
+    .about-card-role { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); }
+    .about-badge {
+      position: absolute; top: 1.5rem; right: -1rem;
+      background: var(--gold); color: var(--bg);
+      padding: .9rem 1rem; font-size: .68rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase; text-align: center;
+      line-height: 1.5; border-radius: 2px; min-width: 80px;
+    }
+    /* Floating fact cards */
+    .fact-card {
+      position: absolute; background: rgba(8,8,8,.82); border: 1px solid var(--border);
+      border-radius: 2px; padding: .7rem 1rem;
+      font-size: .72rem; line-height: 1.5;
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      animation: float-y 4s ease-in-out infinite alternate;
+      max-width: 160px;
+    }
+    .fact-card strong { display: block; font-size: .88rem; color: var(--gold); font-family: var(--font-d); margin-bottom: .15rem; }
+    .fc1 { left: 1rem; bottom: 5.5rem; animation-delay: 0s; }
+    .fc2 { right: 1rem; bottom: 1rem; animation-delay: -2s; }
+    @keyframes float-y { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+    /* Text side */
+    .about-blockquote {
+      font-family: var(--font-d); font-style: italic;
+      font-size: clamp(1.1rem,2vw,1.5rem); color: var(--white);
+      line-height: 1.6; margin-bottom: 2rem;
+      padding-left: 1.4rem; border-left: 2px solid var(--gold);
+    }
+    .about-p { font-size: .94rem; color: var(--grey1); line-height: 2; margin-bottom: 1.3rem; }
+    .about-p strong { color: var(--white); font-weight: 400; }
+    .pillars {
+      display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin-top: 2rem;
+    }
+    .pillar {
+      background: var(--bg3); border: 1px solid var(--border2);
+      padding: 1.1rem 1.2rem; border-radius: 2px;
+      transition: border-color .3s, background .3s, transform .3s;
+    }
+    .pillar:hover { border-color: var(--border); background: var(--bg4); transform: translateY(-2px); }
+    .pillar-ic { font-size: 1.2rem; margin-bottom: .5rem; }
+    .pillar-t { font-size: .76rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
+    .pillar-d { font-size: .78rem; color: var(--grey1); line-height: 1.55; }
+    @media (max-width:900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-badge { right: 1rem; }
+      .fc1,.fc2 { display: none; }
+    }
+    @media (max-width:600px) { .pillars { grid-template-columns: 1fr; } }
+
+    /* =============================================
+       CONOCE A MAX — horizontal scroll carousel
+    ============================================= */
+    #conoce-max { background: var(--bg); overflow: hidden; }
+
+    .conoce-header {
+      max-width: 1360px; margin: 0 auto;
+      padding: 0 5vw clamp(1.5rem,3vw,2.5rem);
+      display: flex; align-items: flex-end; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .conoce-hint {
+      display: flex; align-items: center; gap: .6rem;
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--grey2);
+    }
+    .conoce-track-outer { position: relative; }
+    .conoce-track-outer::before,
+    .conoce-track-outer::after {
+      content: ''; position: absolute; top: 0; bottom: 2rem; width: 90px; z-index: 2; pointer-events: none;
+    }
+    .conoce-track-outer::before { left:  0; background: linear-gradient(to right, var(--bg), transparent); }
+    .conoce-track-outer::after  { right: 0; background: linear-gradient(to left,  var(--bg), transparent); }
+    .conoce-track {
+      display: flex; gap: 1.1rem;
+      padding: 0 5vw 2rem;
+      overflow-x: auto; overflow-y: visible;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      cursor: grab; user-select: none;
+    }
+    .conoce-track:active { cursor: grabbing; }
+    .conoce-track::-webkit-scrollbar { display: none; }
+    /* Card */
+    .cc {
+      flex-shrink: 0;
+      width: clamp(230px, 27vw, 310px);
+      height: clamp(360px, 52vw, 480px);
+      border-radius: 14px; overflow: hidden;
+      position: relative; cursor: zoom-in;
+    }
+    .cc img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      transition: transform .6s var(--ease);
+    }
+    .cc:hover img { transform: scale(1.06); }
+    .cc-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(4,4,4,.9) 0%, rgba(4,4,4,.25) 45%, transparent 70%);
+      transition: background .4s;
+    }
+    .cc:hover .cc-overlay { background: linear-gradient(to top, rgba(4,4,4,.95) 0%, rgba(4,4,4,.4) 55%, transparent 76%); }
+    .cc-info {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1.3rem;
+    }
+    .cc-tag {
+      display: inline-block; font-size: .6rem; font-weight: 500;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: .35rem;
+    }
+    .cc-title {
+      font-family: var(--font-d); font-size: clamp(.95rem,1.6vw,1.15rem);
+      color: var(--white); line-height: 1.3; margin-bottom: .45rem;
+    }
+    .cc-desc {
+      font-size: .76rem; color: rgba(255,255,255,.55); line-height: 1.65;
+      max-height: 0; overflow: hidden;
+      transition: max-height .45s var(--ease), opacity .45s;
+      opacity: 0;
+    }
+    .cc:hover .cc-desc { max-height: 120px; opacity: 1; }
+    .cc-zoom {
+      position: absolute; top: 1rem; right: 1rem;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(8,8,8,.5); border: 1px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: scale(.75); transition: opacity .3s, transform .3s;
+    }
+    .cc:hover .cc-zoom { opacity: 1; transform: scale(1); }
+    /* Text-only quote card */
+    .cc-text {
+      background: linear-gradient(140deg, rgba(200,168,75,.15) 0%, rgba(200,168,75,.04) 100%);
+      border: 1px solid rgba(200,168,75,.22);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 2rem 1.8rem; cursor: default;
+    }
+    .cc-text:hover img { display: none; }
+    .cc-quote {
+      font-family: var(--font-d); font-style: italic;
+      font-size: clamp(1rem,1.7vw,1.3rem); color: var(--white); line-height: 1.55;
+      position: relative; z-index: 1;
+    }
+    .cc-quote::before {
+      content: '"'; position: absolute; top: -.8rem; left: -.4rem;
+      font-size: 5rem; color: var(--gold); opacity: .15; line-height: 1; pointer-events: none;
+    }
+    .cc-quote-by { margin-top: 1.2rem; font-size: .72rem; color: var(--gold); letter-spacing: .1em; position: relative; z-index: 1; }
+
+    /* Cursor zoom-in */
+    .cc { cursor: zoom-in; }
+
+
+
+    /* =============================================
+       LIGHTBOX
+    ============================================= */
+    #lb {
+      position: fixed; inset: 0; z-index: 9000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s var(--ease);
+    }
+    #lb.open { opacity: 1; pointer-events: all; }
+
+    #lb-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(4,4,4,.93);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    }
+
+    #lb-box {
+      position: relative; z-index: 1;
+      max-width: min(92vw, 1100px);
+      max-height: 90svh;
+      display: flex; flex-direction: column;
+      transform: scale(.92);
+      transition: transform .4s var(--ease);
+    }
+    #lb.open #lb-box { transform: scale(1); }
+
+    #lb-img-wrap {
+      position: relative; overflow: hidden; border-radius: 6px;
+      background: var(--bg3);
+      max-height: 78svh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #lb-img {
+      display: block;
+      max-width: 100%; max-height: 78svh;
+      width: auto; height: auto;
+      object-fit: contain;
+      border-radius: 6px;
+      transition: opacity .3s;
+    }
+    #lb-img.loading { opacity: 0; }
+
+    /* Caption */
+    #lb-caption {
+      padding: 1rem 0 .5rem;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+    }
+    #lb-caption-text { flex: 1; }
+    #lb-tag {
+      font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .25rem;
+    }
+    #lb-title {
+      font-family: var(--font-d); font-size: clamp(.95rem,1.8vw,1.2rem);
+      color: var(--white); line-height: 1.35;
+    }
+    #lb-counter {
+      font-size: .72rem; letter-spacing: .1em; color: var(--grey2);
+      white-space: nowrap; padding-top: .2rem;
+    }
+
+    /* Controls */
+    #lb-close {
+      position: absolute; top: -1rem; right: -1rem;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--bg4); border: 1px solid var(--border2);
+      color: var(--grey1); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s, transform .2s;
+      z-index: 2;
+    }
+    #lb-close:hover { background: var(--gold); color: var(--bg); transform: rotate(90deg); }
+
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(8,8,8,.7); border: 1px solid var(--border2);
+      color: var(--white); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s, transform .3s;
+      z-index: 2;
+    }
+    .lb-nav:hover { background: var(--gold-dim); border-color: var(--border); }
+    #lb-prev { left: -1.5rem; }
+    #lb-next { right: -1.5rem; }
+    #lb-prev:hover { transform: translateY(-50%) translateX(-3px); }
+    #lb-next:hover { transform: translateY(-50%) translateX(3px); }
+
+    /* Dots strip */
+    #lb-dots {
+      display: flex; justify-content: center; gap: .45rem;
+      padding-top: .8rem;
+    }
+    .lb-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--grey2); cursor: pointer;
+      transition: background .3s, transform .3s;
+      border: none; padding: 0;
+    }
+    .lb-dot.on { background: var(--gold); transform: scale(1.5); }
+
+    /* Touch swipe hint */
+    #lb-swipe-hint {
+      display: none; text-align: center;
+      font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--grey2); padding-top: .5rem;
+    }
+    @media (hover:none) { #lb-swipe-hint { display: block; } }
+    @media (max-width:600px) {
+      #lb-prev, #lb-next { display: none; }
+      #lb-close { top: .5rem; right: .5rem; }
+    }
+
+    /* Mobile: collapse to 2 cols */
+    @media (max-width: 900px) {
+      .bento-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+      .bc-big { grid-column: span 2; grid-row: span 2; }
+      .bc-wide { grid-column: span 2; }
+    }
+    @media (max-width: 540px) {
+      .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+      .bc, .bc-wide, .bc-tall, .bc-big { grid-column: span 1; grid-row: span 1; min-height: 140px; }
+      .bc-tall { min-height: 240px; }
+      .bc-big { min-height: 280px; }
+    }
+
+    /* =============================================
+       ÁREAS DE TRABAJO — horizontal scroll cards
+    ============================================= */
+    #que-hago { background: var(--bg); }
+    .areas-scroll-wrap {
+      overflow-x: auto; overflow-y: visible;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: .5rem;
+      margin-top: 3rem;
+      cursor: grab;
+    }
+    .areas-scroll-wrap:active { cursor: grabbing; }
+    .areas-scroll-wrap::-webkit-scrollbar { display: none; }
+    .areas-track {
+      display: flex; gap: 1.2rem;
+      width: max-content; padding: .5rem .1rem 1.5rem;
+    }
+    .area-card {
+      width: 300px; flex-shrink: 0;
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: 3px; padding: 2.2rem 1.8rem;
+      transition: border-color .35s, transform .35s, box-shadow .35s;
+      position: relative; overflow: hidden;
+    }
+    .area-card::before {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; width: 0; height: 2px;
+      background: var(--gold); transition: width .4s var(--ease);
+    }
+    .area-card:hover { border-color: var(--border); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.45); }
+    .area-card:hover::before { width: 100%; }
+    .area-n {
+      font-family: var(--font-d); font-size: 4.5rem; font-style: italic;
+      color: rgba(200,168,75,.1); line-height: 1; margin-bottom: 1.2rem;
+    }
+    .area-t {
+      font-size: .82rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--white); margin-bottom: .8rem;
+    }
+    .area-d { font-size: .86rem; color: var(--grey1); line-height: 1.8; }
+    .drag-hint {
+      margin-top: 1rem; font-size: .7rem; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--grey2);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .drag-hint svg { opacity: .5; }
+
+    /* =============================================
+       SERVICIOS
+    ============================================= */
+    #servicios { background: var(--bg2); }
+    .services-intro-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      margin-bottom: 3.5rem; align-items: end;
+    }
+    .process-note {
+      background: var(--gold-dim); border: 1px solid var(--border);
+      border-radius: 2px; padding: 1.4rem 1.6rem;
+      font-size: .88rem; color: var(--white); line-height: 1.75;
+    }
+    .process-note strong { color: var(--gold); font-weight: 500; display: block; margin-bottom: .3rem; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; }
+    .svc-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(290px,1fr)); gap: 1.2rem;
+    }
+    .svc-card {
+      background: var(--bg3); border: 1px solid var(--border2);
+      border-radius: 3px; overflow: hidden; display: flex; flex-direction: column;
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+      position: relative;
+    }
+    .svc-card:hover {
+      border-color: rgba(200,168,75,.38);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(200,168,75,.08);
+    }
+    .svc-card.feat { border-color: rgba(200,168,75,.3); background: linear-gradient(140deg, rgba(200,168,75,.08) 0%, var(--bg3) 55%); }
+    .svc-feat-tag {
+      position: absolute; top: 1.1rem; right: 1.1rem;
+      background: var(--gold); color: var(--bg);
+      font-size: .6rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      padding: .28rem .65rem; border-radius: 1px;
+    }
+    .svc-head { padding: 1.8rem 1.8rem 1.4rem; border-bottom: 1px solid var(--border2); }
+    .svc-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+    .svc-name { font-family: var(--font-d); font-size: 1.3rem; color: var(--white); margin-bottom: .35rem; line-height: 1.3; }
+    .svc-sub { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+    .svc-body { padding: 1.4rem 1.8rem; flex: 1; }
+    .svc-desc { font-size: .87rem; color: var(--grey1); line-height: 1.85; margin-bottom: 1.3rem; }
+    .pkg-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
+    .pkg {
+      font-size: .66rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+      padding: .28rem .7rem; border-radius: 20px;
+    }
+    .pkg-fill { background: var(--gold); color: var(--bg); }
+    .pkg-line { background: transparent; color: var(--gold); border: 1px solid var(--border); }
+    .svc-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .svc-list li { font-size: .82rem; color: var(--grey1); display: flex; gap: .6rem; align-items: baseline; }
+    .svc-list li::before { content: '—'; color: var(--gold); flex-shrink: 0; font-size: .7rem; }
+    .svc-foot {
+      padding: 1.3rem 1.8rem 1.8rem;
+      border-top: 1px solid var(--border2);
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .svc-price { font-family: var(--font-d); font-style: italic; font-size: 1.05rem; color: var(--gold); }
+    .btn-svc {
+      display: inline-flex; align-items: center; gap: .4rem;
+      border: 1px solid var(--border); color: var(--gold);
+      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .6rem 1.1rem; border-radius: 2px;
+      transition: background .3s, color .3s, border-color .3s;
+      white-space: nowrap;
+    }
+    .btn-svc:hover { background: var(--gold); color: var(--bg); border-color: var(--gold); }
+    @media (max-width:900px) { .services-intro-grid { grid-template-columns: 1fr; } }
+
+    /* =============================================
+       LOGROS
+    ============================================= */
+    #logros { background: var(--bg); }
+    .logros-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1px; margin-top: 3.5rem;
+      border: 1px solid var(--border2); border-radius: 3px; overflow: hidden;
+    }
+    .logro {
+      background: var(--bg2); text-align: center;
+      padding: 2.5rem 1.5rem;
+      transition: background .3s;
+      position: relative; overflow: hidden;
+    }
+    .logro::after {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold-dim); opacity: 0;
+      transition: opacity .3s;
+    }
+    .logro:hover { background: var(--bg3); }
+    .logro:hover::after { opacity: 1; }
+    .logro-ic { font-size: 2rem; margin-bottom: 1rem; position: relative; z-index: 1; }
+    .logro-n {
+      font-family: var(--font-d); font-size: clamp(2.2rem,3.5vw,3rem);
+      color: var(--gold); line-height: 1; margin-bottom: .35rem;
+      position: relative; z-index: 1;
+    }
+    .logro-t {
+      font-size: .76rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--white); margin-bottom: .4rem; position: relative; z-index: 1;
+    }
+    .logro-d { font-size: .78rem; color: var(--grey2); line-height: 1.6; position: relative; z-index: 1; }
+    @media (max-width:768px) { .logros-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width:480px) { .logros-grid { grid-template-columns: 1fr; } }
+
+    /* =============================================
+       PROCESO
+    ============================================= */
+    #proceso { background: var(--bg2); }
+    .proceso-steps {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 0; margin-top: 4rem; position: relative;
+    }
+    .proceso-steps::before {
+      content: ''; position: absolute;
+      top: 2.8rem; left: calc(16.5% + 1rem); right: calc(16.5% + 1rem);
+      height: 1px; background: var(--border2);
+    }
+    .p-step { text-align: center; padding: 0 1.5rem 2rem; }
+    .p-num {
+      width: 58px; height: 58px; border: 1px solid var(--border);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-d); font-size: 1.3rem; color: var(--gold);
+      background: var(--bg2); margin: 0 auto 1.6rem; position: relative; z-index: 1;
+      transition: background .3s, border-color .3s, box-shadow .3s;
+    }
+    .p-step:hover .p-num {
+      background: var(--gold-dim); border-color: var(--gold);
+      box-shadow: 0 0 0 6px var(--gold-dim);
+    }
+    .p-title { font-size: .82rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--white); margin-bottom: .7rem; }
+    .p-desc { font-size: .84rem; color: var(--grey1); line-height: 1.78; }
+    .p-tag { display: inline-block; margin-top: .8rem; font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); }
+    @media (max-width:700px) {
+      .proceso-steps { grid-template-columns: 1fr; }
+      .proceso-steps::before { display: none; }
+      .p-step { display: flex; gap: 1.5rem; text-align: left; padding: 0 0 2rem; border-bottom: 1px solid var(--border2); }
+      .p-step:last-child { border-bottom: none; }
+      .p-num { flex-shrink: 0; margin: 0; }
+    }
+
+    /* =============================================
+       TESTIMONIOS — carousel
+    ============================================= */
+    #testimonios { background: var(--bg); overflow: hidden; }
+    .testi-carousel-wrap { position: relative; margin-top: 3.5rem; }
+    .testi-track-outer { overflow: hidden; }
+    .testi-track {
+      display: flex; gap: 1.5rem;
+      transition: transform .6s var(--ease);
+    }
+    .testi-card {
+      min-width: calc(33.33% - 1rem);
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: 3px; padding: 2rem 1.8rem;
+      flex-shrink: 0;
+      transition: border-color .3s;
+    }
+    .testi-card.active { border-color: rgba(200,168,75,.3); }
+    .stars { color: var(--gold); letter-spacing: .15em; font-size: .8rem; margin-bottom: 1.1rem; }
+    .testi-text {
+      font-family: var(--font-d); font-style: italic;
+      font-size: .98rem; color: var(--white); line-height: 1.72; margin-bottom: 1.4rem;
+    }
+    .testi-author { display: flex; align-items: center; gap: .8rem; }
+    .testi-av {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--gold-dim); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; font-weight: 500; color: var(--gold); flex-shrink: 0;
+    }
+    .testi-name { font-size: .82rem; font-weight: 500; color: var(--white); }
+    .testi-role { font-size: .76rem; color: var(--grey2); }
+    /* Carousel controls */
+    .carousel-controls {
+      display: flex; align-items: center; gap: 1rem; margin-top: 2rem;
+    }
+    .cc-btn {
+      width: 44px; height: 44px; border: 1px solid var(--border2); border-radius: 50%;
+      background: transparent; color: var(--grey1); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .3s, border-color .3s, color .3s;
+    }
+    .cc-btn:hover { background: var(--gold-dim); border-color: var(--border); color: var(--gold); }
+    .cc-dots { display: flex; gap: .5rem; }
+    .cc-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--grey2); cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .cc-dot.on { background: var(--gold); transform: scale(1.4); }
+    .testi-disclaimer { margin-top: 1.5rem; font-size: .74rem; color: var(--grey2); font-style: italic; }
+    @media (max-width:900px) { .testi-card { min-width: calc(80% - .5rem); } }
+    @media (max-width:600px) { .testi-card { min-width: calc(100%); } }
+
+    /* =============================================
+       REDES SOCIALES
+    ============================================= */
+    #redes { background: var(--bg2); }
+    .redes-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      gap: 1.2rem; margin-top: 3.5rem;
+    }
+    .red-card {
+      background: var(--bg3); border: 1px solid var(--border2);
+      border-radius: 3px; padding: 2rem 1.8rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+      position: relative; overflow: hidden;
+      transition: border-color .35s, transform .35s, box-shadow .35s;
+    }
+    .red-card:hover {
+      border-color: var(--border);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+    }
+    .red-card-glow {
+      position: absolute; top: -30%; right: -20%;
+      width: 180px; height: 180px; border-radius: 50%;
+      filter: blur(60px); opacity: 0;
+      transition: opacity .4s;
+    }
+    .red-card:hover .red-card-glow { opacity: .25; }
+    .red-ig   .red-card-glow { background: radial-gradient(#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+    .red-li   .red-card-glow { background: #0a66c2; }
+    .red-wa   .red-card-glow { background: #25D366; }
+    .red-yt   .red-card-glow { background: #FF0000; }
+    .red-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1; flex-shrink: 0;
+    }
+    .red-ig .red-icon { background: linear-gradient(135deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+    .red-li .red-icon { background: #0a66c2; }
+    .red-wa .red-icon { background: #25D366; }
+    .red-yt .red-icon { background: #FF0000; }
+    .red-icon svg { width: 26px; height: 26px; fill: white; }
+    .red-info { position: relative; z-index: 1; flex: 1; }
+    .red-name { font-weight: 500; font-size: .92rem; color: var(--white); margin-bottom: .2rem; }
+    .red-handle { font-size: .8rem; color: var(--grey1); margin-bottom: .8rem; }
+    .red-desc { font-size: .8rem; color: var(--grey2); line-height: 1.6; }
+    .red-link {
+      position: relative; z-index: 1;
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--grey1); border-bottom: 1px solid var(--grey3);
+      padding-bottom: 2px; transition: color .3s, border-color .3s;
+    }
+    .red-card:hover .red-link { color: var(--white); border-color: var(--grey1); }
+
+    /* =============================================
+       CTA FINAL
+    ============================================= */
+    #cta-final {
+      background: var(--bg);
+      position: relative; overflow: hidden;
+    }
+    .cta-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 100%, rgba(200,168,75,.07) 0%, transparent 70%);
+    }
+    .cta-inner {
+      position: relative; z-index: 1;
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .cta-h { font-family: var(--font-d); font-size: clamp(2rem,5vw,4rem); font-weight: 400; color: var(--white); line-height: 1.2; margin-bottom: 1.4rem; }
+    .cta-h em { font-style: italic; color: var(--gold); }
+    .cta-sub { font-size: .98rem; color: var(--grey1); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.9; }
+    .cta-note { margin-top: 1.4rem; font-size: .76rem; color: var(--grey2); }
+
+    /* Floating WA button */
+    #wa-float {
+      position: fixed; bottom: 1.8rem; right: 1.8rem;
+      width: 54px; height: 54px; background: #25D366;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      z-index: 800; box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      transition: transform .3s, box-shadow .3s;
+    }
+    #wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.55); }
+    #wa-float svg { width: 26px; height: 26px; fill: white; }
+
+    /* =============================================
+       FOOTER
+    ============================================= */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border2);
+      padding: 2.5rem 5vw;
+    }
+    .footer-inner {
+      max-width: 1360px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .f-logo { font-family: var(--font-d); font-size: 1.1rem; }
+    .f-logo em { font-style: italic; color: var(--gold); }
+    .f-links { display: flex; gap: 1.8rem; list-style: none; flex-wrap: wrap; }
+    .f-links a { font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--grey2); transition: color .3s; }
+    .f-links a:hover { color: var(--gold); }
+    .f-socials { display: flex; gap: .8rem; }
+    .f-soc {
+      width: 34px; height: 34px; border: 1px solid var(--border2); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--grey2); font-size: .7rem;
+      transition: border-color .3s, color .3s;
+    }
+    .f-soc:hover { border-color: var(--border); color: var(--gold); }
+    .f-soc svg { width: 14px; height: 14px; fill: currentColor; }
+    .f-copy {
+      width: 100%; text-align: center;
+      font-size: .7rem; color: var(--grey2);
+      padding-top: 1.5rem; border-top: 1px solid var(--border2); margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div id="sp-name">Maximiliano Jiménez</div>
+  <div id="sp-bar"></div>
+  <div id="sp-sub">Psicólogo · Coach · Estratega</div>
+</div>
+
+<!-- CURSOR -->
+<div id="c-dot" aria-hidden="true"></div>
+<div id="c-ring" aria-hidden="true"></div>
+
+<!-- FLOATING WA -->
+<a id="wa-float" href="https://wa.me/message/76VA3UZJMWUKB1" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.1 1.508 5.836L.057 23.5a.5.5 0 0 0 .61.61l5.666-1.451A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.002-1.371l-.357-.212-3.727.955.974-3.655-.233-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Maximiliano <em>Jiménez</em></a>
+  <ul class="nav-links">
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#conoce-max">Conoce a Max</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#logros">Credenciales</a></li>
+    <li><a href="#redes">Redes</a></li>
+  </ul>
+  <a href="https://wa.me/message/76VA3UZJMWUKB1" class="nav-wa" target="_blank" rel="noopener">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.1 1.508 5.836L.057 23.5a.5.5 0 0 0 .61.61l5.666-1.451A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.002-1.371l-.357-.212-3.727.955.974-3.655-.233-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
+    Agendar llamada
+  </a>
+  <button class="burger" id="burger" aria-label="Menú" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob-menu">
+  <a href="#sobre-mi">Sobre mí</a>
+  <a href="#conoce-max">Conoce a Max</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#logros">Credenciales</a>
+  <a href="#proceso">Proceso</a>
+  <a href="#redes">Redes</a>
+  <a href="https://wa.me/message/76VA3UZJMWUKB1" target="_blank" rel="noopener" style="color:var(--gold)">WhatsApp →</a>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Galería de imágenes">
+  <div id="lb-backdrop"></div>
+  <div id="lb-box">
+    <button id="lb-close" aria-label="Cerrar">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div id="lb-img-wrap">
+      <button class="lb-nav" id="lb-prev" aria-label="Anterior">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <img id="lb-img" src="" alt="" />
+      <button class="lb-nav" id="lb-next" aria-label="Siguiente">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div id="lb-caption">
+      <div id="lb-caption-text">
+        <div id="lb-tag"></div>
+        <div id="lb-title"></div>
+      </div>
+      <div id="lb-counter"></div>
+    </div>
+    <div id="lb-dots"></div>
+    <div id="lb-swipe-hint">← Desliza para navegar →</div>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <div class="hero-mesh" aria-hidden="true">
+    <div class="mesh-blob mb1"></div>
+    <div class="mesh-blob mb2"></div>
+    <div class="mesh-blob mb3"></div>
+  </div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-badge rv d1">
+      <span class="hero-badge-dot"></span>
+      Psicólogo · Coach PNL · Magíster en Liderazgo
+    </div>
+    <h1 class="hero-h1">
+      <span class="word">Reconquista</span>
+      <span class="word"> tu</span>
+      <span class="italic"><span class="word">mapa.</span></span>
+    </h1>
+    <p class="hero-sub rv d3">
+      Acompaño a <strong>profesionales y equipos</strong> a tomar conciencia de lo que los aleja —o acerca— de sus metas. Con psicología, PNL y liderazgo estratégico.
+    </p>
+    <div class="hero-actions rv d4">
+      <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-wa" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.1 1.508 5.836L.057 23.5a.5.5 0 0 0 .61.61l5.666-1.451A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.002-1.371l-.357-.212-3.727.955.974-3.655-.233-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
+        Agenda tu llamada gratuita de 30 min
+      </a>
+      <a href="#sobre-mi" class="btn-outline">Conoce mi historia →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="rv d2">
+        <div class="h-stat-n" data-count="10">0</div>
+        <div class="h-stat-l">Años de experiencia</div>
+      </div>
+      <div class="rv d3">
+        <div class="h-stat-n">PNL</div>
+        <div class="h-stat-l">Coach certificado</div>
+      </div>
+      <div class="rv d4">
+        <div class="h-stat-n" data-count="4">0</div>
+        <div class="h-stat-l">Servicios activos</div>
+      </div>
+      <div class="rv d5">
+        <div class="h-stat-n" data-count="14">0</div>
+        <div class="h-stat-l">Años disciplina física</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track" id="mq">
+    <!-- items duplicated by JS -->
+    <span class="m-item">Psicología Clínica <span class="m-dot"></span></span>
+    <span class="m-item">Coaching PNL <span class="m-dot"></span></span>
+    <span class="m-item">Liderazgo Estratégico <span class="m-dot"></span></span>
+    <span class="m-item">Marca Personal <span class="m-dot"></span></span>
+    <span class="m-item">Team Building <span class="m-dot"></span></span>
+    <span class="m-item">Apresto Laboral <span class="m-dot"></span></span>
+    <span class="m-item">Desarrollo Profesional <span class="m-dot"></span></span>
+    <span class="m-item">Universidad de La Serena <span class="m-dot"></span></span>
+    <span class="m-item">10 Años de Experiencia <span class="m-dot"></span></span>
+    <span class="m-item">Retiro de Silencio 7 Días <span class="m-dot"></span></span>
+    <span class="m-item">Embajador de Marca <span class="m-dot"></span></span>
+    <span class="m-item">Magíster en Comunicación <span class="m-dot"></span></span>
+    <span class="m-item">Psicología Clínica <span class="m-dot"></span></span>
+    <span class="m-item">Coaching PNL <span class="m-dot"></span></span>
+    <span class="m-item">Liderazgo Estratégico <span class="m-dot"></span></span>
+    <span class="m-item">Marca Personal <span class="m-dot"></span></span>
+    <span class="m-item">Team Building <span class="m-dot"></span></span>
+    <span class="m-item">Apresto Laboral <span class="m-dot"></span></span>
+    <span class="m-item">Desarrollo Profesional <span class="m-dot"></span></span>
+    <span class="m-item">Universidad de La Serena <span class="m-dot"></span></span>
+    <span class="m-item">10 Años de Experiencia <span class="m-dot"></span></span>
+    <span class="m-item">Retiro de Silencio 7 Días <span class="m-dot"></span></span>
+    <span class="m-item">Embajador de Marca <span class="m-dot"></span></span>
+    <span class="m-item">Magíster en Comunicación <span class="m-dot"></span></span>
+  </div>
+</div>
+
+<!-- ===================== SOBRE MÍ ===================== -->
+<section id="sobre-mi" style="background:var(--bg2)">
+  <div class="wrap sec">
+    <div class="about-grid">
+      <!-- Visual -->
+      <div class="rv-l">
+        <div class="about-card" style="position:relative;">
+          <!-- FOTO PRINCIPAL -->
+          <img
+            src="img/Max.JPG"
+            alt="Maximiliano Jiménez — Psicólogo y Coach"
+            style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;"
+            onerror="this.style.display='none'"
+          />
+          <div class="about-card-bg" style="z-index:1;"></div>
+          <div class="about-initials" style="z-index:0;opacity:.04;">MJ</div>
+          <div class="about-card-info" style="z-index:2;">
+            <div class="about-card-name">Maximiliano Jiménez</div>
+            <div class="about-card-role">Psicólogo & Coach PNL</div>
+          </div>
+          <div class="about-badge" style="z-index:3;">10 años<br/>experiencia</div>
+          <!-- Floating facts -->
+          <div class="fact-card fc1" style="z-index:3;">
+            <strong>14 años</strong>
+            Disciplina física<br/>& embajador de marca
+          </div>
+          <div class="fact-card fc2" style="z-index:3;">
+            <strong>7 días</strong>
+            Retiro de silencio<br/>completo
+          </div>
+        </div>
+      </div>
+      <!-- Text -->
+      <div class="about-text">
+        <p class="label rv">Quién soy</p>
+        <div class="gold-dash rv d1"></div>
+        <blockquote class="about-blockquote rv d2">
+          "No me interesa guiarte hacia donde creo que debes ir. Me interesa alumbrar tu mapa para que llegues donde tú decides."
+        </blockquote>
+        <p class="about-p rv d3">
+          Soy <strong>Maximiliano Jiménez</strong>, psicólogo con más de 10 años de experiencia, Coach PNL y Magíster en Liderazgo, Dirección y Comunicación Estratégica. Trabajo en la Universidad de La Serena coordinando la red de titulados, y en paralelo acompaño a personas y organizaciones a crecer con propósito.
+        </p>
+        <p class="about-p rv d3">
+          De niño enfrenté el cáncer y perdí un riñón. Esa experiencia no me quebró — me enseñó a mirar hacia adentro. Llevo <strong>14 años entrenando</strong>, fui embajador de marca, viví un retiro de 7 días completamente desconectado y me formé en 4 programas continuos de marca personal con David Ávila.
+        </p>
+        <p class="about-p rv d4">
+          Todo eso me convirtió en quien soy: alguien que aprendió a <strong>leer su propio mapa primero</strong>, para poder ayudarte a leer el tuyo.
+        </p>
+        <div class="pillars rv d4">
+          <div class="pillar"><div class="pillar-ic">🧠</div><div class="pillar-t">Psicología</div><div class="pillar-d">Base científica para entender conductas, emociones y patrones</div></div>
+          <div class="pillar"><div class="pillar-ic">🔑</div><div class="pillar-t">PNL</div><div class="pillar-d">Herramientas de reprogramación y comunicación efectiva</div></div>
+          <div class="pillar"><div class="pillar-ic">🎯</div><div class="pillar-t">Liderazgo</div><div class="pillar-d">Magíster en dirección y comunicación estratégica</div></div>
+          <div class="pillar"><div class="pillar-ic">🌱</div><div class="pillar-t">Bienestar</div><div class="pillar-d">Enfoque integral: mente, cuerpo, propósito y acción</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONOCE A MAX ===================== -->
+<section id="conoce-max">
+  <div class="conoce-header">
+    <div>
+      <p class="label rv">Más allá del profesional</p>
+      <h2 class="h2 rv d1">Conoce a <em>Max (Mapsi)</em></h2>
+    </div>
+    <div class="conoce-hint rv d2">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Desliza o pasa el mouse — clic para ampliar
+    </div>
+  </div>
+  <div class="conoce-track-outer">
+    <div class="conoce-track" id="conoce-track">
+
+      <!-- 1. Senderismo — sobre las nubes -->
+      <div class="cc" data-tag="Sobre las nubes" data-title="La montaña me centra" data-desc="El senderismo es mi regulación. Silencio, altura y perspectiva.">
+        <img src="img/senderismo.JPG" alt="Maximiliano sobre las nubes en la montaña" />
+        <div class="cc-overlay"></div>
+        <div class="cc-info">
+          <span class="cc-tag">Senderismo · Naturaleza</span>
+          <div class="cc-title">Sobre las nubes</div>
+          <div class="cc-desc">La montaña me centra y me recuerda lo que importa. Mi terapia natural.</div>
+        </div>
+        <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+
+      <!-- 2. Max perfil -->
+      <div class="cc" data-tag="Marca personal" data-title="Maximiliano Jiménez — @mapsicl" data-desc="Psicólogo, Coach PNL y Magíster en Liderazgo. La Serena, Chile.">
+        <img src="img/Max.JPG" alt="Maximiliano Jiménez" style="object-position:center 20%;" />
+        <div class="cc-overlay"></div>
+        <div class="cc-info">
+          <span class="cc-tag">@mapsicl</span>
+          <div class="cc-title">Maximiliano Jiménez</div>
+          <div class="cc-desc">Psicólogo · Coach PNL · La Serena, Chile.</div>
+        </div>
+        <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+
+      <!-- 3. Charla en el escenario -->
+      <div class="cc" data-tag="Coquimbo Adventure 2023" data-title="Caminatas con sentido" data-desc="1ª Cumbre Internacional de Turismo Aventura y Naturaleza en el Norte Chileno. Invitado como conferencista.">
+        <img src="img/charlistaturismo.JPG" alt="Maximiliano dando charla en Coquimbo Adventure 2023" style="object-position:center 30%;" />
+        <div class="cc-overlay"></div>
+        <div class="cc-info">
+          <span class="cc-tag">Conferencista · Turismo aventura</span>
+          <div class="cc-title">Caminatas con sentido</div>
+          <div class="cc-desc">Bienestar paso a paso — 1ª Cumbre Internacional Norte Chileno.</div>
+        </div>
+        <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+
+      <!-- 4. Gym -->
+      <div class="cc" data-tag="14 años de disciplina" data-title="El gym como estilo de vida" data-desc="14 años entrenando. 5 años como embajador de marca deportiva. La disciplina física es la base de todo lo demás.">
+        <img src="img/Gym.jpg" alt="Maximiliano en el gimnasio" />
+        <div class="cc-overlay"></div>
+        <div class="cc-info">
+          <span class="cc-tag">Disciplina · Constancia</span>
+          <div class="cc-title">14 años en el gym</div>
+          <div class="cc-desc">Embajador de marca por 5 años. El cuerpo y la mente van juntos.</div>
+        </div>
+        <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+
+      <!-- 5. Quote card -->
+      <div class="cc cc-text" data-skip-lb="true">
+        <div class="cc-quote">
+          "Alumbrar el mapa de otras personas para ayudarlas a llegar a sus metas es lo que más me apasiona en la vida."
+          <div class="cc-quote-by">— Max (Mapsi)</div>
+        </div>
+      </div>
+
+      <!-- 6. David Ávila -->
+      <div class="cc" data-tag="Mentor & tallerista" data-title="Con David Ávila" data-desc="4 programas continuos de 'Potencia Tu Marca Personal'. 6 semanas cada uno. Porque yo también soy cliente de lo que enseño.">
+        <img src="img/Davidavila.JPG" alt="Maximiliano con David Ávila" />
+        <div class="cc-overlay"></div>
+        <div class="cc-info">
+          <span class="cc-tag">Formación continua</span>
+          <div class="cc-title">Con David Ávila</div>
+          <div class="cc-desc">4 programas "Potencia Tu Marca Personal". Soy cliente de lo que enseño.</div>
+        </div>
+        <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+
+      <!-- 7. Vida sana -->
+      <div class="cc" data-tag="Alimentación consciente" data-title="Elegir bien lo que le doy a mi cuerpo" data-desc="Con un riñón fui más consciente de todo. La salud no es un destino, es una decisión diaria.">
+        <img src="img/Vidasana.JPG" alt="Maximiliano con alimentación consciente" style="object-position:center 15%;" />
+        <div class="cc-overlay"></div>
+        <div class="cc-info">
+          <span class="cc-tag">Vida sana · Bienestar</span>
+          <div class="cc-title">Cuerpo consciente</div>
+          <div class="cc-desc">Con un riñón, elegir bien lo que le doy a mi cuerpo es prioridad.</div>
+        </div>
+        <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+
+      <!-- 8. USerena -->
+      <div class="cc" data-tag="Universidad de La Serena" data-title="Coordinador de la Red de Titulados" data-desc="Única universidad estatal de la Región de Coquimbo, Chile. Oficina Alumni — Red de titulados.">
+        <img src="img/Userena.JPEG" alt="Maximiliano en Universidad de La Serena" />
+        <div class="cc-overlay"></div>
+        <div class="cc-info">
+          <span class="cc-tag">USerena · Alumni</span>
+          <div class="cc-title">Coordinador Alumni</div>
+          <div class="cc-desc">Única U. estatal de la Región de Coquimbo. Red de Titulados.</div>
+        </div>
+        <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+
+      <!-- 9. Lectura -->
+      <div class="cc" data-tag="Sanderson + café" data-title="Siempre hay un libro abierto" data-desc="Hoy me inclino por Brandon Sanderson. Un café de por medio y una vista al mar. El mejor plan.">
+        <img src="img/lectura.JPG" alt="Maximiliano leyendo en la playa" style="object-position:center 40%;" />
+        <div class="cc-overlay"></div>
+        <div class="cc-info">
+          <span class="cc-tag">Lectura · Café · Playa</span>
+          <div class="cc-title">Siempre leo</div>
+          <div class="cc-desc">Brandon Sanderson con café y vista al mar. El mejor plan.</div>
+        </div>
+        <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+
+      <!-- 10. Retiro silencio -->
+      <div class="cc" data-tag="7 días en silencio" data-title="Retiro en la cordillera" data-desc="Sin celular, sin redes, sin ruido. Reconquistando mi mente, mi cuerpo y mi alma. La mejor decisión de mi vida.">
+        <img src="img/retiro.JPG" alt="Retiro de silencio en la cordillera" />
+        <div class="cc-overlay"></div>
+        <div class="cc-info">
+          <span class="cc-tag">Retiro de silencio</span>
+          <div class="cc-title">Reconquistando mi mapa</div>
+          <div class="cc-desc">7 días desconectado. Sin celular, sin ruido. La mejor decisión de mi vida.</div>
+        </div>
+        <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ÁREAS ===================== -->
+<section id="que-hago" style="background:var(--bg)">
+  <div class="wrap sec">
+    <p class="label rv">Áreas de trabajo</p>
+    <h2 class="h2 rv d1">Donde <em>genero impacto</em></h2>
+    <p class="body-text rv d2">Desliza para explorar las áreas en las que trabajo con personas y organizaciones.</p>
+  </div>
+  <div class="wrap" style="overflow:visible">
+    <div class="areas-scroll-wrap rv d2" id="areas-scroll">
+      <div class="areas-track" id="areas-track">
+        <div class="area-card">
+          <div class="area-n">01</div>
+          <div class="area-t">Apresto Laboral 1:1</div>
+          <div class="area-d">Para jóvenes profesionales que buscan su primer trabajo o entrar a un programa de atracción temprana. Autoconocimiento, posicionamiento y estrategia.</div>
+        </div>
+        <div class="area-card">
+          <div class="area-n">02</div>
+          <div class="area-t">Coaching de Desarrollo</div>
+          <div class="area-d">Proceso estructurado para avanzar en un objetivo concreto. Combinamos psicología, PNL y estrategia para tu próximo salto.</div>
+        </div>
+        <div class="area-card">
+          <div class="area-n">03</div>
+          <div class="area-t">Marca Personal</div>
+          <div class="area-d">Descubrimiento y proyección de tu identidad profesional única. Posiciónate con autenticidad y diferenciación real.</div>
+        </div>
+        <div class="area-card">
+          <div class="area-n">04</div>
+          <div class="area-t">Team Building</div>
+          <div class="area-d">Charlas y talleres para construir equipos con propósito, mejorar la comunicación y tomar mejores decisiones colectivas.</div>
+        </div>
+        <div class="area-card">
+          <div class="area-n">05</div>
+          <div class="area-t">Contenido & Bienestar</div>
+          <div class="area-d">Creación de contenido de psicología y bienestar orientado a que las personas reconquisten su vida con conciencia y acción.</div>
+        </div>
+      </div>
+    </div>
+    <div class="drag-hint rv d3">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Desliza para ver más
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICIOS ===================== -->
+<section id="servicios" style="background:var(--bg2)">
+  <div class="wrap sec">
+    <div class="services-intro-grid">
+      <div>
+        <p class="label rv">Servicios & Paquetes</p>
+        <h2 class="h2 rv d1">Invierte en <em>quien quieres ser</em></h2>
+      </div>
+      <div class="rv d2">
+        <p class="body-text" style="max-width:100%;margin-bottom:1.2rem;">Cada proceso comienza con una conversación honesta. Antes de cualquier compromiso, agendamos una llamada gratuita de 30 minutos.</p>
+        <div class="process-note">
+          <strong>🎁 Primera sesión sin costo</strong>
+          30 min por WhatsApp para identificar qué necesitas y si somos el match correcto. Sin presión, sin compromiso.
+        </div>
+      </div>
+    </div>
+    <div class="svc-grid">
+      <!-- Card 1 -->
+      <div class="svc-card rv d1">
+        <div class="svc-head">
+          <div class="svc-icon">🎓</div>
+          <div class="svc-name">Apresto Laboral 1:1</div>
+          <div class="svc-sub">Jóvenes profesionales</div>
+        </div>
+        <div class="svc-body">
+          <p class="svc-desc">Ideal si buscas tu primer trabajo o quieres entrar a un programa de atracción temprana. Estrategia, autoconocimiento y propuesta de valor clara.</p>
+          <ul class="svc-list">
+            <li>Diagnóstico de perfil y fortalezas</li>
+            <li>Preparación de entrevistas y CV</li>
+            <li>Estrategia de búsqueda laboral</li>
+            <li>Sesiones individuales a tu ritmo</li>
+          </ul>
+        </div>
+        <div class="svc-foot">
+          <div class="svc-price">A consultar</div>
+          <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-svc" target="_blank" rel="noopener">Consultar →</a>
+        </div>
+      </div>
+      <!-- Card 2 – featured -->
+      <div class="svc-card feat rv d2">
+        <div class="svc-feat-tag">Más solicitado</div>
+        <div class="svc-head">
+          <div class="svc-icon">🚀</div>
+          <div class="svc-name">Coaching Desarrollo Profesional</div>
+          <div class="svc-sub">Programa de acompañamiento</div>
+        </div>
+        <div class="svc-body">
+          <p class="svc-desc">Proceso estructurado para avanzar en un objetivo concreto con seguimiento posterior a precio preferencial.</p>
+          <div class="pkg-row">
+            <span class="pkg pkg-fill">4 sesiones</span>
+            <span class="pkg pkg-line">6 sesiones</span>
+            <span class="pkg pkg-line">8 sesiones</span>
+          </div>
+          <ul class="svc-list">
+            <li>Diagnóstico inicial y objetivo claro</li>
+            <li>Herramientas PNL y psicología aplicada</li>
+            <li>Seguimiento post-programa rebajado</li>
+            <li>Recursos y ejercicios entre sesiones</li>
+          </ul>
+        </div>
+        <div class="svc-foot">
+          <div class="svc-price">A consultar</div>
+          <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-svc" target="_blank" rel="noopener">Consultar →</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="svc-card rv d3">
+        <div class="svc-head">
+          <div class="svc-icon">✨</div>
+          <div class="svc-name">Coaching Marca Personal</div>
+          <div class="svc-sub">Identidad profesional única</div>
+        </div>
+        <div class="svc-body">
+          <p class="svc-desc">Descubre, construye y proyecta tu marca personal 1:1. Para profesionales que quieren destacar con coherencia y propósito.</p>
+          <div class="pkg-row">
+            <span class="pkg pkg-fill">4 sesiones</span>
+            <span class="pkg pkg-line">6 sesiones</span>
+            <span class="pkg pkg-line">8 sesiones</span>
+          </div>
+          <ul class="svc-list">
+            <li>Valores y propósito único</li>
+            <li>Estrategia de contenido y visibilidad</li>
+            <li>Posicionamiento en redes profesionales</li>
+            <li>Plan de acción concreto y medible</li>
+          </ul>
+        </div>
+        <div class="svc-foot">
+          <div class="svc-price">A consultar</div>
+          <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-svc" target="_blank" rel="noopener">Consultar →</a>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="svc-card rv d4">
+        <div class="svc-head">
+          <div class="svc-icon">🤝</div>
+          <div class="svc-name">Team Building Empresarial</div>
+          <div class="svc-sub">Para organizaciones</div>
+        </div>
+        <div class="svc-body">
+          <p class="svc-desc">Charlas y talleres para construir equipos desde el propósito. Comunicación, toma de decisiones y cultura organizacional real.</p>
+          <ul class="svc-list">
+            <li>Diagnóstico del equipo y objetivos</li>
+            <li>Taller presencial o en línea</li>
+            <li>Dinámicas de cohesión y comunicación</li>
+            <li>Plan de seguimiento para líderes</li>
+          </ul>
+        </div>
+        <div class="svc-foot">
+          <div class="svc-price">Cotizar</div>
+          <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-svc" target="_blank" rel="noopener">Cotizar →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOGROS ===================== -->
+<section id="logros" style="background:var(--bg)">
+  <div class="wrap sec">
+    <p class="label rv">Credenciales</p>
+    <h2 class="h2 rv d1">Formación & <em>trayectoria</em></h2>
+    <div class="logros-grid">
+      <div class="logro rv-z d1">
+        <div class="logro-ic">🎓</div>
+        <div class="logro-n">Mg.</div>
+        <div class="logro-t">Liderazgo & Comunicación</div>
+        <div class="logro-d">Magíster en Liderazgo, Dirección y Comunicación Estratégica</div>
+      </div>
+      <div class="logro rv-z d2">
+        <div class="logro-ic">🧩</div>
+        <div class="logro-n">PNL</div>
+        <div class="logro-t">Coach certificado</div>
+        <div class="logro-d">Programación Neurolingüística para desarrollo personal y profesional</div>
+      </div>
+      <div class="logro rv-z d3">
+        <div class="logro-ic">🏛️</div>
+        <div class="logro-n">ULS</div>
+        <div class="logro-t">Universidad de La Serena</div>
+        <div class="logro-d">Psicólogo Coordinador Red de Titulados – Oficina Alumni</div>
+      </div>
+      <div class="logro rv-z d1">
+        <div class="logro-ic">💪</div>
+        <div class="logro-n" data-count="14">0</div>
+        <div class="logro-t">Años disciplina física</div>
+        <div class="logro-d">Embajador de marca deportiva por 5 años consecutivos</div>
+      </div>
+      <div class="logro rv-z d2">
+        <div class="logro-ic">🌟</div>
+        <div class="logro-n" data-count="4">0</div>
+        <div class="logro-t">Programas de Marca Personal</div>
+        <div class="logro-d">Formación continua con David Ávila, referente latinoamericano</div>
+      </div>
+      <div class="logro rv-z d3">
+        <div class="logro-ic">🏔️</div>
+        <div class="logro-n" data-count="7">0</div>
+        <div class="logro-t">Días de retiro en silencio</div>
+        <div class="logro-d">Desconexión total para reconquistar mente, cuerpo y propósito</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE 2 (reverse) -->
+<div class="marquee-wrap" aria-hidden="true" style="background:var(--bg2)">
+  <div class="marquee-track" style="animation-direction:reverse; animation-duration:22s;">
+    <span class="m-item">Reconquista tu vida <span class="m-dot"></span></span>
+    <span class="m-item">Conciencia & Acción <span class="m-dot"></span></span>
+    <span class="m-item">Propósito profesional <span class="m-dot"></span></span>
+    <span class="m-item">Bienestar integral <span class="m-dot"></span></span>
+    <span class="m-item">Senderismo & naturaleza <span class="m-dot"></span></span>
+    <span class="m-item">Resiliencia <span class="m-dot"></span></span>
+    <span class="m-item">Disciplina = libertad <span class="m-dot"></span></span>
+    <span class="m-item">La Serena, Chile <span class="m-dot"></span></span>
+    <span class="m-item">Reconquista tu vida <span class="m-dot"></span></span>
+    <span class="m-item">Conciencia & Acción <span class="m-dot"></span></span>
+    <span class="m-item">Propósito profesional <span class="m-dot"></span></span>
+    <span class="m-item">Bienestar integral <span class="m-dot"></span></span>
+    <span class="m-item">Senderismo & naturaleza <span class="m-dot"></span></span>
+    <span class="m-item">Resiliencia <span class="m-dot"></span></span>
+    <span class="m-item">Disciplina = libertad <span class="m-dot"></span></span>
+    <span class="m-item">La Serena, Chile <span class="m-dot"></span></span>
+  </div>
+</div>
+
+<!-- ===================== PROCESO ===================== -->
+<section id="proceso" style="background:var(--bg2)">
+  <div class="wrap sec">
+    <p class="label rv">Cómo trabajo</p>
+    <h2 class="h2 rv d1">Un proceso <em>diseñado para ti</em></h2>
+    <p class="body-text rv d2" style="margin-bottom:0">Antes de cualquier proceso, nos conocemos. Sin compromiso, sin presión. Solo una conversación honesta.</p>
+    <div class="proceso-steps">
+      <div class="p-step">
+        <div class="p-num rv-z d1">1</div>
+        <div>
+          <div class="p-title rv d2">Llamada gratuita de 30 min</div>
+          <p class="p-desc rv d2">Agendas por WhatsApp. Conversamos sobre tu situación y metas. Sin costo, sin presión.</p>
+          <span class="p-tag rv d3">🎁 Gratis — siempre</span>
+        </div>
+      </div>
+      <div class="p-step">
+        <div class="p-num rv-z d2">2</div>
+        <div>
+          <div class="p-title rv d3">Programa a tu medida</div>
+          <p class="p-desc rv d3">Definimos juntos el servicio, sesiones y ritmo. Diseñado para tu realidad, no para una plantilla.</p>
+          <span class="p-tag rv d4">Flexible · Personalizado</span>
+        </div>
+      </div>
+      <div class="p-step">
+        <div class="p-num rv-z d3">3</div>
+        <div>
+          <div class="p-title rv d4">Acompañamiento & transformación</div>
+          <p class="p-desc rv d4">Sesiones de profundidad real. Seguimiento posterior a precio preferencial para consolidar el cambio.</p>
+          <span class="p-tag rv d5">Seguimiento post-programa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIOS ===================== -->
+<section id="testimonios" style="background:var(--bg);overflow:hidden">
+  <div class="wrap sec">
+    <p class="label rv">Lo que dicen</p>
+    <h2 class="h2 rv d1">Historias de <em>transformación</em></h2>
+    <div class="testi-carousel-wrap rv d2">
+      <div class="testi-track-outer">
+        <div class="testi-track" id="testi-track">
+          <div class="testi-card active">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"Maximiliano tiene una habilidad única para hacerte ver lo que no querías mirar, y acompañarte a atravesarlo sin juzgarte. Mi proceso de coaching cambió cómo me relaciono conmigo mismo y con mi equipo."</p>
+            <div class="testi-author">
+              <div class="testi-av">CR</div>
+              <div><div class="testi-name">Carlos R.</div><div class="testi-role">Jefe de proyectos · Empresa tecnológica</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"Llegué sin saber si estaba lista para mi primer trabajo. Con Maxi trabajé mi propuesta de valor y entré a un programa de atracción temprana en menos de 2 meses."</p>
+            <div class="testi-author">
+              <div class="testi-av">VA</div>
+              <div><div class="testi-name">Valentina A.</div><div class="testi-role">Ingeniera comercial · Recién titulada</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"El taller de Team Building fue exactamente lo que necesitábamos. No fue un taller más de motivación — fue una conversación honesta que nos hizo entendernos de otra manera."</p>
+            <div class="testi-author">
+              <div class="testi-av">PM</div>
+              <div><div class="testi-name">Patricia M.</div><div class="testi-role">Gerente RRHH · Empresa retail</div></div>
+            </div>
+          </div>
+          <div class="testi-card">
+            <div class="stars">★★★★★</div>
+            <p class="testi-text">"Trabajé mi marca personal con Maximiliano y por primera vez entendí cuál es mi diferenciador real. El proceso fue intenso, estructurado y muy humano a la vez."</p>
+            <div class="testi-author">
+              <div class="testi-av">RM</div>
+              <div><div class="testi-name">Rodrigo M.</div><div class="testi-role">Consultor independiente · Santiago</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button class="cc-btn" id="cc-prev" aria-label="Anterior">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="cc-btn" id="cc-next" aria-label="Siguiente">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <div class="cc-dots" id="cc-dots"></div>
+      </div>
+    </div>
+    <p class="testi-disclaimer">* Testimonios representativos. Nombres anonimizados con autorización.</p>
+  </div>
+</section>
+
+<!-- ===================== REDES SOCIALES ===================== -->
+<section id="redes" style="background:var(--bg2)">
+  <div class="wrap sec">
+    <p class="label rv">Encuéntrame en</p>
+    <h2 class="h2 rv d1">Redes & <em>comunidad</em></h2>
+    <p class="body-text rv d2">Comparto contenido de psicología, bienestar y desarrollo profesional. Sígueme para continuar el camino.</p>
+    <div class="redes-grid">
+      <!-- Instagram -->
+      <a class="red-card red-ig rv d1" href="https://www.instagram.com/mapsicl/" target="_blank" rel="noopener">
+        <div class="red-card-glow"></div>
+        <div class="red-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div class="red-info">
+          <div class="red-name">Instagram</div>
+          <div class="red-handle">@mapsicl</div>
+          <div class="red-desc">Contenido de psicología, bienestar y desarrollo personal. Reflexiones y herramientas para reconquistar tu vida.</div>
+        </div>
+        <div class="red-link">Seguir <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <!-- LinkedIn -->
+      <a class="red-card red-li rv d2" href="https://www.linkedin.com/in/maximiliano-jimenez-rojas-b252bbba/" target="_blank" rel="noopener">
+        <div class="red-card-glow"></div>
+        <div class="red-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <div class="red-info">
+          <div class="red-name">LinkedIn</div>
+          <div class="red-handle">Maximiliano Jiménez Rojas</div>
+          <div class="red-desc">Artículos sobre liderazgo, marca personal y desarrollo profesional. Red de contactos profesionales.</div>
+        </div>
+        <div class="red-link">Conectar <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <!-- WhatsApp Business -->
+      <a class="red-card red-wa rv d3" href="https://wa.me/message/76VA3UZJMWUKB1" target="_blank" rel="noopener">
+        <div class="red-card-glow"></div>
+        <div class="red-icon">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.1 1.508 5.836L.057 23.5a.5.5 0 0 0 .61.61l5.666-1.451A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.002-1.371l-.357-.212-3.727.955.974-3.655-.233-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
+        </div>
+        <div class="red-info">
+          <div class="red-name">WhatsApp Business</div>
+          <div class="red-handle">Contacto directo</div>
+          <div class="red-desc">Agenda tu llamada gratuita de 30 min o consulta sobre mis servicios. Respondo en menos de 24 horas.</div>
+        </div>
+        <div class="red-link">Escribir ahora <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </a>
+      <!-- YouTube / Contenido (placeholder con sugerencia) -->
+      <div class="red-card red-yt rv d4" style="opacity:.55;cursor:default;">
+        <div class="red-card-glow"></div>
+        <div class="red-icon">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </div>
+        <div class="red-info">
+          <div class="red-name">YouTube</div>
+          <div class="red-handle">Próximamente</div>
+          <div class="red-desc">Canal de contenido sobre psicología, bienestar y desarrollo personal. ¡Próximamente!</div>
+        </div>
+        <div class="red-link" style="color:var(--grey2);border-color:var(--grey3)">Pronto disponible</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section id="cta-final" class="sec-full">
+  <div class="cta-bg"></div>
+  <div class="cta-inner">
+    <p class="label rv" style="justify-content:center">Primer paso</p>
+    <h2 class="cta-h rv d1">Tu mapa ya existe.<br/><em>Solo necesitas a alguien que te ayude a leerlo.</em></h2>
+    <p class="cta-sub rv d2">Agenda tu llamada gratuita de 30 minutos. Sin compromiso. Solo tú, yo, y una conversación honesta sobre hacia dónde quieres ir.</p>
+    <div class="rv d3">
+      <a href="https://wa.me/message/76VA3UZJMWUKB1" class="btn-wa" target="_blank" rel="noopener" style="font-size:.9rem;padding:1.1rem 2.2rem;display:inline-flex;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.1 1.508 5.836L.057 23.5a.5.5 0 0 0 .61.61l5.666-1.451A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.002-1.371l-.357-.212-3.727.955.974-3.655-.233-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
+        Agenda tu llamada gratuita de 30 min
+      </a>
+    </div>
+    <p class="cta-note rv d4">Respondo en menos de 24 horas · 100% sin compromiso</p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="f-logo">Maximiliano <em>Jiménez</em></div>
+    <ul class="f-links">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#logros">Credenciales</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#redes">Redes</a></li>
+    </ul>
+    <div class="f-socials">
+      <a class="f-soc" href="https://www.instagram.com/mapsicl/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a class="f-soc" href="https://www.linkedin.com/in/maximiliano-jimenez-rojas-b252bbba/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a class="f-soc" href="https://wa.me/message/76VA3UZJMWUKB1" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.1 1.508 5.836L.057 23.5a.5.5 0 0 0 .61.61l5.666-1.451A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.002-1.371l-.357-.212-3.727.955.974-3.655-.233-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
+      </a>
+    </div>
+    <div class="f-copy">© 2026 Maximiliano Jiménez · Psicólogo & Coach · La Serena, Chile</div>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script defer>
+(function () {
+  'use strict';
+  function safe(fn, n) { try { fn(); } catch(e) { console.warn('['+n+']', e); } }
+
+  /* ── SPLASH ── */
+  safe(function() {
+    var s = document.getElementById('splash');
+    if (!s) return;
+    setTimeout(function() { s.classList.add('hide'); }, 2600);
+    setTimeout(function() { s.style.display = 'none'; }, 3400);
+  }, 'splash');
+
+  /* ── HERO WORD REVEAL ── */
+  safe(function() {
+    var words = document.querySelectorAll('.hero-h1 .word');
+    words.forEach(function(w, i) {
+      setTimeout(function() { w.classList.add('show'); }, 2800 + i * 160);
+    });
+  }, 'words');
+
+  /* ── CURSOR ── */
+  safe(function() {
+    var dot = document.getElementById('c-dot');
+    var ring = document.getElementById('c-ring');
+    if (!dot || !ring) return;
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', function(e) {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    (function loop() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+    document.querySelectorAll('a,button,.area-card,.svc-card,.logro,.pillar,.red-card').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { document.body.classList.add('on-hover'); });
+      el.addEventListener('mouseleave', function() { document.body.classList.remove('on-hover'); });
+    });
+  }, 'cursor');
+
+  /* ── NAV ── */
+  safe(function() {
+    var nav = document.getElementById('nav');
+    if (!nav) return;
+    var fn = function() { nav.classList.toggle('solid', window.scrollY > 50); };
+    window.addEventListener('scroll', fn, { passive: true }); fn();
+  }, 'nav');
+
+  /* ── BURGER ── */
+  safe(function() {
+    var btn = document.getElementById('burger');
+    var menu = document.getElementById('mob-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function() {
+      var open = menu.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    menu.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        menu.classList.remove('open'); btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }, 'burger');
+
+  /* ── SCROLL REVEAL ── */
+  safe(function() {
+    var els = document.querySelectorAll('.rv,.rv-z,.rv-l,.rv-r');
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+    els.forEach(function(el) { obs.observe(el); });
+    setTimeout(function() { els.forEach(function(el) { el.classList.add('on'); }); }, 6000);
+  }, 'reveal');
+
+  /* ── PARALLAX HERO ── */
+  safe(function() {
+    var blobs = document.querySelectorAll('.mesh-blob');
+    var grid = document.querySelector('.hero-grid');
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      if (grid) grid.style.transform = 'translateY(' + y * 0.12 + 'px)';
+      blobs.forEach(function(b, i) {
+        b.style.transform = 'translateY(' + y * (0.06 + i * 0.03) + 'px)';
+      });
+    }, { passive: true });
+  }, 'parallax');
+
+  /* ── SMOOTH ANCHORS ── */
+  safe(function() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+      a.addEventListener('click', function(e) {
+        var id = a.getAttribute('href');
+        if (id === '#') return;
+        var t = document.querySelector(id);
+        if (!t) return;
+        e.preventDefault();
+        window.scrollTo({ top: t.offsetTop - 72, behavior: 'smooth' });
+      });
+    });
+  }, 'anchors');
+
+  /* ── COUNTERS ── */
+  safe(function() {
+    var els = document.querySelectorAll('[data-count]');
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (!entry.isIntersecting) return;
+        obs.unobserve(entry.target);
+        var el = entry.target;
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var suffix = el.getAttribute('data-suffix') || '';
+        var start = null, dur = 1400;
+        (function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(e * target) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+        })(performance.now());
+      });
+    }, { threshold: 0.5 });
+    els.forEach(function(el) { obs.observe(el); });
+  }, 'counters');
+
+  /* ── DRAG SCROLL (areas) ── */
+  safe(function() {
+    var wrap = document.getElementById('areas-scroll');
+    if (!wrap) return;
+    var isDown = false, startX, scrollLeft;
+    wrap.addEventListener('mousedown', function(e) {
+      isDown = true; startX = e.pageX - wrap.offsetLeft; scrollLeft = wrap.scrollLeft;
+    });
+    wrap.addEventListener('mouseleave', function() { isDown = false; });
+    wrap.addEventListener('mouseup', function() { isDown = false; });
+    wrap.addEventListener('mousemove', function(e) {
+      if (!isDown) return; e.preventDefault();
+      var x = e.pageX - wrap.offsetLeft;
+      wrap.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+  }, 'drag');
+
+  /* ── TESTIMONIOS CAROUSEL ── */
+  safe(function() {
+    var track = document.getElementById('testi-track');
+    var dotsWrap = document.getElementById('cc-dots');
+    var prevBtn = document.getElementById('cc-prev');
+    var nextBtn = document.getElementById('cc-next');
+    if (!track || !dotsWrap) return;
+
+    var cards = Array.from(track.querySelectorAll('.testi-card'));
+    var perView = window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 1 : 3;
+    var total = cards.length;
+    var current = 0;
+    var autoplay;
+
+    /* Dots */
+    var numDots = Math.ceil(total / (perView === 3 ? 1 : perView));
+    for (var i = 0; i < numDots; i++) {
+      var d = document.createElement('button');
+      d.className = 'cc-dot' + (i === 0 ? ' on' : '');
+      d.setAttribute('aria-label', 'Slide ' + (i+1));
+      d.setAttribute('data-i', String(i));
+      dotsWrap.appendChild(d);
+    }
+
+    function goTo(idx) {
+      current = Math.max(0, Math.min(idx, total - perView));
+      var cardW = cards[0].offsetWidth + 24; /* gap = 1.5rem ≈ 24px */
+      track.style.transform = 'translateX(-' + current * cardW + 'px)';
+      cards.forEach(function(c, ci) { c.classList.toggle('active', ci === current); });
+      dotsWrap.querySelectorAll('.cc-dot').forEach(function(dot, di) {
+        dot.classList.toggle('on', di === current);
+      });
+    }
+
+    function startAuto() {
+      autoplay = setInterval(function() { goTo((current + 1) % total); }, 4500);
+    }
+    function stopAuto() { clearInterval(autoplay); }
+
+    if (prevBtn) prevBtn.addEventListener('click', function() { stopAuto(); goTo(current - 1); startAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { stopAuto(); goTo(current + 1); startAuto(); });
+    dotsWrap.addEventListener('click', function(e) {
+      var dot = e.target.closest('.cc-dot');
+      if (!dot) return;
+      stopAuto(); goTo(parseInt(dot.getAttribute('data-i'), 10)); startAuto();
+    });
+    track.addEventListener('mouseenter', stopAuto);
+    track.addEventListener('mouseleave', startAuto);
+
+    window.addEventListener('resize', function() {
+      perView = window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 1 : 3;
+    });
+
+    startAuto();
+  }, 'carousel');
+
+  /* ── AUTO-SCROLL CAROUSEL ── */
+  safe(function initCarouselScroll() {
+    var track = document.getElementById('conoce-track');
+    if (!track) return;
+
+    // Duplicate cards for seamless infinite loop
+    var origCards = Array.from(track.children);
+    origCards.forEach(function(c) {
+      var clone = c.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      // Remove lightbox click from clones
+      clone.removeAttribute('data-tag');
+      clone.removeAttribute('data-title');
+      clone.removeAttribute('data-desc');
+      track.appendChild(clone);
+    });
+
+    var speed = 0.6; // px per frame — ajusta aquí la velocidad
+    var paused = false, isDown = false, startX, scrollLeft;
+    var halfW = track.scrollWidth / 2;
+
+    function step() {
+      if (!paused && !isDown) {
+        track.scrollLeft += speed;
+        if (track.scrollLeft >= halfW) {
+          track.scrollLeft -= halfW; // seamless loop
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+
+    // Pause on hover
+    track.addEventListener('mouseenter', function() { paused = true; });
+    track.addEventListener('mouseleave', function() { paused = false; });
+
+    // Drag with mouse
+    track.addEventListener('mousedown', function(e) {
+      isDown = true;
+      track.style.cursor = 'grabbing';
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    document.addEventListener('mouseup', function() {
+      isDown = false;
+      track.style.cursor = 'grab';
+    });
+    track.addEventListener('mousemove', function(e) {
+      if (!isDown) return;
+      e.preventDefault();
+      track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.4;
+    });
+
+    // Touch scroll
+    var tx = null;
+    track.addEventListener('touchstart', function(e) {
+      tx = e.touches[0].clientX; paused = true;
+    }, { passive: true });
+    track.addEventListener('touchend', function() {
+      paused = false; tx = null;
+    });
+    track.addEventListener('touchmove', function(e) {
+      if (tx === null) return;
+      var dx = tx - e.touches[0].clientX;
+      track.scrollLeft += dx * 1.2;
+      tx = e.touches[0].clientX;
+    }, { passive: true });
+
+    // Re-wire lightbox clicks on originals only
+    origCards.forEach(function(card, i) {
+      if (card.hasAttribute('data-skip-lb')) return;
+      if (!card.querySelector('img')) return;
+      // clicks handled by existing lightbox init
+    });
+  }, 'carousel-scroll');
+
+  /* ── LIGHTBOX ── */
+  safe(function initLightbox() {
+    var lb       = document.getElementById('lb');
+    var lbImg    = document.getElementById('lb-img');
+    var lbTag    = document.getElementById('lb-tag');
+    var lbTitle  = document.getElementById('lb-title');
+    var lbCount  = document.getElementById('lb-counter');
+    var lbDots   = document.getElementById('lb-dots');
+    var lbPrev   = document.getElementById('lb-prev');
+    var lbNext   = document.getElementById('lb-next');
+    var lbClose  = document.getElementById('lb-close');
+    var backdrop = document.getElementById('lb-backdrop');
+    if (!lb || !lbImg) return;
+
+    /* Collect photo cards, skip text-only */
+    var allCards = Array.from(document.querySelectorAll('#conoce-max .cc'));
+    var cards = allCards.filter(function(c) {
+      return !c.hasAttribute('data-skip-lb') && c.querySelector('img');
+    });
+    var items = cards.map(function(card) {
+      var img = card.querySelector('img');
+      return {
+        src:   img.getAttribute('src'),
+        alt:   img.getAttribute('alt') || '',
+        tag:   card.getAttribute('data-tag')   || '',
+        title: card.getAttribute('data-title') || ''
+      };
+    });
+
+    var current = 0;
+
+    /* Build dots */
+    function buildDots() {
+      lbDots.innerHTML = '';
+      items.forEach(function(_, i) {
+        var d = document.createElement('button');
+        d.className = 'lb-dot' + (i === 0 ? ' on' : '');
+        d.setAttribute('aria-label', 'Foto ' + (i + 1));
+        d.addEventListener('click', function() { goTo(i); });
+        lbDots.appendChild(d);
+      });
+    }
+
+    function updateDots() {
+      lbDots.querySelectorAll('.lb-dot').forEach(function(d, i) {
+        d.classList.toggle('on', i === current);
+      });
+    }
+
+    function goTo(idx) {
+      current = (idx + items.length) % items.length;
+      var item = items[current];
+      lbImg.classList.add('loading');
+      lbImg.onload = function() { lbImg.classList.remove('loading'); };
+      lbImg.src   = item.src;
+      lbImg.alt   = item.alt;
+      lbTag.textContent   = item.tag;
+      lbTitle.textContent = item.title;
+      lbCount.textContent = (current + 1) + ' / ' + items.length;
+      updateDots();
+    }
+
+    function open(idx) {
+      buildDots();
+      goTo(idx);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lbClose.focus();
+    }
+
+    function close() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    /* Click on photo cards */
+    cards.forEach(function(card, i) {
+      card.addEventListener('click', function() { open(i); });
+    });
+
+    /* Controls */
+    lbPrev.addEventListener('click', function(e) { e.stopPropagation(); goTo(current - 1); });
+    lbNext.addEventListener('click', function(e) { e.stopPropagation(); goTo(current + 1); });
+    lbClose.addEventListener('click', close);
+    backdrop.addEventListener('click', close);
+
+    /* Keyboard */
+    document.addEventListener('keydown', function(e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')     close();
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    /* Touch swipe */
+    var touchX = null;
+    lb.addEventListener('touchstart', function(e) {
+      touchX = e.touches[0].clientX;
+    }, { passive: true });
+    lb.addEventListener('touchend', function(e) {
+      if (touchX === null) return;
+      var dx = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(dx) > 45) { dx < 0 ? goTo(current + 1) : goTo(current - 1); }
+      touchX = null;
+    });
+
+  }, 'lightbox');
+
+})();
+</script>
+
+</body>
+</html>
