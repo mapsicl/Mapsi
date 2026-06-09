@@ -602,6 +602,7 @@
       .body-text { font-size: .86rem; line-height: 1.75; }
 
       /* Hero */
+      .hero-video { object-position: center 30%; } /* Fix: muestra rostro en lugar de solo árboles */
       .hero-inner { padding: calc(4.5rem + env(safe-area-inset-top)) 24px 2.5rem; }
       .hero-h1 { font-size: clamp(1.9rem, 11.5vw, 2.6rem); line-height: 1.05; }
       .hero-pre-sub { font-size: .84rem; margin-top: .8rem; }
@@ -676,14 +677,17 @@
       .p-tag { font-size: .65rem; }
 
       /* Testimonios */
-      .testi-card { min-width: calc(100% - 0px); padding: 1.4rem 1.2rem; border-radius: 10px; }
-      .testi-text { font-size: .88rem; line-height: 1.65; }
+      .testi-track-outer { overflow-x: hidden; } /* Fix: evita desbordamiento horizontal del carrusel */
+      .testi-card { min-width: calc(100vw - 48px); max-width: 100%; padding: 1.4rem 1.2rem; border-radius: 10px; overflow: hidden; box-sizing: border-box; } /* Fix: texto no se desborda a la derecha */
+      .testi-text { font-size: .88rem; line-height: 1.65; overflow-wrap: break-word; word-break: break-word; }
       .stars { font-size: .72rem; margin-bottom: .8rem; }
       .testi-name { font-size: .78rem; }
       .testi-role { font-size: .7rem; }
       .carousel-controls { margin-top: 1.4rem; }
 
       /* Redes */
+      #redes .body-text { padding: 0 20px; overflow-wrap: break-word; } /* Fix: párrafo no llega al borde derecho */
+      #redes { overflow-x: hidden; }
       .red-card { padding: 1.6rem 1.4rem; border-radius: 10px; }
       .red-icon { width: 44px; height: 44px; border-radius: 10px; }
       .red-name { font-size: .85rem; }
