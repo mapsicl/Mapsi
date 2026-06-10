@@ -639,10 +639,10 @@
     /* ── MÓVIL VERTICAL — todos los iPhones modernos (hasta 480px) ── */
     /* Cubre: iPhone SE(375), 14(390), 15/16(393), Pro Max(430), 17 Pro Max(440+) */
     @media (max-width:480px) {
-      /* Layout base — 24px fijo da breathing room real a cards con border-radius */
-      .wrap { padding: 0 24px; }
+      /* Layout base — 18px fijo: más ancho útil para las cards en móvil */
+      .wrap { padding: 0 18px; }
       .sec { padding: 2.4rem 0; }
-      .sec-full { padding: 2.4rem 24px; }
+      .sec-full { padding: 2.4rem 18px; }
 
       /* Tipografía */
       .h2 { font-size: clamp(1.55rem, 7vw, 2rem); margin-bottom: .9rem; line-height: 1.2; }
@@ -651,7 +651,7 @@
 
       /* Hero */
       .hero-video { object-position: center 30%; } /* Fix: muestra rostro en lugar de solo árboles */
-      .hero-inner { padding: calc(4.5rem + env(safe-area-inset-top)) 24px 2.5rem; }
+      .hero-inner { padding: calc(4.5rem + env(safe-area-inset-top)) 18px 2.5rem; }
       .hero-h1 { font-size: clamp(1.9rem, 11.5vw, 2.6rem); line-height: 1.05; }
       .hero-pre-sub { font-size: .84rem; margin-top: .8rem; }
       .hero-sub { font-size: .86rem; margin-top: .5rem; margin-bottom: 1.6rem; }
@@ -672,7 +672,7 @@
       .about-bullets { grid-template-columns: 1fr; gap: .5rem; margin-bottom: 1.2rem; }
       .about-bullets li { font-size: .78rem; gap: .6rem; padding: .55rem .85rem; border-radius: 6px; }
       /* Conoce a Max */
-      .conoce-header { padding: 0 24px 1rem; gap: .8rem; }
+      .conoce-header { padding: 0 18px 1rem; gap: .8rem; }
       .conoce-hint { display: none; }
       .conoce-track { gap: .85rem; padding: .4rem 0 1.5rem; }
       .cc { width: 72vw; height: 58vw; min-height: 220px; border-radius: 12px; }
@@ -765,8 +765,8 @@
 
     /* ── MÓVIL PEQUEÑO (iPhone SE / mini — 390px y menor) ── */
     @media (max-width:390px) {
-      .wrap { padding: 0 18px; }
-      .hero-inner { padding-left: 18px; padding-right: 18px; }
+      .wrap { padding: 0 16px; }
+      .hero-inner { padding-left: 16px; padding-right: 16px; }
       .hero-h1 { font-size: clamp(1.65rem, 11vw, 2.1rem); }
       .cc { width: 78vw; height: 62vw; }
       .area-card { width: 86vw; }
@@ -1385,6 +1385,32 @@
       color: var(--bg); border-color: transparent;
       box-shadow: 0 6px 24px rgba(200,168,75,.35);
     }
+    /* ── ACORDEÓN MÓVIL: tarjetas de servicio colapsadas ── */
+    @media (max-width:640px) {
+      .svc-card .svc-body,
+      .svc-card .svc-foot,
+      .svc-card .svc-qualify-btn,
+      .svc-card .svc-qualify-panel { display: none; }
+      .svc-card.sv-open .svc-body { display: block; animation: sv-in .4s var(--ease); }
+      .svc-card.sv-open .svc-foot { display: flex; animation: sv-in .45s var(--ease); }
+      .svc-card.sv-open .svc-qualify-btn { display: flex; }
+      .svc-card.sv-open .svc-qualify-panel { display: block; }
+      @keyframes sv-in {
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .svc-card .svc-head { cursor: pointer; position: relative; padding-right: 3.2rem; }
+      /* Chevron indicador */
+      .svc-card .svc-head::after {
+        content: ''; position: absolute; right: 1.3rem; bottom: 1.4rem;
+        width: 10px; height: 10px;
+        border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold);
+        transform: rotate(45deg);
+        transition: transform .35s var(--ease);
+      }
+      .svc-card.sv-open .svc-head::after { transform: rotate(225deg); }
+    }
+
     /* ── SERVICE QUALIFY PANEL ── */
     .svc-qualify-btn {
       display: flex; align-items: center; justify-content: center; gap: .5rem;
@@ -2802,6 +2828,23 @@
     wrap.addEventListener('scroll', update, { passive: true });
     update();
   }, 'areas-nav');
+
+  /* ── SERVICIOS: acordeón en móvil (el CSS solo colapsa bajo 640px) ── */
+  safe(function() {
+    var cards = document.querySelectorAll('.svc-card');
+    if (!cards.length) return;
+    cards.forEach(function(card) {
+      if (card.classList.contains('feat')) card.classList.add('sv-open');
+      var head = card.querySelector('.svc-head');
+      if (!head) return;
+      head.addEventListener('click', function() {
+        if (window.innerWidth > 640) return;
+        var wasOpen = card.classList.contains('sv-open');
+        cards.forEach(function(c) { c.classList.remove('sv-open'); });
+        if (!wasOpen) card.classList.add('sv-open');
+      });
+    });
+  }, 'svc-accordion');
 
   /* ── HERO WORD REVEAL ── */
   safe(function() {
