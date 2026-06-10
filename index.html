@@ -247,6 +247,8 @@
       object-fit: cover;
       opacity: .55;
     }
+    /* Con video activo, los blobs se ocultan (ahorra GPU/batería) */
+    #hero.video-on .mesh-blob { display: none; }
     /* Directional blur overlay — fuerte a la izquierda, se desvanece a la derecha */
     .hero-blur-overlay {
       position: absolute; inset: 0; z-index: 1;
@@ -436,26 +438,72 @@
     }
     .about-p { font-size: .94rem; color: var(--grey1); line-height: 2; margin-bottom: 1.3rem; }
     .about-p strong { color: var(--white); font-weight: 400; }
-    /* About bullets */
+    /* About bullets — grilla 2 col con cascada al hacer scroll */
     .about-bullets {
       list-style: none;
-      display: flex; flex-direction: column; gap: .75rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: .65rem;
       margin-bottom: 2rem;
     }
     .about-bullets li {
-      display: flex; align-items: flex-start; gap: .85rem;
-      padding: .75rem 1rem;
+      position: relative;
+      display: flex; align-items: flex-start; gap: .75rem;
+      padding: .8rem .95rem;
       background: var(--bg3); border: 1px solid var(--border2);
-      border-radius: 3px;
-      font-size: .86rem; color: var(--grey1); line-height: 1.55;
-      transition: border-color .3s, background .3s, transform .25s;
+      border-radius: 8px; overflow: hidden;
+      font-size: .82rem; color: var(--grey1); line-height: 1.55;
+      transition: border-color .3s, background .3s,
+                  opacity .6s var(--ease), transform .6s var(--ease);
+      opacity: 0; transform: translateY(18px);
     }
-    .about-bullets li:hover {
-      border-color: var(--border);
-      background: var(--bg4);
-      transform: translateX(4px);
+    /* Cascada: cada ítem entra con un retraso progresivo cuando la lista es visible */
+    .about-bullets.on li { opacity: 1; transform: translateY(0); }
+    .about-bullets li:nth-child(1) { transition-delay: .05s; }
+    .about-bullets li:nth-child(2) { transition-delay: .13s; }
+    .about-bullets li:nth-child(3) { transition-delay: .21s; }
+    .about-bullets li:nth-child(4) { transition-delay: .29s; }
+    .about-bullets li:nth-child(5) { transition-delay: .37s; }
+    .about-bullets li:nth-child(6) { transition-delay: .45s; }
+    .about-bullets li:nth-child(7) { transition-delay: .53s; }
+    .about-bullets li:nth-child(8) { transition-delay: .61s; }
+    .about-bullets li:nth-child(9) { transition-delay: .69s; }
+    /* Barra dorada lateral que crece al pasar el mouse */
+    .about-bullets li::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--gold), var(--gold2));
+      transform: scaleY(0); transform-origin: top;
+      transition: transform .35s var(--ease);
     }
-    .ab-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: .05rem; }
+    .about-bullets li:hover,
+    .about-bullets li:active {
+      border-color: rgba(200,168,75,.45);
+      background: linear-gradient(120deg, var(--bg4) 0%, rgba(200,168,75,.10) 100%);
+      color: var(--white);
+      box-shadow: 0 6px 24px rgba(0,0,0,.35), 0 0 18px rgba(200,168,75,.08);
+    }
+    .about-bullets li:hover::before,
+    .about-bullets li:active::before { transform: scaleY(1); }
+    /* Destello dorado que recorre la tarjeta */
+    .about-bullets li::after {
+      content: ''; position: absolute; top: 0; bottom: 0;
+      left: -75%; width: 50%;
+      background: linear-gradient(100deg, transparent 0%, rgba(226,192,106,.14) 50%, transparent 100%);
+      transform: skewX(-18deg);
+      pointer-events: none;
+    }
+    .about-bullets li:hover::after,
+    .about-bullets li:active::after { animation: ab-shine .7s var(--ease) forwards; }
+    @keyframes ab-shine { to { left: 125%; } }
+    .about-bullets li:hover strong,
+    .about-bullets li:active strong { color: var(--gold2); }
+    .about-bullets li:hover .ab-icon,
+    .about-bullets li:active .ab-icon {
+      filter: drop-shadow(0 0 6px rgba(226,192,106,.55));
+    }
+    .about-bullets li strong,
+    .about-bullets .ab-icon { transition: color .3s, filter .3s; }
+    /* El último ítem ocupa el ancho completo si la cuenta es impar */
+    .about-bullets li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .ab-icon { font-size: 1.05rem; flex-shrink: 0; margin-top: .05rem; }
     .about-bullets li strong { color: var(--white); font-weight: 500; }
 
     /* ==============================================
@@ -621,7 +669,7 @@
       /* About */
       .about-card { aspect-ratio: unset; height: 240px; border-radius: 10px; }
       .about-blockquote { font-size: .95rem; padding-left: .9rem; margin-bottom: 1.2rem; }
-      .about-bullets { gap: .5rem; margin-bottom: 1.2rem; }
+      .about-bullets { grid-template-columns: 1fr; gap: .5rem; margin-bottom: 1.2rem; }
       .about-bullets li { font-size: .78rem; gap: .6rem; padding: .55rem .85rem; border-radius: 6px; }
       /* Conoce a Max */
       .conoce-header { padding: 0 24px 1rem; gap: .8rem; }
@@ -725,6 +773,31 @@
       .svc-name { font-size: 1rem; }
       .logros-grid { grid-template-columns: 1fr; }
       .logro { padding: 1.3rem 1rem; }
+    }
+
+    /* ── RENDIMIENTO MÓVIL/TABLET: sin backdrop-blur (costoso en GPU), velo más oscuro ── */
+    @media (max-width:900px) {
+      .hero-blur-overlay { backdrop-filter: none; -webkit-backdrop-filter: none; }
+      .hero-veil {
+        background: linear-gradient(
+          to right,
+          rgba(8,8,8,.82) 0%,
+          rgba(8,8,8,.60) 45%,
+          rgba(8,8,8,.25) 75%,
+          rgba(8,8,8,.15) 100%
+        );
+      }
+    }
+
+    /* ── ACCESIBILIDAD: usuarios con movimiento reducido ── */
+    @media (prefers-reduced-motion: reduce) {
+      .mesh-blob, .marquee-track, .conoce-track,
+      .hero-badge-dot, .scroll-line, .fact-card { animation: none !important; }
+      html { scroll-behavior: auto; }
+      .rv, .rv-z, .rv-l, .rv-r { opacity: 1; transform: none; transition: none; }
+      .about-bullets li { opacity: 1; transform: none; transition: none; }
+      .about-bullets li::after,
+      .area-card-inner::before { animation: none !important; }
     }
 
     /* ── LANDSCAPE MÓVIL ── */
@@ -995,13 +1068,17 @@
       padding-bottom: .5rem;
       margin-top: 2rem;
       cursor: grab;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
     }
     .areas-scroll-wrap:active { cursor: grabbing; }
     .areas-scroll-wrap::-webkit-scrollbar { display: none; }
     .areas-track {
       display: flex; gap: 1.4rem;
       width: max-content; padding: .8rem .1rem 2rem;
+      align-items: stretch;
     }
+    .area-card { scroll-snap-align: start; }
 
     /* Base card */
     .area-card {
@@ -1012,6 +1089,7 @@
       border: 1px solid transparent;
       transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s;
       cursor: default;
+      display: flex; flex-direction: column;
     }
     .area-card:hover {
       transform: translateY(-8px) scale(1.02);
@@ -1044,8 +1122,29 @@
       border-radius: 16px;
     }
 
-    /* Card content wrapper */
-    .area-card-inner { padding: 2rem 1.8rem 2.2rem; position: relative; z-index: 1; }
+    /* Card content wrapper — columna que llena toda la tarjeta */
+    .area-card-inner {
+      padding: 2rem 1.8rem 1.8rem; position: relative; z-index: 1;
+      flex: 1; display: flex; flex-direction: column;
+    }
+    /* Destello dorado que recorre la tarjeta al hover */
+    .area-card-inner::before {
+      content: ''; position: absolute; top: 0; bottom: 0;
+      left: -75%; width: 50%;
+      background: linear-gradient(100deg, transparent 0%, rgba(226,192,106,.12) 50%, transparent 100%);
+      transform: skewX(-18deg);
+      pointer-events: none;
+    }
+    .area-card:hover .area-card-inner::before { animation: ab-shine .8s var(--ease) forwards; }
+    /* Link al servicio — anclado al pie de la tarjeta */
+    .area-link {
+      margin-top: auto; padding-top: 1.4rem;
+      display: inline-flex; align-items: center; gap: .45rem;
+      font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--gold2);
+      transition: color .3s, gap .3s;
+    }
+    .area-link:hover { color: var(--gold3); gap: .8rem; }
 
     /* Icon badge */
     .area-ic {
@@ -1080,19 +1179,35 @@
       font-size: .86rem; color: rgba(242,240,235,.65); line-height: 1.82;
     }
 
-    /* Bottom gradient fade */
-    .area-card-fade {
-      height: 60px;
-      background: linear-gradient(to top, rgba(0,0,0,.35), transparent);
-      position: relative; z-index: 1;
-    }
-
     .drag-hint {
-      margin-top: 1.2rem; font-size: .7rem; letter-spacing: .18em;
+      font-size: .7rem; letter-spacing: .18em;
       text-transform: uppercase; color: var(--grey2);
       display: flex; align-items: center; gap: .6rem;
     }
     .drag-hint svg { opacity: .5; }
+
+    /* Navegación del carrusel: flechas + puntos */
+    .areas-nav {
+      margin-top: 1.2rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+    }
+    .areas-arrows { display: flex; gap: .6rem; }
+    .area-arrow {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--gold); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .3s, border-color .3s, transform .2s;
+    }
+    .area-arrow:hover { background: var(--gold-dim); border-color: var(--gold); transform: scale(1.06); }
+    .area-arrow:disabled { opacity: .25; cursor: default; transform: none; background: transparent; }
+    .areas-dots { display: flex; gap: .5rem; }
+    .areas-dots .a-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--grey3); border: none; padding: 0; cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .areas-dots .a-dot.on { background: var(--gold); transform: scale(1.4); }
 
     /* =============================================
        SERVICIOS
@@ -1768,9 +1883,8 @@
 
 <!-- ===================== HERO ===================== -->
 <section id="hero">
-  <video class="hero-video" id="hero-video" autoplay muted playsinline aria-hidden="true">
-    <source src="img/VideoIkigai.mp4" type="video/mp4">
-  </video>
+  <video class="hero-video" id="hero-video" muted playsinline preload="none" aria-hidden="true"
+         data-src="img/VideoIkigai.mp4"></video>
   <div class="hero-blur-overlay" aria-hidden="true"></div>
   <div class="hero-veil" aria-hidden="true"></div>
   <div class="hero-mesh" aria-hidden="true">
@@ -1928,7 +2042,7 @@
 
       <!-- 1. Senderismo — sobre las nubes -->
       <div class="cc" data-tag="Sobre las nubes" data-title="La montaña me centra" data-desc="El senderismo es mi regulación. Silencio, altura y perspectiva.">
-        <img src="img/senderismo.JPG" alt="Maximiliano sobre las nubes en la montaña" />
+        <img loading="lazy" decoding="async" src="img/senderismo.JPG" alt="Maximiliano sobre las nubes en la montaña" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Senderismo · Naturaleza</span>
@@ -1940,7 +2054,7 @@
 
       <!-- 2. Max perfil -->
       <div class="cc" data-tag="Marca personal" data-title="Maximiliano Jiménez — @mapsicl" data-desc="Psicólogo, Coach PNL y Magíster en Liderazgo. La Serena, Chile.">
-        <img src="img/Max.JPG" alt="Maximiliano Jiménez" style="object-position:center 20%;" />
+        <img loading="lazy" decoding="async" src="img/Max.JPG" alt="Maximiliano Jiménez" style="object-position:center 20%;" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">@mapsicl</span>
@@ -1952,7 +2066,7 @@
 
       <!-- 3. Charla en el escenario -->
       <div class="cc" data-tag="Coquimbo Adventure 2023" data-title="Caminatas con sentido" data-desc="1ª Cumbre Internacional de Turismo Aventura y Naturaleza en el Norte Chileno. Invitado como conferencista.">
-        <img src="img/charlistaturismo.JPG" alt="Maximiliano dando charla en Coquimbo Adventure 2023" style="object-position:center 30%;" />
+        <img loading="lazy" decoding="async" src="img/charlistaturismo.JPG" alt="Maximiliano dando charla en Coquimbo Adventure 2023" style="object-position:center 30%;" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Conferencista · Turismo aventura</span>
@@ -1964,7 +2078,7 @@
 
       <!-- 4. Gym -->
       <div class="cc" data-tag="14 años de disciplina" data-title="El gym como estilo de vida" data-desc="14 años entrenando. 5 años como embajador de marca deportiva. La disciplina física es la base de todo lo demás.">
-        <img src="img/Gym.jpg" alt="Maximiliano en el gimnasio" />
+        <img loading="lazy" decoding="async" src="img/Gym.jpg" alt="Maximiliano en el gimnasio" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Disciplina · Constancia</span>
@@ -1984,7 +2098,7 @@
 
       <!-- 6. David Ávila -->
       <div class="cc" data-tag="Mentor & tallerista" data-title="Con David Ávila" data-desc="4 programas continuos de 'Potencia Tu Marca Personal'. 6 semanas cada uno. Porque yo también soy cliente de lo que enseño.">
-        <img src="img/Davidavila.JPG" alt="Maximiliano con David Ávila" />
+        <img loading="lazy" decoding="async" src="img/Davidavila.JPG" alt="Maximiliano con David Ávila" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Formación continua</span>
@@ -1996,7 +2110,7 @@
 
       <!-- 7. Vida sana -->
       <div class="cc" data-tag="Alimentación consciente" data-title="Elegir bien lo que le doy a mi cuerpo" data-desc="Con un riñón fui más consciente de todo. La salud no es un destino, es una decisión diaria.">
-        <img src="img/Vidasana.JPG" alt="Maximiliano con alimentación consciente" style="object-position:center 15%;" />
+        <img loading="lazy" decoding="async" src="img/Vidasana.JPG" alt="Maximiliano con alimentación consciente" style="object-position:center 15%;" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Vida sana · Bienestar</span>
@@ -2008,7 +2122,7 @@
 
       <!-- 8. USerena -->
       <div class="cc" data-tag="Universidad de La Serena" data-title="Coordinador de la Red de Titulados" data-desc="Única universidad estatal de la Región de Coquimbo, Chile. Oficina Alumni — Red de titulados.">
-        <img src="img/Userena.JPEG" alt="Maximiliano en Universidad de La Serena" />
+        <img loading="lazy" decoding="async" src="img/Userena.JPEG" alt="Maximiliano en Universidad de La Serena" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">USerena · Alumni</span>
@@ -2020,7 +2134,7 @@
 
       <!-- 9. Lectura -->
       <div class="cc" data-tag="Sanderson + café" data-title="Siempre hay un libro abierto" data-desc="Hoy me inclino por Brandon Sanderson. Un café de por medio y una vista al mar. El mejor plan.">
-        <img src="img/lectura.JPG" alt="Maximiliano leyendo en la playa" style="object-position:center 40%;" />
+        <img loading="lazy" decoding="async" src="img/lectura.JPG" alt="Maximiliano leyendo en la playa" style="object-position:center 40%;" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Lectura · Café · Playa</span>
@@ -2032,7 +2146,7 @@
 
       <!-- 10. Retiro silencio -->
       <div class="cc" data-tag="7 días en silencio" data-title="Retiro en la cordillera" data-desc="Sin celular, sin redes, sin ruido. Reconquistando mi mente, mi cuerpo y mi alma. La mejor decisión de mi vida.">
-        <img src="img/retiro.JPG" alt="Retiro de silencio en la cordillera" />
+        <img loading="lazy" decoding="async" src="img/retiro.JPG" alt="Retiro de silencio en la cordillera" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Retiro de silencio</span>
@@ -2062,8 +2176,8 @@
             <div class="area-ic">🎯</div>
             <div class="area-t">Inserción Laboral</div>
             <div class="area-d">Para recién egresados de 18 a 25 años. +300 asesorías. El problema no es el CV — es la confianza frente al entrevistador.</div>
+            <a class="area-link" href="#servicios">Ver servicio <span>&rarr;</span></a>
           </div>
-          <div class="area-card-fade"></div>
         </div>
         <div class="area-card">
           <div class="area-n">02</div>
@@ -2071,8 +2185,8 @@
             <div class="area-ic">🧭</div>
             <div class="area-t">Desarrollo Profesional</div>
             <div class="area-d">Para profesionales de 31 a 40 estancados. Metodología DISC, inteligencia emocional y herramientas concretas para el siguiente salto.</div>
+            <a class="area-link" href="#servicios">Ver servicio <span>&rarr;</span></a>
           </div>
-          <div class="area-card-fade"></div>
         </div>
         <div class="area-card">
           <div class="area-n">03</div>
@@ -2080,8 +2194,8 @@
             <div class="area-ic">✨</div>
             <div class="area-t">Marca Personal</div>
             <div class="area-d">Para quien quiere visibilidad en LinkedIn pero cree que no tiene nada valioso que mostrar. El bloqueo es autovaloración — no técnica.</div>
+            <a class="area-link" href="#servicios">Ver servicio <span>&rarr;</span></a>
           </div>
-          <div class="area-card-fade"></div>
         </div>
         <div class="area-card">
           <div class="area-n">04</div>
@@ -2089,8 +2203,8 @@
             <div class="area-ic">🤝</div>
             <div class="area-t">Charlas & Team Building</div>
             <div class="area-d">Para organizaciones que quieren equipos con propósito real. Comunicación honesta y cohesión desde la confianza.</div>
+            <a class="area-link" href="#servicios">Ver servicio <span>&rarr;</span></a>
           </div>
-          <div class="area-card-fade"></div>
         </div>
         <div class="area-card">
           <div class="area-n">05</div>
@@ -2098,14 +2212,25 @@
             <div class="area-ic">📱</div>
             <div class="area-t">Contenido & Comunidad</div>
             <div class="area-d">+10k de comunidad. Contenido de psicología y desarrollo profesional que activa, no que entretiene. Relator en conferencias nacionales.</div>
+            <a class="area-link" href="#redes">Ver comunidad <span>&rarr;</span></a>
           </div>
-          <div class="area-card-fade"></div>
         </div>
       </div>
     </div>
-    <div class="drag-hint rv d3">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      Desliza para ver más
+    <div class="areas-nav rv d3">
+      <div class="areas-dots" id="areas-dots" aria-label="Progreso del carrusel"></div>
+      <div class="drag-hint">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Desliza para ver más
+      </div>
+      <div class="areas-arrows">
+        <button class="area-arrow" id="areas-prev" aria-label="Anterior">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="area-arrow" id="areas-next" aria-label="Siguiente">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -2621,14 +2746,62 @@
     setTimeout(function() { s.style.display = 'none'; }, 3400);
   }, 'splash');
 
-  /* ── HERO VIDEO: se reproduce una vez y queda estático en el último frame ── */
+  /* ── HERO VIDEO: solo en pantallas grandes, una reproducción, fallback a blobs ── */
   safe(function() {
     var vid = document.getElementById('hero-video');
     if (!vid) return;
-    vid.addEventListener('ended', function() {
-      vid.pause();
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var saveData = navigator.connection && navigator.connection.saveData;
+    // En móvil, con ahorro de datos o movimiento reducido: no descargar el video (5 MB)
+    if (window.innerWidth < 768 || saveData || reduced) {
+      vid.remove();
+      return;
+    }
+    vid.src = vid.getAttribute('data-src');
+    vid.addEventListener('ended', function() { vid.pause(); });
+    vid.addEventListener('playing', function() {
+      document.getElementById('hero').classList.add('video-on');
     });
+    var p = vid.play();
+    if (p && p.catch) {
+      p.catch(function() { vid.remove(); }); // autoplay bloqueado (iOS Low Power): quedan los blobs
+    }
   }, 'hero-video');
+
+  /* ── ÁREAS: flechas + puntos de progreso del carrusel ── */
+  safe(function() {
+    var wrap = document.getElementById('areas-scroll');
+    var track = document.getElementById('areas-track');
+    var dotsBox = document.getElementById('areas-dots');
+    var prev = document.getElementById('areas-prev');
+    var next = document.getElementById('areas-next');
+    if (!wrap || !track || !dotsBox || !prev || !next) return;
+    var cards = track.querySelectorAll('.area-card');
+    var dots = [];
+    cards.forEach(function(c, i) {
+      var d = document.createElement('button');
+      d.className = 'a-dot' + (i === 0 ? ' on' : '');
+      d.setAttribute('aria-label', 'Ir a tarjeta ' + (i + 1));
+      d.addEventListener('click', function() {
+        wrap.scrollTo({ left: c.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+      });
+      dotsBox.appendChild(d); dots.push(d);
+    });
+    function step() {
+      return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : 312;
+    }
+    prev.addEventListener('click', function() { wrap.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function() { wrap.scrollBy({ left: step(), behavior: 'smooth' }); });
+    function update() {
+      var i = Math.round(wrap.scrollLeft / step());
+      i = Math.max(0, Math.min(i, cards.length - 1));
+      dots.forEach(function(d, j) { d.classList.toggle('on', j === i); });
+      prev.disabled = wrap.scrollLeft <= 4;
+      next.disabled = wrap.scrollLeft >= wrap.scrollWidth - wrap.clientWidth - 4;
+    }
+    wrap.addEventListener('scroll', update, { passive: true });
+    update();
+  }, 'areas-nav');
 
   /* ── HERO WORD REVEAL ── */
   safe(function() {
