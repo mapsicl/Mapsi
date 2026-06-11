@@ -1191,6 +1191,11 @@
     .areas-nav {
       margin-top: 1.2rem;
       display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    /* En pantallas chicas el hint sobra: las flechas y puntos ya comunican el deslizamiento */
+    @media (max-width:480px) {
+      .areas-nav .drag-hint { display: none; }
     }
     .areas-arrows { display: flex; gap: .6rem; }
     .area-arrow {
