@@ -2778,7 +2778,7 @@
     setTimeout(function() { s.style.display = 'none'; }, 3400);
   }, 'splash');
 
-  /* ── HERO VIDEO: solo en pantallas grandes, una reproducción, fallback a blobs ── */
+  /* ── HERO VIDEO: bucle normal (se reinicia al terminar), solo desktop ── */
   safe(function() {
     var vid = document.getElementById('hero-video');
     if (!vid) return;
@@ -2789,8 +2789,8 @@
       vid.remove();
       return;
     }
+    vid.loop = true;   // al terminar, vuelve a reproducir desde el inicio
     vid.src = vid.getAttribute('data-src');
-    vid.addEventListener('ended', function() { vid.pause(); });
     vid.addEventListener('playing', function() {
       document.getElementById('hero').classList.add('video-on');
     });
