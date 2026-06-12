@@ -439,73 +439,118 @@
     }
     .about-p { font-size: .94rem; color: var(--grey1); line-height: 2; margin-bottom: 1.3rem; }
     .about-p strong { color: var(--white); font-weight: 400; }
-    /* About bullets — grilla 2 col con cascada al hacer scroll */
-    .about-bullets {
-      list-style: none;
-      display: grid; grid-template-columns: 1fr 1fr; gap: .65rem;
-      margin-bottom: 2rem;
-    }
-    .about-bullets li {
+    /* ── EL MAPA DE MAX: rutas colapsables sobre fondo cartográfico ── */
+    @keyframes ab-shine { to { left: 125%; } }
+    .mapa-max {
       position: relative;
-      display: flex; align-items: flex-start; gap: .75rem;
-      padding: .8rem .95rem;
-      background: var(--bg3); border: 1px solid var(--border2);
-      border-radius: 8px; overflow: hidden;
+      border: 1px solid var(--border2); border-radius: 12px;
+      padding: 1.1rem; margin-bottom: 2rem;
+      background-color: var(--bg2);
+      overflow: hidden;
+    }
+    /* Curvas de nivel topográficas (SVG inline, dorado tenue) */
+    .mapa-max::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400' fill='none' stroke='%23c8a84b' stroke-width='1'%3E%3Cpath opacity='.10' d='M-20 80 Q 90 30 180 75 T 380 60 T 630 90'/%3E%3Cpath opacity='.08' d='M-20 130 Q 110 70 210 120 T 410 105 T 630 140'/%3E%3Cpath opacity='.10' d='M-20 185 Q 80 135 190 175 T 400 160 T 630 195'/%3E%3Cpath opacity='.07' d='M-20 240 Q 120 185 230 230 T 430 215 T 630 250'/%3E%3Cpath opacity='.09' d='M-20 295 Q 90 245 200 288 T 410 272 T 630 305'/%3E%3Cpath opacity='.06' d='M-20 350 Q 130 300 240 345 T 440 328 T 630 360'/%3E%3Ccircle opacity='.12' cx='480' cy='90' r='34'/%3E%3Ccircle opacity='.07' cx='480' cy='90' r='52'/%3E%3Ccircle opacity='.10' cx='110' cy='300' r='26'/%3E%3Ccircle opacity='.06' cx='110' cy='300' r='44'/%3E%3C/svg%3E");
+      background-size: cover; background-position: center;
+    }
+    /* Línea de ruta vertical que conecta los waypoints */
+    .mapa-max::after {
+      content: ''; position: absolute; left: calc(1.1rem + 19px); top: 2rem; bottom: 2rem;
+      width: 1px; pointer-events: none;
+      background: linear-gradient(to bottom, transparent, rgba(200,168,75,.30) 15%, rgba(200,168,75,.30) 85%, transparent);
+    }
+    .ruta { position: relative; z-index: 1; }
+    .ruta + .ruta { margin-top: .35rem; }
+    .ruta-head {
+      display: flex; align-items: center; gap: .95rem; width: 100%;
+      background: none; border: none; cursor: pointer;
+      padding: .75rem .6rem; border-radius: 8px;
+      font-family: var(--font-s); text-align: left;
+      transition: background .3s;
+    }
+    .ruta-head:hover { background: rgba(200,168,75,.05); }
+    /* Waypoint: punto dorado con anillo pulsante */
+    .ruta-dot {
+      position: relative; flex-shrink: 0;
+      width: 13px; height: 13px; border-radius: 50%;
+      background: var(--grey2);
+      border: 2px solid var(--bg2);
+      box-shadow: 0 0 0 1px var(--grey2);
+      transition: background .4s, box-shadow .4s;
+    }
+    .ruta.open .ruta-dot {
+      background: var(--gold);
+      box-shadow: 0 0 0 1px var(--gold), 0 0 14px rgba(226,192,106,.6);
+    }
+    .ruta.open .ruta-dot::after {
+      content: ''; position: absolute; inset: -7px; border-radius: 50%;
+      border: 1px solid rgba(200,168,75,.5);
+      animation: wp-pulse 2.2s ease-out infinite;
+    }
+    @keyframes wp-pulse {
+      0%   { transform: scale(.6); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .ruta-info { flex: 1; display: flex; flex-direction: column; gap: .12rem; }
+    .ruta-title {
+      font-family: var(--font-d); font-size: 1.02rem; color: var(--grey1);
+      transition: color .35s;
+    }
+    .ruta.open .ruta-title { color: var(--white); }
+    .ruta-head:hover .ruta-title { color: var(--gold2); }
+    .ruta-sub {
+      font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--grey2);
+    }
+    .ruta-chev {
+      flex-shrink: 0; width: 9px; height: 9px;
+      border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold);
+      transform: rotate(45deg); opacity: .6;
+      transition: transform .35s var(--ease), opacity .3s;
+    }
+    .ruta.open .ruta-chev { transform: rotate(225deg); opacity: 1; }
+    /* Panel colapsable */
+    .ruta-panel {
+      max-height: 0; overflow: hidden;
+      transition: max-height .5s var(--ease);
+    }
+    .ruta.open .ruta-panel { max-height: 420px; }
+    .ruta-list {
+      list-style: none; display: flex; flex-direction: column; gap: .45rem;
+      padding: .25rem .4rem .85rem 2.55rem;
+    }
+    .ruta-list li {
+      position: relative; overflow: hidden;
+      display: flex; align-items: flex-start; gap: .7rem;
+      padding: .6rem .8rem;
+      background: rgba(22,22,22,.72); border: 1px solid var(--border2);
+      border-radius: 8px;
       font-size: .82rem; color: var(--grey1); line-height: 1.55;
-      transition: border-color .3s, background .3s,
-                  opacity .6s var(--ease), transform .6s var(--ease);
-      opacity: 0; transform: translateY(18px);
+      opacity: 0; transform: translateY(10px);
+      transition: opacity .5s var(--ease), transform .5s var(--ease),
+                  border-color .3s, background .3s, color .3s;
     }
-    /* Cascada: cada ítem entra con un retraso progresivo cuando la lista es visible */
-    .about-bullets.on li { opacity: 1; transform: translateY(0); }
-    .about-bullets li:nth-child(1) { transition-delay: .05s; }
-    .about-bullets li:nth-child(2) { transition-delay: .13s; }
-    .about-bullets li:nth-child(3) { transition-delay: .21s; }
-    .about-bullets li:nth-child(4) { transition-delay: .29s; }
-    .about-bullets li:nth-child(5) { transition-delay: .37s; }
-    .about-bullets li:nth-child(6) { transition-delay: .45s; }
-    .about-bullets li:nth-child(7) { transition-delay: .53s; }
-    .about-bullets li:nth-child(8) { transition-delay: .61s; }
-    .about-bullets li:nth-child(9) { transition-delay: .69s; }
-    /* Barra dorada lateral que crece al pasar el mouse */
-    .about-bullets li::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-      width: 2px; background: linear-gradient(to bottom, var(--gold), var(--gold2));
-      transform: scaleY(0); transform-origin: top;
-      transition: transform .35s var(--ease);
-    }
-    .about-bullets li:hover,
-    .about-bullets li:active {
-      border-color: rgba(200,168,75,.45);
-      background: linear-gradient(120deg, var(--bg4) 0%, rgba(200,168,75,.10) 100%);
+    .ruta.open .ruta-list li { opacity: 1; transform: none; }
+    .ruta.open .ruta-list li:nth-child(1) { transition-delay: .10s; }
+    .ruta.open .ruta-list li:nth-child(2) { transition-delay: .20s; }
+    .ruta.open .ruta-list li:nth-child(3) { transition-delay: .30s; }
+    .ruta.open .ruta-list li:nth-child(4) { transition-delay: .40s; }
+    .ruta-list li:hover {
+      border-color: rgba(200,168,75,.4);
+      background: rgba(28,28,28,.9);
       color: var(--white);
-      box-shadow: 0 6px 24px rgba(0,0,0,.35), 0 0 18px rgba(200,168,75,.08);
     }
-    .about-bullets li:hover::before,
-    .about-bullets li:active::before { transform: scaleY(1); }
-    /* Destello dorado que recorre la tarjeta */
-    .about-bullets li::after {
+    .ruta-list li::after {
       content: ''; position: absolute; top: 0; bottom: 0;
       left: -75%; width: 50%;
-      background: linear-gradient(100deg, transparent 0%, rgba(226,192,106,.14) 50%, transparent 100%);
-      transform: skewX(-18deg);
-      pointer-events: none;
+      background: linear-gradient(100deg, transparent 0%, rgba(226,192,106,.13) 50%, transparent 100%);
+      transform: skewX(-18deg); pointer-events: none;
     }
-    .about-bullets li:hover::after,
-    .about-bullets li:active::after { animation: ab-shine .7s var(--ease) forwards; }
-    @keyframes ab-shine { to { left: 125%; } }
-    .about-bullets li:hover strong,
-    .about-bullets li:active strong { color: var(--gold2); }
-    .about-bullets li:hover .ab-icon,
-    .about-bullets li:active .ab-icon {
-      filter: drop-shadow(0 0 6px rgba(226,192,106,.55));
-    }
-    .about-bullets li strong,
-    .about-bullets .ab-icon { transition: color .3s, filter .3s; }
-    /* El último ítem ocupa el ancho completo si la cuenta es impar */
-    .about-bullets li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .ruta-list li:hover::after { animation: ab-shine .7s var(--ease) forwards; }
+    .ruta-list li:hover strong { color: var(--gold2); }
+    .ruta-list li strong { color: var(--white); font-weight: 500; transition: color .3s; }
     .ab-icon { font-size: 1.05rem; flex-shrink: 0; margin-top: .05rem; }
-    .about-bullets li strong { color: var(--white); font-weight: 500; }
 
     /* ==============================================
        RESPONSIVE COMPLETO
@@ -598,7 +643,7 @@
 
       /* About */
       .about-card { aspect-ratio: 3/2; max-height: 280px; }
-      .about-bullets li { font-size: .8rem; padding: .6rem .85rem; }
+      .ruta-list li { font-size: .8rem; padding: .55rem .75rem; }
 
 
       /* Áreas */
@@ -670,8 +715,12 @@
       /* About */
       .about-card { aspect-ratio: unset; height: 240px; border-radius: 10px; }
       .about-blockquote { font-size: .95rem; padding-left: .9rem; margin-bottom: 1.2rem; }
-      .about-bullets { grid-template-columns: 1fr; gap: .5rem; margin-bottom: 1.2rem; }
-      .about-bullets li { font-size: .78rem; gap: .6rem; padding: .55rem .85rem; border-radius: 6px; }
+      .mapa-max { padding: .8rem; margin-bottom: 1.2rem; }
+      .mapa-max::after { left: calc(.8rem + 16px); }
+      .ruta-list { padding-left: 2rem; }
+      .ruta-list li { font-size: .78rem; gap: .6rem; padding: .5rem .7rem; border-radius: 6px; }
+      .ruta-title { font-size: .95rem; }
+      .ruta-sub { font-size: .62rem; }
       /* Conoce a Max */
       .conoce-header { padding: 0 18px 1rem; gap: .8rem; }
       .conoce-hint { display: none; }
@@ -796,8 +845,9 @@
       .hero-badge-dot, .scroll-line, .fact-card { animation: none !important; }
       html { scroll-behavior: auto; }
       .rv, .rv-z, .rv-l, .rv-r { opacity: 1; transform: none; transition: none; }
-      .about-bullets li { opacity: 1; transform: none; transition: none; }
-      .about-bullets li::after,
+      .ruta-list li { opacity: 1; transform: none; transition: none; }
+      .ruta.open .ruta-dot::after { animation: none !important; }
+      .ruta-list li::after,
       .area-card-inner::before { animation: none !important; }
       .svc-card .svc-icon, .svc-card .svc-name, .svc-card .svc-sub,
       .svc-card .svc-list li { opacity: 1; transform: none; transition: none; }
@@ -2073,15 +2123,6 @@
             <div class="about-card-role">Psicólogo & Coach PNL</div>
           </div>
           <div class="about-badge" style="z-index:3;">10 años<br/>experiencia</div>
-          <!-- Floating facts -->
-          <div class="fact-card fc1" style="z-index:3;">
-            <strong>14 años</strong>
-            Disciplina física<br/>& embajador de marca
-          </div>
-          <div class="fact-card fc2" style="z-index:3;">
-            <strong>7 días</strong>
-            Retiro de silencio<br/>completo
-          </div>
         </div>
       </div>
       <!-- Text -->
@@ -2091,17 +2132,60 @@
         <blockquote class="about-blockquote rv d2">
           "No me interesa guiarte hacia donde <em>yo</em> creo que debes ir.<br/>Me interesa alumbrarte tu mapa, para que llegues donde <em>tú</em> decides."
         </blockquote>
-        <ul class="about-bullets rv d3">
-          <li><span class="ab-icon">🎓</span><span><strong>Psicólogo y Lic. en Psicología</strong> — Universidad Santo Tomás, 2016</span></li>
-          <li><span class="ab-icon">📐</span><span><strong>Magíster en Liderazgo</strong>, Dirección y Comunicación Estratégica — ULS, 2019</span></li>
-          <li><span class="ab-icon">🔑</span><span><strong>Coach en PNL</strong> Certificado por SCPNL, 2022 — Herramientas y técnicas para el cambio</span></li>
-          <li><span class="ab-icon">📊</span><span>Más de <strong>300 asesorías</strong> de apresto laboral · <strong>+3.700 personas</strong> impactadas en charlas y talleres</span></li>
-          <li><span class="ab-icon">📱</span><span><strong>Creador de contenido</strong> con comunidad de más de 10k en redes sociales</span></li>
-          <li><span class="ab-icon">🏛️</span><span>Coordinador de la <strong>Red de Titulados</strong> — Universidad de La Serena (Oficina Alumni)</span></li>
-          <li><span class="ab-icon">💪</span><span><strong>14 años</strong> de disciplina física · Ex Embajador de marca deportiva por 5 años</span></li>
-          <li><span class="ab-icon">🏔️</span><span>Viví un retiro de <strong>7 días en silencio</strong> total — Sí, el silencio puede hablarte fuerte</span></li>
-          <li><span class="ab-icon">🌟</span><span>Miembro del equipo de <strong>Marca Personal con David Ávila</strong> (Macro Creador Chileno) · 5 versiones</span></li>
-        </ul>
+        <!-- EL MAPA DE MAX: 3 rutas sobre fondo cartográfico -->
+        <div class="mapa-max rv d3" id="mapa-max">
+          <div class="ruta open">
+            <button class="ruta-head" aria-expanded="true">
+              <span class="ruta-dot"></span>
+              <span class="ruta-info">
+                <span class="ruta-title">La formación</span>
+                <span class="ruta-sub">El terreno sobre el que está parado</span>
+              </span>
+              <span class="ruta-chev"></span>
+            </button>
+            <div class="ruta-panel">
+              <ul class="ruta-list">
+                <li><span class="ab-icon">🎓</span><span><strong>Psicólogo y Lic. en Psicología</strong> — Universidad Santo Tomás, 2016</span></li>
+                <li><span class="ab-icon">📐</span><span><strong>Magíster en Liderazgo</strong>, Dirección y Comunicación Estratégica — ULS, 2019</span></li>
+                <li><span class="ab-icon">🔑</span><span><strong>Coach en PNL</strong> Certificado por SCPNL, 2022 — Herramientas y técnicas para el cambio</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="ruta">
+            <button class="ruta-head" aria-expanded="false">
+              <span class="ruta-dot"></span>
+              <span class="ruta-info">
+                <span class="ruta-title">El camino recorrido</span>
+                <span class="ruta-sub">Lo que ha construido acompañando a otros</span>
+              </span>
+              <span class="ruta-chev"></span>
+            </button>
+            <div class="ruta-panel">
+              <ul class="ruta-list">
+                <li><span class="ab-icon">📊</span><span>Más de <strong>300 asesorías</strong> de apresto laboral · <strong>+3.700 personas</strong> impactadas en charlas y talleres</span></li>
+                <li><span class="ab-icon">🏛️</span><span>Coordinador de la <strong>Red de Titulados</strong> — Universidad de La Serena (Oficina Alumni)</span></li>
+                <li><span class="ab-icon">🌟</span><span>Miembro del equipo de <strong>Marca Personal con David Ávila</strong> (Macro Creador Chileno) · 5 versiones</span></li>
+                <li><span class="ab-icon">📱</span><span><strong>Creador de contenido</strong> con comunidad de más de 10k en redes sociales</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="ruta">
+            <button class="ruta-head" aria-expanded="false">
+              <span class="ruta-dot"></span>
+              <span class="ruta-info">
+                <span class="ruta-title">Lo que no sale en el CV</span>
+                <span class="ruta-sub">El lado que explica todo lo demás</span>
+              </span>
+              <span class="ruta-chev"></span>
+            </button>
+            <div class="ruta-panel">
+              <ul class="ruta-list">
+                <li><span class="ab-icon">💪</span><span><strong>14 años</strong> de disciplina física · Ex Embajador de marca deportiva por 5 años</span></li>
+                <li><span class="ab-icon">🏔️</span><span>Viví un retiro de <strong>7 días en silencio</strong> total — Sí, el silencio puede hablarte fuerte</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -2884,6 +2968,26 @@
     wrap.addEventListener('scroll', update, { passive: true });
     update();
   }, 'areas-nav');
+
+  /* ── MAPA DE MAX: rutas colapsables ── */
+  safe(function() {
+    var rutas = document.querySelectorAll('#mapa-max .ruta');
+    if (!rutas.length) return;
+    rutas.forEach(function(r) {
+      var head = r.querySelector('.ruta-head');
+      head.addEventListener('click', function() {
+        var wasOpen = r.classList.contains('open');
+        rutas.forEach(function(x) {
+          x.classList.remove('open');
+          x.querySelector('.ruta-head').setAttribute('aria-expanded', 'false');
+        });
+        if (!wasOpen) {
+          r.classList.add('open');
+          head.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }, 'mapa-max');
 
   /* ── SERVICIOS: acordeón en móvil + barras de nivel animadas ── */
   safe(function() {
