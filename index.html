@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="description" content="Maximiliano Jiménez — Psicólogo, Coach PNL y Magíster en Liderazgo. Coaching para inserción laboral, desarrollo profesional y marca personal en Chile. +3.700 personas impactadas." />
-  <meta name="keywords" content="coach inserción laboral Chile, coaching desarrollo profesional, marca personal LinkedIn Chile, psicólogo coach PNL, coach para entrevistas de trabajo, coaching carrera profesional, cómo conseguir primer empleo, coach profesional La Serena" />
+  <meta name="keywords" content="coach inserción laboral Chile, coaching desarrollo profesional, marca personal redes sociales Chile, psicólogo coach PNL, coach para entrevistas de trabajo, coaching carrera profesional, cómo conseguir primer empleo, coach profesional La Serena" />
   <meta name="author" content="Maximiliano Jiménez Rojas" />
   <meta property="og:title" content="Maximiliano Jiménez — Psicólogo & Coach PNL" />
   <meta property="og:description" content="Coaching para inserción laboral, desarrollo profesional y marca personal. +3.700 personas impactadas en Chile." />
@@ -799,6 +799,10 @@
       .about-bullets li { opacity: 1; transform: none; transition: none; }
       .about-bullets li::after,
       .area-card-inner::before { animation: none !important; }
+      .svc-card .svc-icon, .svc-card .svc-name, .svc-card .svc-sub,
+      .svc-card .svc-list li { opacity: 1; transform: none; transition: none; }
+      .svc-card .svc-level-bar span,
+      .svc-card.bar-go .svc-level-bar span { width: var(--lvl, 100%) !important; transition: none !important; }
     }
 
     /* ── LANDSCAPE MÓVIL ── */
@@ -1249,6 +1253,18 @@
       transform: translateY(-8px) scale(1.01);
       box-shadow: 0 32px 80px rgba(0,0,0,.65);
     }
+    /* Tarjeta destacada: elevación permanente en desktop */
+    @media (min-width:900px) {
+      .svc-card.feat.on {
+        transform: translateY(-10px);
+        border-color: rgba(226,192,106,.45) !important;
+        box-shadow: 0 22px 60px rgba(0,0,0,.55), 0 0 44px rgba(200,168,75,.10);
+      }
+      .svc-card.feat.on:hover {
+        transform: translateY(-16px) scale(1.01);
+        box-shadow: 0 36px 90px rgba(0,0,0,.7), 0 0 60px rgba(200,168,75,.14);
+      }
+    }
 
     /* ── PROGRESSION GRADIENTS ── */
     /* Card 1 — Verde fresco · recién egresado */
@@ -1312,7 +1328,31 @@
     .svc-level-bar span {
       display: block; height: 100%; border-radius: 2px;
       box-shadow: 0 0 8px rgba(200,168,75,.5);
+      width: 0 !important;                       /* arranca vacía; JS la libera al entrar al viewport */
+      transition: width 1.1s var(--ease) .25s;
     }
+    .svc-card.bar-go .svc-level-bar span { width: var(--lvl) !important; }
+
+    /* Stagger interno: el contenido de cada tarjeta entra en micro-secuencia */
+    .svc-card .svc-icon,
+    .svc-card .svc-name,
+    .svc-card .svc-sub,
+    .svc-card .svc-list li {
+      opacity: 0; transform: translateY(10px);
+      transition: opacity .55s var(--ease), transform .55s var(--ease);
+    }
+    .svc-card.on .svc-icon,
+    .svc-card.on .svc-name,
+    .svc-card.on .svc-sub,
+    .svc-card.on .svc-list li { opacity: 1; transform: none; }
+    .svc-card.on .svc-icon { transition-delay: .15s; }
+    .svc-card.on .svc-name { transition-delay: .25s; }
+    .svc-card.on .svc-sub  { transition-delay: .33s; }
+    .svc-card.on .svc-list li:nth-child(1) { transition-delay: .40s; }
+    .svc-card.on .svc-list li:nth-child(2) { transition-delay: .47s; }
+    .svc-card.on .svc-list li:nth-child(3) { transition-delay: .54s; }
+    .svc-card.on .svc-list li:nth-child(4) { transition-delay: .61s; }
+    .svc-card.on .svc-list li:nth-child(5) { transition-delay: .68s; }
     .svc-level-label {
       font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
       color: rgba(200,168,75,.5); margin-bottom: 1.4rem; font-weight: 500;
@@ -1357,12 +1397,22 @@
     .svc-list li {
       font-size: .82rem; color: rgba(242,240,235,.65);
       display: flex; gap: .65rem; align-items: flex-start; line-height: 1.55;
+      border-radius: 6px; padding: .15rem .4rem; margin: -.15rem -.4rem;
+    }
+    .svc-list li:hover {
+      color: var(--white);
+      background: rgba(200,168,75,.07);
     }
     .svc-list li::before {
       content: ''; flex-shrink: 0;
       width: 6px; height: 6px; border-radius: 50%;
       background: linear-gradient(135deg, var(--gold), var(--gold2));
       margin-top: .42rem;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .svc-list li:hover::before {
+      transform: scale(1.35);
+      box-shadow: 0 0 8px rgba(226,192,106,.6);
     }
 
     /* ── FOOT ── */
@@ -1380,7 +1430,7 @@
       display: flex; align-items: center; justify-content: center; gap: .5rem;
       width: 100%;
       border: 1px solid rgba(200,168,75,.4); color: var(--gold);
-      font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+      font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
       padding: .78rem 1rem; border-radius: 10px;
       transition: background .3s, color .3s, border-color .3s, box-shadow .3s;
       white-space: normal; text-align: center; line-height: 1.35;
@@ -1421,8 +1471,8 @@
     .svc-qualify-btn {
       display: flex; align-items: center; justify-content: center; gap: .5rem;
       width: 100%; padding: .85rem 1.8rem;
-      background: transparent; border: none; border-top: 1px solid rgba(255,255,255,.06);
-      color: var(--grey1); font-family: var(--font-s); font-size: .72rem;
+      background: rgba(200,168,75,.04); border: none; border-top: 1px solid rgba(200,168,75,.14);
+      color: var(--gold); font-family: var(--font-s); font-size: .72rem;
       letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
       transition: color .3s, background .3s; flex-shrink: 0;
     }
@@ -1978,7 +2028,7 @@
     <span class="m-item">Inserción Laboral <span class="m-dot"></span></span>
     <span class="m-item">Coaching PNL · SCPNL <span class="m-dot"></span></span>
     <span class="m-item">Desarrollo Profesional <span class="m-dot"></span></span>
-    <span class="m-item">Marca Personal LinkedIn <span class="m-dot"></span></span>
+    <span class="m-item">Marca Personal en Redes Sociales <span class="m-dot"></span></span>
     <span class="m-item">+3.700 Personas Impactadas <span class="m-dot"></span></span>
     <span class="m-item">Preparación para Entrevistas <span class="m-dot"></span></span>
     <span class="m-item">Confianza · Claridad · Acción <span class="m-dot"></span></span>
@@ -1990,7 +2040,7 @@
     <span class="m-item">Inserción Laboral <span class="m-dot"></span></span>
     <span class="m-item">Coaching PNL · SCPNL <span class="m-dot"></span></span>
     <span class="m-item">Desarrollo Profesional <span class="m-dot"></span></span>
-    <span class="m-item">Marca Personal LinkedIn <span class="m-dot"></span></span>
+    <span class="m-item">Marca Personal en Redes Sociales <span class="m-dot"></span></span>
     <span class="m-item">+3.700 Personas Impactadas <span class="m-dot"></span></span>
     <span class="m-item">Preparación para Entrevistas <span class="m-dot"></span></span>
     <span class="m-item">Confianza · Claridad · Acción <span class="m-dot"></span></span>
@@ -2225,7 +2275,7 @@
           <div class="area-card-inner">
             <div class="area-ic">✨</div>
             <div class="area-t">Marca Personal</div>
-            <div class="area-d">Para quien quiere visibilidad en LinkedIn pero cree que no tiene nada valioso que mostrar. El bloqueo es autovaloración — no técnica.</div>
+            <div class="area-d">Para quien quiere visibilidad en sus redes sociales pero cree que no tiene nada valioso que mostrar. El bloqueo es autovaloración — no técnica.</div>
             <a class="area-link" href="#servicios">Ver servicio <span>&rarr;</span></a>
           </div>
         </div>
@@ -2297,7 +2347,7 @@
         <div class="svc-body">
           <p class="svc-desc">¿Llegas a las entrevistas y te bloqueas? El problema no es tu CV — es la confianza frente al entrevistador. Trabajamos eso juntos, con resultados rápidos y concretos.</p>
           <ul class="svc-list">
-            <li>Cómo venderte sin sentirte impostora/or</li>
+            <li>Cómo venderte sin sentir que estás fingiendo</li>
             <li>Simulación de entrevistas reales</li>
             <li>CV y propuesta de valor diferenciada</li>
             <li>Estrategia de búsqueda paso a paso</li>
@@ -2305,7 +2355,7 @@
           </ul>
         </div>
         <div class="svc-foot">
-          <div class="svc-price">A consultar</div>
+          <div class="svc-price">Inversión según paquete · la definimos en tu llamada gratuita</div>
           <a href="#" data-wa data-msg="Hola Maxi, soy recién egresado y quiero hablar sobre inserción laboral" class="btn-svc" target="_blank" rel="noopener">Quiero mi primer empleo →</a>
         </div>
         <button class="svc-qualify-btn" aria-expanded="false">
@@ -2317,7 +2367,7 @@
             <p class="svc-qualify-title">✓ Este servicio es para ti si…</p>
             <ul class="svc-q-list">
               <li><span class="svc-q-check"></span>Terminaste de estudiar hace menos de 2 años y aún no consigues empleo formal</li>
-              <li><span class="svc-q-check"></span>En las entrevistas te bloqueas y no sabes cómo presentarte sin sentirte impostora/or</li>
+              <li><span class="svc-q-check"></span>En las entrevistas te bloqueas y no sabes cómo presentarte sin sentir que estás fingiendo</li>
               <li><span class="svc-q-check"></span>Tienes el CV listo pero no sabes cómo diferenciarte del resto de candidatos</li>
               <li><span class="svc-q-check"></span>Sientes que "ya deberías tener trabajo" y esa presión te paraliza en lugar de moverte</li>
             </ul>
@@ -2352,7 +2402,7 @@
           </ul>
         </div>
         <div class="svc-foot">
-          <div class="svc-price">A consultar</div>
+          <div class="svc-price">Inversión según paquete · la definimos en tu llamada gratuita</div>
           <a href="#" data-wa data-msg="Hola Maxi, quiero hablar sobre mi desarrollo profesional" class="btn-svc" target="_blank" rel="noopener">Quiero claridad profesional →</a>
         </div>
         <button class="svc-qualify-btn" aria-expanded="false">
@@ -2383,7 +2433,7 @@
           <div class="svc-sub">Para profesionales que quieren visibilidad real</div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">Tienes más valor del que crees — solo necesitas saber cómo mostrarlo. El bloqueo no es técnico: es autovaloración. Construimos tu marca en LinkedIn desde la autenticidad, no desde el ruido.</p>
+          <p class="svc-desc">Tienes más valor del que crees — solo necesitas saber cómo mostrarlo. El bloqueo no es técnico: es autovaloración. Construimos tu marca en LinkedIn, Instagram y las redes donde está tu audiencia — desde la autenticidad, no desde el ruido.</p>
           <div class="pkg-row">
             <span class="pkg pkg-fill">4 sesiones</span>
             <span class="pkg pkg-line">6 sesiones</span>
@@ -2391,13 +2441,13 @@
           </div>
           <ul class="svc-list">
             <li>Descubrir tu diferenciador real y genuino</li>
-            <li>Posicionamiento auténtico en LinkedIn</li>
+            <li>Posicionamiento auténtico en todas tus redes sociales</li>
             <li>Estrategia de contenido que representa quién eres</li>
             <li>De la invisibilidad a la presencia con propósito</li>
           </ul>
         </div>
         <div class="svc-foot">
-          <div class="svc-price">A consultar</div>
+          <div class="svc-price">Inversión según paquete · la definimos en tu llamada gratuita</div>
           <a href="#" data-wa data-msg="Hola Maxi, quiero construir mi marca personal" class="btn-svc" target="_blank" rel="noopener">Quiero que me vean →</a>
         </div>
         <button class="svc-qualify-btn" aria-expanded="false">
@@ -2408,7 +2458,7 @@
           <div class="svc-qualify-inner">
             <p class="svc-qualify-title">✓ Este servicio es para ti si…</p>
             <ul class="svc-q-list">
-              <li><span class="svc-q-check"></span>Quieres visibilidad en LinkedIn pero no sabes cómo empezar o no tienes consistencia</li>
+              <li><span class="svc-q-check"></span>Quieres visibilidad en tus redes pero no sabes cómo empezar o no tienes consistencia</li>
               <li><span class="svc-q-check"></span>Sientes que no tienes nada "suficientemente valioso" que mostrar al mundo</li>
               <li><span class="svc-q-check"></span>Hay una oportunidad próxima —entrevista, ascenso, proyecto— y necesitas que te vean</li>
               <li><span class="svc-q-check"></span>Has intentado construir tu marca solo/a pero algo siempre te detiene</li>
@@ -2437,7 +2487,7 @@
           </ul>
         </div>
         <div class="svc-foot">
-          <div class="svc-price">Cotizar</div>
+          <div class="svc-price">Cotización a medida para tu equipo</div>
           <a href="#" data-wa data-msg="Hola Maxi, quiero cotizar una charla o taller para mi equipo" class="btn-svc" target="_blank" rel="noopener">Cotizar para mi equipo →</a>
         </div>
         <button class="svc-qualify-btn" aria-expanded="false">
@@ -2835,10 +2885,28 @@
     update();
   }, 'areas-nav');
 
-  /* ── SERVICIOS: acordeón en móvil (el CSS solo colapsa bajo 640px) ── */
+  /* ── SERVICIOS: acordeón en móvil + barras de nivel animadas ── */
   safe(function() {
     var cards = document.querySelectorAll('.svc-card');
     if (!cards.length) return;
+
+    // Barras de nivel: guardan su % objetivo y crecen al entrar al viewport
+    cards.forEach(function(card) {
+      var bar = card.querySelector('.svc-level-bar span');
+      if (bar && bar.style.width) card.style.setProperty('--lvl', bar.style.width);
+    });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('bar-go'); io.unobserve(e.target); }
+        });
+      }, { threshold: .35 });
+      cards.forEach(function(c) { io.observe(c); });
+    } else {
+      cards.forEach(function(c) { c.classList.add('bar-go'); });
+    }
+
+    // Acordeón móvil
     cards.forEach(function(card) {
       if (card.classList.contains('feat')) card.classList.add('sv-open');
       var head = card.querySelector('.svc-head');
@@ -2847,7 +2915,14 @@
         if (window.innerWidth > 640) return;
         var wasOpen = card.classList.contains('sv-open');
         cards.forEach(function(c) { c.classList.remove('sv-open'); });
-        if (!wasOpen) card.classList.add('sv-open');
+        if (!wasOpen) {
+          card.classList.add('sv-open');
+          // Reposiciona el viewport en la tarjeta abierta (compensa el nav fijo)
+          setTimeout(function() {
+            var y = card.getBoundingClientRect().top + window.scrollY - 84;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }, 60);
+        }
       });
     });
   }, 'svc-accordion');
