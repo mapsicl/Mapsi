@@ -381,14 +381,14 @@
     ============================================= */
     #sobre-mi { background: var(--bg2); }
     .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: start;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items: stretch;
     }
-    /* Portrait card */
+    /* Portrait card — sigue la altura de la columna de texto (el mapa cambió la proporción) */
     .about-card {
       position: relative;
       background: var(--bg3); border: 1px solid var(--border);
       border-radius: 3px; overflow: hidden;
-      aspect-ratio: 3/4;
+      height: 100%; min-height: 460px;
       display: flex; align-items: flex-end;
     }
     .about-card-bg {
@@ -586,7 +586,7 @@
 
       /* About */
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-card { aspect-ratio: 4/3; max-height: 400px; }
+      .about-card { height: auto; min-height: 0; aspect-ratio: 4/3; max-height: 400px; }
       .about-badge { right: 1rem; }
       .fc1, .fc2 { display: none; }
       /* Conoce */
@@ -642,7 +642,7 @@
       .scroll-cue { display: none; }
 
       /* About */
-      .about-card { aspect-ratio: 3/2; max-height: 280px; }
+      .about-card { height: auto; min-height: 0; aspect-ratio: 3/2; max-height: 280px; }
       .ruta-list li { font-size: .8rem; padding: .55rem .75rem; }
 
 
@@ -713,7 +713,7 @@
       .h-stat-l { font-size: .6rem; }
 
       /* About */
-      .about-card { aspect-ratio: unset; height: 240px; border-radius: 10px; }
+      .about-card { aspect-ratio: unset; height: 240px; min-height: 0; border-radius: 10px; }
       .about-blockquote { font-size: .95rem; padding-left: .9rem; margin-bottom: 1.2rem; }
       .mapa-max { padding: .8rem; margin-bottom: 1.2rem; }
       .mapa-max::after { left: calc(.8rem + 16px); }
@@ -1234,12 +1234,71 @@
       font-size: .86rem; color: rgba(242,240,235,.65); line-height: 1.82;
     }
 
-    .drag-hint {
-      font-size: .7rem; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--grey2);
-      display: flex; align-items: center; gap: .6rem;
+    /* ── ROUTER DE PERFILES ── */
+    .perfil-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.3rem; margin-top: 2.4rem;
     }
-    .drag-hint svg { opacity: .5; }
+    .perfil-card {
+      position: relative; overflow: hidden;
+      border-radius: 16px; padding: 0; text-align: left;
+      border: 1px solid transparent; cursor: pointer;
+      font-family: var(--font-s);
+      transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s;
+    }
+    .perfil-card:nth-child(1) { background: linear-gradient(145deg, var(--g1a) 0%, var(--g1b) 55%, var(--g1c) 100%); }
+    .perfil-card:nth-child(2) { background: linear-gradient(145deg, var(--g2a) 0%, var(--g2b) 55%, var(--g2c) 100%); }
+    .perfil-card:nth-child(3) { background: linear-gradient(145deg, var(--g3a) 0%, var(--g3b) 55%, var(--g3c) 100%); }
+    .perfil-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 28px 70px rgba(0,0,0,.6), 0 0 0 1px rgba(200,168,75,.25);
+      border-color: rgba(200,168,75,.3);
+    }
+    .perfil-inner { padding: 2rem 1.7rem 1.9rem; position: relative; z-index: 1; display: flex; flex-direction: column; }
+    .perfil-q {
+      font-family: var(--font-d); font-style: italic;
+      font-size: 1.12rem; color: var(--white); line-height: 1.4;
+      margin-bottom: .8rem;
+    }
+    .perfil-d {
+      font-size: .85rem; color: rgba(242,240,235,.62); line-height: 1.78;
+      margin-bottom: 1.5rem;
+    }
+    .perfil-cta {
+      display: inline-flex; align-items: center; gap: .45rem;
+      font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--gold2);
+      transition: gap .3s, color .3s;
+    }
+    .perfil-card:hover .perfil-cta { gap: .8rem; color: var(--gold3); }
+    /* Puente para organizaciones */
+    .perfil-org {
+      margin-top: 1.6rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      border: 1px solid var(--border2); border-radius: 12px;
+      padding: 1rem 1.4rem;
+      background: var(--bg2);
+      font-size: .88rem; color: var(--grey1);
+    }
+    .perfil-org-link {
+      display: inline-flex; align-items: center; gap: .45rem;
+      font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--gold); transition: gap .3s, color .3s;
+    }
+    .perfil-org-link:hover { gap: .8rem; color: var(--gold2); }
+    /* Flash dorado en la tarjeta de servicio destino */
+    .svc-card.svc-flash {
+      animation: svc-flash 1.6s var(--ease);
+    }
+    @keyframes svc-flash {
+      0%   { box-shadow: 0 0 0 3px rgba(226,192,106,.85), 0 0 60px rgba(200,168,75,.35); }
+      100% { box-shadow: 0 0 0 3px rgba(226,192,106,0), 0 0 0 rgba(200,168,75,0); }
+    }
+    @media (max-width:900px) {
+      .perfil-grid { grid-template-columns: 1fr; gap: 1rem; margin-top: 1.8rem; }
+      .perfil-inner { padding: 1.6rem 1.4rem 1.5rem; }
+      .perfil-q { font-size: 1.05rem; }
+    }
 
     /* Navegación del carrusel: flechas + puntos */
     .areas-nav {
@@ -2329,74 +2388,43 @@
 <!-- ===================== ÁREAS ===================== -->
 <section id="que-hago" style="background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26,53,24,.35) 0%, var(--bg) 65%);">
   <div class="wrap sec">
-    <p class="label rv">Áreas de trabajo</p>
+    <p class="label rv">¿Dónde estás tú hoy?</p>
     <h2 class="h2 rv d1">Tres perfiles. <em>Un denominador común.</em></h2>
-    <p class="body-text rv d2">Confianza, claridad y autovaloración. Eso es lo que desbloqueo — sin importar en qué etapa profesional estés.</p>
-  </div>
-  <div class="wrap" style="overflow:visible">
-    <div class="areas-scroll-wrap rv d2" id="areas-scroll">
-      <div class="areas-track" id="areas-track">
-        <div class="area-card">
-          <div class="area-n">01</div>
-          <div class="area-card-inner">
-            <div class="area-ic">🎯</div>
-            <div class="area-t">Inserción Laboral</div>
-            <div class="area-d">Para recién egresados de 18 a 25 años. +300 asesorías. El problema no es el CV — es la confianza frente al entrevistador.</div>
-            <a class="area-link" href="#servicios">Ver servicio <span>&rarr;</span></a>
-          </div>
+    <p class="body-text rv d2">Confianza, claridad y autovaloración. Eso es lo que desbloqueo — sin importar en qué etapa profesional estés. Encuentra tu punto de partida:</p>
+
+    <div class="perfil-grid">
+      <button class="perfil-card rv d1" data-goto="svc-insercion">
+        <div class="area-n">01</div>
+        <div class="perfil-inner">
+          <div class="area-ic">🎯</div>
+          <div class="perfil-q">"Terminé de estudiar… ¿y ahora qué?"</div>
+          <div class="perfil-d">Recién egresado, entrevistas que se bloquean, la presión de "ya deberías tener trabajo".</div>
+          <span class="perfil-cta">Este soy yo <span>&rarr;</span></span>
         </div>
-        <div class="area-card">
-          <div class="area-n">02</div>
-          <div class="area-card-inner">
-            <div class="area-ic">🧭</div>
-            <div class="area-t">Desarrollo Profesional</div>
-            <div class="area-d">Para profesionales de 31 a 40 estancados. Metodología DISC, inteligencia emocional y herramientas concretas para el siguiente salto.</div>
-            <a class="area-link" href="#servicios">Ver servicio <span>&rarr;</span></a>
-          </div>
+      </button>
+      <button class="perfil-card rv d2" data-goto="svc-desarrollo">
+        <div class="area-n">02</div>
+        <div class="perfil-inner">
+          <div class="area-ic">🧭</div>
+          <div class="perfil-q">"Tengo experiencia, pero estoy estancado/a."</div>
+          <div class="perfil-d">Sabes lo que vales y aun así llevas tiempo en el mismo lugar, preguntándote si esto es todo.</div>
+          <span class="perfil-cta">Este soy yo <span>&rarr;</span></span>
         </div>
-        <div class="area-card">
-          <div class="area-n">03</div>
-          <div class="area-card-inner">
-            <div class="area-ic">✨</div>
-            <div class="area-t">Marca Personal</div>
-            <div class="area-d">Para quien quiere visibilidad en sus redes sociales pero cree que no tiene nada valioso que mostrar. El bloqueo es autovaloración — no técnica.</div>
-            <a class="area-link" href="#servicios">Ver servicio <span>&rarr;</span></a>
-          </div>
+      </button>
+      <button class="perfil-card rv d3" data-goto="svc-marca">
+        <div class="area-n">03</div>
+        <div class="perfil-inner">
+          <div class="area-ic">✨</div>
+          <div class="perfil-q">"Sé que valgo, pero nadie me ve."</div>
+          <div class="perfil-d">Quieres visibilidad en tus redes pero sientes que no tienes nada suficientemente valioso que mostrar.</div>
+          <span class="perfil-cta">Este soy yo <span>&rarr;</span></span>
         </div>
-        <div class="area-card">
-          <div class="area-n">04</div>
-          <div class="area-card-inner">
-            <div class="area-ic">🤝</div>
-            <div class="area-t">Charlas & Team Building</div>
-            <div class="area-d">Para organizaciones que quieren equipos con propósito real. Comunicación honesta y cohesión desde la confianza.</div>
-            <a class="area-link" href="#servicios">Ver servicio <span>&rarr;</span></a>
-          </div>
-        </div>
-        <div class="area-card">
-          <div class="area-n">05</div>
-          <div class="area-card-inner">
-            <div class="area-ic">📱</div>
-            <div class="area-t">Contenido & Comunidad</div>
-            <div class="area-d">+10k de comunidad. Contenido de psicología y desarrollo profesional que activa, no que entretiene. Relator en conferencias nacionales.</div>
-            <a class="area-link" href="#redes">Ver comunidad <span>&rarr;</span></a>
-          </div>
-        </div>
-      </div>
+      </button>
     </div>
-    <div class="areas-nav rv d3">
-      <div class="areas-dots" id="areas-dots" aria-label="Progreso del carrusel"></div>
-      <div class="drag-hint">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Desliza para ver más
-      </div>
-      <div class="areas-arrows">
-        <button class="area-arrow" id="areas-prev" aria-label="Anterior">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button class="area-arrow" id="areas-next" aria-label="Siguiente">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-      </div>
+
+    <div class="perfil-org rv d4">
+      <span>🤝 ¿Buscas algo para tu equipo u organización?</span>
+      <a href="#svc-equipos" data-goto="svc-equipos" class="perfil-org-link">Charlas & Team Building <span>&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -2420,7 +2448,7 @@
     <div class="svc-grid">
 
       <!-- Servicio 1: Inserción Laboral -->
-      <div class="svc-card rv d1">
+      <div class="svc-card rv d1" id="svc-insercion">
         <div class="svc-head">
           <div class="svc-level-bar"><span style="width:25%; background:linear-gradient(90deg,#6fa860,#a8d890);"></span></div>
           <div class="svc-level-label">Nivel · Inicio de carrera</div>
@@ -2461,7 +2489,7 @@
       </div>
 
       <!-- Servicio 2: Desarrollo Profesional — FEATURED -->
-      <div class="svc-card feat rv d2">
+      <div class="svc-card feat rv d2" id="svc-desarrollo">
         <div class="svc-feat-tag">Más solicitado</div>
         <div class="svc-head">
           <div class="svc-level-bar"><span style="width:55%; background:linear-gradient(90deg,#9ab840,#c8e060,var(--gold));"></span></div>
@@ -2508,7 +2536,7 @@
       </div>
 
       <!-- Servicio 3: Marca Personal -->
-      <div class="svc-card rv d3">
+      <div class="svc-card rv d3" id="svc-marca">
         <div class="svc-head">
           <div class="svc-level-bar"><span style="width:75%; background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold3));"></span></div>
           <div class="svc-level-label">Nivel · Visibilidad profesional</div>
@@ -2553,7 +2581,7 @@
       </div>
 
       <!-- Servicio 4: Team Building -->
-      <div class="svc-card rv d4">
+      <div class="svc-card rv d4" id="svc-equipos">
         <div class="svc-head">
           <div class="svc-level-bar"><span style="width:100%; background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold3),#fff8e0);"></span></div>
           <div class="svc-level-label">Nivel · Liderazgo & Élite organizacional</div>
@@ -2934,40 +2962,31 @@
     }
   }, 'hero-video');
 
-  /* ── ÁREAS: flechas + puntos de progreso del carrusel ── */
+  /* ── ROUTER DE PERFILES: lleva al visitante a su tarjeta de servicio ── */
   safe(function() {
-    var wrap = document.getElementById('areas-scroll');
-    var track = document.getElementById('areas-track');
-    var dotsBox = document.getElementById('areas-dots');
-    var prev = document.getElementById('areas-prev');
-    var next = document.getElementById('areas-next');
-    if (!wrap || !track || !dotsBox || !prev || !next) return;
-    var cards = track.querySelectorAll('.area-card');
-    var dots = [];
-    cards.forEach(function(c, i) {
-      var d = document.createElement('button');
-      d.className = 'a-dot' + (i === 0 ? ' on' : '');
-      d.setAttribute('aria-label', 'Ir a tarjeta ' + (i + 1));
-      d.addEventListener('click', function() {
-        wrap.scrollTo({ left: c.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    var triggers = document.querySelectorAll('[data-goto]');
+    if (!triggers.length) return;
+    triggers.forEach(function(t) {
+      t.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.getElementById(t.getAttribute('data-goto'));
+        if (!target) return;
+        // En móvil, abre la tarjeta del acordeón antes de desplazarse
+        if (window.innerWidth <= 640) {
+          document.querySelectorAll('.svc-card').forEach(function(c) { c.classList.remove('sv-open'); });
+          target.classList.add('sv-open');
+        }
+        setTimeout(function() {
+          var y = target.getBoundingClientRect().top + window.scrollY - 90;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+          // Flash dorado para que el visitante reconozca su tarjeta
+          target.classList.remove('svc-flash');
+          void target.offsetWidth;   // reinicia la animación
+          target.classList.add('svc-flash');
+        }, 60);
       });
-      dotsBox.appendChild(d); dots.push(d);
     });
-    function step() {
-      return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : 312;
-    }
-    prev.addEventListener('click', function() { wrap.scrollBy({ left: -step(), behavior: 'smooth' }); });
-    next.addEventListener('click', function() { wrap.scrollBy({ left: step(), behavior: 'smooth' }); });
-    function update() {
-      var i = Math.round(wrap.scrollLeft / step());
-      i = Math.max(0, Math.min(i, cards.length - 1));
-      dots.forEach(function(d, j) { d.classList.toggle('on', j === i); });
-      prev.disabled = wrap.scrollLeft <= 4;
-      next.disabled = wrap.scrollLeft >= wrap.scrollWidth - wrap.clientWidth - 4;
-    }
-    wrap.addEventListener('scroll', update, { passive: true });
-    update();
-  }, 'areas-nav');
+  }, 'perfil-router');
 
   /* ── MAPA DE MAX: rutas colapsables ── */
   safe(function() {
