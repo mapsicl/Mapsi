@@ -1635,6 +1635,82 @@
        LOGROS
     ============================================= */
     #logros { background: var(--bg); }
+    /* Franja de credenciales compacta */
+    .cred-strip {
+      display: flex; flex-wrap: wrap; gap: .6rem;
+      margin: 1.2rem 0 2rem;
+    }
+    .cred-pill {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .55rem 1.05rem; border-radius: 100px;
+      background: var(--gold-dim); border: 1px solid var(--border);
+      font-size: .78rem; color: var(--white); letter-spacing: .03em;
+      transition: background .3s, border-color .3s, transform .25s;
+    }
+    .cred-pill:hover {
+      background: rgba(200,168,75,.18); border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    /* Colaboraciones */
+    .colab-intro {
+      font-family: var(--font-d); font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.25rem); color: var(--grey1);
+      margin-bottom: 1.2rem;
+    }
+    .colab-intro strong { color: var(--gold); font-weight: 400; }
+    .colab-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem;
+    }
+    .colab-card {
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: 12px; padding: 1.1rem 1rem 1.2rem;
+      text-align: center;
+      transition: border-color .35s, transform .35s, box-shadow .35s;
+    }
+    .colab-card:hover {
+      border-color: var(--border);
+      transform: translateY(-6px);
+      box-shadow: 0 18px 50px rgba(0,0,0,.45);
+    }
+    .colab-logo {
+      height: 64px; margin-bottom: .8rem;
+      display: flex; align-items: center; justify-content: center;
+      padding: .4rem;
+    }
+    /* Monocromo unificado: logos en claro sobre fondo oscuro.
+       mix-blend-mode screen disuelve los fondos pegados (oscuros tras grayscale). */
+    .colab-logo img {
+      max-height: 100%; max-width: 100%; width: auto;
+      object-fit: contain;
+      filter: grayscale(1) brightness(1.5);
+      mix-blend-mode: screen;
+      opacity: .78;
+      transition: opacity .4s, transform .4s;
+    }
+    /* Logos con tinta oscura (NotCo) o fondo blanco pegado (Coquimbo): invertir primero */
+    .colab-logo img.lg-invert { filter: invert(1) grayscale(1) brightness(1.25); }
+    /* Logo con fondo oscuro pegado (Elqui): contraste alto hunde el fondo a negro
+       para que el blend lo disuelva, y empuja la tipografía a claro */
+    .colab-logo img.lg-contrast { filter: grayscale(1) brightness(1.05) contrast(2.6) brightness(1.3); }
+    .colab-card:hover .colab-logo img { opacity: 1; transform: scale(1.05); }
+    .colab-name {
+      font-family: var(--font-d); font-size: .98rem; color: var(--white);
+      margin-bottom: .3rem;
+    }
+    .colab-role {
+      font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold); line-height: 1.6;
+    }
+    @media (max-width:900px) {
+      .colab-grid { grid-template-columns: repeat(2, 1fr); gap: .9rem; }
+    }
+    @media (max-width:480px) {
+      .colab-grid { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+      .colab-logo { height: 64px; }
+      .colab-name { font-size: .85rem; }
+      .colab-role { font-size: .6rem; }
+      .cred-pill { font-size: .72rem; padding: .45rem .85rem; }
+    }
     .logros-grid {
       display: grid;
       grid-template-columns: repeat(3,1fr);
@@ -2627,44 +2703,39 @@
 <!-- ===================== LOGROS ===================== -->
 <section id="logros" style="background:var(--bg)">
   <div class="wrap sec">
-    <p class="label rv">Credenciales</p>
+    <p class="label rv">Credenciales & colaboraciones</p>
     <h2 class="h2 rv d1">Formación & <em>trayectoria</em></h2>
-    <div class="logros-grid">
-      <div class="logro rv-z d1">
-        <div class="logro-ic">👥</div>
-        <div class="logro-n" data-count="3700" data-suffix="+">0</div>
-        <div class="logro-t">Personas impactadas</div>
-        <div class="logro-d">En charlas, talleres y procesos de coaching a lo largo de Chile</div>
+
+    <!-- Credenciales en franja compacta -->
+    <div class="cred-strip rv d2">
+      <span class="cred-pill">🧠 Psicólogo — U. Santo Tomás</span>
+      <span class="cred-pill">🎓 Magíster en Liderazgo — ULS</span>
+      <span class="cred-pill">🔑 Coach PNL Certificado — SCPNL</span>
+      <span class="cred-pill">🏛️ 10 años de experiencia</span>
+    </div>
+
+    <!-- Colaboraciones de marca -->
+    <p class="colab-intro rv d3">Como marca personal <strong>@mapsicl</strong> he colaborado con:</p>
+    <div class="colab-grid">
+      <div class="colab-card rv-z d1">
+        <div class="colab-logo"><img loading="lazy" decoding="async" class="lg-contrast" src="img/Logodescubreelqui.png" alt="Descubre Elqui" /></div>
+        <div class="colab-name">Descubre Elqui</div>
+        <div class="colab-role">Ex Embajador</div>
       </div>
-      <div class="logro rv-z d2">
-        <div class="logro-ic">💼</div>
-        <div class="logro-n" data-count="300" data-suffix="+">0</div>
-        <div class="logro-t">Asesorías de apresto laboral</div>
-        <div class="logro-d">En los últimos 5 años acompañando a jóvenes a conseguir su primer empleo</div>
+      <div class="colab-card rv-z d2">
+        <div class="colab-logo"><img loading="lazy" decoding="async" src="img/Logosportlife.png" alt="Sportlife Coquimbo" /></div>
+        <div class="colab-name">Sportlife Coquimbo</div>
+        <div class="colab-role">Ex Embajador · 5 años · Relator</div>
       </div>
-      <div class="logro rv-z d3">
-        <div class="logro-ic">📱</div>
-        <div class="logro-n" data-count="10" data-suffix="k+">0</div>
-        <div class="logro-t">Comunidad en redes</div>
-        <div class="logro-d">Creador de contenido de psicología, bienestar y desarrollo profesional</div>
+      <div class="colab-card rv-z d3">
+        <div class="colab-logo"><img loading="lazy" decoding="async" class="lg-invert" src="img/Logonotco.png" alt="NotCo" /></div>
+        <div class="colab-name">NotCo</div>
+        <div class="colab-role">Colaboraciones de contenido</div>
       </div>
-      <div class="logro rv-z d1">
-        <div class="logro-ic">🎓</div>
-        <div class="logro-n">Mg.</div>
-        <div class="logro-t">Magíster en Liderazgo</div>
-        <div class="logro-d">Dirección y Comunicación Estratégica — ULS 2019</div>
-      </div>
-      <div class="logro rv-z d2">
-        <div class="logro-ic">🔑</div>
-        <div class="logro-n">PNL</div>
-        <div class="logro-t">Coach Certificado SCPNL</div>
-        <div class="logro-d">Programación Neurolingüística · Certificado 2022</div>
-      </div>
-      <div class="logro rv-z d3">
-        <div class="logro-ic">🏛️</div>
-        <div class="logro-n" data-count="10">0</div>
-        <div class="logro-t">Años de experiencia</div>
-        <div class="logro-d">Psicólogo Coordinador Alumni — Universidad de La Serena</div>
+      <div class="colab-card rv-z d4">
+        <div class="colab-logo"><img loading="lazy" decoding="async" class="lg-invert" src="img/LogoCoquimboadventure.png" alt="Coquimbo Adventure" /></div>
+        <div class="colab-name">Coquimbo Adventure</div>
+        <div class="colab-role">Relator · Charla "Turismo y Bienestar"</div>
       </div>
     </div>
   </div>
