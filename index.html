@@ -651,9 +651,8 @@
       .drag-hint { font-size: .65rem; }
 
       /* Servicios */
-      .svc-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .svc-name { font-size: 1.1rem; }
-      .svc-level-label { font-size: .58rem; }
+      .svc-grid { gap: 1rem; }
+      .svc-name { font-size: 1.2rem; }
 
       /* Logros */
       .logros-grid { grid-template-columns: repeat(2,1fr); }
@@ -740,19 +739,26 @@
       /* Servicios — respira del borde */
       .svc-grid { gap: .9rem; }
       .svc-card { border-radius: 14px; }
-      .svc-head { padding: 1.4rem 1.3rem 1.2rem; }
-      .svc-icon { width: 44px; height: 44px; font-size: 1.5rem; border-radius: 10px; margin-bottom: .8rem; }
-      .svc-name { font-size: 1.05rem; }
+      .svc-head { padding: 1.2rem 2.8rem 1.2rem 1.1rem; gap: .9rem; }
+      .svc-icon { width: 44px; height: 44px; font-size: 1.5rem; border-radius: 10px; }
+      .svc-name { font-size: 1.12rem; }
       .svc-sub { font-size: .64rem; }
-      .svc-level-label { font-size: .56rem; margin-bottom: 1rem; }
+      .svc-mode { font-size: .6rem; margin-top: .45rem; }
+      .svc-head-price { display: none; }
+      .svc-head::after { right: 1.2rem; }
       .svc-body { padding: 1.1rem 1.3rem; }
-      .svc-desc { font-size: .83rem; }
-      .svc-list li { font-size: .79rem; }
+      .svc-desc { font-size: .88rem; }
+      .svc-list li { font-size: .84rem; }
+      .price-tier { padding: .65rem .8rem; }
+      .pt-name { font-size: .82rem; }
+      .pt-detail { font-size: .7rem; }
+      .pt-price { font-size: .95rem; }
       .svc-foot { padding: 1rem 1.3rem 1.3rem; }
       .btn-svc { font-size: .68rem; padding: .7rem .9rem; border-radius: 8px; }
       .svc-qualify-btn { padding: .8rem 1.3rem; font-size: .66rem; }
       .svc-qualify-inner { padding: 1rem 1.3rem 1.3rem; }
-      .svc-q-list li { font-size: .79rem; }
+      .svc-q-list li { font-size: .84rem; }
+      .pay-strip { flex-direction: column; gap: .55rem; align-items: flex-start; }
       .process-note { padding: 1rem 1.2rem; font-size: .82rem; border-radius: 8px; }
 
       /* Logros */
@@ -851,8 +857,7 @@
       .area-card-inner::before { animation: none !important; }
       .svc-card .svc-icon, .svc-card .svc-name, .svc-card .svc-sub,
       .svc-card .svc-list li { opacity: 1; transform: none; transition: none; }
-      .svc-card .svc-level-bar span,
-      .svc-card.bar-go .svc-level-bar span { width: var(--lvl, 100%) !important; transition: none !important; }
+      .svc-card.sv-open .svc-body, .svc-card.sv-open .svc-foot { animation: none !important; }
     }
 
     /* ── LANDSCAPE MÓVIL ── */
@@ -1344,35 +1349,24 @@
     .process-note strong { color: var(--gold); font-weight: 500; display: block; margin-bottom: .3rem; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; }
     /* ── SERVICIOS GRID ── */
     .svc-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-      gap: 1.4rem;
-      align-items: start;
+      display: flex; flex-direction: column;
+      gap: 1.1rem;
+      max-width: 880px; margin: 0 auto;
     }
 
-    /* ── BASE CARD ── */
+    /* ── BASE CARD (acordeón) ── */
     .svc-card {
       border-radius: 18px; overflow: hidden;
       display: flex; flex-direction: column;
       position: relative;
       border: 1px solid transparent;
-      transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s;
+      transition: box-shadow .4s var(--ease), border-color .4s;
     }
     .svc-card:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 32px 80px rgba(0,0,0,.65);
+      box-shadow: 0 18px 50px rgba(0,0,0,.5);
     }
-    /* Tarjeta destacada: elevación permanente en desktop */
-    @media (min-width:900px) {
-      .svc-card.feat.on {
-        transform: translateY(-10px);
-        border-color: rgba(226,192,106,.45) !important;
-        box-shadow: 0 22px 60px rgba(0,0,0,.55), 0 0 44px rgba(200,168,75,.10);
-      }
-      .svc-card.feat.on:hover {
-        transform: translateY(-16px) scale(1.01);
-        box-shadow: 0 36px 90px rgba(0,0,0,.7), 0 0 60px rgba(200,168,75,.14);
-      }
+    .svc-card.sv-open {
+      box-shadow: 0 26px 70px rgba(0,0,0,.6);
     }
 
     /* ── PROGRESSION GRADIENTS ── */
@@ -1421,90 +1415,127 @@
 
     /* ── FEAT TAG ── */
     .svc-feat-tag {
-      position: absolute; top: 1.2rem; right: 1.2rem;
+      position: absolute; top: 0; right: 4rem;
       background: linear-gradient(90deg, var(--gold), var(--gold2));
       color: var(--bg);
       font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-      padding: .3rem .75rem; border-radius: 20px;
+      padding: .3rem .75rem; border-radius: 0 0 8px 8px;
       box-shadow: 0 4px 14px rgba(200,168,75,.4);
+      z-index: 2;
     }
 
-    /* ── LEVEL BAR ── */
-    .svc-level-bar {
-      height: 3px; background: rgba(255,255,255,.07);
-      border-radius: 2px; overflow: hidden; margin-bottom: 1.2rem;
-    }
-    .svc-level-bar span {
-      display: block; height: 100%; border-radius: 2px;
-      box-shadow: 0 0 8px rgba(200,168,75,.5);
-      width: 0 !important;                       /* arranca vacía; JS la libera al entrar al viewport */
-      transition: width 1.1s var(--ease) .25s;
-    }
-    .svc-card.bar-go .svc-level-bar span { width: var(--lvl) !important; }
-
-    /* Stagger interno: el contenido de cada tarjeta entra en micro-secuencia */
-    .svc-card .svc-icon,
-    .svc-card .svc-name,
-    .svc-card .svc-sub,
-    .svc-card .svc-list li {
-      opacity: 0; transform: translateY(10px);
-      transition: opacity .55s var(--ease), transform .55s var(--ease);
-    }
-    .svc-card.on .svc-icon,
-    .svc-card.on .svc-name,
-    .svc-card.on .svc-sub,
-    .svc-card.on .svc-list li { opacity: 1; transform: none; }
-    .svc-card.on .svc-icon { transition-delay: .15s; }
-    .svc-card.on .svc-name { transition-delay: .25s; }
-    .svc-card.on .svc-sub  { transition-delay: .33s; }
-    .svc-card.on .svc-list li:nth-child(1) { transition-delay: .40s; }
-    .svc-card.on .svc-list li:nth-child(2) { transition-delay: .47s; }
-    .svc-card.on .svc-list li:nth-child(3) { transition-delay: .54s; }
-    .svc-card.on .svc-list li:nth-child(4) { transition-delay: .61s; }
-    .svc-card.on .svc-list li:nth-child(5) { transition-delay: .68s; }
-    .svc-level-label {
-      font-size: .62rem; letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(200,168,75,.5); margin-bottom: 1.4rem; font-weight: 500;
+    /* ── BADGE DE MODALIDAD ── */
+    .svc-mode {
+      display: inline-flex; align-items: center; gap: .35rem;
+      margin-top: .6rem;
+      font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(242,240,235,.75);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: .28rem .7rem; border-radius: 100px;
     }
 
-    /* ── HEAD ── */
+    /* ── HEAD (siempre visible, clicable) ── */
     .svc-head {
-      padding: 1.6rem 1.8rem 1.4rem;
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding: 1.5rem 3.4rem 1.5rem 1.8rem;
+      display: flex; align-items: center; gap: 1.2rem;
+      cursor: pointer; position: relative;
     }
+    .sv-open .svc-head { border-bottom: 1px solid rgba(255,255,255,.06); }
+    .svc-head-txt { flex: 1; min-width: 0; }
     .svc-icon {
-      font-size: 2rem; margin-bottom: 1.1rem;
+      font-size: 1.9rem; flex-shrink: 0;
       display: inline-flex; align-items: center; justify-content: center;
-      width: 52px; height: 52px; border-radius: 14px;
+      width: 56px; height: 56px; border-radius: 14px;
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.1);
     }
     .svc-name {
-      font-family: var(--font-d); font-size: 1.25rem;
-      color: var(--white); margin-bottom: .4rem; line-height: 1.25;
+      font-family: var(--font-d); font-size: 1.45rem;
+      color: var(--white); margin-bottom: .35rem; line-height: 1.25;
     }
     .svc-sub {
-      font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
-      color: rgba(200,168,75,.75);
+      font-size: .72rem; letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(200,168,75,.8);
+    }
+    .svc-head-price { text-align: right; flex-shrink: 0; }
+    .shp-n {
+      display: block; font-family: var(--font-d); font-size: 1.25rem;
+      color: var(--gold2); line-height: 1.2;
+    }
+    .shp-l {
+      display: block; font-size: .64rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--grey1); margin-top: .25rem;
+    }
+    /* Chevron indicador (todas las resoluciones) */
+    .svc-head::after {
+      content: ''; position: absolute; right: 1.5rem; top: 50%;
+      width: 11px; height: 11px; margin-top: -8px;
+      border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold);
+      transform: rotate(45deg);
+      transition: transform .35s var(--ease);
+    }
+    .svc-card.sv-open .svc-head::after { transform: rotate(225deg); margin-top: -2px; }
+
+    /* ── TABLA DE PRECIOS ── */
+    .price-table {
+      display: flex; flex-direction: column; gap: .5rem;
+      margin-bottom: 1.3rem;
+    }
+    .price-tier {
+      display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap;
+      padding: .75rem 1rem; border-radius: 10px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      position: relative;
+    }
+    .pt-name { font-size: .9rem; font-weight: 600; color: var(--white); }
+    .pt-detail { font-size: .76rem; color: var(--grey1); flex: 1; min-width: 140px; }
+    .pt-price { font-family: var(--font-d); font-size: 1.05rem; color: var(--gold2); margin-left: auto; }
+    .price-tier.pt-best {
+      background: rgba(200,168,75,.1);
+      border-color: rgba(200,168,75,.45);
+      box-shadow: 0 0 24px rgba(200,168,75,.08);
+    }
+    .pt-tag {
+      position: absolute; top: -9px; right: .9rem;
+      background: linear-gradient(90deg, var(--gold), var(--gold2)); color: var(--bg);
+      font-size: .56rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      padding: .18rem .6rem; border-radius: 20px;
+    }
+
+    /* ── FRANJA DE PAGO ── */
+    .pay-strip {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 1.6rem;
+      max-width: 880px; margin: 1.6rem auto 0;
+      padding: 1rem 1.4rem; border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .pay-strip span {
+      display: inline-flex; align-items: center; gap: .45rem;
+      font-size: .8rem; color: rgba(242,240,235,.75);
     }
 
     /* ── BODY ── */
     .svc-body { padding: 1.5rem 1.8rem; flex: 1; }
-    .svc-desc { font-size: .87rem; color: rgba(242,240,235,.6); line-height: 1.88; margin-bottom: 1.3rem; }
+    .svc-desc { font-size: .95rem; color: rgba(242,240,235,.68); line-height: 1.85; margin-bottom: 1.3rem; }
 
-    /* Package pills */
-    .pkg-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
-    .pkg {
-      font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
-      padding: .3rem .8rem; border-radius: 20px;
+    /* Glosa de condiciones */
+    .svc-terms {
+      display: flex; flex-direction: column; gap: .45rem;
+      margin: -.4rem 0 1.3rem; padding: .85rem 1rem;
+      border-left: 2px solid rgba(200,168,75,.45);
+      background: rgba(200,168,75,.04);
+      border-radius: 0 10px 10px 0;
     }
-    .pkg-fill { background: linear-gradient(90deg, var(--gold), var(--gold2)); color: var(--bg); }
-    .pkg-line { background: transparent; color: var(--gold); border: 1px solid rgba(200,168,75,.35); }
+    .svc-terms span { font-size: .78rem; color: var(--grey1); line-height: 1.6; }
+    .svc-terms strong { color: var(--gold2); font-weight: 600; }
 
     /* List items */
     .svc-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
     .svc-list li {
-      font-size: .82rem; color: rgba(242,240,235,.65);
+      font-size: .9rem; color: rgba(242,240,235,.7);
       display: flex; gap: .65rem; align-items: flex-start; line-height: 1.55;
       border-radius: 6px; padding: .15rem .4rem; margin: -.15rem -.4rem;
     }
@@ -1512,17 +1543,12 @@
       color: var(--white);
       background: rgba(200,168,75,.07);
     }
-    .svc-list li::before {
-      content: ''; flex-shrink: 0;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--gold), var(--gold2));
-      margin-top: .42rem;
-      transition: transform .3s, box-shadow .3s;
+    .svc-list .li-ic {
+      flex-shrink: 0; width: 1.5em; text-align: center;
+      font-size: 1rem; line-height: 1.45;
+      transition: transform .3s var(--ease);
     }
-    .svc-list li:hover::before {
-      transform: scale(1.35);
-      box-shadow: 0 0 8px rgba(226,192,106,.6);
-    }
+    .svc-list li:hover .li-ic { transform: scale(1.3) rotate(-6deg); }
 
     /* ── FOOT ── */
     .svc-foot {
@@ -1550,30 +1576,18 @@
       color: var(--bg); border-color: transparent;
       box-shadow: 0 6px 24px rgba(200,168,75,.35);
     }
-    /* ── ACORDEÓN MÓVIL: tarjetas de servicio colapsadas ── */
-    @media (max-width:640px) {
-      .svc-card .svc-body,
-      .svc-card .svc-foot,
-      .svc-card .svc-qualify-btn,
-      .svc-card .svc-qualify-panel { display: none; }
-      .svc-card.sv-open .svc-body { display: block; animation: sv-in .4s var(--ease); }
-      .svc-card.sv-open .svc-foot { display: flex; animation: sv-in .45s var(--ease); }
-      .svc-card.sv-open .svc-qualify-btn { display: flex; }
-      .svc-card.sv-open .svc-qualify-panel { display: block; }
-      @keyframes sv-in {
-        from { opacity: 0; transform: translateY(-8px); }
-        to   { opacity: 1; transform: translateY(0); }
-      }
-      .svc-card .svc-head { cursor: pointer; position: relative; padding-right: 3.2rem; }
-      /* Chevron indicador */
-      .svc-card .svc-head::after {
-        content: ''; position: absolute; right: 1.3rem; bottom: 1.4rem;
-        width: 10px; height: 10px;
-        border-right: 1.5px solid var(--gold); border-bottom: 1.5px solid var(--gold);
-        transform: rotate(45deg);
-        transition: transform .35s var(--ease);
-      }
-      .svc-card.sv-open .svc-head::after { transform: rotate(225deg); }
+    /* ── ACORDEÓN (todas las resoluciones): tarjetas colapsadas ── */
+    .svc-card .svc-body,
+    .svc-card .svc-foot,
+    .svc-card .svc-qualify-btn,
+    .svc-card .svc-qualify-panel { display: none; }
+    .svc-card.sv-open .svc-body { display: block; animation: sv-in .4s var(--ease); }
+    .svc-card.sv-open .svc-foot { display: flex; animation: sv-in .45s var(--ease); }
+    .svc-card.sv-open .svc-qualify-btn { display: flex; }
+    .svc-card.sv-open .svc-qualify-panel { display: block; }
+    @keyframes sv-in {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ── SERVICE QUALIFY PANEL ── */
@@ -2510,11 +2524,11 @@
   <div class="wrap sec">
     <div class="services-intro-grid">
       <div>
-        <p class="label rv">3 Servicios · 3 Perfiles</p>
+        <p class="label rv">Servicios · 100% Online</p>
         <h2 class="h2 rv d1">El bloqueo no es<br/><em>lo que falta saber.</em></h2>
       </div>
       <div class="rv d2">
-        <p class="body-text" style="max-width:100%;margin-bottom:1.2rem;">Casi siempre es confianza, claridad o autovaloración. Antes de cualquier compromiso, conversamos 30 minutos sin costo — para saber si soy la persona indicada para acompañarte.</p>
+        <p class="body-text" style="max-width:100%;margin-bottom:1.2rem;">Casi siempre es confianza, claridad o autovaloración. Antes de cualquier compromiso, conversamos 30 minutos sin costo — para saber si soy la persona indicada para acompañarte. Todos los servicios son online; las charlas para empresas también pueden ser presenciales.</p>
         <div class="process-note">
           <strong>🎁 Llamada gratuita de 30 min — siempre</strong>
           Cuéntame dónde estás y hacia dónde quieres ir. Sin presión. Solo una conversación honesta.
@@ -2526,24 +2540,36 @@
       <!-- Servicio 1: Inserción Laboral -->
       <div class="svc-card rv d1" id="svc-insercion">
         <div class="svc-head">
-          <div class="svc-level-bar"><span style="width:25%; background:linear-gradient(90deg,#6fa860,#a8d890);"></span></div>
-          <div class="svc-level-label">Nivel · Inicio de carrera</div>
           <div class="svc-icon">🎯</div>
-          <div class="svc-name">Coaching para la Inserción Laboral</div>
-          <div class="svc-sub">Para recién egresados · 18 a 25 años</div>
+          <div class="svc-head-txt">
+            <div class="svc-name">Coaching para la Inserción Laboral</div>
+            <div class="svc-sub">Para recién egresados · 18 a 25 años</div>
+            <span class="svc-mode">💻 100% Online</span>
+          </div>
+          <div class="svc-head-price">
+            <span class="shp-n">$45.900</span>
+            <span class="shp-l">por sesión</span>
+          </div>
         </div>
         <div class="svc-body">
           <p class="svc-desc">¿Llegas a las entrevistas y te bloqueas? El problema no es tu CV — es la confianza frente al entrevistador. Trabajamos eso juntos, con resultados rápidos y concretos.</p>
+          <div class="price-table">
+            <div class="price-tier">
+              <span class="pt-name">Sesión de apresto laboral</span>
+              <span class="pt-detail">1 hora · online</span>
+              <span class="pt-price">$45.900</span>
+            </div>
+          </div>
           <ul class="svc-list">
-            <li>Cómo venderte sin sentir que estás fingiendo</li>
-            <li>Simulación de entrevistas reales</li>
-            <li>CV y propuesta de valor diferenciada</li>
-            <li>Estrategia de búsqueda paso a paso</li>
-            <li>+300 asesorías de experiencia respaldando</li>
+            <li><span class="li-ic">🗣️</span>Cómo venderte sin sentir que estás fingiendo</li>
+            <li><span class="li-ic">🎤</span>Simulación de entrevistas reales</li>
+            <li><span class="li-ic">📄</span>CV y propuesta de valor diferenciada</li>
+            <li><span class="li-ic">🧩</span>Estrategia de búsqueda paso a paso</li>
+            <li><span class="li-ic">🏅</span>+300 asesorías de experiencia respaldando</li>
           </ul>
         </div>
         <div class="svc-foot">
-          <div class="svc-price">Inversión según paquete · la definimos en tu llamada gratuita</div>
+          <div class="svc-price">$45.900 · sesión de 1 hora</div>
           <a href="#" data-wa data-msg="Hola Maxi, soy recién egresado y quiero hablar sobre inserción laboral" class="btn-svc" target="_blank" rel="noopener">Quiero mi primer empleo →</a>
         </div>
         <button class="svc-qualify-btn" aria-expanded="false">
@@ -2568,29 +2594,51 @@
       <div class="svc-card feat rv d2" id="svc-desarrollo">
         <div class="svc-feat-tag">Más solicitado</div>
         <div class="svc-head">
-          <div class="svc-level-bar"><span style="width:55%; background:linear-gradient(90deg,#9ab840,#c8e060,var(--gold));"></span></div>
-          <div class="svc-level-label">Nivel · Carrera en desarrollo</div>
           <div class="svc-icon">🧭</div>
-          <div class="svc-name">Coaching para el Desarrollo Profesional</div>
-          <div class="svc-sub">Para profesionales estancados · 31 a 40 años</div>
+          <div class="svc-head-txt">
+            <div class="svc-name">Coaching para el Desarrollo Profesional</div>
+            <div class="svc-sub">Para profesionales estancados · 31 a 40 años</div>
+            <span class="svc-mode">💻 100% Online</span>
+          </div>
+          <div class="svc-head-price">
+            <span class="shp-n">Desde $54.900</span>
+            <span class="shp-l">por sesión</span>
+          </div>
         </div>
         <div class="svc-body">
           <p class="svc-desc">¿Sabes lo que vales pero no sabes hacia dónde ir? Tienes el talento — te falta claridad y la confianza para el siguiente salto. No es solo reflexión: es equipamiento con herramientas reales.</p>
-          <div class="pkg-row">
-            <span class="pkg pkg-fill">4 sesiones</span>
-            <span class="pkg pkg-line">6 sesiones</span>
-            <span class="pkg pkg-line">8 sesiones</span>
+          <div class="price-table">
+            <div class="price-tier">
+              <span class="pt-name">Sesión única</span>
+              <span class="pt-detail">1 hora · online</span>
+              <span class="pt-price">$64.900</span>
+            </div>
+            <div class="price-tier">
+              <span class="pt-name">Pack 4 sesiones</span>
+              <span class="pt-detail">$59.900 c/u · ahorras $20.000</span>
+              <span class="pt-price">$239.600</span>
+            </div>
+            <div class="price-tier pt-best">
+              <span class="pt-tag">Mejor valor</span>
+              <span class="pt-name">Pack 8 sesiones</span>
+              <span class="pt-detail">$54.900 c/u · ahorras $80.000 · en cuotas con tarjeta de crédito</span>
+              <span class="pt-price">$439.200</span>
+            </div>
+          </div>
+          <div class="svc-terms">
+            <span>⏳ Las sesiones deben tomarse dentro de <strong>1 año</strong> desde la compra; cumplido el plazo, el proceso se cierra.</span>
+            <span>🎁 Pack 8: si has usado hasta 4 sesiones, puedes <strong>transferir las restantes a otra persona</strong>.</span>
           </div>
           <ul class="svc-list">
-            <li>Metodología DISC aplicada a tu carrera</li>
-            <li>Inteligencia emocional en el trabajo</li>
-            <li>Liderazgo de equipos y relaciones laborales</li>
-            <li>Técnicas concretas de gestión profesional</li>
-            <li>Seguimiento post-programa a precio preferencial</li>
+            <li><span class="li-ic">🧬</span>Metodología DISC aplicada a tu carrera</li>
+            <li><span class="li-ic">💡</span>Inteligencia emocional en el trabajo</li>
+            <li><span class="li-ic">👥</span>Liderazgo de equipos y relaciones laborales</li>
+            <li><span class="li-ic">🛠️</span>Técnicas concretas de gestión profesional</li>
+            <li><span class="li-ic">📈</span>Seguimiento post-programa a precio preferencial</li>
           </ul>
         </div>
         <div class="svc-foot">
-          <div class="svc-price">Inversión según paquete · la definimos en tu llamada gratuita</div>
+          <div class="svc-price">Desde $54.900 por sesión · pack 8 en cuotas con tarjeta</div>
           <a href="#" data-wa data-msg="Hola Maxi, quiero hablar sobre mi desarrollo profesional" class="btn-svc" target="_blank" rel="noopener">Quiero claridad profesional →</a>
         </div>
         <button class="svc-qualify-btn" aria-expanded="false">
@@ -2614,28 +2662,50 @@
       <!-- Servicio 3: Marca Personal -->
       <div class="svc-card rv d3" id="svc-marca">
         <div class="svc-head">
-          <div class="svc-level-bar"><span style="width:75%; background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold3));"></span></div>
-          <div class="svc-level-label">Nivel · Visibilidad profesional</div>
           <div class="svc-icon">✨</div>
-          <div class="svc-name">Coaching para tu Marca Personal</div>
-          <div class="svc-sub">Para profesionales que quieren visibilidad real</div>
+          <div class="svc-head-txt">
+            <div class="svc-name">Coaching para tu Marca Personal</div>
+            <div class="svc-sub">Para profesionales que quieren visibilidad real</div>
+            <span class="svc-mode">💻 100% Online</span>
+          </div>
+          <div class="svc-head-price">
+            <span class="shp-n">Desde $54.900</span>
+            <span class="shp-l">por sesión</span>
+          </div>
         </div>
         <div class="svc-body">
           <p class="svc-desc">Tienes más valor del que crees — solo necesitas saber cómo mostrarlo. El bloqueo no es técnico: es autovaloración. Construimos tu marca en LinkedIn, Instagram y las redes donde está tu audiencia — desde la autenticidad, no desde el ruido.</p>
-          <div class="pkg-row">
-            <span class="pkg pkg-fill">4 sesiones</span>
-            <span class="pkg pkg-line">6 sesiones</span>
-            <span class="pkg pkg-line">8 sesiones</span>
+          <div class="price-table">
+            <div class="price-tier">
+              <span class="pt-name">Sesión única</span>
+              <span class="pt-detail">1 hora · online</span>
+              <span class="pt-price">$64.900</span>
+            </div>
+            <div class="price-tier">
+              <span class="pt-name">Pack 4 sesiones</span>
+              <span class="pt-detail">$59.900 c/u · ahorras $20.000</span>
+              <span class="pt-price">$239.600</span>
+            </div>
+            <div class="price-tier pt-best">
+              <span class="pt-tag">Mejor valor</span>
+              <span class="pt-name">Pack 8 sesiones</span>
+              <span class="pt-detail">$54.900 c/u · ahorras $80.000 · en cuotas con tarjeta de crédito</span>
+              <span class="pt-price">$439.200</span>
+            </div>
+          </div>
+          <div class="svc-terms">
+            <span>⏳ Las sesiones deben tomarse dentro de <strong>1 año</strong> desde la compra; cumplido el plazo, el proceso se cierra.</span>
+            <span>🎁 Pack 8: si has usado hasta 4 sesiones, puedes <strong>transferir las restantes a otra persona</strong>.</span>
           </div>
           <ul class="svc-list">
-            <li>Descubrir tu diferenciador real y genuino</li>
-            <li>Posicionamiento auténtico en todas tus redes sociales</li>
-            <li>Estrategia de contenido que representa quién eres</li>
-            <li>De la invisibilidad a la presencia con propósito</li>
+            <li><span class="li-ic">💎</span>Descubrir tu diferenciador real y genuino</li>
+            <li><span class="li-ic">📱</span>Posicionamiento auténtico en todas tus redes sociales</li>
+            <li><span class="li-ic">✍️</span>Estrategia de contenido que representa quién eres</li>
+            <li><span class="li-ic">🚀</span>De la invisibilidad a la presencia con propósito</li>
           </ul>
         </div>
         <div class="svc-foot">
-          <div class="svc-price">Inversión según paquete · la definimos en tu llamada gratuita</div>
+          <div class="svc-price">Desde $54.900 por sesión · pack 8 en cuotas con tarjeta</div>
           <a href="#" data-wa data-msg="Hola Maxi, quiero construir mi marca personal" class="btn-svc" target="_blank" rel="noopener">Quiero que me vean →</a>
         </div>
         <button class="svc-qualify-btn" aria-expanded="false">
@@ -2659,19 +2729,24 @@
       <!-- Servicio 4: Team Building -->
       <div class="svc-card rv d4" id="svc-equipos">
         <div class="svc-head">
-          <div class="svc-level-bar"><span style="width:100%; background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold3),#fff8e0);"></span></div>
-          <div class="svc-level-label">Nivel · Liderazgo & Élite organizacional</div>
           <div class="svc-icon">🤝</div>
-          <div class="svc-name">Charlas & Team Building</div>
-          <div class="svc-sub">Para organizaciones y equipos</div>
+          <div class="svc-head-txt">
+            <div class="svc-name">Charlas & Team Building</div>
+            <div class="svc-sub">Para organizaciones y equipos</div>
+            <span class="svc-mode">💻 Online · 🏢 Presencial</span>
+          </div>
+          <div class="svc-head-price">
+            <span class="shp-n">Cotización</span>
+            <span class="shp-l">a medida</span>
+          </div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">Charlas y talleres que van más allá de la motivación: conversaciones honestas que hacen que los equipos se entiendan de otra manera. Presencial o en línea.</p>
+          <p class="svc-desc">Charlas y talleres que van más allá de la motivación: conversaciones honestas que hacen que los equipos se entiendan de otra manera. En formato online o presencial, según tu organización.</p>
           <ul class="svc-list">
-            <li>Diagnóstico del equipo y objetivos claros</li>
-            <li>Comunicación y cohesión desde el propósito</li>
-            <li>Toma de decisiones colectiva más efectiva</li>
-            <li>Plan de seguimiento para líderes</li>
+            <li><span class="li-ic">🔍</span>Diagnóstico del equipo y objetivos claros</li>
+            <li><span class="li-ic">🗣️</span>Comunicación y cohesión desde el propósito</li>
+            <li><span class="li-ic">⚖️</span>Toma de decisiones colectiva más efectiva</li>
+            <li><span class="li-ic">🧭</span>Plan de seguimiento para líderes</li>
           </ul>
         </div>
         <div class="svc-foot">
@@ -2696,6 +2771,13 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- Medios de pago -->
+    <div class="pay-strip rv">
+      <span>🏦 Transferencia electrónica</span>
+      <span>💳 Mercado Pago — tarjetas de crédito y débito, en cuotas</span>
+      <span>🧾 Se entrega boleta de honorarios</span>
     </div>
   </div>
 </section>
@@ -3042,11 +3124,9 @@
         e.preventDefault();
         var target = document.getElementById(t.getAttribute('data-goto'));
         if (!target) return;
-        // En móvil, abre la tarjeta del acordeón antes de desplazarse
-        if (window.innerWidth <= 640) {
-          document.querySelectorAll('.svc-card').forEach(function(c) { c.classList.remove('sv-open'); });
-          target.classList.add('sv-open');
-        }
+        // Abre la tarjeta del acordeón antes de desplazarse
+        document.querySelectorAll('.svc-card').forEach(function(c) { c.classList.remove('sv-open'); });
+        target.classList.add('sv-open');
         setTimeout(function() {
           var y = target.getBoundingClientRect().top + window.scrollY - 90;
           window.scrollTo({ top: y, behavior: 'smooth' });
@@ -3079,34 +3159,15 @@
     });
   }, 'mapa-max');
 
-  /* ── SERVICIOS: acordeón en móvil + barras de nivel animadas ── */
+  /* ── SERVICIOS: acordeón en todas las resoluciones ── */
   safe(function() {
     var cards = document.querySelectorAll('.svc-card');
     if (!cards.length) return;
-
-    // Barras de nivel: guardan su % objetivo y crecen al entrar al viewport
-    cards.forEach(function(card) {
-      var bar = card.querySelector('.svc-level-bar span');
-      if (bar && bar.style.width) card.style.setProperty('--lvl', bar.style.width);
-    });
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) { e.target.classList.add('bar-go'); io.unobserve(e.target); }
-        });
-      }, { threshold: .35 });
-      cards.forEach(function(c) { io.observe(c); });
-    } else {
-      cards.forEach(function(c) { c.classList.add('bar-go'); });
-    }
-
-    // Acordeón móvil
     cards.forEach(function(card) {
       if (card.classList.contains('feat')) card.classList.add('sv-open');
       var head = card.querySelector('.svc-head');
       if (!head) return;
       head.addEventListener('click', function() {
-        if (window.innerWidth > 640) return;
         var wasOpen = card.classList.contains('sv-open');
         cards.forEach(function(c) { c.classList.remove('sv-open'); });
         if (!wasOpen) {
