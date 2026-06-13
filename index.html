@@ -92,25 +92,63 @@
       position: fixed; inset: 0;
       background: var(--bg); z-index: 10000;
       display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 1.2rem;
+      align-items: center; justify-content: center; gap: 1.4rem;
+      overflow: hidden;
     }
-    #splash.hide { animation: sp-hide .7s var(--ease) forwards; }
-    @keyframes sp-hide { to { opacity: 0; pointer-events: none; visibility: hidden; } }
+    /* Halo dorado que respira detrás del nombre */
+    #splash::before {
+      content: ''; position: absolute;
+      width: 70vmax; height: 70vmax; border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,168,75,.08), transparent 62%);
+      opacity: 0; transform: scale(.55);
+      animation: sp-glow 2.2s var(--ease) forwards;
+    }
+    @keyframes sp-glow { to { opacity: 1; transform: scale(1); } }
+    /* Polvo dorado flotante */
+    #sp-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      opacity: 0; animation: sp-in 1.2s .15s forwards;
+    }
+    #sp-name, #sp-bar, #sp-sub { z-index: 1; }
+    #splash.fast #sp-canvas { display: none; }
+    /* Salida tipo telón: revela el hero hacia arriba */
+    #splash.hide { animation: sp-hide .85s cubic-bezier(.76,0,.24,1) forwards; }
+    @keyframes sp-hide { to { transform: translateY(-100%); pointer-events: none; visibility: hidden; } }
     #sp-name {
-      font-family: var(--font-d); font-size: clamp(1.5rem,3.5vw,2.6rem);
-      letter-spacing: .12em; color: var(--white);
-      opacity: 0; animation: sp-in .8s .3s var(--ease) forwards;
+      font-family: var(--font-d); font-size: clamp(1.7rem,4vw,3rem);
+      color: var(--white); text-align: center; padding: 0 1rem;
+      letter-spacing: .38em; opacity: 0; filter: blur(7px);
+      animation: sp-name 1.15s .25s var(--ease) forwards;
+      position: relative;
     }
+    #sp-name em { font-style: italic; color: var(--gold2); }
+    @keyframes sp-name { to { letter-spacing: .06em; opacity: 1; filter: blur(0); } }
+    /* La barra se traza como una ruta, con waypoint en la punta */
     #sp-bar {
-      width: 0; height: 1px; background: var(--gold);
-      animation: sp-bar 1s .8s var(--ease) forwards;
+      position: relative; width: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold2));
+      animation: sp-bar 1.1s .95s var(--ease) forwards;
+    }
+    @keyframes sp-bar { to { width: 170px; } }
+    #sp-bar::after {
+      content: ''; position: absolute; right: -3px; top: 50%;
+      width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%;
+      background: var(--gold2);
+      box-shadow: 0 0 14px rgba(226,192,106,.9), 0 0 30px rgba(226,192,106,.4);
+      opacity: 0; animation: sp-in .4s 1.15s forwards;
     }
     #sp-sub {
-      font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold);
-      opacity: 0; animation: sp-in .6s 1.5s ease forwards;
+      font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold);
+      opacity: 0; transform: translateY(8px);
+      animation: sp-up .7s 1.55s var(--ease) forwards;
+      position: relative; text-align: center; padding: 0 1rem;
     }
-    @keyframes sp-in  { to { opacity: 1; } }
-    @keyframes sp-bar { to { width: 140px; } }
+    @keyframes sp-in { to { opacity: 1; } }
+    @keyframes sp-up { to { opacity: 1; transform: none; } }
+    /* Visita repetida en la misma sesión: todo ya visible, salida inmediata */
+    #splash.fast #sp-name, #splash.fast #sp-sub, #splash.fast::before { animation: none; opacity: 1; filter: none; letter-spacing: .06em; transform: none; }
+    #splash.fast #sp-bar { animation: none; width: 170px; }
+    #splash.fast #sp-bar::after { animation: none; opacity: 1; }
 
     /* =============================================
        SCROLL REVEALS
@@ -858,6 +896,8 @@
       .svc-card .svc-icon, .svc-card .svc-name, .svc-card .svc-sub,
       .svc-card .svc-list li { opacity: 1; transform: none; transition: none; }
       .svc-card.sv-open .svc-body, .svc-card.sv-open .svc-foot { animation: none !important; }
+      /* Splash sin movimiento: fundido en lugar de telón */
+      #splash.hide { animation: none; opacity: 0; transition: opacity .4s; pointer-events: none; visibility: hidden; }
     }
 
     /* ── LANDSCAPE MÓVIL ── */
@@ -2092,9 +2132,10 @@
 
 <!-- SPLASH -->
 <div id="splash">
-  <div id="sp-name">Maximiliano Jiménez</div>
+  <canvas id="sp-canvas" aria-hidden="true"></canvas>
+  <div id="sp-name">Maximiliano <em>Jiménez</em></div>
   <div id="sp-bar"></div>
-  <div id="sp-sub">Psicólogo · Coach · Estratega</div>
+  <div id="sp-sub">Reconquista tu mapa</div>
 </div>
 
 <!-- CURSOR -->
@@ -3085,12 +3126,60 @@
   'use strict';
   function safe(fn, n) { try { fn(); } catch(e) { console.warn('['+n+']', e); } }
 
-  /* ── SPLASH ── */
+  /* ── SPLASH: secuencia completa solo la primera vez por sesión ── */
   safe(function() {
     var s = document.getElementById('splash');
     if (!s) return;
-    setTimeout(function() { s.classList.add('hide'); }, 2600);
-    setTimeout(function() { s.style.display = 'none'; }, 3400);
+    var seen = false;
+    try {
+      seen = sessionStorage.getItem('sp-seen') === '1';
+      sessionStorage.setItem('sp-seen', '1');
+    } catch(e) {}
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var quick = seen || reduced;
+    if (quick) s.classList.add('fast');
+    setTimeout(function() { s.classList.add('hide'); }, quick ? 350 : 2450);
+    setTimeout(function() { s.style.display = 'none'; }, quick ? 1250 : 3350);
+
+    // Polvo dorado: motas que ascienden con parpadeo sutil
+    if (!quick) {
+      var cv = document.getElementById('sp-canvas');
+      if (cv && cv.getContext) {
+        var ctx = cv.getContext('2d');
+        var W = cv.width = window.innerWidth;
+        var H = cv.height = window.innerHeight;
+        var dots = [], N = Math.min(46, Math.floor(W / 28));
+        for (var i = 0; i < N; i++) {
+          dots.push({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            r: .6 + Math.random() * 1.4,
+            vy: .12 + Math.random() * .4,        // velocidad de ascenso
+            sway: Math.random() * Math.PI * 2,    // fase del vaivén lateral
+            tw: .4 + Math.random() * .6           // intensidad del parpadeo
+          });
+        }
+        var alive = true, t = 0;
+        setTimeout(function() { alive = false; }, 3400);
+        (function draw() {
+          if (!alive) return;
+          ctx.clearRect(0, 0, W, H);
+          t += .016;
+          for (var i = 0; i < dots.length; i++) {
+            var d = dots[i];
+            d.y -= d.vy;
+            if (d.y < -4) { d.y = H + 4; d.x = Math.random() * W; }
+            var x = d.x + Math.sin(t * .8 + d.sway) * 14;
+            var a = d.tw * (.45 + .55 * Math.sin(t * 2 + d.sway * 3));
+            ctx.beginPath();
+            ctx.arc(x, d.y, d.r, 0, 6.2832);
+            ctx.fillStyle = 'rgba(226,192,106,' + Math.max(0, a).toFixed(3) + ')';
+            ctx.fill();
+          }
+          requestAnimationFrame(draw);
+        })();
+      }
+    }
   }, 'splash');
 
   /* ── HERO VIDEO: bucle normal (se reinicia al terminar), solo desktop ── */
