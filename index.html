@@ -1501,6 +1501,7 @@
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.1);
     }
+    .svc-icon svg { width: 28px; height: 28px; color: var(--gold2); }
     .svc-name {
       font-family: var(--font-d); font-size: 1.45rem;
       color: var(--white); margin-bottom: .35rem; line-height: 1.25;
@@ -1643,6 +1644,8 @@
       font-size: 1rem; line-height: 1.45;
       transition: transform .3s var(--ease);
     }
+    .svc-list .li-ic svg { width: 17px; height: 17px; color: var(--gold); vertical-align: -3px; }
+    .ab-icon svg { width: 17px; height: 17px; color: var(--gold); vertical-align: -3px; }
     .svc-list li:hover .li-ic { transform: scale(1.3) rotate(-6deg); }
 
     /* ── FOOT ── */
@@ -2286,7 +2289,7 @@
       <span class="word">Recupera</span>
       <span class="word"> la</span>
       <span class="word"> confianza</span>
-      <span class="italic"><span class="word">para avanzar.</span></span>
+      <span class="italic"><span class="word">para lograr tus objetivos.</span></span>
     </h1>
     <p class="hero-sub rv d3">
       Acompaño a <strong>profesionales y recién egresados</strong> a desbloquear eso que los tiene parados. Un acompañamiento cercano y disfrutable — y en pocas sesiones empiezas a notar el cambio.
@@ -2397,9 +2400,9 @@
             </button>
             <div class="ruta-panel">
               <ul class="ruta-list">
-                <li><span class="ab-icon">🎓</span><span><strong>Psicólogo y Lic. en Psicología</strong> — Universidad Santo Tomás, 2016</span></li>
-                <li><span class="ab-icon">📐</span><span><strong>Magíster en Liderazgo</strong>, Dirección y Comunicación Estratégica — ULS, 2019</span></li>
-                <li><span class="ab-icon">🔑</span><span><strong>Coach en PNL</strong> Certificado por SCPNL, 2022 — Herramientas y técnicas para el cambio</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-graduation"/></svg></span><span><strong>Psicólogo y Lic. en Psicología</strong> — Universidad Santo Tomás, 2016</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-ruler"/></svg></span><span><strong>Magíster en Liderazgo</strong>, Dirección y Comunicación Estratégica — ULS, 2019</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-key"/></svg></span><span><strong>Coach en PNL</strong> Certificado por SCPNL, 2022 — Herramientas y técnicas para el cambio</span></li>
               </ul>
             </div>
           </div>
@@ -2414,10 +2417,10 @@
             </button>
             <div class="ruta-panel">
               <ul class="ruta-list">
-                <li><span class="ab-icon">📊</span><span>Más de <strong>300 asesorías</strong> de apresto laboral · <strong>+3.700 personas</strong> impactadas en charlas y talleres</span></li>
-                <li><span class="ab-icon">🏛️</span><span>Coordinador de la <strong>Red de Titulados</strong> — Universidad de La Serena (Oficina Alumni)</span></li>
-                <li><span class="ab-icon">🌟</span><span>Miembro del equipo de <strong>Marca Personal con David Ávila</strong> (Macro Creador Chileno) · 5 versiones</span></li>
-                <li><span class="ab-icon">📱</span><span><strong>Creador de contenido</strong> con comunidad de más de 10k en redes sociales</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-bar-chart"/></svg></span><span>Más de <strong>300 asesorías</strong> de apresto laboral · <strong>+3.700 personas</strong> impactadas en charlas y talleres</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-landmark"/></svg></span><span>Coordinador de la <strong>Red de Titulados</strong> — Universidad de La Serena (Oficina Alumni)</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-star"/></svg></span><span>Miembro del equipo de <strong>Marca Personal con David Ávila</strong> (Macro Creador Chileno) · 5 versiones</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-smartphone"/></svg></span><span><strong>Creador de contenido</strong> con comunidad de más de 10k en redes sociales</span></li>
               </ul>
             </div>
           </div>
@@ -2432,8 +2435,8 @@
             </button>
             <div class="ruta-panel">
               <ul class="ruta-list">
-                <li><span class="ab-icon">💪</span><span><strong>14 años</strong> de disciplina física · Ex Embajador de marca deportiva por 5 años</span></li>
-                <li><span class="ab-icon">🏔️</span><span>Viví un retiro de <strong>7 días en silencio</strong> total — Sí, el silencio puede hablarte fuerte</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-activity"/></svg></span><span><strong>14 años</strong> de disciplina física · Ex Embajador de marca deportiva por 5 años</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-mountain"/></svg></span><span>Viví un retiro de <strong>7 días en silencio</strong> total — Sí, el silencio puede hablarte fuerte</span></li>
               </ul>
             </div>
           </div>
@@ -2625,6 +2628,34 @@
 <!-- Sprite de íconos -->
 <svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
   <symbol id="ic-wa" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.516 5.26l-.999 3.648 3.732-.979zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></symbol>
+  <symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="ic-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 16l2 -6l6 -2l-2 6l-6 2"/><circle cx="12" cy="12" r="9"/></symbol>
+  <symbol id="ic-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
+  <symbol id="ic-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="ic-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></symbol>
+  <symbol id="ic-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></symbol>
+  <symbol id="ic-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></symbol>
+  <symbol id="ic-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
+  <symbol id="ic-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></symbol>
+  <symbol id="ic-chart-pie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></symbol>
+  <symbol id="ic-lightbulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></symbol>
+  <symbol id="ic-wrench" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="ic-trending-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+  <symbol id="ic-gem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></symbol>
+  <symbol id="ic-smartphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></symbol>
+  <symbol id="ic-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></symbol>
+  <symbol id="ic-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+  <symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="ic-messages" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></symbol>
+  <symbol id="ic-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+  <symbol id="ic-graduation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="ic-ruler" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></symbol>
+  <symbol id="ic-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></symbol>
+  <symbol id="ic-bar-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></symbol>
+  <symbol id="ic-landmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></symbol>
+  <symbol id="ic-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+  <symbol id="ic-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></symbol>
+  <symbol id="ic-mountain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></symbol>
 </svg>
 
 <!-- ===================== SERVICIOS ===================== -->
@@ -2648,7 +2679,7 @@
       <!-- Servicio 1: Inserción Laboral -->
       <div class="svc-card rv d1" id="svc-insercion">
         <div class="svc-head">
-          <div class="svc-icon">🎯</div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><use href="#ic-target"/></svg></div>
           <div class="svc-head-txt">
             <div class="svc-name">Coaching para la Inserción Laboral</div>
             <div class="svc-sub">Recién egresados (18–25) y profesionales senior</div>
@@ -2677,11 +2708,11 @@
             </a>
           </div>
           <ul class="svc-list">
-            <li><span class="li-ic">🗣️</span>Cómo venderte sin sentir que estás fingiendo</li>
-            <li><span class="li-ic">🎤</span>Simulación de entrevistas reales</li>
-            <li><span class="li-ic">📄</span>CV y propuesta de valor diferenciada</li>
-            <li><span class="li-ic">🧩</span>Estrategia de búsqueda paso a paso</li>
-            <li><span class="li-ic">🏅</span>+300 asesorías de experiencia respaldando</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-megaphone"/></svg></span>Cómo venderte sin sentir que estás fingiendo</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-mic"/></svg></span>Simulación de entrevistas reales</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-file-text"/></svg></span>CV y propuesta de valor diferenciada</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-route"/></svg></span>Estrategia de búsqueda paso a paso</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-award"/></svg></span>+300 asesorías de experiencia respaldando</li>
           </ul>
         </div>
         <div class="svc-foot">
@@ -2710,7 +2741,7 @@
       <div class="svc-card feat rv d2" id="svc-desarrollo">
         <div class="svc-feat-tag">Más solicitado</div>
         <div class="svc-head">
-          <div class="svc-icon">🧭</div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><use href="#ic-compass"/></svg></div>
           <div class="svc-head-txt">
             <div class="svc-name">Coaching para el Desarrollo Profesional</div>
             <div class="svc-sub">Para profesionales estancados · 31 a 40 años</div>
@@ -2750,11 +2781,11 @@
             <span>🎁 Pack 8: si has usado hasta 4 sesiones, puedes <strong>transferir las restantes a otra persona</strong>.</span>
           </div>
           <ul class="svc-list">
-            <li><span class="li-ic">🧬</span>Metodología DISC aplicada a tu carrera</li>
-            <li><span class="li-ic">💡</span>Inteligencia emocional en el trabajo</li>
-            <li><span class="li-ic">👥</span>Liderazgo de equipos y relaciones laborales</li>
-            <li><span class="li-ic">🛠️</span>Técnicas concretas de gestión profesional</li>
-            <li><span class="li-ic">📈</span>Seguimiento post-programa a precio preferencial</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-chart-pie"/></svg></span>Metodología DISC aplicada a tu carrera</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-lightbulb"/></svg></span>Inteligencia emocional en el trabajo</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-users"/></svg></span>Liderazgo de equipos y relaciones laborales</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-wrench"/></svg></span>Técnicas concretas de gestión profesional</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-trending-up"/></svg></span>Seguimiento post-programa a precio preferencial</li>
           </ul>
         </div>
         <div class="svc-foot">
@@ -2782,7 +2813,7 @@
       <!-- Servicio 3: Marca Personal -->
       <div class="svc-card rv d3" id="svc-marca">
         <div class="svc-head">
-          <div class="svc-icon">✨</div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><use href="#ic-sparkles"/></svg></div>
           <div class="svc-head-txt">
             <div class="svc-name">Coaching para tu Marca Personal</div>
             <div class="svc-sub">Para profesionales que quieren visibilidad real</div>
@@ -2822,10 +2853,10 @@
             <span>🎁 Pack 8: si has usado hasta 4 sesiones, puedes <strong>transferir las restantes a otra persona</strong>.</span>
           </div>
           <ul class="svc-list">
-            <li><span class="li-ic">💎</span>Descubrir tu diferenciador real y genuino</li>
-            <li><span class="li-ic">📱</span>Posicionamiento auténtico en todas tus redes sociales</li>
-            <li><span class="li-ic">✍️</span>Estrategia de contenido que representa quién eres</li>
-            <li><span class="li-ic">🚀</span>De la invisibilidad a la presencia con propósito</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-gem"/></svg></span>Descubrir tu diferenciador real y genuino</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-smartphone"/></svg></span>Posicionamiento auténtico en todas tus redes sociales</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-pencil"/></svg></span>Estrategia de contenido que representa quién eres</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-rocket"/></svg></span>De la invisibilidad a la presencia con propósito</li>
           </ul>
         </div>
         <div class="svc-foot">
@@ -2853,7 +2884,7 @@
       <!-- Servicio 4: Team Building -->
       <div class="svc-card rv d4" id="svc-equipos">
         <div class="svc-head">
-          <div class="svc-icon">🤝</div>
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><use href="#ic-users"/></svg></div>
           <div class="svc-head-txt">
             <div class="svc-name">Charlas & Team Building</div>
             <div class="svc-sub">Para organizaciones y equipos</div>
@@ -2868,10 +2899,10 @@
           <p class="svc-desc">Charlas y talleres que van más allá de la motivación: conversaciones honestas que hacen que los equipos se entiendan de otra manera. En formato online o presencial, según tu organización.</p>
           <p class="svc-outcome"><strong>El objetivo:</strong> que tu equipo se entienda distinto y tome mejores decisiones — una experiencia honesta, no un taller de motivación más.</p>
           <ul class="svc-list">
-            <li><span class="li-ic">🔍</span>Diagnóstico del equipo y objetivos claros</li>
-            <li><span class="li-ic">🗣️</span>Comunicación y cohesión desde el propósito</li>
-            <li><span class="li-ic">⚖️</span>Toma de decisiones colectiva más efectiva</li>
-            <li><span class="li-ic">🧭</span>Plan de seguimiento para líderes</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-search"/></svg></span>Diagnóstico del equipo y objetivos claros</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-messages"/></svg></span>Comunicación y cohesión desde el propósito</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-scale"/></svg></span>Toma de decisiones colectiva más efectiva</li>
+            <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-compass"/></svg></span>Plan de seguimiento para líderes</li>
           </ul>
         </div>
         <div class="svc-foot">
