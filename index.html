@@ -1057,6 +1057,16 @@
       .perfil-inner { padding: 1.6rem 1.4rem 1.5rem; }
       .perfil-q { font-size: 1.05rem; }
     }
+    /* Perfiles compactos en móvil: ícono a la izquierda + texto a la derecha
+       (reduce el alto de cada card; mejor relación pantalla/valor) */
+    @media (max-width:640px) {
+      .perfil-inner { display: grid; grid-template-columns: auto 1fr; column-gap: .9rem; padding: 1.15rem 1.3rem 1.2rem; }
+      .perfil-card .area-ic { grid-column: 1; grid-row: 1 / span 3; align-self: start; width: 40px; height: 40px; margin-bottom: 0; }
+      .perfil-q { grid-column: 2; font-size: 1.02rem; line-height: 1.3; margin-bottom: .35rem; }
+      .perfil-d { grid-column: 2; font-size: .82rem; line-height: 1.5; margin-bottom: .7rem; }
+      .perfil-cta { grid-column: 2; }
+      .perfil-card .area-n { font-size: 3rem; top: .45rem; right: .8rem; }
+    }
 
     /* Navegación del carrusel: flechas + puntos */
     .areas-nav {
