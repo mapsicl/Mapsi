@@ -623,327 +623,7 @@
     .ruta-list li strong { color: var(--white); font-weight: 500; transition: color .3s; }
     .ab-icon { font-size: 1.05rem; flex-shrink: 0; margin-top: .05rem; }
 
-    /* ==============================================
-       RESPONSIVE COMPLETO
-       Breakpoints: 1024 tablet-h | 768 tablet-v | 600 móvil-h | 430 móvil-v | 380 pequeño
-    =============================================== */
-
-    /* ── TABLET HORIZONTAL (1024px) ── */
-    @media (max-width:1024px) {
-      .about-grid { gap: 4vw; }
-      .svc-grid { grid-template-columns: repeat(2,1fr); }
-      .logros-grid { grid-template-columns: repeat(3,1fr); }
-    }
-
-    /* ── TABLET VERTICAL (768px) ── */
-    @media (max-width:900px) {
-      /* Layout general */
-      .wrap { padding: 0 4.5vw; }
-      .sec { padding: clamp(2.8rem,6vw,5rem) 0; }
-      .sec-full { padding: clamp(2.8rem,6vw,5rem) 4.5vw; }
-      .h2 { font-size: clamp(1.8rem, 4.5vw, 3rem); }
-
-      /* Nav */
-      .nav-links, .nav-wa { display: none; }
-      .burger { display: flex; }
-      nav { padding: 1rem 4.5vw; padding-top: calc(1rem + env(safe-area-inset-top)); }
-
-      /* Hero */
-      .hero-inner { padding-top: 6.5rem; padding-bottom: 4rem; }
-      .hero-pre-sub { font-size: 1rem; }
-      .hero-sub { font-size: .95rem; max-width: 100%; }
-      .hero-stats { gap: 1.4rem; flex-wrap: wrap; padding-top: 1.5rem; margin-top: clamp(2rem,4vw,3.5rem); }
-      .h-stat-n { font-size: clamp(1.6rem,3vw,2.2rem); }
-
-      /* About */
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-card { height: auto; min-height: 0; aspect-ratio: 4/3; max-height: 400px; }
-      .about-badge { right: 1rem; }
-      .fc1, .fc2 { display: none; }
-      /* Conoce */
-      .conoce-header { padding-bottom: 1.2rem; }
-
-      /* Áreas */
-      .area-card { width: 75vw; }
-
-      /* Servicios */
-      .services-intro-grid { grid-template-columns: 1fr; gap: 1.8rem; }
-      .svc-grid { grid-template-columns: repeat(2,1fr); gap: 1rem; }
-
-      /* Logros */
-      .logros-grid { grid-template-columns: repeat(2,1fr); }
-
-      /* Proceso */
-      .proceso-steps { grid-template-columns: 1fr; gap: 2rem; }
-      .proc-road { display: none; }
-      .p-step { flex-direction: row; align-items: flex-start; text-align: left; gap: 1.4rem; padding: 0; }
-      .p-lantern-wrap { flex-shrink: 0; }
-      .p-card { max-width: 100%; }
-      .p-connector { display: none; }
-      .proceso-map-wrap { margin-top: 2.5rem; }
-
-      /* Testimonios */
-      .testi-card { min-width: calc(80% - .5rem); }
-
-      /* Redes */
-      .redes-grid { grid-template-columns: repeat(2,1fr); }
-
-      /* Footer */
-      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
-      .f-copy { text-align: left; padding-top: 1rem; }
-    }
-
-    /* ── MÓVIL HORIZONTAL / TABLET PEQUEÑA hasta 640px ── */
-    @media (max-width:640px) {
-      .wrap { padding: 0 22px; }
-      .sec { padding: clamp(2.2rem,5vw,3.5rem) 0; }
-
-      /* Nav */
-      .nav-logo { font-size: .95rem; }
-
-      /* Hero */
-      .hero-h1 { font-size: clamp(2.4rem, 11vw, 3.5rem); letter-spacing: -.01em; }
-      .hero-pre-sub { font-size: .92rem; }
-      .hero-sub { font-size: .88rem; margin-bottom: 2rem; }
-      .hero-actions { flex-direction: column; align-items: stretch; gap: .75rem; }
-      .btn-wa { justify-content: center; font-size: .8rem; padding: .9rem 1.2rem; }
-      .btn-outline { justify-content: center; text-align: center; }
-      .hero-stats { gap: 1rem; }
-      .h-stat-l { font-size: .65rem; }
-      .scroll-cue { display: none; }
-
-      /* About */
-      .about-card { height: auto; min-height: 0; aspect-ratio: 3/2; max-height: 280px; }
-      .ruta-list li { font-size: .8rem; padding: .55rem .75rem; }
-
-
-      /* Áreas */
-      .area-card { width: 82vw; }
-      .drag-hint { font-size: .65rem; }
-
-      /* Servicios */
-      .svc-grid { gap: 1rem; }
-      .svc-name { font-size: 1.2rem; }
-
-      /* Logros */
-      .logros-grid { grid-template-columns: repeat(2,1fr); }
-      .logro { padding: 1.8rem 1rem; }
-      .logro-n { font-size: clamp(1.8rem,6vw,2.4rem); }
-
-      /* Proceso */
-      .p-num { width: 48px; height: 48px; font-size: 1.1rem; }
-      .p-card { padding: 1.2rem 1rem; }
-      .p-title { font-size: .72rem; }
-      .p-desc { font-size: .8rem; }
-
-      /* Testimonios */
-      .testi-card { min-width: 100%; padding: 1.5rem 1.3rem; }
-      .testi-text { font-size: .9rem; }
-
-      /* Redes */
-      .redes-grid { grid-template-columns: 1fr; }
-
-      /* CTA */
-      .cta-h { font-size: clamp(1.5rem, 6.5vw, 2.2rem); }
-      .cta-sub { font-size: .88rem; }
-
-      /* Footer */
-      .f-links { gap: 1rem; }
-      .f-links a { font-size: .7rem; }
-    }
-
-    /* ── MÓVIL VERTICAL — todos los iPhones modernos (hasta 480px) ── */
-    /* Cubre: iPhone SE(375), 14(390), 15/16(393), Pro Max(430), 17 Pro Max(440+) */
-    @media (max-width:480px) {
-      /* Layout base — 18px fijo: más ancho útil para las cards en móvil */
-      .wrap { padding: 0 18px; }
-      .sec { padding: 2.4rem 0; }
-      .sec-full { padding: 2.4rem 18px; }
-
-      /* Tipografía */
-      .h2 { font-size: clamp(1.55rem, 7vw, 2rem); margin-bottom: .9rem; line-height: 1.2; }
-      .label { font-size: .6rem; letter-spacing: .18em; margin-bottom: .8rem; }
-      .body-text { font-size: .86rem; line-height: 1.75; }
-
-      /* Hero */
-      .hero-video { object-position: center center; } /* Mapa animado de fondo: centrado */
-      .hero-inner { padding: calc(4.5rem + env(safe-area-inset-top)) 18px 2.5rem; }
-      .hero-h1 { font-size: clamp(1.9rem, 11.5vw, 2.6rem); line-height: 1.05; }
-      .hero-pre-sub { font-size: .84rem; margin-top: .8rem; }
-      .hero-sub { font-size: .86rem; margin-top: .5rem; margin-bottom: 1.6rem; }
-      .hero-badge { font-size: .65rem; padding: .4rem .8rem .4rem .5rem; }
-      /* Stats en 2×2 grid en lugar de fila */
-      .hero-stats {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: .8rem 1.2rem;
-        margin-top: 1.8rem; padding-top: 1.2rem;
-      }
-      .h-stat-n { font-size: clamp(1.4rem, 6.5vw, 1.8rem); }
-      .h-stat-l { font-size: .6rem; }
-
-      /* About */
-      .about-card { aspect-ratio: unset; height: 240px; min-height: 0; border-radius: 10px; }
-      .about-blockquote { font-size: .95rem; padding-left: .9rem; margin-bottom: 1.2rem; }
-      .mapa-max { padding: .8rem; margin-bottom: 1.2rem; }
-      .mapa-max::after { left: calc(.8rem + 16px); }
-      .ruta-list { padding-left: 2rem; }
-      .ruta-list li { font-size: .78rem; gap: .6rem; padding: .5rem .7rem; border-radius: 6px; }
-      .ruta-title { font-size: .95rem; }
-      .ruta-sub { font-size: .62rem; }
-      /* Conoce a Max */
-      .conoce-header { padding: 0 18px 1rem; gap: .8rem; }
-      .conoce-hint { display: none; }
-      .conoce-track { gap: .85rem; padding: .4rem 0 1.5rem; }
-      .cc { width: 72vw; height: 58vw; min-height: 220px; border-radius: 12px; }
-      .conoce-track-outer::before,
-      .conoce-track-outer::after { width: 40px; }
-
-      /* Áreas */
-      .area-card { width: 84vw; border-radius: 12px; }
-      .area-card-inner { padding: 1.5rem 1.4rem 1.6rem; }
-      .area-n { font-size: 4rem; top: .6rem; right: .9rem; }
-      .area-ic { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 9px; margin-bottom: 1rem; }
-      .area-t { font-size: .72rem; margin-bottom: .65rem; }
-      .area-d { font-size: .82rem; line-height: 1.7; }
-
-      /* Servicios — respira del borde */
-      .svc-grid { gap: .9rem; }
-      .svc-card { border-radius: 14px; }
-      .svc-head { padding: 1.2rem 2.8rem 1.2rem 1.1rem; gap: .9rem; }
-      .svc-icon { width: 44px; height: 44px; font-size: 1.5rem; border-radius: 10px; }
-      .svc-name { font-size: 1.12rem; }
-      .svc-sub { font-size: .64rem; }
-      .svc-mode { font-size: .6rem; margin-top: .45rem; }
-      .svc-head-price { display: none; }
-      .svc-head::after { right: 1.2rem; }
-      .svc-body { padding: 1.1rem 1.3rem; }
-      .svc-desc { font-size: .88rem; }
-      .svc-list li { font-size: .84rem; }
-      .price-tier { padding: .65rem .8rem; }
-      .pt-name { font-size: .82rem; }
-      .pt-detail { font-size: .7rem; }
-      .pt-price { font-size: .95rem; }
-      .svc-foot { padding: 1rem 1.3rem 1.3rem; }
-      .btn-svc { font-size: .68rem; padding: .7rem .9rem; border-radius: 8px; }
-      .svc-qualify-btn { padding: .8rem 1.3rem; font-size: .66rem; }
-      .svc-qualify-inner { padding: 1rem 1.3rem 1.3rem; }
-      .svc-q-list li { font-size: .84rem; }
-      .pay-strip { flex-direction: column; gap: .55rem; align-items: flex-start; }
-      .process-note { padding: 1rem 1.2rem; font-size: .82rem; border-radius: 8px; }
-
-      /* Logros */
-      .logros-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
-      .logro { padding: 1.5rem .9rem; }
-      .logro-ic { font-size: 1.6rem; margin-bottom: .6rem; }
-      .logro-n { font-size: clamp(1.6rem, 6vw, 2rem); }
-      .logro-t { font-size: .68rem; }
-      .logro-d { font-size: .7rem; }
-
-      /* Proceso */
-      .proceso-map-wrap { margin-top: 2rem; }
-      .p-step { gap: 1rem; padding: 0; }
-      .p-lantern-wrap { width: 44px; height: 44px; flex-shrink: 0; }
-      .p-num { width: 44px; height: 44px; font-size: 1rem; }
-      .p-bloom { width: 44px; height: 44px; }
-      .p-card { padding: 1.1rem 1.1rem; border-radius: 10px; }
-      .p-title { font-size: .7rem; margin-bottom: .6rem; }
-      .p-desc { font-size: .8rem; }
-      .p-tag { font-size: .65rem; }
-
-      /* Testimonios */
-      .testi-track-outer { overflow-x: hidden; } /* Fix: evita desbordamiento horizontal del carrusel */
-      .testi-card { min-width: calc(100vw - 48px); max-width: 100%; padding: 1.4rem 1.2rem; border-radius: 10px; overflow: hidden; box-sizing: border-box; } /* Fix: texto no se desborda a la derecha */
-      .testi-text { font-size: .88rem; line-height: 1.65; overflow-wrap: break-word; word-break: break-word; }
-      .stars { font-size: .72rem; margin-bottom: .8rem; }
-      .testi-name { font-size: .78rem; }
-      .testi-role { font-size: .7rem; }
-      .carousel-controls { margin-top: 1.4rem; }
-
-      /* Redes */
-      #redes .body-text { padding: 0 20px; overflow-wrap: break-word; } /* Fix: párrafo no llega al borde derecho */
-      #redes { overflow-x: hidden; }
-      .red-card { padding: 1.6rem 1.4rem; border-radius: 10px; }
-      .red-icon { width: 44px; height: 44px; border-radius: 10px; }
-      .red-name { font-size: .85rem; }
-      .red-desc { font-size: .76rem; }
-
-      /* CTA */
-      .cta-h { font-size: clamp(1.4rem, 6.5vw, 2rem); line-height: 1.25; }
-      .cta-sub { font-size: .85rem; margin-bottom: 2rem; }
-      .cta-note { font-size: .72rem; }
-
-      /* Footer */
-      .footer-inner { gap: 1.1rem; padding-bottom: env(safe-area-inset-bottom); }
-      .f-logo { font-size: .95rem; }
-      .f-links { gap: .9rem; }
-      .f-links a { font-size: .68rem; }
-      .f-socials { gap: .6rem; }
-      .f-copy { font-size: .65rem; }
-
-      /* Floating WA */
-      #wa-float {
-        width: 48px; height: 48px;
-        bottom: calc(1.2rem + env(safe-area-inset-bottom));
-        right: calc(1.2rem + env(safe-area-inset-right));
-      }
-      #wa-float svg { width: 22px; height: 22px; }
-    }
-
-    /* ── MÓVIL PEQUEÑO (iPhone SE / mini — 390px y menor) ── */
-    @media (max-width:390px) {
-      .wrap { padding: 0 16px; }
-      .hero-inner { padding-left: 16px; padding-right: 16px; }
-      .hero-h1 { font-size: clamp(1.65rem, 11vw, 2.1rem); }
-      .cc { width: 78vw; height: 62vw; }
-      .area-card { width: 86vw; }
-      .svc-name { font-size: 1rem; }
-      .logros-grid { grid-template-columns: 1fr; }
-      .logro { padding: 1.3rem 1rem; }
-    }
-
-    /* ── RENDIMIENTO MÓVIL/TABLET: sin backdrop-blur (costoso en GPU), velo más oscuro ── */
-    @media (max-width:900px) {
-      .hero-blur-overlay { backdrop-filter: none; -webkit-backdrop-filter: none; }
-      .hero-veil {
-        background: linear-gradient(
-          to right,
-          rgba(8,8,8,.82) 0%,
-          rgba(8,8,8,.60) 45%,
-          rgba(8,8,8,.25) 75%,
-          rgba(8,8,8,.15) 100%
-        );
-      }
-    }
-
-    /* ── ACCESIBILIDAD: usuarios con movimiento reducido ── */
-    @media (prefers-reduced-motion: reduce) {
-      .mesh-blob, .marquee-track, .conoce-track,
-      .hero-badge-dot, .scroll-line, .fact-card { animation: none !important; }
-      html { scroll-behavior: auto; }
-      .rv, .rv-z, .rv-l, .rv-r { opacity: 1; transform: none; transition: none; }
-      .ruta-list li { opacity: 1; transform: none; transition: none; }
-      .ruta.open .ruta-dot::after { animation: none !important; }
-      .ruta-list li::after,
-      .area-card-inner::before { animation: none !important; }
-      .svc-card .svc-icon, .svc-card .svc-name, .svc-card .svc-sub,
-      .svc-card .svc-list li { opacity: 1; transform: none; transition: none; }
-      .svc-card.sv-open .svc-body, .svc-card.sv-open .svc-foot { animation: none !important; }
-      /* Splash sin movimiento: fundido en lugar de telón */
-      #splash.hide { animation: none; opacity: 0; transition: opacity .4s; pointer-events: none; visibility: hidden; }
-    }
-
-    /* ── LANDSCAPE MÓVIL ── */
-    @media (max-height:500px) and (orientation:landscape) {
-      #hero { min-height: auto; }
-      .hero-inner { padding-top: 5rem; padding-bottom: 2rem; }
-      .hero-h1 { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
-      .hero-stats { margin-top: 1.2rem; padding-top: 1rem; }
-      .scroll-cue { display: none; }
-      .sec { padding: 1.8rem 0; }
-      /* En landscape los stats vuelven a fila */
-      .hero-stats { display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; }
-    }
+    /* Media queries responsive: movidas al final del <style> para que cascaden DESPUÉS de las reglas base (corrige overrides móviles que quedaban pisados). */
 
     /* =============================================
        CONOCE A MAX — horizontal scroll carousel
@@ -2206,6 +1886,333 @@
       font-size: .7rem; color: var(--grey2);
       padding-top: 1.5rem; border-top: 1px solid var(--border2); margin-top: 1rem;
     }
+
+    /* =============================================
+       RESPONSIVE COMPLETO
+       Reubicado al final del <style> a propósito: estas media queries deben
+       cascadear DESPUÉS de todas las reglas base de componentes, o quedan pisadas.
+       Breakpoints reales: 1024 tablet-h | 900 tablet-v | 640 móvil-h | 480 móvil-v | 390 pequeño
+    ============================================= */
+
+    /* ── TABLET HORIZONTAL (1024px) ── */
+    @media (max-width:1024px) {
+      .about-grid { gap: 4vw; }
+      .svc-grid { grid-template-columns: repeat(2,1fr); }
+      .logros-grid { grid-template-columns: repeat(3,1fr); }
+    }
+
+    /* ── TABLET VERTICAL (768px) ── */
+    @media (max-width:900px) {
+      /* Layout general */
+      .wrap { padding: 0 4.5vw; }
+      .sec { padding: clamp(2.8rem,6vw,5rem) 0; }
+      .sec-full { padding: clamp(2.8rem,6vw,5rem) 4.5vw; }
+      .h2 { font-size: clamp(1.8rem, 4.5vw, 3rem); }
+
+      /* Nav */
+      .nav-links, .nav-wa { display: none; }
+      .burger { display: flex; }
+      nav { padding: 1rem 4.5vw; padding-top: calc(1rem + env(safe-area-inset-top)); }
+
+      /* Hero */
+      .hero-inner { padding-top: 6.5rem; padding-bottom: 4rem; }
+      .hero-pre-sub { font-size: 1rem; }
+      .hero-sub { font-size: .95rem; max-width: 100%; }
+      .hero-stats { gap: 1.4rem; flex-wrap: wrap; padding-top: 1.5rem; margin-top: clamp(2rem,4vw,3.5rem); }
+      .h-stat-n { font-size: clamp(1.6rem,3vw,2.2rem); }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-card { height: auto; min-height: 0; aspect-ratio: 4/3; max-height: 400px; }
+      .about-badge { right: 1rem; }
+      .fc1, .fc2 { display: none; }
+      /* Conoce */
+      .conoce-header { padding-bottom: 1.2rem; }
+
+      /* Áreas */
+      .area-card { width: 75vw; }
+
+      /* Servicios */
+      .services-intro-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+      .svc-grid { grid-template-columns: repeat(2,1fr); gap: 1rem; }
+
+      /* Logros */
+      .logros-grid { grid-template-columns: repeat(2,1fr); }
+
+      /* Proceso */
+      .proceso-steps { grid-template-columns: 1fr; gap: 2rem; }
+      .proc-road { display: none; }
+      .p-step { flex-direction: row; align-items: flex-start; text-align: left; gap: 1.4rem; padding: 0; }
+      .p-lantern-wrap { flex-shrink: 0; }
+      .p-card { max-width: 100%; }
+      .p-connector { display: none; }
+      .proceso-map-wrap { margin-top: 2.5rem; }
+
+      /* Testimonios */
+      .testi-card { min-width: calc(80% - .5rem); }
+
+      /* Redes */
+      .redes-grid { grid-template-columns: repeat(2,1fr); }
+
+      /* Footer */
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+      .f-copy { text-align: left; padding-top: 1rem; }
+    }
+
+    /* ── MÓVIL HORIZONTAL / TABLET PEQUEÑA hasta 640px ── */
+    @media (max-width:640px) {
+      .wrap { padding: 0 22px; }
+      .sec { padding: clamp(2.2rem,5vw,3.5rem) 0; }
+
+      /* Nav */
+      .nav-logo { font-size: .95rem; }
+
+      /* Hero */
+      .hero-h1 { font-size: clamp(2.4rem, 11vw, 3.5rem); letter-spacing: -.01em; }
+      .hero-pre-sub { font-size: .92rem; }
+      .hero-sub { font-size: .88rem; margin-bottom: 2rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: .75rem; }
+      .btn-wa { justify-content: center; font-size: .8rem; padding: .9rem 1.2rem; }
+      .btn-outline { justify-content: center; text-align: center; }
+      .hero-stats { gap: 1rem; }
+      .h-stat-l { font-size: .65rem; }
+      .scroll-cue { display: none; }
+
+      /* About */
+      .about-card { height: auto; min-height: 0; aspect-ratio: 3/2; max-height: 280px; }
+      .ruta-list li { font-size: .8rem; padding: .55rem .75rem; }
+
+
+      /* Áreas */
+      .area-card { width: 82vw; }
+      .drag-hint { font-size: .65rem; }
+
+      /* Servicios */
+      .svc-grid { gap: 1rem; }
+      .svc-name { font-size: 1.2rem; }
+
+      /* Logros */
+      .logros-grid { grid-template-columns: repeat(2,1fr); }
+      .logro { padding: 1.8rem 1rem; }
+      .logro-n { font-size: clamp(1.8rem,6vw,2.4rem); }
+
+      /* Proceso */
+      .p-num { width: 48px; height: 48px; font-size: 1.1rem; }
+      .p-card { padding: 1.2rem 1rem; }
+      .p-title { font-size: .72rem; }
+      .p-desc { font-size: .8rem; }
+
+      /* Testimonios */
+      .testi-card { min-width: 100%; padding: 1.5rem 1.3rem; }
+      .testi-text { font-size: .9rem; }
+
+      /* Redes */
+      .redes-grid { grid-template-columns: 1fr; }
+
+      /* CTA */
+      .cta-h { font-size: clamp(1.5rem, 6.5vw, 2.2rem); }
+      .cta-sub { font-size: .88rem; }
+
+      /* Footer */
+      .f-links { gap: 1rem; }
+      .f-links a { font-size: .7rem; }
+    }
+
+    /* ── MÓVIL VERTICAL — todos los iPhones modernos (hasta 480px) ── */
+    /* Cubre: iPhone SE(375), 14(390), 15/16(393), Pro Max(430), 17 Pro Max(440+) */
+    @media (max-width:480px) {
+      /* Layout base — 18px fijo: más ancho útil para las cards en móvil */
+      .wrap { padding: 0 18px; }
+      .sec { padding: 2.4rem 0; }
+      .sec-full { padding: 2.4rem 18px; }
+
+      /* Tipografía */
+      .h2 { font-size: clamp(1.55rem, 7vw, 2rem); margin-bottom: .9rem; line-height: 1.2; }
+      .label { font-size: .6rem; letter-spacing: .18em; margin-bottom: .8rem; }
+      .body-text { font-size: .86rem; line-height: 1.75; }
+
+      /* Hero */
+      .hero-video { object-position: center center; } /* Mapa animado de fondo: centrado */
+      .hero-inner { padding: calc(4.5rem + env(safe-area-inset-top)) 18px 2.5rem; }
+      .hero-h1 { font-size: clamp(1.9rem, 11.5vw, 2.6rem); line-height: 1.05; }
+      .hero-pre-sub { font-size: .84rem; margin-top: .8rem; }
+      .hero-sub { font-size: .86rem; margin-top: .5rem; margin-bottom: 1.6rem; }
+      .hero-badge { font-size: .65rem; padding: .4rem .8rem .4rem .5rem; }
+      /* Stats en 2×2 grid en lugar de fila */
+      .hero-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .8rem 1.2rem;
+        margin-top: 1.8rem; padding-top: 1.2rem;
+      }
+      .h-stat-n { font-size: clamp(1.4rem, 6.5vw, 1.8rem); }
+      .h-stat-l { font-size: .6rem; }
+
+      /* About */
+      .about-card { aspect-ratio: unset; height: 240px; min-height: 0; border-radius: 10px; }
+      .about-blockquote { font-size: .95rem; padding-left: .9rem; margin-bottom: 1.2rem; }
+      .mapa-max { padding: .8rem; margin-bottom: 1.2rem; }
+      .mapa-max::after { left: calc(.8rem + 16px); }
+      .ruta-list { padding-left: 2rem; }
+      .ruta-list li { font-size: .78rem; gap: .6rem; padding: .5rem .7rem; border-radius: 6px; }
+      .ruta-title { font-size: .95rem; }
+      .ruta-sub { font-size: .62rem; }
+      /* Conoce a Max */
+      .conoce-header { padding: 0 18px 1rem; gap: .8rem; }
+      .conoce-hint { display: none; }
+      .conoce-track { gap: .85rem; padding: .4rem 0 1.5rem; }
+      .cc { width: 72vw; height: 58vw; min-height: 220px; border-radius: 12px; }
+      .conoce-track-outer::before,
+      .conoce-track-outer::after { width: 40px; }
+
+      /* Áreas */
+      .area-card { width: 84vw; border-radius: 12px; }
+      .area-card-inner { padding: 1.5rem 1.4rem 1.6rem; }
+      .area-n { font-size: 4rem; top: .6rem; right: .9rem; }
+      .area-ic { width: 38px; height: 38px; font-size: 1.1rem; border-radius: 9px; margin-bottom: 1rem; }
+      .area-t { font-size: .72rem; margin-bottom: .65rem; }
+      .area-d { font-size: .82rem; line-height: 1.7; }
+
+      /* Servicios — respira del borde */
+      .svc-grid { gap: .9rem; }
+      .svc-card { border-radius: 14px; }
+      .svc-head { padding: 1.2rem 2.8rem 1.2rem 1.1rem; gap: .9rem; }
+      .svc-icon { width: 44px; height: 44px; font-size: 1.5rem; border-radius: 10px; }
+      .svc-name { font-size: 1.12rem; }
+      .svc-sub { font-size: .64rem; }
+      .svc-mode { font-size: .6rem; margin-top: .45rem; }
+      .svc-head-price { display: none; }
+      .svc-head::after { right: 1.2rem; }
+      .svc-body { padding: 1.1rem 1.3rem; }
+      .svc-desc { font-size: .88rem; }
+      .svc-list li { font-size: .84rem; }
+      .price-tier { padding: .65rem .8rem; }
+      .pt-name { font-size: .82rem; }
+      .pt-detail { font-size: .7rem; }
+      .pt-price { font-size: .95rem; }
+      .svc-foot { padding: 1rem 1.3rem 1.3rem; }
+      .btn-svc { font-size: .68rem; padding: .7rem .9rem; border-radius: 8px; }
+      .svc-qualify-btn { padding: .8rem 1.3rem; font-size: .66rem; }
+      .svc-qualify-inner { padding: 1rem 1.3rem 1.3rem; }
+      .svc-q-list li { font-size: .84rem; }
+      .pay-strip { flex-direction: column; gap: .55rem; align-items: flex-start; }
+      .process-note { padding: 1rem 1.2rem; font-size: .82rem; border-radius: 8px; }
+
+      /* Logros */
+      .logros-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
+      .logro { padding: 1.5rem .9rem; }
+      .logro-ic { font-size: 1.6rem; margin-bottom: .6rem; }
+      .logro-n { font-size: clamp(1.6rem, 6vw, 2rem); }
+      .logro-t { font-size: .68rem; }
+      .logro-d { font-size: .7rem; }
+
+      /* Proceso */
+      .proceso-map-wrap { margin-top: 2rem; }
+      .p-step { gap: 1rem; padding: 0; }
+      .p-lantern-wrap { width: 44px; height: 44px; flex-shrink: 0; }
+      .p-num { width: 44px; height: 44px; font-size: 1rem; }
+      .p-bloom { width: 44px; height: 44px; }
+      .p-card { padding: 1.1rem 1.1rem; border-radius: 10px; }
+      .p-title { font-size: .7rem; margin-bottom: .6rem; }
+      .p-desc { font-size: .8rem; }
+      .p-tag { font-size: .65rem; }
+
+      /* Testimonios */
+      .testi-track-outer { overflow-x: hidden; } /* Fix: evita desbordamiento horizontal del carrusel */
+      .testi-card { min-width: calc(100vw - 48px); max-width: 100%; padding: 1.4rem 1.2rem; border-radius: 10px; overflow: hidden; box-sizing: border-box; } /* Fix: texto no se desborda a la derecha */
+      .testi-text { font-size: .88rem; line-height: 1.65; overflow-wrap: break-word; word-break: break-word; }
+      .stars { font-size: .72rem; margin-bottom: .8rem; }
+      .testi-name { font-size: .78rem; }
+      .testi-role { font-size: .7rem; }
+      .carousel-controls { margin-top: 1.4rem; }
+
+      /* Redes */
+      #redes .body-text { padding: 0 20px; overflow-wrap: break-word; } /* Fix: párrafo no llega al borde derecho */
+      #redes { overflow-x: hidden; }
+      .red-card { padding: 1.6rem 1.4rem; border-radius: 10px; }
+      .red-icon { width: 44px; height: 44px; border-radius: 10px; }
+      .red-name { font-size: .85rem; }
+      .red-desc { font-size: .76rem; }
+
+      /* CTA */
+      .cta-h { font-size: clamp(1.4rem, 6.5vw, 2rem); line-height: 1.25; }
+      .cta-sub { font-size: .85rem; margin-bottom: 2rem; }
+      .cta-note { font-size: .72rem; }
+
+      /* Footer */
+      .footer-inner { gap: 1.1rem; padding-bottom: env(safe-area-inset-bottom); }
+      .f-logo { font-size: .95rem; }
+      .f-links { gap: .9rem; }
+      .f-links a { font-size: .68rem; }
+      .f-socials { gap: .6rem; }
+      .f-copy { font-size: .65rem; }
+
+      /* Floating WA */
+      #wa-float {
+        width: 48px; height: 48px;
+        bottom: calc(1.2rem + env(safe-area-inset-bottom));
+        right: calc(1.2rem + env(safe-area-inset-right));
+      }
+      #wa-float svg { width: 22px; height: 22px; }
+    }
+
+    /* ── MÓVIL PEQUEÑO (iPhone SE / mini — 390px y menor) ── */
+    @media (max-width:390px) {
+      /* Mantener 18px de aire lateral (igual que ≤480): 16px saturaba el borde en pantallas chicas */
+      .wrap { padding: 0 18px; }
+      .hero-inner { padding-left: 18px; padding-right: 18px; }
+      .hero-h1 { font-size: clamp(1.65rem, 11vw, 2.1rem); }
+      .cc { width: 78vw; height: 62vw; }
+      .area-card { width: 86vw; }
+      .svc-name { font-size: 1rem; }
+      .logros-grid { grid-template-columns: 1fr; }
+      .logro { padding: 1.3rem 1rem; }
+    }
+
+    /* ── RENDIMIENTO MÓVIL/TABLET: sin backdrop-blur (costoso en GPU), velo más oscuro ── */
+    @media (max-width:900px) {
+      .hero-blur-overlay { backdrop-filter: none; -webkit-backdrop-filter: none; }
+      .hero-veil {
+        background: linear-gradient(
+          to right,
+          rgba(8,8,8,.82) 0%,
+          rgba(8,8,8,.60) 45%,
+          rgba(8,8,8,.25) 75%,
+          rgba(8,8,8,.15) 100%
+        );
+      }
+    }
+
+    /* ── ACCESIBILIDAD: usuarios con movimiento reducido ── */
+    @media (prefers-reduced-motion: reduce) {
+      .mesh-blob, .marquee-track, .conoce-track,
+      .hero-badge-dot, .scroll-line, .fact-card { animation: none !important; }
+      html { scroll-behavior: auto; }
+      .rv, .rv-z, .rv-l, .rv-r { opacity: 1; transform: none; transition: none; }
+      .ruta-list li { opacity: 1; transform: none; transition: none; }
+      .ruta.open .ruta-dot::after { animation: none !important; }
+      .ruta-list li::after,
+      .area-card-inner::before { animation: none !important; }
+      .svc-card .svc-icon, .svc-card .svc-name, .svc-card .svc-sub,
+      .svc-card .svc-list li { opacity: 1; transform: none; transition: none; }
+      .svc-card.sv-open .svc-body, .svc-card.sv-open .svc-foot { animation: none !important; }
+      /* Splash sin movimiento: fundido en lugar de telón */
+      #splash.hide { animation: none; opacity: 0; transition: opacity .4s; pointer-events: none; visibility: hidden; }
+    }
+
+    /* ── LANDSCAPE MÓVIL ── */
+    @media (max-height:500px) and (orientation:landscape) {
+      #hero { min-height: auto; }
+      .hero-inner { padding-top: 5rem; padding-bottom: 2rem; }
+      .hero-h1 { font-size: clamp(1.6rem, 5.5vw, 2.4rem); }
+      .hero-stats { margin-top: 1.2rem; padding-top: 1rem; }
+      .scroll-cue { display: none; }
+      .sec { padding: 1.8rem 0; }
+      /* En landscape los stats vuelven a fila */
+      .hero-stats { display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; }
+    }
+
+
   </style>
 </head>
 <body>
@@ -2410,6 +2417,8 @@
           <!-- FOTO PRINCIPAL -->
           <img
             src="img/Max.JPG"
+            srcset="img/opt/Max-640.jpg 640w, img/Max.JPG 1200w"
+            sizes="(max-width:900px) 320px, 50vw"
             alt="Maximiliano Jiménez — Psicólogo y Coach"
             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;"
             onerror="this.style.display='none'"
@@ -2506,7 +2515,7 @@
 
       <!-- 1. Senderismo — sobre las nubes -->
       <div class="cc" data-tag="Sobre las nubes" data-title="La montaña me centra" data-desc="El senderismo es mi regulación. Silencio, altura y perspectiva.">
-        <img loading="lazy" decoding="async" src="img/senderismo.JPG" alt="Maximiliano sobre las nubes en la montaña" />
+        <img loading="lazy" decoding="async" src="img/senderismo.JPG" srcset="img/opt/senderismo-640.jpg 640w, img/senderismo.JPG 1066w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano sobre las nubes en la montaña" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Senderismo · Naturaleza</span>
@@ -2518,7 +2527,7 @@
 
       <!-- 2. Max perfil -->
       <div class="cc" data-tag="Marca personal" data-title="Maximiliano Jiménez — @mapsicl" data-desc="Psicólogo, Coach PNL y Magíster en Liderazgo. La Serena, Chile.">
-        <img loading="lazy" decoding="async" src="img/Max.JPG" alt="Maximiliano Jiménez" style="object-position:center 20%;" />
+        <img loading="lazy" decoding="async" src="img/Max.JPG" srcset="img/opt/Max-640.jpg 640w, img/Max.JPG 1200w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano Jiménez" style="object-position:center 20%;" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">@mapsicl</span>
@@ -2530,7 +2539,7 @@
 
       <!-- 3. Charla en el escenario -->
       <div class="cc" data-tag="Coquimbo Adventure 2023" data-title="Caminatas con sentido" data-desc="1ª Cumbre Internacional de Turismo Aventura y Naturaleza en el Norte Chileno. Invitado como conferencista.">
-        <img loading="lazy" decoding="async" src="img/charlistaturismo.JPG" alt="Maximiliano dando charla en Coquimbo Adventure 2023" style="object-position:center 30%;" />
+        <img loading="lazy" decoding="async" src="img/charlistaturismo.JPG" srcset="img/opt/charlistaturismo-640.jpg 640w, img/charlistaturismo.JPG 1280w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano dando charla en Coquimbo Adventure 2023" style="object-position:center 30%;" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Conferencista · Turismo aventura</span>
@@ -2542,7 +2551,7 @@
 
       <!-- 4. Gym -->
       <div class="cc" data-tag="14 años de disciplina" data-title="El gym como estilo de vida" data-desc="14 años entrenando. 5 años como embajador de marca deportiva. La disciplina física es la base de todo lo demás.">
-        <img loading="lazy" decoding="async" src="img/Gym.jpg" alt="Maximiliano en el gimnasio" />
+        <img loading="lazy" decoding="async" src="img/Gym.jpg" srcset="img/opt/Gym-640.jpg 640w, img/Gym.jpg 911w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano en el gimnasio" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Disciplina · Constancia</span>
@@ -2562,7 +2571,7 @@
 
       <!-- 6. David Ávila -->
       <div class="cc" data-tag="Mentor & tallerista" data-title="Con David Ávila" data-desc="4 programas continuos de 'Potencia Tu Marca Personal'. 6 semanas cada uno. Porque yo también soy cliente de lo que enseño.">
-        <img loading="lazy" decoding="async" src="img/Davidavila.JPG" alt="Maximiliano con David Ávila" />
+        <img loading="lazy" decoding="async" src="img/Davidavila.JPG" srcset="img/opt/Davidavila-640.jpg 640w, img/Davidavila.JPG 1600w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano con David Ávila" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Formación continua</span>
@@ -2574,7 +2583,7 @@
 
       <!-- 7. Vida sana -->
       <div class="cc" data-tag="Alimentación consciente" data-title="Elegir bien lo que le doy a mi cuerpo" data-desc="Con un riñón fui más consciente de todo. La salud no es un destino, es una decisión diaria.">
-        <img loading="lazy" decoding="async" src="img/Vidasana.JPG" alt="Maximiliano con alimentación consciente" style="object-position:center 15%;" />
+        <img loading="lazy" decoding="async" src="img/Vidasana.JPG" srcset="img/opt/Vidasana-640.jpg 640w, img/Vidasana.JPG 1200w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano con alimentación consciente" style="object-position:center 15%;" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Vida sana · Bienestar</span>
@@ -2586,7 +2595,7 @@
 
       <!-- 8. USerena -->
       <div class="cc" data-tag="Universidad de La Serena" data-title="Coordinador de la Red de Titulados" data-desc="Única universidad estatal de la Región de Coquimbo, Chile. Oficina Alumni — Red de titulados.">
-        <img loading="lazy" decoding="async" src="img/Userena.JPEG" alt="Maximiliano en Universidad de La Serena" />
+        <img loading="lazy" decoding="async" src="img/Userena.JPEG" srcset="img/opt/Userena-640.jpg 640w, img/Userena.JPEG 1600w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano en Universidad de La Serena" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">USerena · Alumni</span>
@@ -2598,7 +2607,7 @@
 
       <!-- 9. Lectura -->
       <div class="cc" data-tag="Sanderson + café" data-title="Siempre hay un libro abierto" data-desc="Hoy me inclino por Brandon Sanderson. Un café de por medio y una vista al mar. El mejor plan.">
-        <img loading="lazy" decoding="async" src="img/lectura.JPG" alt="Maximiliano leyendo en la playa" style="object-position:center 40%;" />
+        <img loading="lazy" decoding="async" src="img/lectura.JPG" srcset="img/opt/lectura-640.jpg 640w, img/lectura.JPG 900w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano leyendo en la playa" style="object-position:center 40%;" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Lectura · Café · Playa</span>
@@ -2610,7 +2619,7 @@
 
       <!-- 10. Retiro silencio -->
       <div class="cc" data-tag="7 días en silencio" data-title="Retiro en la cordillera" data-desc="Sin celular, sin redes, sin ruido. Reconquistando mi mente, mi cuerpo y mi alma. La mejor decisión de mi vida.">
-        <img loading="lazy" decoding="async" src="img/retiro.JPG" alt="Retiro de silencio en la cordillera" />
+        <img loading="lazy" decoding="async" src="img/retiro.JPG" srcset="img/opt/retiro-640.jpg 640w, img/retiro.JPG 1200w" sizes="(max-width:900px) 80vw, 310px" alt="Retiro de silencio en la cordillera" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
           <span class="cc-tag">Retiro de silencio</span>
@@ -3001,7 +3010,7 @@
     <p class="colab-intro rv d3">Como marca personal <strong>@mapsicl</strong> he colaborado con:</p>
     <div class="colab-grid">
       <div class="colab-card rv-z d1">
-        <div class="colab-logo"><img loading="lazy" decoding="async" class="lg-contrast" src="img/Logodescubreelqui.png" alt="Descubre Elqui" /></div>
+        <div class="colab-logo"><img loading="lazy" decoding="async" class="lg-contrast" src="img/opt/Logodescubreelqui-sm.png" alt="Descubre Elqui" /></div>
         <div class="colab-name">Descubre Elqui</div>
         <div class="colab-role">Ex Embajador</div>
       </div>
@@ -3016,7 +3025,7 @@
         <div class="colab-role">Colaboraciones de contenido</div>
       </div>
       <div class="colab-card rv-z d4">
-        <div class="colab-logo"><img loading="lazy" decoding="async" class="lg-invert" src="img/LogoCoquimboadventure.png" alt="Coquimbo Adventure" /></div>
+        <div class="colab-logo"><img loading="lazy" decoding="async" class="lg-invert" src="img/opt/LogoCoquimboadventure-sm.png" alt="Coquimbo Adventure" /></div>
         <div class="colab-name">Coquimbo Adventure</div>
         <div class="colab-role">Relator · Charla "Turismo y Bienestar"</div>
       </div>
