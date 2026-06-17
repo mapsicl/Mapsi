@@ -2048,8 +2048,9 @@
       .h-stat-n { font-size: clamp(1.4rem, 6.5vw, 1.8rem); }
       .h-stat-l { font-size: .6rem; }
 
-      /* About */
-      .about-card { aspect-ratio: unset; height: 240px; min-height: 0; border-radius: 10px; }
+      /* About — retrato vertical en móvil (la franja de 240px cortaba el rostro) */
+      .about-card { aspect-ratio: 4/5; height: auto; max-height: none; min-height: 0; border-radius: 10px; }
+      .about-card img { object-position: center 32% !important; } /* ancla el rostro, no el follaje superior */
       .about-blockquote { font-size: .95rem; padding-left: .9rem; margin-bottom: 1.2rem; }
       .mapa-max { padding: .8rem; margin-bottom: 1.2rem; }
       .mapa-max::after { left: calc(.8rem + 16px); }
