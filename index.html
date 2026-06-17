@@ -2223,6 +2223,24 @@
       .hero-stats { display: flex; flex-wrap: wrap; gap: 1.2rem 2rem; }
     }
 
+    /* =============================================
+       OPTIMIZACIÓN MÓVIL (auditoría): mejor uso de pantalla
+    ============================================= */
+    /* Redes: tarjetas horizontales (icono izq + texto der) en móvil 1-col */
+    @media (max-width:480px) {
+      .red-card { display: grid; grid-template-columns: auto 1fr; gap: .8rem 1rem; align-items: start; padding: 1.3rem 1.4rem; }
+      .red-icon { grid-column: 1; grid-row: 1 / span 2; }
+      .red-info { grid-column: 2; grid-row: 1; }
+      .red-link { grid-column: 2; grid-row: 2; align-self: start; }
+    }
+    /* Servicios: menos hueco al apilar el intro y antes de los cards */
+    @media (max-width:900px) {
+      .services-intro-grid { gap: 1.5rem; margin-bottom: 1.8rem; }
+    }
+    @media (max-width:480px) {
+      .svc-head { padding-top: 1.1rem; padding-bottom: 1.1rem; }
+      .svc-mode { margin-top: .4rem; }
+    }
 
   </style>
 </head>
