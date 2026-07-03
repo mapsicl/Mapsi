@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#080808" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="description" content="Maximiliano Jiménez — Psicólogo, Coach PNL y Magíster en Liderazgo. Coaching para inserción laboral, desarrollo profesional y marca personal en Chile. +3.700 personas impactadas." />
-  <meta name="keywords" content="coach inserción laboral Chile, coaching desarrollo profesional, marca personal redes sociales Chile, psicólogo coach PNL, coach para entrevistas de trabajo, coaching carrera profesional, cómo conseguir primer empleo, coach profesional La Serena" />
+  <meta name="description" content="Maximiliano Jiménez — Psicólogo, Coach PNL y Magíster en Liderazgo. Coaching para inserción laboral, desarrollo profesional y marca personal en Chile. Sesiones de psicoterapia individual online. +3.700 personas impactadas." />
+  <meta name="keywords" content="coach inserción laboral Chile, coaching desarrollo profesional, marca personal redes sociales Chile, psicólogo coach PNL, coach para entrevistas de trabajo, coaching carrera profesional, cómo conseguir primer empleo, coach profesional La Serena, psicólogo online Chile, psicoterapia individual online, terapia psicológica online" />
   <meta name="author" content="Maximiliano Jiménez Rojas" />
   <meta property="og:title" content="Maximiliano Jiménez — Psicólogo & Coach PNL" />
   <meta property="og:description" content="Coaching para inserción laboral, desarrollo profesional y marca personal. +3.700 personas impactadas en Chile." />
@@ -1165,6 +1165,20 @@
     }
     .svc-card:nth-child(4):hover { border-color: rgba(226,192,106,.5); box-shadow: 0 32px 80px rgba(0,0,0,.7), 0 0 80px rgba(200,168,75,.14); }
 
+    /* Card 5 — Salvia clínico · psicoterapia (servicio de salud, distinto del coaching) */
+    .svc-card:nth-child(5) {
+      background: linear-gradient(160deg,
+        #0a1517 0%, #10262a 40%, #17363c 70%, rgba(143,181,163,.12) 100%);
+      border-color: rgba(143,181,163,.24);
+    }
+    .svc-card:nth-child(5):hover { border-color: rgba(143,181,163,.42); box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 60px rgba(110,170,150,.09); }
+    .svc-card:nth-child(5) .svc-icon svg { color: #a9cdbd; }
+    .svc-card:nth-child(5) .svc-sub { color: rgba(169,205,189,.85); }
+    .svc-card:nth-child(5) .svc-outcome { background: rgba(143,181,163,.06); border-left-color: #8fb5a3; }
+    .svc-card:nth-child(5) .svc-outcome strong { color: #a9cdbd; }
+    .svc-card:nth-child(5) .svc-terms { border-left-color: rgba(143,181,163,.45); background: rgba(143,181,163,.05); }
+    .svc-card:nth-child(5) .svc-terms strong { color: #a9cdbd; }
+
     /* ── SHIMMER TOP BAR per card ── */
     .svc-card::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -1174,6 +1188,7 @@
     .svc-card:nth-child(2)::before { background: linear-gradient(90deg, transparent, #9ab840, #c8e060, transparent); }
     .svc-card:nth-child(3)::before { background: linear-gradient(90deg, transparent, var(--gold), var(--gold2), transparent); }
     .svc-card:nth-child(4)::before { background: linear-gradient(90deg, transparent, var(--gold2), var(--gold3), transparent); }
+    .svc-card:nth-child(5)::before { background: linear-gradient(90deg, transparent, #8fb5a3, #c2ddd1, transparent); }
     .svc-card:hover::before { opacity: 1; }
 
     /* ── FEAT TAG ── */
@@ -1427,6 +1442,7 @@
     .svc-card:nth-child(2) .svc-qualify-panel { background: rgba(140,170,50,.07); }
     .svc-card:nth-child(3) .svc-qualify-panel { background: rgba(200,168,75,.06); }
     .svc-card:nth-child(4) .svc-qualify-panel { background: rgba(200,168,75,.09); }
+    .svc-card:nth-child(5) .svc-qualify-panel { background: rgba(143,181,163,.07); }
     .svc-card.q-open .svc-qualify-panel { max-height: 600px; }
 
     .svc-qualify-inner { padding: 1.4rem 1.8rem 1.8rem; }
@@ -2739,6 +2755,7 @@
   <symbol id="ic-mountain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></symbol>
   <symbol id="ic-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
   <symbol id="ic-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+  <symbol id="ic-map-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
 </svg>
 
 <!-- ===================== SERVICIOS ===================== -->
@@ -3010,6 +3027,60 @@
         </div>
       </div>
 
+      <!-- Servicio 5: Psicoterapia Individual -->
+      <div class="svc-card rv d4" id="svc-terapia">
+        <div class="svc-head">
+          <div class="svc-icon"><svg viewBox="0 0 24 24"><use href="#ic-map-pin"/></svg></div>
+          <div class="svc-head-txt">
+            <div class="svc-name">Sesiones de Psicoterapia Individual</div>
+            <div class="svc-sub">Psicología adultos · espacio confidencial</div>
+            <span class="svc-mode">💻 100% Online</span>
+          </div>
+          <div class="svc-head-price">
+            <span class="shp-n">$50.000</span>
+            <span class="shp-l">por sesión · 45–50 min</span>
+          </div>
+        </div>
+        <div class="svc-body">
+          <p class="svc-desc">Un espacio confidencial y sin juicios para trabajar lo que te está pesando: ansiedad, estrés, momentos de crisis, duelos, autoestima, decisiones vitales o esa sensación difusa de que algo no anda bien. No es una conversación cualquiera — es un proceso con método, ritmo y dirección.</p>
+          <p class="svc-outcome"><strong>El objetivo:</strong> que entiendas mejor lo que te pasa y por qué, y que salgas de cada sesión con algo más de claridad y herramientas concretas. Un trabajo cercano, a tu ritmo, sin fórmulas ni recetas.</p>
+          <div class="price-table">
+            <a href="#" data-wa data-msg="Hola Maxi, me interesan las sesiones de psicoterapia individual ($50.000 · 45–50 min · online)." class="price-tier" target="_blank" rel="noopener">
+              <span class="pt-name">Sesión individual</span>
+              <span class="pt-detail">45–50 min · online</span>
+              <span class="pt-price">$50.000</span>
+              <span class="pt-go"><svg viewBox="0 0 24 24"><use href="#ic-wa"/></svg></span>
+            </a>
+          </div>
+          <div class="svc-terms">
+            <span>🧠 <strong>Atención psicológica clínica</strong>, distinta de mis servicios de coaching: aquí el foco es tu bienestar emocional.</span>
+            <span>🗓 Frecuencia sugerida: <strong>semanal</strong> — se define contigo en la primera sesión, según tu momento y tu proceso.</span>
+            <span>🩺 Inscrito en el <strong>Registro Nacional de Prestadores Individuales de Salud</strong> — Superintendencia de Salud, N° 406732.</span>
+            <span>🧾 Se entrega <strong>boleta de honorarios</strong>.</span>
+          </div>
+        </div>
+        <div class="svc-foot">
+          <div class="svc-price">$50.000 por sesión · 45–50 min · online</div>
+          <a href="#" data-wa data-msg="Hola Maxi, me interesa la terapia psicológica. Quiero agendar la conversación inicial sin costo." class="btn-svc" target="_blank" rel="noopener">Agenda tu primera conversación →</a>
+        </div>
+        <button class="svc-qualify-btn" aria-expanded="false">
+          <span class="qbtn-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span>
+          ¿Es este espacio para mí?
+        </button>
+        <div class="svc-qualify-panel" aria-hidden="true">
+          <div class="svc-qualify-inner">
+            <p class="svc-qualify-title">✓ Este espacio es para ti si…</p>
+            <ul class="svc-q-list">
+              <li><span class="svc-q-check"></span>Sientes ansiedad, estrés o angustia que te está costando manejar sola/o</li>
+              <li><span class="svc-q-check"></span>Estás pasando por un duelo, una ruptura o un cambio vital difícil</li>
+              <li><span class="svc-q-check"></span>Cargas con algo hace tiempo y nunca te has dado el espacio de mirarlo</li>
+              <li><span class="svc-q-check"></span>Quieres entenderte mejor: tus reacciones, tus vínculos, tus decisiones</li>
+            </ul>
+            <div class="svc-qualify-cta">Si algo de esto te resuena, la conversación inicial es sin costo ni compromiso. <strong>Y con la misma honestidad: si atraviesas una crisis grave que requiere atención psiquiátrica o de urgencia, te oriento hacia el recurso adecuado.</strong></div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- Medios de pago -->
@@ -3030,6 +3101,7 @@
     <!-- Credenciales en franja compacta -->
     <div class="cred-strip rv d2">
       <span class="cred-pill">🧠 Psicólogo — U. Santo Tomás</span>
+      <span class="cred-pill">🩺 Prestador de Salud — Registro N° 406732</span>
       <span class="cred-pill">🎓 Magíster en Liderazgo — ULS</span>
       <span class="cred-pill">🔑 Coach PNL Certificado — SCPNL</span>
       <span class="cred-pill">🏛️ 10 años de experiencia</span>
