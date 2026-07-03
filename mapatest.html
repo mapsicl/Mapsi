@@ -1,0 +1,613 @@
+<!-- ============================================================
+     RECONQUISTA TU MAPA · apartado de tests interactivos
+     - Autocontenido: HTML + CSS + JS en un solo archivo. Sin base de datos.
+     - Todo se calcula en el navegador; nada se guarda en ningún servidor.
+     - Integrarlo en tu sitio estático:
+         (A) Súbelo como página propia (p. ej. mapa.html) y enlázalo en tu menú.
+         (B) O copia el bloque section.mapa (con su estilo y su lógica) en una
+             página que ya tengas. Todo está prefijado .mapa / mp- para no chocar.
+     - Marcos: Ikigai (Ikigai-9; Imai et al. 2012 / Fido et al. 2020) y
+       DISC (Marston, 1928). Herramienta de autoconocimiento, no diagnóstico.
+     - Busca "REEMPLAZA" para tus enlaces y el nombre del coach.
+     - Easter eggs para nerds: clic en el anillo del mapa · escribe "mellon"
+       en el teclado · abre la consola del navegador · perfil equilibrado.
+     ============================================================ -->
+<section class="mapa" id="reconquista-tu-mapa" aria-labelledby="mapa-titulo">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Spline+Sans:wght@400;500;600&family=Press+Start+2P&display=swap');
+
+.mapa{
+  /* paleta · café · pergamino a la luz de una vela */
+  --espresso:#241813; --cocoa:#312016; --bark:#46301c; --bark-2:#5a4026;
+  --parchment:#E9D8B6; --ink:#3a2a18;
+  --cream:#F4EAD7; --latte:#CBB592; --latte-dim:#9c876a;
+  --amber:#E0A24E; --gold:#EBC56E; --moss:#8E9A55; --clay:#C56A3C; --bronze:#A8794A; --terra:#C58A6A;
+  --line:rgba(233,216,182,.14);
+  --r:18px;
+  font-family:"Spline Sans",ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--cream);
+  background:
+    radial-gradient(1200px 620px at 80% -10%, rgba(224,162,78,.12), transparent 60%),
+    radial-gradient(900px 520px at 6% 112%, rgba(142,154,85,.10), transparent 55%),
+    var(--espresso);
+  -webkit-font-smoothing:antialiased; display:block; width:100%; box-sizing:border-box;
+  padding:clamp(20px,4vw,56px); position:relative;
+}
+.mapa *,.mapa *::before,.mapa *::after{box-sizing:border-box}
+.mapa .mp-wrap{max-width:940px;margin:0 auto}
+.mapa .display{font-family:"Bricolage Grotesque","Spline Sans",system-ui,sans-serif}
+
+/* ---- intro ---- */
+.mapa .mp-eyebrow{font-family:"Press Start 2P",monospace;font-size:10px;letter-spacing:.12em;
+  color:var(--amber);display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;margin:0 0 18px}
+.mapa .mp-eyebrow::before{content:"";width:26px;height:2px;background:var(--amber);display:inline-block}
+.mapa h2.mp-title{font-weight:800;font-size:clamp(32px,6vw,58px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px;color:var(--cream)}
+.mapa h2.mp-title em{font-style:normal;color:var(--amber)}
+.mapa .mp-lead{font-size:clamp(15px,2.2vw,18px);line-height:1.6;color:var(--latte);max-width:56ch;margin:0}
+.mapa .mp-runes{display:none;margin:14px 0 0;font-size:15px;letter-spacing:.34em;color:var(--gold);
+  text-shadow:0 0 12px rgba(235,197,110,.5);opacity:.9}
+.mapa .mp-runes.show{display:block;animation:mp-fade .6s ease both}
+.mapa .mp-runes small{display:block;font-family:"Press Start 2P",monospace;font-size:8px;letter-spacing:.1em;color:var(--latte-dim);margin-top:8px;text-shadow:none}
+
+/* ---- escena / mapa ---- */
+.mapa .mp-scene{position:relative;margin:26px 0 6px;height:152px;border-radius:var(--r);
+  background:linear-gradient(180deg,#3a2718 0%,#241712 100%);
+  border:1px solid var(--line);overflow:hidden}
+.mapa .mp-sky{position:absolute;inset:0}
+.mapa .mp-star-bg{position:absolute;width:2px;height:2px;background:var(--gold);border-radius:1px}
+.mapa .mp-mtn{position:absolute;bottom:46px;width:0;height:0;border-style:solid;opacity:.5}
+.mapa .mp-ground{position:absolute;left:0;right:0;bottom:0;height:48px;
+  background:repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 2px,transparent 2px 4px),
+    linear-gradient(180deg,#5a3f24,#3f2b18);border-top:2px solid rgba(224,162,78,.32)}
+.mapa .mp-runeband{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:11px;
+  letter-spacing:.5em;color:rgba(235,197,110,.0);transition:color .5s;pointer-events:none;user-select:none}
+.mapa .mp-scene.runic .mp-runeband{color:rgba(235,197,110,.85);text-shadow:0 0 10px rgba(235,197,110,.6)}
+.mapa .mp-trail{position:absolute;left:6%;right:6%;bottom:34px;height:2px;display:flex;justify-content:space-between;align-items:center}
+.mapa .mp-dot{width:6px;height:6px;border-radius:1px;background:#3a2616;box-shadow:0 0 0 2px rgba(0,0,0,.25)}
+.mapa .mp-dot.on{background:var(--amber)}
+.mapa .mp-goal{position:absolute;right:5%;bottom:30px;filter:drop-shadow(0 0 6px rgba(235,197,110,.7))}
+.mapa .mp-hero{position:absolute;bottom:28px;left:6%;width:44px;transition:left .55s cubic-bezier(.34,1.2,.4,1);
+  filter:drop-shadow(0 6px 6px rgba(0,0,0,.4))}
+.mapa .mp-hero .mp-sprite{animation:mp-bob .9s steps(2) infinite}
+@keyframes mp-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+.mapa .mp-sprite{display:block;width:100%;height:auto;image-rendering:pixelated}
+.mapa .mp-scene-label{position:absolute;top:12px;left:14px;font-family:"Press Start 2P",monospace;font-size:9px;color:var(--latte);letter-spacing:.06em}
+.mapa .mp-ring-egg{position:absolute;top:11px;right:12px;width:22px;height:22px;cursor:pointer;border:0;background:transparent;padding:0;opacity:.55;transition:.25s;z-index:3}
+.mapa .mp-ring-egg:hover{opacity:1;transform:rotate(12deg) scale(1.08)}
+.mapa .mp-ring-egg svg{width:100%;height:100%;display:block;image-rendering:pixelated}
+
+/* ---- selector ---- */
+.mapa .mp-tabs{display:flex;gap:8px;margin:22px 0 18px;background:var(--cocoa);border:1px solid var(--line);padding:6px;border-radius:14px}
+.mapa .mp-tab{flex:1;border:0;background:transparent;color:var(--latte);cursor:pointer;font-family:inherit;
+  font-weight:600;font-size:14px;padding:12px 10px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;gap:8px;transition:.2s;text-align:center;line-height:1.2}
+.mapa .mp-tab:hover{color:var(--cream)}
+.mapa .mp-tab[aria-selected="true"]{background:var(--bark);color:var(--cream);box-shadow:inset 0 0 0 1px var(--line)}
+.mapa .mp-tab .mp-tnum{font-family:"Press Start 2P",monospace;font-size:9px;color:var(--amber)}
+
+/* ---- panel / preguntas ---- */
+.mapa .mp-panel{background:linear-gradient(180deg,var(--cocoa),rgba(49,32,22,.55));border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3vw,34px)}
+.mapa .mp-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+.mapa .mp-step{font-family:"Press Start 2P",monospace;font-size:9px;color:var(--latte);letter-spacing:.06em}
+.mapa .mp-bar{flex:1;height:7px;background:var(--bark);border-radius:99px;overflow:hidden;max-width:240px}
+.mapa .mp-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),var(--moss));border-radius:99px;transition:width .45s ease}
+.mapa .mp-q{font-weight:700;font-size:clamp(20px,3.4vw,28px);line-height:1.18;letter-spacing:-.01em;margin:0 0 20px;color:var(--cream)}
+.mapa .mp-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mapa .mp-opt{text-align:left;border:1px solid var(--line);background:rgba(36,24,19,.55);color:var(--cream);
+  font-family:inherit;font-size:15px;line-height:1.45;cursor:pointer;padding:16px 16px 16px 46px;border-radius:12px;position:relative;transition:.18s}
+.mapa .mp-opt::before{content:attr(data-k);position:absolute;left:14px;top:14px;width:22px;height:22px;border-radius:7px;
+  display:grid;place-items:center;font-family:"Press Start 2P",monospace;font-size:8px;background:var(--bark);color:var(--amber);border:1px solid var(--line)}
+.mapa .mp-opt:hover{border-color:rgba(224,162,78,.6);background:rgba(70,48,28,.6);transform:translateY(-2px)}
+.mapa .mp-opt:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+/* ---- resultado + dashboard capturable ---- */
+.mapa .mp-result{display:none}
+.mapa .mp-result.on{display:block;animation:mp-fade .5s ease both}
+@keyframes mp-fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.mapa .mp-card{position:relative;border:1px solid rgba(224,162,78,.28);border-radius:16px;overflow:hidden;
+  background:radial-gradient(700px 300px at 85% -20%,rgba(224,162,78,.14),transparent 60%),linear-gradient(180deg,#2c1d13,#221610);
+  padding:clamp(20px,3vw,30px)}
+.mapa .mp-card::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 2px,transparent 2px 5px)}
+.mapa .mp-card-top{display:flex;align-items:center;gap:16px;margin-bottom:18px;position:relative;z-index:1}
+.mapa .mp-badge{width:64px;height:64px;flex:none;border-radius:14px;display:grid;place-items:center;
+  background:var(--espresso);border:1px solid var(--line)}
+.mapa .mp-badge svg{width:46px;height:46px;image-rendering:pixelated}
+.mapa .mp-zonetag{font-family:"Press Start 2P",monospace;font-size:9px;letter-spacing:.08em;color:var(--latte);text-transform:uppercase;margin:0 0 7px}
+.mapa .mp-zonename{font-weight:800;font-size:clamp(24px,4.6vw,38px);line-height:1.04;margin:0}
+.mapa .mp-zonelead{font-style:italic;color:var(--amber);font-size:clamp(14px,2.2vw,17px);margin:8px 0 0;position:relative;z-index:1}
+.mapa .mp-zonedesc{color:var(--latte);line-height:1.62;font-size:15px;margin:16px 0 20px;position:relative;z-index:1}
+
+/* puntaje (barras) */
+.mapa .mp-scores{display:grid;gap:11px;position:relative;z-index:1;margin-bottom:6px}
+.mapa .mp-score{display:grid;grid-template-columns:120px 1fr 38px;align-items:center;gap:12px}
+.mapa .mp-score .mp-slabel{font-size:13px;color:var(--cream);font-weight:600;display:flex;align-items:center;gap:7px}
+.mapa .mp-score .mp-key{font-family:"Press Start 2P",monospace;font-size:8px;color:var(--espresso);background:var(--latte);border-radius:4px;padding:3px 4px}
+.mapa .mp-score .mp-dotk{width:10px;height:10px;border-radius:99px;flex:none;box-shadow:0 0 0 2px rgba(0,0,0,.2)}
+.mapa .mp-track{height:12px;border-radius:99px;background:rgba(0,0,0,.28);overflow:hidden}
+.mapa .mp-track i{display:block;height:100%;width:0;border-radius:99px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.mapa .mp-score .mp-pct{font-family:"Press Start 2P",monospace;font-size:9px;color:var(--latte);text-align:right}
+.mapa .mp-score.top .mp-slabel{color:var(--gold)}
+
+.mapa .mp-cardfoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;
+  padding-top:14px;border-top:1px solid var(--line);position:relative;z-index:1}
+.mapa .mp-brand{font-family:"Press Start 2P",monospace;font-size:9px;color:var(--latte);letter-spacing:.04em}
+.mapa .mp-brand b{color:var(--amber)}
+.mapa .mp-date{font-size:12px;color:var(--latte-dim)}
+.mapa .mp-secret{display:none;margin-top:14px;padding:11px 14px;border-radius:11px;position:relative;z-index:1;
+  background:rgba(235,197,110,.1);border:1px solid rgba(235,197,110,.35);color:var(--gold);font-size:13px}
+.mapa .mp-secret.show{display:block}
+
+.mapa .mp-shot-hint{display:flex;align-items:center;gap:8px;justify-content:center;margin:14px 0 0;
+  color:var(--latte-dim);font-size:13px}
+
+/* fuentes ikigai / nota */
+.mapa .mp-sources{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:20px 0 0}
+.mapa .mp-cell{border:1px solid var(--line);border-radius:12px;padding:13px;background:rgba(36,24,19,.4)}
+.mapa .mp-cell .mp-src{font-family:"Press Start 2P",monospace;font-size:8px;color:var(--latte);display:block;margin-bottom:7px;line-height:1.5}
+.mapa .mp-cell .mp-pname{font-weight:600;color:var(--cream);font-size:14px}
+.mapa .mp-cell.lit{background:rgba(224,162,78,.13);border-color:rgba(224,162,78,.5)}
+.mapa .mp-cell.lit .mp-pname{color:var(--amber)}
+
+.mapa .mp-note{margin-top:18px;font-size:12.5px;color:var(--latte-dim);line-height:1.55;
+  border-left:2px solid var(--line);padding-left:12px}
+.mapa .mp-note b{color:var(--latte)}
+
+/* material de apoyo */
+.mapa .mp-support{border-top:1px dashed var(--line);padding-top:22px;margin-top:24px}
+.mapa .mp-support h4{font-weight:700;font-size:18px;margin:0 0 4px;color:var(--cream)}
+.mapa .mp-support p{color:var(--latte);margin:0 0 16px;font-size:14px}
+.mapa .mp-links{display:grid;gap:10px}
+.mapa .mp-link{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--cream);
+  border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:rgba(36,24,19,.45);transition:.18s}
+.mapa .mp-link:hover{border-color:rgba(142,154,85,.6);background:rgba(70,48,28,.6);transform:translateX(3px)}
+.mapa .mp-link .mp-ico{width:34px;height:34px;flex:none;border-radius:9px;display:grid;place-items:center;background:var(--bark);font-size:16px}
+.mapa .mp-link b{display:block;font-weight:600;font-size:15px}
+.mapa .mp-link small{color:var(--latte);font-size:13px}
+.mapa .mp-link .mp-arrow{margin-left:auto;color:var(--latte)}
+
+.mapa .mp-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.mapa .mp-btn{font-family:inherit;font-weight:600;font-size:15px;cursor:pointer;border-radius:12px;padding:13px 22px;border:1px solid var(--line);background:transparent;color:var(--cream);transition:.18s;display:inline-flex;align-items:center;gap:8px}
+.mapa .mp-btn:hover{border-color:var(--latte)}
+.mapa .mp-btn.primary{background:var(--amber);color:#2a1c08;border-color:var(--amber)}
+.mapa .mp-btn.primary:hover{filter:brightness(1.06)}
+.mapa .mp-next{margin-top:18px;color:var(--latte);font-size:14px}
+.mapa .mp-next a{color:var(--moss);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(142,154,85,.45)}
+
+/* toast easter egg */
+.mapa .mp-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
+  background:var(--espresso);color:var(--gold);border:1px solid rgba(235,197,110,.45);
+  padding:13px 20px;border-radius:12px;font-size:14px;box-shadow:0 12px 40px rgba(0,0,0,.5);
+  opacity:0;pointer-events:none;transition:.35s;z-index:9999;max-width:90vw;text-align:center}
+.mapa .mp-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:600px){
+  .mapa .mp-opts{grid-template-columns:1fr}
+  .mapa .mp-sources{grid-template-columns:1fr}
+  .mapa .mp-tab{font-size:13px;flex-direction:column;gap:4px}
+  .mapa .mp-score{grid-template-columns:92px 1fr 34px;gap:9px}
+  .mapa .mp-score .mp-slabel{font-size:12px}
+  .mapa .mp-card-top{gap:12px}
+  .mapa .mp-cardfoot{flex-direction:column;align-items:flex-start;gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  .mapa .mp-hero{transition:none}.mapa .mp-hero .mp-sprite{animation:none}
+  .mapa .mp-result.on,.mapa .mp-runes.show{animation:none}
+  .mapa .mp-track i{transition:none}
+}
+</style>
+
+<div class="mp-wrap">
+  <p class="mp-eyebrow">Cartografía interior · reconquista tu mapa</p>
+  <h2 class="mp-title display" id="mapa-titulo">Vuelve a trazar <em>el mapa de tu propósito</em></h2>
+  <p class="mp-lead">Dos recorridos breves para reconocer el terreno: hacia dónde te orienta lo que amas y cómo prefieres que te acompañen en el camino. Avanza por el mapa y reclama tu territorio.</p>
+  <p class="mp-runes display" id="mp-runes">ᛗᛖᛚᛚᛟᚾ · ᛏᚱᚨᛉᚨ · ᛏᚢ · ᛗᚨᛈᚨ<small>El que conoce la palabra amigable, ya cruzó la primera puerta.</small></p>
+
+  <!-- escena -->
+  <div class="mp-scene" id="mp-scene" aria-hidden="true">
+    <div class="mp-sky" id="mp-sky"></div>
+    <div class="mp-scene-label" id="mp-scene-label">MAPA · I</div>
+    <button class="mp-ring-egg" id="mp-ring" title="¿Qué dirá esta inscripción?" aria-label="Inscripción rúnica"></button>
+    <div class="mp-ground"></div>
+    <div class="mp-runeband">ᚨ ᛗᛁᚱᚨᚾ ᛚᚩᛋ ᚦᚢᛖ ᛋᚨᛒᛖᚾ ᛗᛁᚱᚨᚱ</div>
+    <div class="mp-trail" id="mp-trail"></div>
+    <div class="mp-goal" id="mp-goal"></div>
+    <div class="mp-hero" id="mp-hero"></div>
+  </div>
+
+  <!-- selector -->
+  <div class="mp-tabs" role="tablist" aria-label="Elige un recorrido">
+    <button class="mp-tab" role="tab" aria-selected="true" data-test="ikigai" id="tab-ikigai">
+      <span class="mp-tnum">I</span> Tu orientación · Ikigai
+    </button>
+    <button class="mp-tab" role="tab" aria-selected="false" data-test="disc" id="tab-disc">
+      <span class="mp-tnum">II</span> Cómo te gusta ser liderado/a · DISC
+    </button>
+  </div>
+
+  <div class="mp-panel">
+    <!-- preguntas -->
+    <div class="mp-quiz" id="mp-quiz">
+      <div class="mp-meta">
+        <span class="mp-step" id="mp-step">Pregunta 1</span>
+        <div class="mp-bar"><span id="mp-fill"></span></div>
+      </div>
+      <h3 class="mp-q display" id="mp-question">…</h3>
+      <div class="mp-opts" id="mp-opts"></div>
+    </div>
+
+    <!-- resultado -->
+    <div class="mp-result" id="mp-result">
+      <!-- ====== DASHBOARD CAPTURABLE (id mp-card) ====== -->
+      <div class="mp-card" id="mp-card">
+        <div class="mp-card-top">
+          <div class="mp-badge" id="mp-badge"></div>
+          <div>
+            <p class="mp-zonetag" id="mp-zonetag">Tu territorio</p>
+            <h3 class="mp-zonename display" id="mp-zonename"></h3>
+          </div>
+        </div>
+        <p class="mp-zonelead" id="mp-zonelead"></p>
+        <p class="mp-zonedesc" id="mp-zonedesc"></p>
+
+        <div class="mp-scores" id="mp-scores"></div>
+
+        <div class="mp-secret" id="mp-secret"></div>
+
+        <div class="mp-cardfoot">
+          <!-- REEMPLAZA el nombre/handle del coach -->
+          <span class="mp-brand">⟡ <b>tu coach</b> · reconquista tu mapa</span>
+          <span class="mp-date" id="mp-date"></span>
+        </div>
+      </div>
+      <!-- ====== /DASHBOARD ====== -->
+
+      <p class="mp-shot-hint">📸 Toma una captura de esta tarjeta para guardar o compartir tu resultado.</p>
+
+      <div class="mp-sources" id="mp-sources"></div>
+      <p class="mp-note" id="mp-note"></p>
+
+      <div class="mp-support">
+        <h4 id="mp-support-title">Sigue explorando</h4>
+        <p id="mp-support-sub"></p>
+        <div class="mp-links" id="mp-links"></div>
+      </div>
+
+      <div class="mp-actions">
+        <button class="mp-btn primary" id="mp-save">Guardar mi mapa (imagen)</button>
+        <button class="mp-btn" id="mp-retry">Repetir el recorrido</button>
+        <button class="mp-btn" id="mp-switch">Hacer el otro test</button>
+      </div>
+      <p class="mp-next" id="mp-next"></p>
+    </div>
+  </div>
+</div>
+
+<div class="mp-toast" id="mp-toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  var root=document.getElementById('reconquista-tu-mapa');
+  if(!root || root.dataset.mounted) return;
+  root.dataset.mounted="1";
+
+  /* ---------- pixel art (rejilla ASCII -> SVG) ---------- */
+  var PAL={ o:'#241813', k:'#46301c', c:'#6b4d2c', s:'#e8c39a', g:'#e0a24e',
+            w:'#fff1c4', b:'#3a2616', m:'#8E9A55', r:'#C56A3C', y:'#EBC56E' };
+  // viajero encapuchado (héroe del mapa)
+  var HERO=[
+    "         ",
+    "   ooo   ",
+    "  okkko  ",
+    " okkkkko ",
+    " oksssko ",
+    " oksosko ",
+    " okssско ",
+    "  occco  ",
+    " gcccccg ",
+    "  ccccc  ",
+    "  ccccc  ",
+    "  cc cc  ",
+    "  bb bb  "
+  ];
+  // anillo dorado (destino + easter egg)
+  var RING=[
+    " yyy ",
+    "y o y",
+    "y o y",
+    "y o y",
+    " yyy "
+  ];
+  // insignias por arquetipo (badge del dashboard)
+  var BADGES={
+    artesano:[" m m ","mmmmm"," mmm ","m m m","m m m"],     // yunque/manos
+    faro:["  y  "," yyy ","yywyy"," yyy ","  y  "],          // estrella/faro
+    arquitecto:["rrrrr","r r r","rrrrr","r r r","rrrrr"],    // estructura
+    sembrador:["  m  "," mmm ","mmmmm","  c  ","  c  "],     // brote
+    montaraz:["  r  "," r r ","r r r"," rrr ","  r  "],      // flecha/punta
+    bardo:[" y y ","yyyyy"," yyy ","  y  "," y y "],         // laúd/chispa
+    companero:["m m m","mmmmm"," mmm ","  m  "," m m "],     // dos figuras
+    cartografo:["yyyyy","y   y","y y y","y   y","yyyyy"]     // mapa/marco
+  };
+  function sprite(grid,pal,extra){
+    var rows=grid.length,cols=grid[0].length,rects="";
+    for(var y=0;y<rows;y++)for(var x=0;x<cols;x++){
+      var ch=grid[y][x]; if(ch===" "||!pal[ch])continue;
+      rects+='<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="'+pal[ch]+'"/>';
+    }
+    return '<svg class="mp-sprite '+(extra||"")+'" viewBox="0 0 '+cols+' '+rows+'" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">'+rects+'</svg>';
+  }
+
+  /* ---------- contenido ---------- */
+  var DATA={
+    ikigai:{
+      label:'MAPA · I', total:7, kind:'ikigai',
+      order:['artesano','faro','arquitecto','sembrador'],
+      colors:{artesano:'var(--moss)',faro:'var(--amber)',arquitecto:'var(--clay)',sembrador:'var(--terra)'},
+      profiles:{
+        artesano:{name:'El / La Artesano/a', short:'Artesano/a',
+          lead:'Tu energía nace de lo que amas y haces bien.',
+          desc:'Te mueve el oficio: pulir, mejorar, alcanzar ese estado de flujo donde el tiempo desaparece. Disfrutas el proceso tanto como el resultado y la calidad es tu firma. Tu reto sano es que ese dominio encuentre un escenario donde se valore.',
+          src:['Lo que AMAS','En lo que eres BUENO/A']},
+        faro:{name:'El / La Faro', short:'Faro',
+          lead:'Tu energía nace de lo que amas y el mundo necesita.',
+          desc:'Te orienta el sentido. Necesitas que tu trabajo importe a alguien, dejar huella, iluminar caminos. Conectas con las personas y con la causa antes que con la tarea. Tu reto sano es cuidar tu energía para no darlo todo sin sostén.',
+          src:['Lo que AMAS','Lo que el MUNDO necesita']},
+        arquitecto:{name:'El / La Arquitecto/a', short:'Arquitecto/a',
+          lead:'Tu energía nace de lo que haces bien y te aporta valor.',
+          desc:'Piensas en estructura: planeas, ordenas y construyes cosas sólidas que funcionan de verdad. La excelencia y la solvencia te dan seguridad. Tu reto sano es no olvidar el porqué detrás de lo que tan bien edificas.',
+          src:['En lo que eres BUENO/A','Por lo que te PAGAN']},
+        sembrador:{name:'El / La Sembrador/a', short:'Sembrador/a',
+          lead:'Tu energía nace de lo que el mundo necesita y sostiene tu vida.',
+          desc:'Lees el entorno y encuentras dónde aportar valor de forma útil y sostenible. Eres práctico/a, oportuno/a y adaptable. Tu reto sano es reservar también espacio para lo que amas, no solo para lo que conviene.',
+          src:['Lo que el MUNDO necesita','Por lo que te PAGAN']}
+      },
+      questions:[
+        {q:'En una jornada que se te pasa volando, lo más probable es que estés…',
+          o:[['dándole forma a algo hasta dejarlo como lo imaginabas','artesano'],['acompañando a alguien a encontrar su camino','faro'],['resolviendo un problema enredado con método','arquitecto'],['detectando una oportunidad que otros no vieron','sembrador']]},
+        {q:'Te suman a una nueva misión. Lo primero que te enciende es…',
+          o:[['la chance de volverme muy bueno/a en algo','artesano'],['el sentido y a quién va a servir','faro'],['el desafío de ejecutarlo impecable','arquitecto'],['que sea útil y se sostenga en el tiempo','sembrador']]},
+        {q:'Cuando alguien te busca, suele ser porque necesita…',
+          o:[['que algo quede bien hecho de verdad','artesano'],['ánimo y una mirada humana','faro'],['orden, criterio y un plan claro','arquitecto'],['una idea práctica para avanzar ya','sembrador']]},
+        {q:'Lo que más te drena la energía en un trabajo es…',
+          o:[['no tener espacio para cuidar la calidad','artesano'],['sentir que a nadie le importa lo que hago','faro'],['la improvisación y el desorden','arquitecto'],['esforzarme sin ver resultados reales','sembrador']]},
+        {q:'Si el dinero estuviera resuelto, igual seguirías…',
+          o:[['perfeccionando mi oficio por puro gusto','artesano'],['entregándome a causas y personas','faro'],['construyendo cosas que funcionen de verdad','arquitecto'],['buscando nuevas formas de aportar valor','sembrador']]},
+        {q:'El talento que la gente más te reconoce es…',
+          o:[['tu destreza y tu ojo para el detalle','artesano'],['tu forma de conectar con las personas','faro'],['tu cabeza estructurada','arquitecto'],['tu olfato para lo que hace falta','sembrador']]},
+        {q:'En unos años, te gustaría que dijeran de ti…',
+          o:[['"hace su trabajo como un arte"','artesano'],['"dejó huella en quienes la rodearon"','faro'],['"lo que levanta es sólido"','arquitecto'],['"siempre encuentra el camino"','sembrador']]}
+      ],
+      note:'Inspirado en el modelo Ikigai. La escala validada (Ikigai-9: Imai, Osada y Nishimura, 2012; traducción al inglés de Fido, Kotera y Asano, 2020) mide bienestar en torno a alegría, crecimiento y sentirse necesario; el diagrama de cuatro fuentes que ves aquí es la versión occidental popular. Esto es una brújula para reflexionar, no un diagnóstico.',
+      support:{title:'Lleva tu Ikigai a la práctica',
+        sub:'El centro del mapa —tu ikigai— aparece cuando las cuatro fuerzas se encuentran. Estos recursos te acercan:',
+        links:[['◍','Guía del Ikigai paso a paso','Las 4 preguntas para hallar tu centro','#'],['✎','Bitácora de orientación','Una hoja de ruta para tu zona','#'],['☎','Agenda una sesión','Conversemos sobre tu resultado','#']]}
+    },
+
+    disc:{
+      label:'MAPA · II', total:8, kind:'disc',
+      order:['montaraz','bardo','companero','cartografo'],
+      colors:{montaraz:'var(--clay)',bardo:'var(--gold)',companero:'var(--moss)',cartografo:'var(--bronze)'},
+      profiles:{
+        montaraz:{name:'El / La Montaraz', short:'Montaraz', disc:'D · Dominancia',
+          lead:'"Dame el rumbo y déjame abrir camino."',
+          desc:'Rindes con autonomía real. Prefieres que confíen en ti, feedback directo y libertad para decidir cómo. Un buen líder te marca el norte y te deja avanzar. El micromanagement te apaga: necesitas reto y terreno propio.',
+          src:['Autonomía','Acción']},
+        bardo:{name:'El / La Bardo/a', short:'Bardo/a', disc:'I · Influencia',
+          lead:'"Enciéndeme con una causa y reconóceme."',
+          desc:'Te mueve la energía y el vínculo. Funcionas mejor con entusiasmo, reconocimiento y espacio para aportar ideas. Un liderazgo cálido e inspirador saca tu mejor versión; lo gris y frío te apaga.',
+          src:['Entusiasmo','Reconocimiento']},
+        companero:{name:'El / La Compañero/a de viaje', short:'Compañero/a', disc:'S · Estabilidad',
+          lead:'"Avanzo mejor en buena compañía."',
+          desc:'Valoras la cercanía, la lealtad y la previsibilidad. Das lo mejor cuando sientes respaldo, ritmo sostenible y un equipo confiable. Los cambios bruscos y la aspereza te incomodan: pide acompañamiento y constancia.',
+          src:['Cercanía','Constancia']},
+        cartografo:{name:'El / La Cartógrafo/a', short:'Cartógrafo/a', disc:'C · Concienciación',
+          lead:'"Dame el mapa claro y las reglas del terreno."',
+          desc:'Funcionas con estructura: objetivos definidos, criterios y precisión. La ambigüedad y las reglas cambiantes te frenan. Pide claridad, datos y expectativas explícitas, y entregarás trabajo impecable.',
+          src:['Estructura','Claridad']}
+      },
+      questions:[
+        {q:'El mejor líder para ti, ante todo, te ofrece…',
+          o:[['rumbo claro y libertad para ejecutarlo','montaraz'],['energía, reconocimiento y buena onda','bardo'],['estabilidad y respaldo constante','companero'],['claridad, criterios y precisión','cartografo']]},
+        {q:'Al arrancar algo nuevo, prefieres que te…',
+          o:[['den el objetivo y se aparten del camino','montaraz'],['contagien entusiasmo por el proyecto','bardo'],['acompañen sin prisa los primeros pasos','companero'],['entreguen un plan detallado y las reglas','cartografo']]},
+        {q:'El feedback que mejor te llega es…',
+          o:[['directo y al grano, sin rodeos','montaraz'],['cálido y en voz alta, celebrando lo bueno','bardo'],['amable, en privado y sin sobresaltos','companero'],['concreto, con datos y ejemplos','cartografo']]},
+        {q:'Te apaga por completo un liderazgo que…',
+          o:[['controla cada uno de tus pasos','montaraz'],['es gris, frío y sin chispa','bardo'],['es brusco y rompe la armonía del equipo','companero'],['es ambiguo y cambia las reglas a medio camino','cartografo']]},
+        {q:'Das lo mejor de ti cuando…',
+          o:[['tengo autonomía y un reto a mi altura','montaraz'],['me siento visto/a y parte de algo vibrante','bardo'],['cuento con un equipo en el que confío','companero'],['sé exactamente qué se espera de mí','cartografo']]},
+        {q:'Una buena reunión 1:1 contigo sería…',
+          o:[['corta: alineamos y a la acción','montaraz'],['conversada, con espacio para ideas y risas','bardo'],['tranquila, para ver cómo vienes de verdad','companero'],['ordenada: metas, avances y próximos pasos','cartografo']]},
+        {q:'Cuando aparece un problema, esperas que tu líder…',
+          o:[['te deje resolverlo a tu manera','montaraz'],['mantenga el ánimo y la motivación arriba','bardo'],['te dé seguridad y no te deje solo/a','companero'],['analice los hechos antes de decidir','cartografo']]},
+        {q:'Lo que más valoras en quien te lidera es…',
+          o:[['que sea decidido/a y vaya al frente','montaraz'],['que inspire y sepa entusiasmar','bardo'],['que sea leal y confiable','companero'],['que sea justo/a y coherente','cartografo']]}
+      ],
+      note:'Inspirado en el modelo DISC (Marston, 1928): Dominancia, Influencia, Estabilidad y Concienciación. DISC describe estilos de conducta y es muy usado en coaching y desarrollo de equipos; su validez predictiva es objeto de debate académico. Tómalo como un espejo para conversar sobre cómo te gusta trabajar, no como una etiqueta fija.',
+      support:{title:'Comparte cómo te gusta ser liderado/a',
+        sub:'Saber esto te ayuda a pedir lo que necesitas y a tu líder a dártelo. Estos recursos te acompañan:',
+        links:[['◍','Cómo conversar tu estilo con tu jefe/a','Un guion para una charla honesta','#'],['✎','Tu "manual de mí"','Resume en una página cómo trabajar contigo','#'],['☎','Sesión de estilos de equipo','Alineemos formas de liderazgo','#']]}
+    }
+  };
+
+  /* ---------- estado + refs ---------- */
+  var current='ikigai', qIndex=0, scores={};
+  var $=function(id){return document.getElementById(id);};
+  var EL={sky:$('mp-sky'),trail:$('mp-trail'),goal:$('mp-goal'),hero:$('mp-hero'),scene:$('mp-scene'),
+    label:$('mp-scene-label'),quiz:$('mp-quiz'),step:$('mp-step'),fill:$('mp-fill'),question:$('mp-question'),
+    opts:$('mp-opts'),result:$('mp-result'),badge:$('mp-badge'),zonetag:$('mp-zonetag'),zonename:$('mp-zonename'),
+    zonelead:$('mp-zonelead'),zonedesc:$('mp-zonedesc'),scoresEl:$('mp-scores'),secret:$('mp-secret'),
+    date:$('mp-date'),sources:$('mp-sources'),note:$('mp-note'),supTitle:$('mp-support-title'),
+    supSub:$('mp-support-sub'),links:$('mp-links'),save:$('mp-save'),retry:$('mp-retry'),switch:$('mp-switch'),
+    next:$('mp-next'),toast:$('mp-toast'),ring:$('mp-ring'),runes:$('mp-runes')};
+
+  /* fondo + sprites fijos */
+  (function(){
+    var h='';
+    for(var i=0;i<26;i++) h+='<span class="mp-star-bg" style="left:'+(Math.random()*100).toFixed(1)+'%;top:'+(Math.random()*52).toFixed(1)+'%;opacity:'+(0.3+Math.random()*0.5).toFixed(2)+'"></span>';
+    // un par de montañas pixeladas (triángulos)
+    h+='<span class="mp-mtn" style="left:60%;border-width:0 26px 30px 26px;border-color:transparent transparent #3a2718 transparent"></span>';
+    h+='<span class="mp-mtn" style="left:72%;border-width:0 20px 22px 20px;border-color:transparent transparent #46301c transparent"></span>';
+    EL.sky.innerHTML=h;
+    EL.hero.innerHTML='<div style="width:44px">'+sprite(HERO,PAL)+'</div>';
+    EL.goal.innerHTML='<div style="width:22px">'+sprite(RING,PAL)+'</div>';
+    EL.ring.innerHTML=sprite(RING,PAL);
+  })();
+
+  function toast(msg){EL.toast.textContent=msg;EL.toast.classList.add('show');
+    clearTimeout(toast._t);toast._t=setTimeout(function(){EL.toast.classList.remove('show');},3200);}
+
+  function buildTrail(n){var h='';for(var i=0;i<n;i++)h+='<span class="mp-dot"></span>';EL.trail.innerHTML=h;}
+  function moveHero(){
+    var n=DATA[current].total, pct=6+(qIndex/n)*(86-6);
+    EL.hero.style.left=pct+'%';
+    var dots=EL.trail.querySelectorAll('.mp-dot');
+    for(var i=0;i<dots.length;i++)dots[i].classList.toggle('on',i<qIndex);
+  }
+
+  function start(test){
+    current=test; qIndex=0; scores={};
+    var p=DATA[test].profiles; for(var k in p) scores[k]=0;
+    EL.label.textContent=DATA[test].label;
+    buildTrail(DATA[test].total);
+    EL.result.classList.remove('on'); EL.quiz.style.display='block';
+    moveHero(); renderQuestion();
+    var tabs=root.querySelectorAll('.mp-tab');
+    for(var t=0;t<tabs.length;t++)tabs[t].setAttribute('aria-selected',tabs[t].dataset.test===test?'true':'false');
+  }
+
+  function renderQuestion(){
+    var d=DATA[current], item=d.questions[qIndex], letters=['A','B','C','D'];
+    EL.step.textContent='Pregunta '+(qIndex+1)+' de '+d.total;
+    EL.fill.style.width=(qIndex/d.total*100)+'%';
+    EL.question.textContent=item.q;
+    var h=''; for(var i=0;i<item.o.length;i++) h+='<button class="mp-opt" data-k="'+letters[i]+'" data-p="'+item.o[i][1]+'">'+item.o[i][0]+'</button>';
+    EL.opts.innerHTML=h;
+    var b=EL.opts.querySelectorAll('.mp-opt'); for(var j=0;j<b.length;j++) b[j].addEventListener('click',onAnswer);
+  }
+
+  function onAnswer(e){
+    var p=e.currentTarget.getAttribute('data-p'); scores[p]=(scores[p]||0)+1;
+    qIndex++; moveHero();
+    EL.fill.style.width=(qIndex/DATA[current].total*100)+'%';
+    if(qIndex>=DATA[current].total) setTimeout(showResult,450); else renderQuestion();
+  }
+
+  function ranked(){
+    var d=DATA[current], arr=d.order.map(function(k){return {k:k,v:scores[k]||0};});
+    arr.sort(function(a,b){return b.v-a.v;}); return arr;
+  }
+
+  function showResult(){
+    var d=DATA[current], rk=ranked(), key=rk[0].k, p=d.profiles[key];
+    EL.quiz.style.display='none'; EL.result.classList.add('on');
+    // badge + textos
+    EL.badge.innerHTML='<div style="width:46px">'+sprite(BADGES[key],PAL)+'</div>';
+    EL.zonename.textContent=p.name; EL.zonename.style.color=d.colors[key];
+    EL.zonelead.textContent=p.lead; EL.zonedesc.textContent=p.desc;
+    EL.date.textContent=new Date().toLocaleDateString('es-CL',{day:'2-digit',month:'long',year:'numeric'});
+
+    // barras de puntaje
+    var total=d.total, sh='';
+    for(var i=0;i<d.order.length;i++){
+      var k=d.order[i], pr=d.profiles[k], val=scores[k]||0, pct=Math.round(val/total*100);
+      var tag=(d.kind==='disc')
+        ? '<span class="mp-key">'+pr.disc.charAt(0)+'</span>'
+        : '<span class="mp-dotk" style="background:'+d.colors[k]+'"></span>';
+      sh+='<div class="mp-score'+(k===key?' top':'')+'">'+
+            '<span class="mp-slabel">'+tag+pr.short+'</span>'+
+            '<span class="mp-track"><i style="background:'+d.colors[k]+'"></i></span>'+
+            '<span class="mp-pct">'+pct+'%</span></div>';
+    }
+    EL.scoresEl.innerHTML=sh;
+    // animar barras tras pintar
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      var bars=EL.scoresEl.querySelectorAll('.mp-track i');
+      for(var i=0;i<d.order.length;i++){var v=scores[d.order[i]]||0;bars[i].style.width=Math.round(v/total*100)+'%';}
+    });});
+
+    // easter egg: perfil equilibrado
+    var hi=rk[0].v, lo=rk[rk.length-1].v;
+    if(hi-lo<=1){
+      EL.secret.classList.add('show');
+      EL.secret.innerHTML='✦ <b>Has hallado el equilibrio.</b> Tus cuatro fuerzas caminan juntas: eres Portador/a del Mapa. Pocos sostienen tantas sendas a la vez.';
+    } else EL.secret.classList.remove('show');
+
+    // fuentes / mini-mapa (solo ikigai)
+    if(d.kind==='ikigai'){
+      EL.sources.style.display='grid'; var ms='';
+      for(var s=0;s<d.order.length;s++){var ky=d.order[s],prf=d.profiles[ky],lit=ky===key?' lit':'';
+        ms+='<div class="mp-cell'+lit+'"><span class="mp-src">'+prf.src[0]+'<br>+ '+prf.src[1]+'</span><span class="mp-pname">'+prf.short+'</span></div>';}
+      EL.sources.innerHTML=ms;
+    } else EL.sources.style.display='none';
+
+    EL.note.innerHTML=d.note;
+
+    // soporte
+    EL.supTitle.textContent=d.support.title; EL.supSub.textContent=d.support.sub;
+    var lk=''; for(var L=0;L<d.support.links.length;L++){var x=d.support.links[L];
+      lk+='<a class="mp-link" href="'+x[3]+'"><span class="mp-ico">'+x[0]+'</span><span><b>'+x[1]+'</b><small>'+x[2]+'</small></span><span class="mp-arrow">→</span></a>';}
+    EL.links.innerHTML=lk; // REEMPLAZA href="#" por tus enlaces reales
+
+    // otro test
+    var other=current==='ikigai'?'disc':'ikigai';
+    var otherName=current==='ikigai'?'cómo te gusta ser liderado/a':'tu orientación · Ikigai';
+    EL.next.innerHTML='¿Seguimos el viaje? Descubre <a href="#" id="mp-go">'+otherName+'</a>.';
+    var go=$('mp-go'); if(go)go.addEventListener('click',function(ev){ev.preventDefault();start(other);root.scrollIntoView({behavior:'smooth',block:'start'});});
+    EL.switch.textContent='Hacer: '+otherName;
+    EL.switch.onclick=function(){start(other);root.scrollIntoView({behavior:'smooth',block:'start'});};
+  }
+
+  /* ---------- guardar imagen (html2canvas con fallback) ---------- */
+  function ensureH2C(cb){
+    if(window.html2canvas)return cb(true);
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    s.onload=function(){cb(true);}; s.onerror=function(){cb(false);};
+    document.head.appendChild(s);
+  }
+  function saveCard(){
+    var card=$('mp-card');
+    EL.save.textContent='Generando…';
+    ensureH2C(function(ok){
+      if(!ok||!window.html2canvas){EL.save.textContent='Guardar mi mapa (imagen)';toast('📸 Toma una captura de pantalla para guardarlo.');return;}
+      window.html2canvas(card,{backgroundColor:'#241813',scale:2,logging:false}).then(function(canvas){
+        var a=document.createElement('a');a.download='mi-mapa.png';a.href=canvas.toDataURL('image/png');a.click();
+        EL.save.textContent='Guardar mi mapa (imagen)';
+      }).catch(function(){EL.save.textContent='Guardar mi mapa (imagen)';toast('📸 Toma una captura de pantalla para guardarlo.');});
+    });
+  }
+
+  /* ---------- easter eggs ---------- */
+  // 1) anillo -> inscripción rúnica
+  EL.ring.addEventListener('click',function(){
+    EL.scene.classList.toggle('runic');
+    EL.runes.classList.toggle('show');
+    if(EL.scene.classList.contains('runic')) toast('⟡ La inscripción brilla solo para quien la busca.');
+  });
+  // 2) escribe "mellon"
+  (function(){
+    var buf='';
+    window.addEventListener('keydown',function(e){
+      if(!e.key||e.key.length>1)return;
+      buf=(buf+e.key.toLowerCase()).slice(-6);
+      if(buf==='mellon'){toast('🚪 «Habla, amigo, y entra.» La puerta del mapa se abre para ti.');EL.runes.classList.add('show');EL.scene.classList.add('runic');}
+    });
+  })();
+  // 3) consola
+  try{console.log('%c⟡ Reconquista tu mapa ⟡','color:#E0A24E;font-size:14px;font-weight:bold');
+      console.log('%cNo todos los que exploran se han perdido. Escribe "mellon" en la página…','color:#8E9A55');}catch(_){}
+
+  /* eventos */
+  EL.save.addEventListener('click',saveCard);
+  EL.retry.addEventListener('click',function(){start(current);});
+  var tabs=root.querySelectorAll('.mp-tab');
+  for(var t=0;t<tabs.length;t++)tabs[t].addEventListener('click',function(e){start(e.currentTarget.dataset.test);});
+
+  start('ikigai');
+})();
+</script>
+</section>
