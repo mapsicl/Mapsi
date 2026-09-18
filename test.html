@@ -6,17 +6,17 @@
   <meta name="theme-color" content="#080808" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="description" content="Reconquista tu mapa — Tests interactivos de autoconocimiento (Ikigai y DISC) por Maximiliano Jiménez, Psicólogo & Coach PNL. Descubre tu orientación y cómo te gusta ser liderado/a." />
+  <meta name="description" content="Dos test breves de autoconocimiento por Maximiliano Jiménez, Psicólogo & Coach: descubre hacia dónde te orienta lo que amas (Ikigai) y con qué tipo de liderazgo rindes mejor (DISC). 2 minutos, sin registro." />
   <meta name="author" content="Maximiliano Jiménez Rojas" />
   <meta property="og:title" content="Test · Reconquista tu mapa — Maximiliano Jiménez" />
-  <meta property="og:description" content="Dos recorridos breves para reconocer tu terreno: hacia dónde te orienta lo que amas (Ikigai) y cómo prefieres que te acompañen (DISC)." />
+  <meta property="og:description" content="Dos test breves: hacia dónde te orienta lo que amas y con qué liderazgo rindes mejor. 2 minutos, sin registro, resultado al instante." />
   <meta property="og:type" content="website" />
   <title>Test · Reconquista tu mapa — Maximiliano Jiménez</title>
 
-  <!-- Fonts: marca (Instrument Sans + DM Serif Display) + Press Start 2P (esencia pixel art del test) -->
+  <!-- Fonts: marca (Instrument Sans + DM Serif Display) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=DM+Serif+Display:ital@0;1&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 
   <style>
     /* =============================================
@@ -248,293 +248,339 @@
      - Todo se calcula en el navegador; nada se guarda en ningún servidor.
      - Marcos: Ikigai (Ikigai-9; Imai et al. 2012 / Fido et al. 2020) y
        DISC (Marston, 1928). Herramienta de autoconocimiento, no diagnóstico.
-     - Easter eggs para nerds: clic en el anillo del mapa · escribe "mellon"
-       en el teclado · abre la consola del navegador · perfil equilibrado.
+     - Tres pantallas: propósito -> una pregunta por vez -> resultado.
      ============================================================ -->
 <section class="mapa" id="reconquista-tu-mapa" aria-labelledby="mapa-titulo">
 <style>
 .mapa{
-  /* paleta · marca personal · negro y oro a la luz de una vela */
   --espresso:#0a0a09; --cocoa:#121110; --bark:#1d1a14; --bark-2:#2a251b;
-  --parchment:#f2f0eb; --ink:#161616;
   --cream:var(--white); --latte:var(--grey1); --latte-dim:#6b6b62;
   --amber:var(--gold); --oro:var(--gold2); --moss:#8E9A55; --clay:#C56A3C; --bronze:#A8794A; --terra:#C58A6A;
   --line:var(--border);
-  --r:18px;
+  --r:20px;
   font-family:var(--font-s);
   color:var(--cream);
   background:
-    radial-gradient(1200px 620px at 80% -10%, rgba(200,168,75,.10), transparent 60%),
-    radial-gradient(900px 520px at 6% 112%, rgba(142,154,85,.07), transparent 55%),
+    radial-gradient(1200px 620px at 80% -10%, rgba(200,168,75,.08), transparent 60%),
+    radial-gradient(900px 520px at 6% 112%, rgba(142,154,85,.05), transparent 55%),
     var(--bg);
   -webkit-font-smoothing:antialiased; display:block; width:100%; box-sizing:border-box;
-  padding:clamp(20px,4vw,56px); position:relative;
+  padding:clamp(28px,5vw,72px) clamp(20px,4vw,56px) clamp(40px,6vw,88px);
+  position:relative;
 }
 .mapa *,.mapa *::before,.mapa *::after{box-sizing:border-box}
-.mapa .mp-wrap{max-width:940px;margin:0 auto}
+.mapa .mp-wrap{max-width:760px;margin:0 auto}
 .mapa .display{font-family:var(--font-d);font-weight:400}
 
-/* ---- intro ---- */
-.mapa .mp-eyebrow{font-family:"Press Start 2P",monospace;font-size:10px;letter-spacing:.12em;
-  color:var(--amber);display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;margin:0 0 18px}
-.mapa .mp-eyebrow::before{content:"";width:26px;height:2px;background:var(--amber);display:inline-block}
-.mapa h2.mp-title{font-weight:400;font-size:clamp(32px,6vw,58px);line-height:1.08;letter-spacing:-.01em;margin:0 0 14px;color:var(--cream)}
-.mapa h2.mp-title em{font-style:italic;color:var(--oro)}
-.mapa .mp-lead{font-size:clamp(15px,2.2vw,18px);line-height:1.6;color:var(--latte);max-width:56ch;margin:0}
-.mapa .mp-runes{display:none;margin:14px 0 0;font-size:15px;letter-spacing:.34em;color:var(--oro);
-  text-shadow:0 0 12px rgba(226,192,106,.5);opacity:.9}
-.mapa .mp-runes.show{display:block;animation:mp-fade .6s ease both}
-.mapa .mp-runes small{display:block;font-family:"Press Start 2P",monospace;font-size:8px;letter-spacing:.1em;color:var(--latte-dim);margin-top:8px;text-shadow:none}
+/* pantallas */
+.mapa .mp-screen{display:none}
+.mapa .mp-screen.on{display:block;animation:mp-in .55s var(--ease) both}
+@keyframes mp-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes mp-q-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-/* ---- escena / mapa (paisaje pixel art: conserva sus tierras cálidas) ---- */
-.mapa .mp-scene{position:relative;margin:26px 0 6px;height:152px;border-radius:var(--r);
-  background:linear-gradient(180deg,#2b1d12 0%,#140f0a 100%);
-  border:1px solid var(--line);overflow:hidden}
-.mapa .mp-sky{position:absolute;inset:0}
-.mapa .mp-star-bg{position:absolute;width:2px;height:2px;background:var(--oro);border-radius:1px}
-.mapa .mp-mtn{position:absolute;bottom:46px;width:0;height:0;border-style:solid;opacity:.5}
-.mapa .mp-ground{position:absolute;left:0;right:0;bottom:0;height:48px;
-  background:repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 2px,transparent 2px 4px),
-    linear-gradient(180deg,#503a22,#352415);border-top:2px solid rgba(200,168,75,.38)}
-.mapa .mp-runeband{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-size:11px;
-  letter-spacing:.5em;color:rgba(226,192,106,.0);transition:color .5s;pointer-events:none;user-select:none}
-.mapa .mp-scene.runic .mp-runeband{color:rgba(226,192,106,.85);text-shadow:0 0 10px rgba(226,192,106,.6)}
-.mapa .mp-trail{position:absolute;left:6%;right:6%;bottom:34px;height:2px;display:flex;justify-content:space-between;align-items:center}
-.mapa .mp-dot{width:6px;height:6px;border-radius:1px;background:#332311;box-shadow:0 0 0 2px rgba(0,0,0,.25)}
-.mapa .mp-dot.on{background:var(--amber)}
-.mapa .mp-goal{position:absolute;right:5%;bottom:30px;filter:drop-shadow(0 0 6px rgba(226,192,106,.7))}
-.mapa .mp-hero{position:absolute;bottom:28px;left:6%;width:44px;transition:left .55s cubic-bezier(.34,1.2,.4,1);
-  filter:drop-shadow(0 6px 6px rgba(0,0,0,.4))}
-.mapa .mp-hero .mp-sprite{animation:mp-bob .9s steps(2) infinite}
-@keyframes mp-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
-.mapa .mp-sprite{display:block;width:100%;height:auto;image-rendering:pixelated}
-.mapa .mp-scene-label{position:absolute;top:12px;left:14px;font-family:"Press Start 2P",monospace;font-size:9px;color:var(--latte);letter-spacing:.06em}
-.mapa .mp-ring-egg{position:absolute;top:11px;right:12px;width:22px;height:22px;cursor:pointer;border:0;background:transparent;padding:0;opacity:.55;transition:.25s;z-index:3}
-.mapa .mp-ring-egg:hover{opacity:1;transform:rotate(12deg) scale(1.08)}
-.mapa .mp-ring-egg svg{width:100%;height:100%;display:block;image-rendering:pixelated}
+/* =========== 1 · PORTADA (el propósito) =========== */
+.mapa .mp-eyebrow{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--amber);display:inline-flex;align-items:center;gap:10px;margin:0 0 22px}
+.mapa .mp-eyebrow::before{content:"";width:24px;height:1px;background:var(--amber);display:inline-block}
+.mapa h1.mp-title{font-weight:400;font-size:clamp(34px,6.4vw,62px);line-height:1.04;letter-spacing:-.015em;margin:0 0 20px;color:var(--cream)}
+.mapa h1.mp-title em{font-style:italic;color:var(--oro)}
+.mapa .mp-lead{font-size:clamp(16px,2.3vw,20px);line-height:1.6;color:var(--latte);max-width:52ch;margin:0 0 28px;font-weight:300}
+.mapa .mp-lead b{color:var(--cream);font-weight:500}
 
-/* ---- selector ---- */
-.mapa .mp-tabs{display:flex;gap:8px;margin:22px 0 18px;background:var(--cocoa);border:1px solid var(--line);padding:6px;border-radius:14px}
-.mapa .mp-tab{flex:1;border:0;background:transparent;color:var(--latte);cursor:pointer;font-family:inherit;
-  font-weight:500;font-size:14px;padding:12px 10px;border-radius:10px;display:flex;align-items:center;
-  justify-content:center;gap:8px;transition:.2s;text-align:center;line-height:1.2}
-.mapa .mp-tab:hover{color:var(--cream)}
-.mapa .mp-tab[aria-selected="true"]{background:var(--bark);color:var(--cream);box-shadow:inset 0 0 0 1px var(--line)}
-.mapa .mp-tab .mp-tnum{font-family:"Press Start 2P",monospace;font-size:9px;color:var(--amber)}
+.mapa .mp-facts{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 34px;padding:0;list-style:none}
+.mapa .mp-facts li{font-size:13px;color:var(--latte);border:1px solid var(--border2);border-radius:99px;
+  padding:7px 15px;background:rgba(255,255,255,.02);display:inline-flex;align-items:center;gap:7px}
+.mapa .mp-facts li svg{width:13px;height:13px;stroke:var(--amber);fill:none;stroke-width:2;flex:none}
 
-/* ---- panel / preguntas ---- */
-.mapa .mp-panel{background:linear-gradient(180deg,var(--cocoa),rgba(18,17,16,.55));border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3vw,34px)}
-.mapa .mp-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
-.mapa .mp-step{font-family:"Press Start 2P",monospace;font-size:9px;color:var(--latte);letter-spacing:.06em}
-.mapa .mp-bar{flex:1;height:7px;background:var(--bark);border-radius:99px;overflow:hidden;max-width:240px}
-.mapa .mp-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--amber),var(--moss));border-radius:99px;transition:width .45s ease}
-.mapa .mp-q{font-size:clamp(20px,3.4vw,28px);line-height:1.22;letter-spacing:0;margin:0 0 20px;color:var(--cream)}
-.mapa .mp-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.mapa .mp-opt{text-align:left;border:1px solid var(--line);background:rgba(10,10,9,.55);color:var(--cream);
-  font-family:inherit;font-size:15px;line-height:1.45;cursor:pointer;padding:16px 16px 16px 46px;border-radius:12px;position:relative;transition:.18s}
-.mapa .mp-opt::before{content:attr(data-k);position:absolute;left:14px;top:14px;width:22px;height:22px;border-radius:7px;
-  display:grid;place-items:center;font-family:"Press Start 2P",monospace;font-size:8px;background:var(--bark);color:var(--amber);border:1px solid var(--line)}
-.mapa .mp-opt:hover{border-color:rgba(200,168,75,.6);background:rgba(42,37,27,.6);transform:translateY(-2px)}
-.mapa .mp-opt:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.mapa .mp-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 26px}
+.mapa .mp-choice{position:relative;text-align:left;border:1px solid var(--line);border-radius:var(--r);
+  background:linear-gradient(180deg,rgba(29,26,20,.55),rgba(10,10,9,.5));
+  padding:26px 24px 24px;cursor:pointer;color:var(--cream);font-family:inherit;
+  transition:border-color .35s var(--ease2),transform .35s var(--ease),background .35s}
+.mapa .mp-choice:hover{border-color:rgba(200,168,75,.5);transform:translateY(-3px);background:linear-gradient(180deg,rgba(42,37,27,.6),rgba(10,10,9,.5))}
+.mapa .mp-choice:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.mapa .mp-cnum{font-size:11px;font-weight:600;letter-spacing:.16em;color:var(--amber);text-transform:uppercase;display:block;margin-bottom:12px}
+.mapa .mp-cname{font-family:var(--font-d);font-size:clamp(21px,3vw,26px);line-height:1.18;margin:0 0 10px;display:block;font-weight:400}
+.mapa .mp-cdesc{display:block;font-size:14.5px;line-height:1.55;color:var(--latte);margin:0 0 20px;font-weight:300}
+.mapa .mp-cgo{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--oro)}
+.mapa .mp-cgo svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s var(--ease)}
+.mapa .mp-choice:hover .mp-cgo svg{transform:translateX(4px)}
+.mapa .mp-cmeta{position:absolute;top:24px;right:24px;font-size:12px;color:var(--latte-dim)}
 
-/* ---- resultado + dashboard capturable ---- */
-.mapa .mp-result{display:none}
-.mapa .mp-result.on{display:block;animation:mp-fade .5s ease both}
-@keyframes mp-fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.mapa .mp-author{display:flex;align-items:center;gap:14px;border-top:1px solid var(--border2);padding-top:22px}
+.mapa .mp-avatar{width:46px;height:46px;border-radius:50%;object-fit:cover;object-position:center 20%;
+  border:1px solid var(--border);flex:none;background:var(--bark)}
+.mapa .mp-author p{margin:0;font-size:13.5px;line-height:1.5;color:var(--latte)}
+.mapa .mp-author b{color:var(--cream);font-weight:500}
+.mapa .mp-privacy{margin:16px 0 0;font-size:12.5px;color:var(--latte-dim);display:flex;align-items:center;gap:8px;line-height:1.5}
+.mapa .mp-privacy svg{width:13px;height:13px;stroke:var(--latte-dim);fill:none;stroke-width:2;flex:none}
 
-.mapa .mp-card{position:relative;border:1px solid rgba(200,168,75,.3);border-radius:16px;overflow:hidden;
-  background:radial-gradient(700px 300px at 85% -20%,rgba(200,168,75,.13),transparent 60%),linear-gradient(180deg,#16140f,#0d0c0a);
-  padding:clamp(20px,3vw,30px)}
-.mapa .mp-card::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:repeating-linear-gradient(135deg,rgba(255,255,255,.012) 0 2px,transparent 2px 5px)}
-.mapa .mp-card-top{display:flex;align-items:center;gap:16px;margin-bottom:18px;position:relative;z-index:1}
-.mapa .mp-badge{width:98px;height:98px;flex:none;border-radius:16px;display:grid;place-items:center;
+/* =========== 2 · PREGUNTAS =========== */
+.mapa .mp-qhead{display:flex;align-items:center;gap:16px;margin:0 0 44px}
+.mapa .mp-back{width:38px;height:38px;flex:none;border-radius:50%;border:1px solid var(--border2);
+  background:transparent;color:var(--latte);cursor:pointer;display:grid;place-items:center;transition:.25s}
+.mapa .mp-back:hover{border-color:var(--line);color:var(--cream)}
+.mapa .mp-back svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
+.mapa .mp-progress{flex:1}
+.mapa .mp-ptop{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px}
+.mapa .mp-pname{font-size:12.5px;color:var(--latte);letter-spacing:.02em}
+.mapa .mp-pcount{font-size:12.5px;color:var(--latte-dim);font-variant-numeric:tabular-nums}
+.mapa .mp-bar{height:3px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
+.mapa .mp-bar span{display:block;height:100%;width:0;background:var(--amber);border-radius:99px;
+  transition:width .6s var(--ease)}
+
+.mapa .mp-q{font-weight:400;font-size:clamp(26px,4.6vw,40px);line-height:1.18;letter-spacing:-.012em;
+  margin:0 0 34px;color:var(--cream);max-width:20ch;animation:mp-q-in .45s var(--ease) both}
+.mapa .mp-opts{display:grid;gap:11px}
+.mapa .mp-opt{text-align:left;border:1px solid var(--border2);background:rgba(255,255,255,.022);
+  color:var(--cream);font-family:inherit;font-size:16.5px;font-weight:300;line-height:1.5;cursor:pointer;
+  padding:20px 54px 20px 24px;border-radius:15px;position:relative;
+  transition:border-color .28s var(--ease2),background .28s,transform .28s var(--ease);
+  animation:mp-q-in .45s var(--ease) both}
+.mapa .mp-opt::after{content:"";position:absolute;right:22px;top:50%;width:9px;height:9px;
+  border-right:1.5px solid var(--latte-dim);border-bottom:1.5px solid var(--latte-dim);
+  transform:translateY(-50%) rotate(-45deg);transition:border-color .28s,right .28s var(--ease)}
+.mapa .mp-opt:hover{border-color:rgba(200,168,75,.45);background:rgba(200,168,75,.05);transform:translateY(-2px)}
+.mapa .mp-opt:hover::after{border-color:var(--oro);right:18px}
+.mapa .mp-opt:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.mapa .mp-opt.picked{border-color:var(--amber);background:rgba(200,168,75,.12)}
+.mapa .mp-qnote{margin:30px 0 0;font-size:12.5px;color:var(--latte-dim);text-align:center}
+
+/* =========== 3 · RESULTADO =========== */
+.mapa .mp-card{position:relative;border:1px solid rgba(200,168,75,.28);border-radius:22px;overflow:hidden;
+  background:radial-gradient(700px 300px at 85% -20%,rgba(200,168,75,.12),transparent 60%),linear-gradient(180deg,#16140f,#0c0b0a);
+  padding:clamp(24px,4vw,38px)}
+.mapa .mp-card-top{display:flex;align-items:center;gap:20px;margin-bottom:22px;position:relative;z-index:1}
+.mapa .mp-badge{width:84px;height:84px;flex:none;border-radius:20px;display:grid;place-items:center;
   background:radial-gradient(60px 60px at 50% 30%,rgba(200,168,75,.14),transparent 70%),var(--espresso);
-  border:1px solid rgba(200,168,75,.32);box-shadow:inset 0 0 0 1px rgba(0,0,0,.4)}
-.mapa .mp-badge svg{width:76px;height:76px;image-rendering:pixelated}
-@keyframes mp-pop{0%{transform:scale(.6);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
-.mapa .mp-result.on .mp-badge{animation:mp-pop .6s cubic-bezier(.16,1,.3,1) both}
-.mapa .mp-zonetag{font-family:"Press Start 2P",monospace;font-size:9px;letter-spacing:.08em;color:var(--latte);text-transform:uppercase;margin:0 0 7px}
-.mapa .mp-zonename{font-size:clamp(24px,4.6vw,38px);line-height:1.08;margin:0}
-.mapa .mp-zonelead{font-style:italic;color:var(--oro);font-size:clamp(14px,2.2vw,17px);margin:8px 0 0;position:relative;z-index:1;font-family:var(--font-d)}
-.mapa .mp-zonedesc{color:var(--latte);line-height:1.62;font-size:15px;margin:16px 0 20px;position:relative;z-index:1}
+  border:1px solid rgba(200,168,75,.28)}
+.mapa .mp-badge svg{width:60px;height:60px;image-rendering:pixelated}
+@keyframes mp-pop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+.mapa .mp-screen.on .mp-badge{animation:mp-pop .7s var(--ease) both}
+.mapa .mp-zonetag{font-size:11px;letter-spacing:.16em;color:var(--latte);text-transform:uppercase;margin:0 0 8px;font-weight:600}
+.mapa .mp-zonename{font-size:clamp(27px,5vw,42px);line-height:1.06;margin:0;letter-spacing:-.01em}
+.mapa .mp-zonelead{font-style:italic;color:var(--oro);font-size:clamp(16px,2.4vw,20px);margin:0 0 4px;
+  position:relative;z-index:1;font-family:var(--font-d);line-height:1.4}
+.mapa .mp-zonedesc{color:var(--latte);line-height:1.68;font-size:15.5px;margin:14px 0 26px;position:relative;z-index:1;font-weight:300}
 
-/* puntaje (barras) */
-.mapa .mp-scores{display:grid;gap:11px;position:relative;z-index:1;margin-bottom:6px}
-.mapa .mp-score{display:grid;grid-template-columns:120px 1fr 38px;align-items:center;gap:12px}
-.mapa .mp-score .mp-slabel{font-size:13px;color:var(--cream);font-weight:500;display:flex;align-items:center;gap:7px}
-.mapa .mp-score .mp-key{font-family:"Press Start 2P",monospace;font-size:8px;color:var(--bg);background:var(--latte);border-radius:4px;padding:3px 4px}
-.mapa .mp-score .mp-dotk{width:10px;height:10px;border-radius:99px;flex:none;box-shadow:0 0 0 2px rgba(0,0,0,.2)}
-.mapa .mp-track{height:12px;border-radius:99px;background:rgba(0,0,0,.35);overflow:hidden}
-.mapa .mp-track i{display:block;height:100%;width:0;border-radius:99px;transition:width .8s cubic-bezier(.2,.8,.2,1)}
-.mapa .mp-score .mp-pct{font-family:"Press Start 2P",monospace;font-size:9px;color:var(--latte);text-align:right}
-.mapa .mp-score.top .mp-slabel{color:var(--oro)}
+.mapa .mp-scores{display:grid;gap:13px;position:relative;z-index:1}
+.mapa .mp-score{display:grid;grid-template-columns:118px 1fr 42px;align-items:center;gap:14px}
+.mapa .mp-score .mp-slabel{font-size:13.5px;color:var(--latte);font-weight:400;display:flex;align-items:center;gap:8px}
+.mapa .mp-score .mp-dotk{width:8px;height:8px;border-radius:99px;flex:none}
+.mapa .mp-track{height:6px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.mapa .mp-track i{display:block;height:100%;width:0;border-radius:99px;transition:width .9s cubic-bezier(.2,.8,.2,1)}
+.mapa .mp-score .mp-pct{font-size:12.5px;color:var(--latte-dim);text-align:right;font-variant-numeric:tabular-nums}
+.mapa .mp-score.top .mp-slabel{color:var(--cream);font-weight:500}
 
-.mapa .mp-cardfoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;
-  padding-top:14px;border-top:1px solid var(--line);position:relative;z-index:1}
-.mapa .mp-brand{font-family:"Press Start 2P",monospace;font-size:9px;color:var(--latte);letter-spacing:.04em}
-.mapa .mp-brand b{color:var(--amber)}
+.mapa .mp-cardfoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:26px;
+  padding-top:16px;border-top:1px solid var(--border2);position:relative;z-index:1}
+.mapa .mp-brand{font-size:12px;color:var(--latte);letter-spacing:.02em}
+.mapa .mp-brand b{color:var(--oro);font-weight:500}
 .mapa .mp-date{font-size:12px;color:var(--latte-dim)}
-.mapa .mp-secret{display:none;margin-top:14px;padding:11px 14px;border-radius:11px;position:relative;z-index:1;
-  background:rgba(226,192,106,.1);border:1px solid rgba(226,192,106,.35);color:var(--oro);font-size:13px}
-.mapa .mp-secret.show{display:block}
 
-.mapa .mp-shot-hint{display:flex;align-items:center;gap:8px;justify-content:center;margin:14px 0 0;
-  color:var(--latte-dim);font-size:13px}
+.mapa .mp-block{margin-top:34px}
+.mapa .mp-blocktitle{font-family:var(--font-d);font-weight:400;font-size:clamp(20px,3vw,26px);margin:0 0 16px;color:var(--cream)}
+.mapa .mp-blocktitle{font-family:var(--font-d);font-weight:400;font-size:clamp(20px,3vw,26px);margin:0 0 8px;color:var(--cream)}
+.mapa .mp-blocklead{margin:0 0 16px;font-size:14px;color:var(--latte-dim);line-height:1.55;font-weight:300}
+.mapa .mp-combo{margin:12px 0 0;font-size:15px;line-height:1.6;color:var(--cream);position:relative;z-index:1;
+  border-left:2px solid rgba(200,168,75,.45);padding-left:14px;font-weight:300}
+.mapa .mp-combo b{color:var(--oro);font-weight:500}
+.mapa .mp-drain,.mapa .mp-ask{list-style:none;display:grid;gap:10px;margin:0;padding:0}
+.mapa .mp-drain li,.mapa .mp-ask li{position:relative;padding:15px 18px 15px 48px;border:1px solid var(--border2);
+  border-radius:14px;background:rgba(255,255,255,.022);color:var(--cream);font-size:15.5px;line-height:1.55;font-weight:300}
+.mapa .mp-drain li::before{content:"";position:absolute;left:20px;top:22px;width:16px;height:1.5px;
+  background:var(--clay);border-radius:2px}
+.mapa .mp-ask li{font-style:italic;color:var(--oro)}
+.mapa .mp-ask li::before{content:"";position:absolute;left:19px;top:19px;width:10px;height:10px;border-radius:50%;
+  border:1.5px solid rgba(200,168,75,.6)}
+.mapa .mp-keys{list-style:none;display:grid;gap:10px;margin:0;padding:0;counter-reset:k}
+.mapa .mp-keys li{position:relative;padding:16px 18px 16px 48px;border:1px solid var(--border2);border-radius:14px;
+  background:rgba(255,255,255,.022);color:var(--cream);font-size:15.5px;line-height:1.55;font-weight:300}
+.mapa .mp-keys li::before{counter-increment:k;content:counter(k);position:absolute;left:18px;top:16px;
+  width:20px;height:20px;border-radius:50%;display:grid;place-items:center;
+  font-size:11px;font-weight:600;background:rgba(200,168,75,.16);color:var(--oro)}
 
-/* fuentes ikigai / nota */
-.mapa .mp-sources{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:20px 0 0}
-.mapa .mp-cell{border:1px solid var(--line);border-radius:12px;padding:13px;background:rgba(10,10,9,.4)}
-.mapa .mp-cell .mp-src{font-family:var(--font-s);font-weight:600;font-size:12px;letter-spacing:.02em;text-transform:uppercase;color:var(--latte);display:block;margin-bottom:7px;line-height:1.45}
-.mapa .mp-cell .mp-pname{font-weight:500;color:var(--cream);font-size:14px}
-.mapa .mp-cell.lit{background:rgba(200,168,75,.12);border-color:rgba(200,168,75,.5)}
-.mapa .mp-cell.lit .mp-pname{color:var(--oro)}
+.mapa .mp-cta{border:1px solid rgba(200,168,75,.3);border-radius:18px;padding:26px;margin-top:34px;
+  background:radial-gradient(500px 200px at 90% -40%,rgba(200,168,75,.1),transparent 60%),rgba(18,17,16,.6)}
+.mapa .mp-cta h4{font-family:var(--font-d);font-weight:400;font-size:clamp(20px,3vw,25px);margin:0 0 10px;color:var(--cream)}
+.mapa .mp-cta p{margin:0 0 20px;color:var(--latte);font-size:14.5px;line-height:1.6;max-width:46ch;font-weight:300}
+.mapa .mp-ctarow{display:flex;flex-wrap:wrap;gap:11px}
 
-.mapa .mp-note{margin-top:18px;font-size:12.5px;color:var(--latte-dim);line-height:1.55;
-  border-left:2px solid var(--line);padding-left:12px}
+.mapa .mp-btn{font-family:inherit;font-weight:500;font-size:15px;cursor:pointer;border-radius:12px;
+  padding:14px 24px;border:1px solid var(--border2);background:transparent;color:var(--cream);
+  transition:.22s var(--ease2);display:inline-flex;align-items:center;gap:9px;text-align:center}
+.mapa .mp-btn:hover{border-color:var(--line);background:rgba(255,255,255,.03)}
+.mapa .mp-btn svg{width:16px;height:16px;flex:none}
+.mapa .mp-btn.primary{background:var(--amber);color:#0a0a09;border-color:var(--amber);font-weight:600}
+.mapa .mp-btn.primary:hover{background:var(--oro);border-color:var(--oro);transform:translateY(-1px)}
+.mapa .mp-btn.wa{border-color:rgba(58,158,95,.5);color:#7fd1a0}
+.mapa .mp-btn.wa:hover{border-color:#3a9e5f;background:rgba(58,158,95,.1)}
+.mapa .mp-btn.wa svg{fill:currentColor}
+
+.mapa .mp-actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:26px}
+.mapa .mp-sources{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:20px}
+.mapa .mp-cell{border:1px solid var(--border2);border-radius:12px;padding:14px;background:rgba(255,255,255,.02)}
+.mapa .mp-cell .mp-src{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--latte-dim);display:block;margin-bottom:8px;line-height:1.5}
+.mapa .mp-cell .mp-pn{font-weight:500;color:var(--latte);font-size:14px}
+.mapa .mp-cell.lit{background:rgba(200,168,75,.1);border-color:rgba(200,168,75,.4)}
+.mapa .mp-cell.lit .mp-pn{color:var(--oro)}
+
+.mapa .mp-note{margin-top:26px;font-size:12.5px;color:var(--latte-dim);line-height:1.6;
+  border-left:1px solid var(--border2);padding-left:14px;font-weight:300}
 .mapa .mp-note b{color:var(--latte)}
 
-.mapa .mp-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
-.mapa .mp-btn{font-family:inherit;font-weight:500;font-size:15px;cursor:pointer;border-radius:12px;padding:13px 22px;border:1px solid var(--line);background:transparent;color:var(--cream);transition:.18s;display:inline-flex;align-items:center;gap:8px}
-.mapa .mp-btn:hover{border-color:var(--latte)}
-.mapa .mp-btn.primary{background:var(--amber);color:var(--bg);border-color:var(--amber)}
-.mapa .mp-btn.primary:hover{background:var(--oro)}
-.mapa .mp-next{margin-top:18px;color:var(--latte);font-size:14px}
-.mapa .mp-next a{color:var(--moss);font-weight:500;text-decoration:none;border-bottom:1px solid rgba(142,154,85,.45)}
-
-/* descubrimiento: 3 claves + nota referencial + CTA a sesión */
-.mapa .mp-discovery{border-top:1px dashed var(--line);padding-top:24px;margin-top:24px}
-.mapa .mp-disc-title{font-family:var(--font-d);font-weight:400;font-size:clamp(20px,3vw,26px);margin:0 0 12px;color:var(--cream)}
-.mapa .mp-ref{font-size:13px;color:var(--latte-dim);line-height:1.55;margin:0 0 18px;
-  background:rgba(200,168,75,.06);border:1px solid var(--line);border-radius:10px;padding:11px 14px}
-.mapa .mp-ref b{color:var(--latte)}
-.mapa .mp-keys{list-style:none;display:grid;gap:10px;margin:0 0 20px;padding:0;counter-reset:k}
-.mapa .mp-keys li{position:relative;padding:13px 15px 13px 42px;border:1px solid var(--line);border-radius:12px;
-  background:rgba(10,10,9,.45);color:var(--cream);font-size:15px;line-height:1.5}
-.mapa .mp-keys li::before{counter-increment:k;content:counter(k);position:absolute;left:13px;top:13px;
-  width:20px;height:20px;border-radius:6px;display:grid;place-items:center;
-  font-family:"Press Start 2P",monospace;font-size:8px;background:var(--bark);color:var(--amber);border:1px solid var(--line)}
-.mapa .mp-cta{border:1px solid rgba(200,168,75,.34);border-radius:14px;padding:18px 20px;
-  background:radial-gradient(500px 200px at 90% -40%,rgba(200,168,75,.12),transparent 60%),rgba(18,17,16,.6);
-  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.mapa .mp-cta p{margin:0;color:var(--latte);font-size:14px;line-height:1.55;max-width:44ch}
-.mapa .mp-cta .mp-btn{flex:none}
-
-/* toast easter egg */
+/* toast */
 .mapa .mp-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);
-  background:var(--bg2);color:var(--oro);border:1px solid rgba(226,192,106,.45);
+  background:var(--bg2);color:var(--oro);border:1px solid rgba(226,192,106,.4);
   padding:13px 20px;border-radius:12px;font-size:14px;box-shadow:0 12px 40px rgba(0,0,0,.5);
-  opacity:0;pointer-events:none;transition:.35s;z-index:9999;max-width:90vw;text-align:center}
+  opacity:0;pointer-events:none;transition:.35s var(--ease);z-index:9999;max-width:90vw;text-align:center}
 .mapa .mp-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-@media (max-width:600px){
-  .mapa .mp-opts{grid-template-columns:1fr}
-  .mapa .mp-sources{grid-template-columns:1fr}
-  .mapa .mp-tab{font-size:13px;flex-direction:column;gap:4px}
-  .mapa .mp-score{grid-template-columns:92px 1fr 34px;gap:9px}
-  .mapa .mp-score .mp-slabel{font-size:12px}
-  .mapa .mp-card-top{gap:12px}
+@media (max-width:640px){
+  .mapa .mp-cards{grid-template-columns:1fr}
+  .mapa .mp-sources{grid-template-columns:1fr 1fr}
+  .mapa .mp-score{grid-template-columns:96px 1fr 38px;gap:10px}
+  .mapa .mp-card-top{gap:15px}
+  .mapa .mp-badge{width:68px;height:68px;border-radius:16px}
+  .mapa .mp-badge svg{width:50px;height:50px}
   .mapa .mp-cardfoot{flex-direction:column;align-items:flex-start;gap:6px}
-  .mapa .mp-badge{width:80px;height:80px}
-  .mapa .mp-badge svg{width:62px;height:62px}
-  .mapa .mp-cta{flex-direction:column;align-items:flex-start}
+  .mapa .mp-btn{flex:1 1 100%;justify-content:center}
+  .mapa .mp-cmeta{position:static;display:block;margin-bottom:10px}
 }
 @media (prefers-reduced-motion:reduce){
-  .mapa .mp-hero{transition:none}.mapa .mp-hero .mp-sprite{animation:none}
-  .mapa .mp-result.on,.mapa .mp-runes.show{animation:none}
-  .mapa .mp-track i{transition:none}
+  .mapa .mp-screen.on,.mapa .mp-q,.mapa .mp-opt{animation:none}
+  .mapa .mp-screen.on .mp-badge{animation:none}
+  .mapa .mp-track i,.mapa .mp-bar span{transition:none}
 }
 </style>
 
 <div class="mp-wrap">
-  <p class="mp-eyebrow">Cartografía interior · reconquista tu mapa</p>
-  <h2 class="mp-title display" id="mapa-titulo">Vuelve a trazar <em>el mapa de tu propósito</em></h2>
-  <p class="mp-lead">Dos recorridos breves para reconocer el terreno: hacia dónde te orienta lo que amas y cómo prefieres que te acompañen en el camino. Avanza por el mapa y reclama tu territorio.</p>
-  <p class="mp-runes display" id="mp-runes">ᛗᛖᛚᛚᛟᚾ · ᛏᚱᚨᛉᚨ · ᛏᚢ · ᛗᚨᛈᚨ<small>El que conoce la palabra amigable, ya cruzó la primera puerta.</small></p>
 
-  <!-- escena -->
-  <div class="mp-scene" id="mp-scene" aria-hidden="true">
-    <div class="mp-sky" id="mp-sky"></div>
-    <div class="mp-scene-label" id="mp-scene-label">MAPA · I</div>
-    <button class="mp-ring-egg" id="mp-ring" title="¿Qué dirá esta inscripción?" aria-label="Inscripción rúnica"></button>
-    <div class="mp-ground"></div>
-    <div class="mp-runeband">ᚨ ᛗᛁᚱᚨᚾ ᛚᚩᛋ ᚦᚢᛖ ᛋᚨᛒᛖᚾ ᛗᛁᚱᚨᚱ</div>
-    <div class="mp-trail" id="mp-trail"></div>
-    <div class="mp-goal" id="mp-goal"></div>
-    <div class="mp-hero" id="mp-hero"></div>
+  <!-- ================= 1 · PORTADA ================= -->
+  <div class="mp-screen on" id="mp-intro">
+    <p class="mp-eyebrow">Test de autoconocimiento</p>
+    <h1 class="mp-title display" id="mapa-titulo">Dos preguntas que vale la pena <em>hacerse</em></h1>
+    <p class="mp-lead">¿Hacia dónde te orienta lo que de verdad te mueve? ¿Con qué tipo de liderazgo rindes mejor?
+      Dos test breves para ponerle nombre a algo que probablemente ya intuyes. <b>Al final recibes tu perfil y un siguiente paso concreto.</b></p>
+
+    <ul class="mp-facts">
+      <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 2 minutos cada uno</li>
+      <li><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> 7 y 8 preguntas</li>
+      <li><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z"/></svg> Sin registro ni correo</li>
+      <li><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg> Resultado al instante</li>
+    </ul>
+
+    <div class="mp-cards">
+      <button class="mp-choice" data-start="ikigai">
+        <span class="mp-cmeta">7 preguntas</span>
+        <span class="mp-cnum">Test I</span>
+        <span class="mp-cname display">Tu orientación</span>
+        <span class="mp-cdesc">Dónde se cruzan lo que amas, lo que haces bien y lo que el mundo necesita. Basado en el modelo Ikigai.</span>
+        <span class="mp-cgo">Comenzar <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+      <button class="mp-choice" data-start="disc">
+        <span class="mp-cmeta">8 preguntas</span>
+        <span class="mp-cnum">Test II</span>
+        <span class="mp-cname display">Cómo te gusta ser liderado/a</span>
+        <span class="mp-cdesc">Qué necesitas de un jefe o equipo para dar lo mejor de ti, y qué te apaga. Basado en el modelo DISC.</span>
+        <span class="mp-cgo">Comenzar <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </button>
+    </div>
+
+    <div class="mp-author">
+      <img class="mp-avatar" src="img/Max.JPG" alt="Maximiliano Jiménez" loading="lazy" />
+      <p>Diseñados por <b>Maximiliano Jiménez</b>, psicólogo y coach. Los uso como punto de partida en mis sesiones de claridad profesional.</p>
+    </div>
+    <p class="mp-privacy">
+      <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      Todo se calcula en tu navegador. Tus respuestas no se envían ni se guardan en ningún servidor.
+    </p>
   </div>
 
-  <!-- selector -->
-  <div class="mp-tabs" role="tablist" aria-label="Elige un recorrido">
-    <button class="mp-tab" role="tab" aria-selected="true" data-test="ikigai" id="tab-ikigai">
-      <span class="mp-tnum">I</span> Tu orientación · Ikigai
-    </button>
-    <button class="mp-tab" role="tab" aria-selected="false" data-test="disc" id="tab-disc">
-      <span class="mp-tnum">II</span> Cómo te gusta ser liderado/a · DISC
-    </button>
-  </div>
-
-  <div class="mp-panel">
-    <!-- preguntas -->
-    <div class="mp-quiz" id="mp-quiz">
-      <div class="mp-meta">
-        <span class="mp-step" id="mp-step">Pregunta 1</span>
+  <!-- ================= 2 · PREGUNTAS ================= -->
+  <div class="mp-screen" id="mp-quiz">
+    <div class="mp-qhead">
+      <button class="mp-back" id="mp-back" aria-label="Volver a la pregunta anterior">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="mp-progress">
+        <div class="mp-ptop">
+          <span class="mp-pname" id="mp-testname"></span>
+          <span class="mp-pcount" id="mp-count"></span>
+        </div>
         <div class="mp-bar"><span id="mp-fill"></span></div>
       </div>
-      <h3 class="mp-q display" id="mp-question">…</h3>
-      <div class="mp-opts" id="mp-opts"></div>
     </div>
-
-    <!-- resultado -->
-    <div class="mp-result" id="mp-result">
-      <!-- ====== DASHBOARD CAPTURABLE (id mp-card) ====== -->
-      <div class="mp-card" id="mp-card">
-        <div class="mp-card-top">
-          <div class="mp-badge" id="mp-badge"></div>
-          <div>
-            <p class="mp-zonetag" id="mp-zonetag">Tu territorio</p>
-            <h3 class="mp-zonename display" id="mp-zonename"></h3>
-          </div>
-        </div>
-        <p class="mp-zonelead" id="mp-zonelead"></p>
-        <p class="mp-zonedesc" id="mp-zonedesc"></p>
-
-        <div class="mp-scores" id="mp-scores"></div>
-
-        <div class="mp-secret" id="mp-secret"></div>
-
-        <div class="mp-cardfoot">
-          <span class="mp-brand">⟡ <b>Maximiliano Jiménez</b> · reconquista tu mapa</span>
-          <span class="mp-date" id="mp-date"></span>
-        </div>
-      </div>
-      <!-- ====== /DASHBOARD ====== -->
-
-      <p class="mp-shot-hint">📸 Toma una captura de esta tarjeta para guardar o compartir tu figura.</p>
-
-      <div class="mp-sources" id="mp-sources"></div>
-
-      <!-- descubrimiento: 3 claves de la respuesta + CTA a una sesión -->
-      <div class="mp-discovery">
-        <h4 class="mp-disc-title display">✦ Tu descubrimiento</h4>
-        <p class="mp-ref">Las categorías y los nombres de personajes son <b>referenciales</b>: un ejercicio espejo para reflexionar sobre ti, no un diagnóstico ni una etiqueta fija.</p>
-        <ul class="mp-keys" id="mp-keys"></ul>
-        <div class="mp-cta">
-          <p>Esto es solo el borde del mapa. En una sesión leemos tu resultado juntos y trazamos tu siguiente paso.</p>
-          <a class="mp-btn primary" id="mp-cta-cal" data-cal href="#" target="_blank" rel="noopener">Agenda una sesión para descubrir más →</a>
-        </div>
-      </div>
-
-      <p class="mp-note" id="mp-note"></p>
-
-      <div class="mp-actions">
-        <button class="mp-btn" id="mp-save">Guardar mi figura (imagen)</button>
-        <button class="mp-btn" id="mp-retry">Repetir el recorrido</button>
-        <button class="mp-btn" id="mp-switch">Hacer el otro test</button>
-      </div>
-      <p class="mp-next" id="mp-next"></p>
-    </div>
+    <h2 class="mp-q display" id="mp-question">…</h2>
+    <div class="mp-opts" id="mp-opts"></div>
+    <p class="mp-qnote">No hay respuestas correctas. Elige la que te suene más honesta.</p>
   </div>
+
+  <!-- ================= 3 · RESULTADO ================= -->
+  <div class="mp-screen" id="mp-result">
+    <!-- tarjeta descargable -->
+    <div class="mp-card" id="mp-card">
+      <div class="mp-card-top">
+        <div class="mp-badge" id="mp-badge"></div>
+        <div>
+          <p class="mp-zonetag" id="mp-zonetag">Tu perfil</p>
+          <h2 class="mp-zonename display" id="mp-zonename"></h2>
+        </div>
+      </div>
+      <p class="mp-zonelead" id="mp-zonelead"></p>
+      <p class="mp-combo" id="mp-combo"></p>
+      <p class="mp-zonedesc" id="mp-zonedesc"></p>
+      <div class="mp-scores" id="mp-scores"></div>
+      <div class="mp-cardfoot">
+        <span class="mp-brand"><b>Maximiliano Jiménez</b> · mapsi.cl</span>
+        <span class="mp-date" id="mp-date"></span>
+      </div>
+    </div>
+
+    <div class="mp-sources" id="mp-sources"></div>
+
+    <!-- qué significa -->
+    <div class="mp-block">
+      <h3 class="mp-blocktitle display">Qué significa para tu carrera</h3>
+      <ul class="mp-keys" id="mp-keys"></ul>
+    </div>
+
+    <!-- lo que te apaga -->
+    <div class="mp-block">
+      <h3 class="mp-blocktitle display">Lo que te apaga</h3>
+      <p class="mp-blocklead">Reconocerlo a tiempo es lo que evita que aguantes de más en el lugar equivocado.</p>
+      <ul class="mp-drain" id="mp-drain"></ul>
+    </div>
+
+    <!-- qué pedir -->
+    <div class="mp-block">
+      <h3 class="mp-blocktitle display">Qué pedir, en tus palabras</h3>
+      <p class="mp-blocklead">Tres frases que puedes usar tal cual en una reunión, una entrevista o un 1:1.</p>
+      <ul class="mp-ask" id="mp-ask"></ul>
+    </div>
+
+    <!-- conversión -->
+    <div class="mp-cta">
+      <h4 id="mp-ctatitle">Esto es solo el borde del mapa</h4>
+      <p>En una sesión de claridad leemos tu resultado juntos y trazamos tu siguiente paso concreto. Dura 30 minutos y no tiene costo.</p>
+      <div class="mp-ctarow">
+        <a class="mp-btn primary" data-cal href="#" target="_blank" rel="noopener">Agendar sesión de claridad</a>
+        <a class="mp-btn wa" id="mp-wa" data-wa href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.1 1.508 5.836L.057 23.5a.5.5 0 0 0 .61.61l5.666-1.451A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.002-1.371l-.357-.212-3.727.955.974-3.655-.233-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
+          Comentar mi resultado
+        </a>
+      </div>
+    </div>
+
+    <div class="mp-actions">
+      <button class="mp-btn" id="mp-switch"></button>
+      <button class="mp-btn" id="mp-save">Descargar mi tarjeta</button>
+      <button class="mp-btn" id="mp-retry">Repetir el test</button>
+    </div>
+
+    <p class="mp-note" id="mp-note"></p>
+  </div>
+
 </div>
 
 <div class="mp-toast" id="mp-toast" role="status" aria-live="polite"></div>
@@ -546,90 +592,65 @@
   if(!root || root.dataset.mounted) return;
   root.dataset.mounted="1";
 
-  /* ---------- pixel art (rejilla ASCII -> SVG) ---------- */
+  /* ---------- pixel art (sello del resultado) ---------- */
   var PAL={ o:'#17100a', k:'#46301c', c:'#6b4d2c', s:'#e8c39a', g:'#c8a84b',
             w:'#f6e7b8', b:'#2c1e10', m:'#8E9A55', r:'#C56A3C', y:'#e2c06a',
             p:'#9a9590', t:'#7d8a96', e:'#5e6b3a', f:'#a8794a', n:'#d9c79a' };
-  // viajero encapuchado (héroe del mapa)
-  var HERO=[
-    "         ",
-    "   ooo   ",
-    "  okkko  ",
-    " okkkkko ",
-    " oksssko ",
-    " oksosko ",
-    " oksssko ",
-    "  occco  ",
-    " gcccccg ",
-    "  ccccc  ",
-    "  ccccc  ",
-    "  cc cc  ",
-    "  bb bb  "
-  ];
-  // anillo dorado (destino + easter egg)
-  var RING=[
-    " yyy ",
-    "y o y",
-    "y o y",
-    "y o y",
-    " yyy "
-  ];
-  // figuras de recompensa por arquetipo (pixel art que "se revela" al terminar el test)
   var BADGES={
-    artesano:[ // yunque + chispa de oficio
+    artesano:[
       "              ","        y     ","       yyy    ","        y     ",
       "              ","    pppppppp  ","   pppppppppp ","   oppppppppo ",
       "     pppppp   ","      pppp    ","     pppppp   ","    pppppppp  ",
       "   oppppppppo ","              "],
-    faro:[ // faro con su luz
+    faro:[
       "      oo      ","     orro     ","    orrrro    ","    oyyyyo    ",
       "    owwwwo    ","    oyyyyo    ","     wwww     ","     wkkw     ",
       "     wwww     ","    wwwwww    ","    wkkkkw    ","    wwwwww    ",
       "   wwwwwwww   ","  wwwwwwwwww  "],
-    arquitecto:[ // torre / estructura
+    arquitecto:[
       "  p p p p p   ","  ppppppppp   ","  p pp pp p   ","  ppppppppp   ",
       "  p pp pp p   ","  ppppppppp   ","  p pp pp p   ","  ppppppppp   ",
       "  pp ppp pp   ","  ppppppppp   ","  pp     pp   ","  pp     pp   ",
       " ppppppppppp  "," ppppppppppp  "],
-    sembrador:[ // brote que crece de la tierra
+    sembrador:[
       "              ","      m       ","     mmm      ","  m   c   m   ",
       " mmm  c  mmm  ","  m   c   m   ","      c       ","      c       ",
       "      c       ","  kkkkkkkkk   "," kkkkkkkkkkk  "," kkkkkkkkkkk  ",
       "  kkkkkkkkk   ","              "],
-    montaraz:[ // espada del que abre camino
-      "       w      ","      tw      ","      tw      ","      tw      ",
-      "      tw      ","      tw      ","      tw      ","      tw      ",
-      "    ffffff    ","      gg      ","      gg      ","      gg      ",
-      "      ff      ","              "],
-    bardo:[ // laúd del que inspira
-      "         ff   ","        ff    ","        ff    ","       ff     ",
-      "      fff     ","     fffff    ","    ffyyyff   ","   ffyooyff   ",
-      "   ffyooyff   ","   ffyooyff   ","   ffyyyyff   ","    fffffff   ",
-      "     fffff    ","              "],
-    companero:[ // escudo con corazón (lealtad)
+    montaraz:[ // rosa de los vientos
+      "      y       ","      y       ","     yyy      ","     yyy      ",
+      "    yyyyy     ","y  yyyyyyy  y ","yyyyyyyyyyyyyy","y  yyyyyyy  y ",
+      "    yyyyy     ","     yyy      ","     yyy      ","      y       ",
+      "      y       ","              "],
+    bardo:[ // chispa que impulsa hacia arriba
+      "      y       ","     yyy      ","    yyyyy     ","   yywwwyy    ",
+      "   ywwwwwy    ","  yywwwwwyy   ","  yywwwwwyy   ","   ywwwwwy    ",
+      "   yywwwyy    ","    yyyyy     ","  y  yyy  y   "," yy   y   yy  ",
+      "  y       y   ","              "],
+    companero:[
       "   oooooooo   ","  oggggggggo  ","  ogrr  rrgo  ","  ogrrrrrrgo  ",
       "  ogrrrrrrgo  ","  og rrrr go  ","  og  rr  go  ","  oggggggggo  ",
       "  og      go  ","   og    go   ","    og  go    ","     oggo     ",
       "      oo      ","              "],
-    cartografo:[ // mapa con su ruta hacia el destino
+    cartografo:[
       "              ","  cc      cc  "," cccc    cccc "," cnnnnnnnnnnc ",
       " cnrnnnnnnnnc "," cnnrnnnnnnnc "," cnnnrrnnnnnc "," cnnnnnrrnnnc ",
       " cnnnnnnnrgnc "," cnnnnnnnnnnc "," cccc    cccc ","  cc      cc  ",
       "              ","              "]
   };
-  function sprite(grid,pal,extra){
+  function sprite(grid,pal){
     var rows=grid.length,cols=grid[0].length,rects="";
     for(var y=0;y<rows;y++)for(var x=0;x<cols;x++){
       var ch=grid[y][x]; if(ch===" "||!pal[ch])continue;
       rects+='<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="'+pal[ch]+'"/>';
     }
-    return '<svg class="mp-sprite '+(extra||"")+'" viewBox="0 0 '+cols+' '+rows+'" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">'+rects+'</svg>';
+    return '<svg viewBox="0 0 '+cols+' '+rows+'" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">'+rects+'</svg>';
   }
 
   /* ---------- contenido ---------- */
   var DATA={
     ikigai:{
-      label:'MAPA · I', total:7, kind:'ikigai',
+      name:'Tu orientación · Ikigai', short:'tu orientación', total:7, kind:'ikigai',
       order:['artesano','faro','arquitecto','sembrador'],
       colors:{artesano:'var(--moss)',faro:'var(--amber)',arquitecto:'var(--clay)',sembrador:'var(--terra)'},
       profiles:{
@@ -666,23 +687,23 @@
         {q:'En unos años, te gustaría que dijeran de ti…',
           o:[['"hace su trabajo como un arte"','artesano'],['"dejó huella en quienes la rodearon"','faro'],['"lo que levanta es sólido"','arquitecto'],['"siempre encuentra el camino"','sembrador']]}
       ],
-      note:'Inspirado en el modelo Ikigai. La escala validada (Ikigai-9: Imai, Osada y Nishimura, 2012; traducción al inglés de Fido, Kotera y Asano, 2020) mide bienestar en torno a alegría, crecimiento y sentirse necesario; el diagrama de cuatro fuentes que ves aquí es la versión occidental popular. Esto es una brújula para reflexionar, no un diagnóstico.'
+      note:'Inspirado en el modelo Ikigai. La escala validada (Ikigai-9: Imai, Osada y Nishimura, 2012; traducción al inglés de Fido, Kotera y Asano, 2020) mide bienestar en torno a alegría, crecimiento y sentirse necesario; el diagrama de cuatro fuentes que ves aquí es la versión occidental popular. <b>Esto es una brújula para reflexionar, no un diagnóstico.</b>'
     },
 
     disc:{
-      label:'MAPA · II', total:8, kind:'disc',
+      name:'Cómo te gusta ser liderado/a · DISC', short:'cómo te gusta ser liderado/a', total:8, kind:'disc',
       order:['montaraz','bardo','companero','cartografo'],
       colors:{montaraz:'var(--clay)',bardo:'var(--oro)',companero:'var(--moss)',cartografo:'var(--bronze)'},
       profiles:{
-        montaraz:{name:'El / La Montaraz', short:'Montaraz', disc:'D · Dominancia',
+        montaraz:{name:'El / La Explorador/a', short:'Explorador/a', disc:'D · Dominancia',
           lead:'"Dame el rumbo y déjame abrir camino."',
           desc:'Rindes con autonomía real. Prefieres que confíen en ti, feedback directo y libertad para decidir cómo. Un buen líder te marca el norte y te deja avanzar. El micromanagement te apaga: necesitas reto y terreno propio.',
           src:['Autonomía','Acción']},
-        bardo:{name:'El / La Bardo/a', short:'Bardo/a', disc:'I · Influencia',
+        bardo:{name:'El / La Impulsor/a', short:'Impulsor/a', disc:'I · Influencia',
           lead:'"Enciéndeme con una causa y reconóceme."',
           desc:'Te mueve la energía y el vínculo. Funcionas mejor con entusiasmo, reconocimiento y espacio para aportar ideas. Un liderazgo cálido e inspirador saca tu mejor versión; lo gris y frío te apaga.',
           src:['Entusiasmo','Reconocimiento']},
-        companero:{name:'El / La Compañero/a de viaje', short:'Compañero/a', disc:'S · Estabilidad',
+        companero:{name:'El / La Aliado/a', short:'Aliado/a', disc:'S · Estabilidad',
           lead:'"Avanzo mejor en buena compañía."',
           desc:'Valoras la cercanía, la lealtad y la previsibilidad. Das lo mejor cuando sientes respaldo, ritmo sostenible y un equipo confiable. Los cambios bruscos y la aspereza te incomodan: pide acompañamiento y constancia.',
           src:['Cercanía','Constancia']},
@@ -692,28 +713,71 @@
           src:['Estructura','Claridad']}
       },
       questions:[
-        {q:'El mejor líder para ti, ante todo, te ofrece…',
-          o:[['rumbo claro y libertad para ejecutarlo','montaraz'],['energía, reconocimiento y buena onda','bardo'],['estabilidad y respaldo constante','companero'],['claridad, criterios y precisión','cartografo']]},
+        {q:'Lo que más necesitas de quien te lidera es…',
+          o:[['margen para decidir cómo hacer las cosas','montaraz'],['entusiasmo y que se note tu aporte','bardo'],['respaldo estable y trato cercano','companero'],['criterios claros y expectativas explícitas','cartografo']]},
         {q:'Al arrancar algo nuevo, prefieres que te…',
-          o:[['den el objetivo y se aparten del camino','montaraz'],['contagien entusiasmo por el proyecto','bardo'],['acompañen sin prisa los primeros pasos','companero'],['entreguen un plan detallado y las reglas','cartografo']]},
+          o:[['den el objetivo y te dejen elegir la ruta','montaraz'],['cuenten el porqué y contagien la idea','bardo'],['acompañen los primeros pasos sin apurarte','companero'],['entreguen el plan y las reglas por escrito','cartografo']]},
         {q:'El feedback que mejor te llega es…',
-          o:[['directo y al grano, sin rodeos','montaraz'],['cálido y en voz alta, celebrando lo bueno','bardo'],['amable, en privado y sin sobresaltos','companero'],['concreto, con datos y ejemplos','cartografo']]},
-        {q:'Te apaga por completo un liderazgo que…',
-          o:[['controla cada uno de tus pasos','montaraz'],['es gris, frío y sin chispa','bardo'],['es brusco y rompe la armonía del equipo','companero'],['es ambiguo y cambia las reglas a medio camino','cartografo']]},
+          o:[['directo y al grano','montaraz'],['dicho en voz alta, celebrando lo que resultó','bardo'],['en privado, con calma y sin sobresaltos','companero'],['con datos y ejemplos concretos','cartografo']]},
+        {q:'Lo que más te frena en el día a día es…',
+          o:[['tener que pedir permiso para todo','montaraz'],['un ambiente plano, sin energía','bardo'],['la tensión y los cambios sin aviso','companero'],['no saber con qué criterio te evalúan','cartografo']]},
         {q:'Das lo mejor de ti cuando…',
-          o:[['tengo autonomía y un reto a mi altura','montaraz'],['me siento visto/a y parte de algo vibrante','bardo'],['cuento con un equipo en el que confío','companero'],['sé exactamente qué se espera de mí','cartografo']]},
+          o:[['tienes terreno propio y un reto a tu altura','montaraz'],['te sientes parte de algo que entusiasma','bardo'],['cuentas con un equipo en el que confías','companero'],['sabes exactamente qué se espera de ti','cartografo']]},
         {q:'Una buena reunión 1:1 contigo sería…',
-          o:[['corta: alineamos y a la acción','montaraz'],['conversada, con espacio para ideas y risas','bardo'],['tranquila, para ver cómo vienes de verdad','companero'],['ordenada: metas, avances y próximos pasos','cartografo']]},
+          o:[['breve: alinear y volver a la acción','montaraz'],['abierta, con espacio para ideas','bardo'],['tranquila, para ver cómo vienes de verdad','companero'],['ordenada: metas, avances y próximos pasos','cartografo']]},
         {q:'Cuando aparece un problema, esperas que tu líder…',
-          o:[['te deje resolverlo a tu manera','montaraz'],['mantenga el ánimo y la motivación arriba','bardo'],['te dé seguridad y no te deje solo/a','companero'],['analice los hechos antes de decidir','cartografo']]},
-        {q:'Lo que más valoras en quien te lidera es…',
-          o:[['que sea decidido/a y vaya al frente','montaraz'],['que inspire y sepa entusiasmar','bardo'],['que sea leal y confiable','companero'],['que sea justo/a y coherente','cartografo']]}
+          o:[['te deje resolverlo a tu manera','montaraz'],['mantenga el ánimo del equipo arriba','bardo'],['te acompañe y no te deje solo/a','companero'],['revise los hechos antes de decidir','cartografo']]},
+        {q:'En una reunión de equipo, tu aporte suele ser…',
+          o:[['ir al grano y proponer la decisión','montaraz'],['subir la energía y lanzar ideas','bardo'],['cuidar que todos queden conformes','companero'],['poner los datos sobre la mesa','cartografo']]}
       ],
-      note:'Inspirado en el modelo DISC (Marston, 1928): Dominancia, Influencia, Estabilidad y Concienciación. DISC describe estilos de conducta y es muy usado en coaching y desarrollo de equipos; su validez predictiva es objeto de debate académico. Tómalo como un espejo para conversar sobre cómo te gusta trabajar, no como una etiqueta fija.'
+      note:'Inspirado en el modelo DISC (Marston, 1928): Dominancia, Influencia, Estabilidad y Concienciación. DISC describe estilos de conducta y es muy usado en coaching y desarrollo de equipos; su validez predictiva es objeto de debate académico. <b>Tómalo como un espejo para conversar sobre cómo te gusta trabajar, no como una etiqueta fija.</b>'
     }
   };
 
-  /* ---------- claves de descubrimiento (3 por arquetipo) ---------- */
+  /* ---------- desempate (solo si hay empate en el primer lugar) ---------- */
+  var TIE={
+    artesano:'la posibilidad de hacer las cosas con la calidad que tú sabes',
+    faro:'sentir que lo que haces le importa a alguien',
+    arquitecto:'trabajar sobre algo ordenado y bien construido',
+    sembrador:'ver que tu esfuerzo produce resultados concretos',
+    montaraz:'decidir tú mismo/a cómo hacer tu trabajo',
+    bardo:'el entusiasmo y el reconocimiento de los demás',
+    companero:'la confianza y el respaldo de tu equipo',
+    cartografo:'saber con claridad qué se espera de ti'
+  };
+
+  /* ---------- esencia de cada perfil (para el combinado) ---------- */
+  var ESSENCE={
+    artesano:'buscas dominio y calidad', faro:'buscas sentido y vínculo',
+    arquitecto:'buscas estructura y solidez', sembrador:'buscas utilidad y oportunidad',
+    montaraz:'necesitas autonomía', bardo:'necesitas entusiasmo y reconocimiento',
+    companero:'necesitas respaldo y constancia', cartografo:'necesitas claridad y criterios'
+  };
+
+  /* ---------- lo que te apaga ---------- */
+  var DRAIN={
+    artesano:['Que te apuren y te obliguen a entregar algo a medio terminar.','Trabajar donde la calidad da lo mismo y nadie nota la diferencia.','Cambiar de tarea cada diez minutos: rompe tu estado de flujo.'],
+    faro:['Sentir que tu trabajo no le importa a nadie.','Ambientes fríos donde solo se habla de cifras.','Darlo todo por los demás sin que nadie pregunte cómo estás.'],
+    arquitecto:['La improvisación permanente y el desorden.','Que se cambien las prioridades sin explicación.','Tener que sostener algo que sabes que está mal construido.'],
+    sembrador:['Esforzarte mucho sin ver ningún resultado real.','Procesos largos que no llevan a ninguna parte.','Que te aten a un solo camino cuando ves otro mejor.'],
+    montaraz:['Que controlen cada uno de tus pasos.','Pedir permiso para decisiones que podrías tomar solo/a.','Reuniones largas que no terminan en una acción concreta.'],
+    bardo:['Un ambiente gris, frío y sin chispa.','Que tu aporte pase desapercibido.','Trabajar aislado/a, sin nadie con quien pensar en voz alta.'],
+    companero:['Los cambios bruscos anunciados a última hora.','La tensión y los conflictos abiertos en el equipo.','La competencia interna y el trato áspero.'],
+    cartografo:['La ambigüedad: no saber con qué criterio te van a evaluar.','Que cambien las reglas a mitad del camino.','Decidir con información incompleta y a la rápida.']
+  };
+
+  /* ---------- qué pedir (frases literales) ---------- */
+  var ASK={
+    artesano:['"¿Cuál es el estándar de calidad que esperas para esto?"','"Prefiero entregar esto el jueves bien hecho que mañana a medias, ¿te sirve?"','"Necesito bloques de tiempo sin interrupciones para avanzar de verdad."'],
+    faro:['"¿A quién termina impactando este proyecto?"','"Me ayuda mucho saber para qué sirvió lo que hicimos."','"Necesito que revisemos mi carga: quiero sostener esto en el tiempo."'],
+    arquitecto:['"¿Podemos definir el alcance y las prioridades antes de partir?"','"Si cambia la prioridad, necesito saber qué sale de la lista."','"Prefiero que acordemos el plan y después me dejes ejecutarlo."'],
+    sembrador:['"¿Cómo vamos a medir si esto está funcionando?"','"¿Puedo probar una versión chica antes de comprometer todo?"','"Si a los dos meses no da resultados, ¿podemos cambiar el enfoque?"'],
+    montaraz:['"Dame el objetivo y el plazo, y déjame definir el cómo."','"Prefiero que me digas las cosas directo, sin rodeos."','"¿Qué decisiones puedo tomar sin consultarte?"'],
+    bardo:['"¿Podemos hacer una instancia para pensar esto juntos?"','"Me ayuda saber cuándo algo salió bien, no solo cuándo falla."','"Me gustaría presentar yo esta parte al equipo."'],
+    companero:['"¿Me avisas con tiempo si viene un cambio grande?"','"Prefiero recibir las correcciones en privado y con calma."','"¿Podemos tener un espacio fijo para ponernos al día?"'],
+    cartografo:['"¿Con qué criterio se va a evaluar este trabajo?"','"¿Me puedes dar un ejemplo de cómo se ve un buen resultado aquí?"','"Antes de decidir, necesito revisar los datos."']
+  };
+
   var KEYS={
     artesano:['Tu motor es el dominio del oficio: el detalle bien hecho es tu firma.','Entras en estado de flujo cuando puedes mejorar algo sin que te apuren.','Tu próximo paso: buscar un escenario donde esa calidad se note y se valore.'],
     faro:['Te orienta el sentido: necesitas que tu trabajo le importe a alguien.','Conectas con las personas y con la causa antes que con la tarea.','Tu próximo paso: cuidar tu energía para no darlo todo sin sostén.'],
@@ -726,133 +790,178 @@
   };
 
   /* ---------- estado + refs ---------- */
-  var current='ikigai', qIndex=0, scores={};
+  var current='ikigai', qIndex=0, answers=[], tieBreak=null;
   var $=function(id){return document.getElementById(id);};
-  var EL={sky:$('mp-sky'),trail:$('mp-trail'),goal:$('mp-goal'),hero:$('mp-hero'),scene:$('mp-scene'),
-    label:$('mp-scene-label'),quiz:$('mp-quiz'),step:$('mp-step'),fill:$('mp-fill'),question:$('mp-question'),
-    opts:$('mp-opts'),result:$('mp-result'),badge:$('mp-badge'),zonetag:$('mp-zonetag'),zonename:$('mp-zonename'),
-    zonelead:$('mp-zonelead'),zonedesc:$('mp-zonedesc'),scoresEl:$('mp-scores'),secret:$('mp-secret'),
-    date:$('mp-date'),sources:$('mp-sources'),note:$('mp-note'),keys:$('mp-keys'),
-    save:$('mp-save'),retry:$('mp-retry'),switch:$('mp-switch'),
-    next:$('mp-next'),toast:$('mp-toast'),ring:$('mp-ring'),runes:$('mp-runes')};
+  var EL={intro:$('mp-intro'),quiz:$('mp-quiz'),result:$('mp-result'),
+    back:$('mp-back'),testname:$('mp-testname'),count:$('mp-count'),fill:$('mp-fill'),
+    question:$('mp-question'),opts:$('mp-opts'),
+    badge:$('mp-badge'),zonename:$('mp-zonename'),zonelead:$('mp-zonelead'),zonedesc:$('mp-zonedesc'),
+    scoresEl:$('mp-scores'),date:$('mp-date'),sources:$('mp-sources'),note:$('mp-note'),keys:$('mp-keys'),
+    combo:$('mp-combo'),drain:$('mp-drain'),ask:$('mp-ask'),
+    ctatitle:$('mp-ctatitle'),wa:$('mp-wa'),
+    save:$('mp-save'),retry:$('mp-retry'),switch:$('mp-switch'),toast:$('mp-toast')};
 
-  /* fondo + sprites fijos */
-  (function(){
-    var h='';
-    for(var i=0;i<26;i++) h+='<span class="mp-star-bg" style="left:'+(Math.random()*100).toFixed(1)+'%;top:'+(Math.random()*52).toFixed(1)+'%;opacity:'+(0.3+Math.random()*0.5).toFixed(2)+'"></span>';
-    // un par de montañas pixeladas (triángulos)
-    h+='<span class="mp-mtn" style="left:60%;border-width:0 26px 30px 26px;border-color:transparent transparent #2b1d12 transparent"></span>';
-    h+='<span class="mp-mtn" style="left:72%;border-width:0 20px 22px 20px;border-color:transparent transparent #3a2a18 transparent"></span>';
-    EL.sky.innerHTML=h;
-    EL.hero.innerHTML='<div style="width:44px">'+sprite(HERO,PAL)+'</div>';
-    EL.goal.innerHTML='<div style="width:22px">'+sprite(RING,PAL)+'</div>';
-    EL.ring.innerHTML=sprite(RING,PAL);
-  })();
-
+  function show(el){
+    [EL.intro,EL.quiz,EL.result].forEach(function(s){s.classList.remove('on');});
+    el.classList.add('on');
+  }
+  function toTop(){
+    var y=root.getBoundingClientRect().top+window.pageYOffset-70;
+    window.scrollTo({top:y,behavior:'smooth'});
+  }
   function toast(msg){EL.toast.textContent=msg;EL.toast.classList.add('show');
     clearTimeout(toast._t);toast._t=setTimeout(function(){EL.toast.classList.remove('show');},3200);}
 
-  function buildTrail(n){var h='';for(var i=0;i<n;i++)h+='<span class="mp-dot"></span>';EL.trail.innerHTML=h;}
-  function moveHero(){
-    var n=DATA[current].total, pct=6+(qIndex/n)*(86-6);
-    EL.hero.style.left=pct+'%';
-    var dots=EL.trail.querySelectorAll('.mp-dot');
-    for(var i=0;i<dots.length;i++)dots[i].classList.toggle('on',i<qIndex);
-  }
-
   function start(test){
-    current=test; qIndex=0; scores={};
-    var p=DATA[test].profiles; for(var k in p) scores[k]=0;
-    EL.label.textContent=DATA[test].label;
-    buildTrail(DATA[test].total);
-    EL.result.classList.remove('on'); EL.quiz.style.display='block';
-    moveHero(); renderQuestion();
-    var tabs=root.querySelectorAll('.mp-tab');
-    for(var t=0;t<tabs.length;t++)tabs[t].setAttribute('aria-selected',tabs[t].dataset.test===test?'true':'false');
+    current=test; qIndex=0; answers=[]; tieBreak=null;
+    EL.testname.textContent=DATA[test].name;
+    show(EL.quiz); renderQuestion(); toTop();
   }
 
   function renderQuestion(){
-    var d=DATA[current], item=d.questions[qIndex], letters=['A','B','C','D'];
-    EL.step.textContent='Pregunta '+(qIndex+1)+' de '+d.total;
-    EL.fill.style.width=(qIndex/d.total*100)+'%';
+    var d=DATA[current], item=d.questions[qIndex];
+    EL.count.textContent=(qIndex+1)+' de '+d.total;
+    EL.fill.style.width=((qIndex)/d.total*100)+'%';
     EL.question.textContent=item.q;
-    var h=''; for(var i=0;i<item.o.length;i++) h+='<button class="mp-opt" data-k="'+letters[i]+'" data-p="'+item.o[i][1]+'">'+item.o[i][0]+'</button>';
+    EL.question.style.animation='none'; void EL.question.offsetWidth; EL.question.style.animation='';
+    var h='';
+    for(var i=0;i<item.o.length;i++){
+      h+='<button class="mp-opt" style="animation-delay:'+(60+i*55)+'ms" data-p="'+item.o[i][1]+'">'+item.o[i][0]+'</button>';
+    }
     EL.opts.innerHTML=h;
-    var b=EL.opts.querySelectorAll('.mp-opt'); for(var j=0;j<b.length;j++) b[j].addEventListener('click',onAnswer);
+    var b=EL.opts.querySelectorAll('.mp-opt');
+    for(var j=0;j<b.length;j++) b[j].addEventListener('click',onAnswer);
+    EL.back.style.visibility='visible';
+  }
+
+  function renderTieBreak(tied){
+    EL.count.textContent='Última';
+    EL.fill.style.width='100%';
+    EL.question.textContent='Quedaste entre dos caminos. Si tuvieras que renunciar a todo menos a una cosa, ¿cuál te costaría más perder?';
+    EL.question.style.animation='none'; void EL.question.offsetWidth; EL.question.style.animation='';
+    var h='';
+    for(var i=0;i<tied.length;i++){
+      h+='<button class="mp-opt" style="animation-delay:'+(60+i*55)+'ms" data-tie="'+tied[i]+'">'+TIE[tied[i]]+'</button>';
+    }
+    EL.opts.innerHTML=h;
+    var b=EL.opts.querySelectorAll('.mp-opt');
+    for(var j=0;j<b.length;j++){
+      b[j].addEventListener('click',function(e){
+        e.currentTarget.classList.add('picked');
+        tieBreak=e.currentTarget.getAttribute('data-tie');
+        setTimeout(showResult,230);
+      });
+    }
   }
 
   function onAnswer(e){
-    var p=e.currentTarget.getAttribute('data-p'); scores[p]=(scores[p]||0)+1;
-    qIndex++; moveHero();
-    EL.fill.style.width=(qIndex/DATA[current].total*100)+'%';
-    if(qIndex>=DATA[current].total) setTimeout(showResult,450); else renderQuestion();
+    var btn=e.currentTarget;
+    btn.classList.add('picked');
+    answers[qIndex]=btn.getAttribute('data-p');
+    var d=DATA[current];
+    qIndex++;
+    EL.fill.style.width=(qIndex/d.total*100)+'%';
+    setTimeout(function(){
+      if(qIndex>=d.total){
+        var s=tally(), mx=Math.max.apply(null,d.order.map(function(k){return s[k];}));
+        var tied=d.order.filter(function(k){return s[k]===mx;});
+        if(tied.length>1 && tieBreak===null){ renderTieBreak(tied); }
+        else { showResult(); }
+      } else { renderQuestion(); }
+    },230);
   }
 
-  function ranked(){
-    var d=DATA[current], arr=d.order.map(function(k){return {k:k,v:scores[k]||0};});
-    arr.sort(function(a,b){return b.v-a.v;}); return arr;
+  function goBack(){
+    if(qIndex>0){ qIndex--; answers.length=qIndex; renderQuestion(); }
+    else { show(EL.intro); toTop(); }
+  }
+
+  function tally(){
+    var s={},d=DATA[current];
+    d.order.forEach(function(k){s[k]=0;});
+    answers.forEach(function(k){ if(k in s) s[k]++; });
+    return s;
   }
 
   function showResult(){
-    var d=DATA[current], rk=ranked(), key=rk[0].k, p=d.profiles[key];
-    EL.quiz.style.display='none'; EL.result.classList.add('on');
-    // badge + textos
-    EL.badge.innerHTML='<div style="width:76px">'+sprite(BADGES[key],PAL)+'</div>';
+    var d=DATA[current], scores=tally();
+    var rk=d.order.map(function(k){return {k:k,v:scores[k]};}).sort(function(a,b){
+      if(b.v!==a.v) return b.v-a.v;
+      if(tieBreak===a.k) return -1;
+      if(tieBreak===b.k) return 1;
+      return 0;
+    });
+    var key=rk[0].k, p=d.profiles[key];
+
+    show(EL.result); toTop();
+
+    EL.badge.innerHTML=sprite(BADGES[key],PAL);
     EL.zonename.textContent=p.name; EL.zonename.style.color=d.colors[key];
-    EL.zonelead.textContent=p.lead; EL.zonedesc.textContent=p.desc;
+    EL.zonelead.textContent=p.lead;
+    EL.zonedesc.textContent=p.desc;
+
+    // perfil combinado: primario + secundario
+    var second=rk[1], p2=d.profiles[second.k];
+    if(second.v>=2 && second.v>=rk[0].v-2){
+      EL.combo.innerHTML='Y no en estado puro: tienes un fuerte componente <b>'+p2.short+'</b>. '+
+        'Es decir, '+ESSENCE[key]+', pero también '+ESSENCE[second.k]+'. '+
+        'Esa mezcla es la que mejor te describe.';
+    } else if(second.v>=2){
+      EL.combo.innerHTML='Con un matiz de <b>'+p2.short+'</b>: '+ESSENCE[second.k]+'.';
+    } else {
+      EL.combo.innerHTML='Y de forma bastante marcada: este perfil se impone con claridad sobre los otros tres.';
+    }
     EL.date.textContent=new Date().toLocaleDateString('es-CL',{day:'2-digit',month:'long',year:'numeric'});
 
-    // barras de puntaje
     var total=d.total, sh='';
     for(var i=0;i<d.order.length;i++){
-      var k=d.order[i], pr=d.profiles[k], val=scores[k]||0, pct=Math.round(val/total*100);
-      var tag=(d.kind==='disc')
-        ? '<span class="mp-key">'+pr.disc.charAt(0)+'</span>'
-        : '<span class="mp-dotk" style="background:'+d.colors[k]+'"></span>';
+      var k=d.order[i], pr=d.profiles[k], pct=Math.round((scores[k]||0)/total*100);
       sh+='<div class="mp-score'+(k===key?' top':'')+'">'+
-            '<span class="mp-slabel">'+tag+pr.short+'</span>'+
+            '<span class="mp-slabel"><span class="mp-dotk" style="background:'+d.colors[k]+'"></span>'+pr.short+'</span>'+
             '<span class="mp-track"><i style="background:'+d.colors[k]+'"></i></span>'+
             '<span class="mp-pct">'+pct+'%</span></div>';
     }
     EL.scoresEl.innerHTML=sh;
-    // animar barras tras pintar
     requestAnimationFrame(function(){requestAnimationFrame(function(){
       var bars=EL.scoresEl.querySelectorAll('.mp-track i');
-      for(var i=0;i<d.order.length;i++){var v=scores[d.order[i]]||0;bars[i].style.width=Math.round(v/total*100)+'%';}
+      for(var i=0;i<d.order.length;i++){bars[i].style.width=Math.round((scores[d.order[i]]||0)/total*100)+'%';}
     });});
 
-    // easter egg: perfil equilibrado
-    var hi=rk[0].v, lo=rk[rk.length-1].v;
-    if(hi-lo<=1){
-      EL.secret.classList.add('show');
-      EL.secret.innerHTML='✦ <b>Has hallado el equilibrio.</b> Tus cuatro fuerzas caminan juntas: eres Portador/a del Mapa. Pocos sostienen tantas sendas a la vez.';
-    } else EL.secret.classList.remove('show');
-
-    // fuentes / mini-mapa (solo ikigai)
+    // cuadrantes del ikigai
     if(d.kind==='ikigai'){
       EL.sources.style.display='grid'; var ms='';
-      for(var s=0;s<d.order.length;s++){var ky=d.order[s],prf=d.profiles[ky],lit=ky===key?' lit':'';
-        ms+='<div class="mp-cell'+lit+'"><span class="mp-src">'+prf.src[0]+'<br>+ '+prf.src[1]+'</span><span class="mp-pname">'+prf.short+'</span></div>';}
+      for(var s=0;s<d.order.length;s++){
+        var ky=d.order[s],prf=d.profiles[ky],lit=ky===key?' lit':'';
+        ms+='<div class="mp-cell'+lit+'"><span class="mp-src">'+prf.src[0]+'<br>+ '+prf.src[1]+'</span><span class="mp-pn">'+prf.short+'</span></div>';
+      }
       EL.sources.innerHTML=ms;
-    } else EL.sources.style.display='none';
+    } else { EL.sources.style.display='none'; }
 
     EL.note.innerHTML=d.note;
 
-    // descubrimiento: 3 claves de la respuesta (el CTA a sesión es estático y usa data-cal)
     var ks=KEYS[key]||[], kh='';
     for(var L=0;L<ks.length;L++) kh+='<li>'+ks[L]+'</li>';
     EL.keys.innerHTML=kh;
 
-    // otro test
+    var ds=DRAIN[key]||[], dh='';
+    for(var D=0;D<ds.length;D++) dh+='<li>'+ds[D]+'</li>';
+    EL.drain.innerHTML=dh;
+
+    var as=ASK[key]||[], ah='';
+    for(var A=0;A<as.length;A++) ah+='<li>'+as[A]+'</li>';
+    EL.ask.innerHTML=ah;
+
+    // CTA personalizado + WhatsApp con mensaje prellenado
+    EL.ctatitle.textContent='¿Te hizo sentido, '+p.short+'?';
+    EL.wa.setAttribute('data-msg','Hola Max, hice el test de '+DATA[current].short+' en tu web y me salió '+p.short+
+      (second.v>=2?' con '+p2.short:'')+'. Me gustaría conversarlo.');
+
     var other=current==='ikigai'?'disc':'ikigai';
-    var otherName=current==='ikigai'?'cómo te gusta ser liderado/a':'tu orientación · Ikigai';
-    EL.next.innerHTML='¿Seguimos el viaje? Descubre <a href="#" id="mp-go">'+otherName+'</a>.';
-    var go=$('mp-go'); if(go)go.addEventListener('click',function(ev){ev.preventDefault();start(other);root.scrollIntoView({behavior:'smooth',block:'start'});});
-    EL.switch.textContent='Hacer: '+otherName;
-    EL.switch.onclick=function(){start(other);root.scrollIntoView({behavior:'smooth',block:'start'});};
+    EL.switch.textContent='Hacer el test de '+DATA[other].short;
+    EL.switch.onclick=function(){start(other);};
   }
 
-  /* ---------- guardar imagen (html2canvas con fallback) ---------- */
+  /* ---------- descargar tarjeta ---------- */
   function ensureH2C(cb){
     if(window.html2canvas)return cb(true);
     var s=document.createElement('script');
@@ -861,44 +970,25 @@
     document.head.appendChild(s);
   }
   function saveCard(){
-    var card=$('mp-card');
+    var card=$('mp-card'), label='Descargar mi tarjeta';
     EL.save.textContent='Generando…';
     ensureH2C(function(ok){
-      if(!ok||!window.html2canvas){EL.save.textContent='Guardar mi figura (imagen)';toast('📸 Toma una captura de pantalla para guardarlo.');return;}
-      window.html2canvas(card,{backgroundColor:'#0d0c0a',scale:2,logging:false}).then(function(canvas){
-        var a=document.createElement('a');a.download='mi-figura.png';a.href=canvas.toDataURL('image/png');a.click();
-        EL.save.textContent='Guardar mi figura (imagen)';
-      }).catch(function(){EL.save.textContent='Guardar mi figura (imagen)';toast('📸 Toma una captura de pantalla para guardarlo.');});
+      if(!ok||!window.html2canvas){EL.save.textContent=label;toast('No se pudo generar la imagen. Toma una captura de pantalla.');return;}
+      window.html2canvas(card,{backgroundColor:'#0c0b0a',scale:2,logging:false}).then(function(canvas){
+        var a=document.createElement('a');a.download='mi-perfil-mapsi.png';a.href=canvas.toDataURL('image/png');a.click();
+        EL.save.textContent=label;
+      }).catch(function(){EL.save.textContent=label;toast('No se pudo generar la imagen. Toma una captura de pantalla.');});
     });
   }
 
-  /* ---------- easter eggs ---------- */
-  // 1) anillo -> inscripción rúnica
-  EL.ring.addEventListener('click',function(){
-    EL.scene.classList.toggle('runic');
-    EL.runes.classList.toggle('show');
-    if(EL.scene.classList.contains('runic')) toast('⟡ La inscripción brilla solo para quien la busca.');
-  });
-  // 2) escribe "mellon"
-  (function(){
-    var buf='';
-    window.addEventListener('keydown',function(e){
-      if(!e.key||e.key.length>1)return;
-      buf=(buf+e.key.toLowerCase()).slice(-6);
-      if(buf==='mellon'){toast('🚪 «Habla, amigo, y entra.» La puerta del mapa se abre para ti.');EL.runes.classList.add('show');EL.scene.classList.add('runic');}
-    });
-  })();
-  // 3) consola
-  try{console.log('%c⟡ Reconquista tu mapa ⟡','color:#c8a84b;font-size:14px;font-weight:bold');
-      console.log('%cNo todos los que exploran se han perdido. Escribe "mellon" en la página…','color:#8E9A55');}catch(_){}
-
-  /* eventos */
+  /* ---------- eventos ---------- */
+  var starts=root.querySelectorAll('[data-start]');
+  for(var i=0;i<starts.length;i++){
+    starts[i].addEventListener('click',function(e){start(e.currentTarget.dataset.start);});
+  }
+  EL.back.addEventListener('click',goBack);
   EL.save.addEventListener('click',saveCard);
   EL.retry.addEventListener('click',function(){start(current);});
-  var tabs=root.querySelectorAll('.mp-tab');
-  for(var t=0;t<tabs.length;t++)tabs[t].addEventListener('click',function(e){start(e.currentTarget.dataset.test);});
-
-  start('ikigai');
 })();
 </script>
 </section>
