@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#080808" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="Condiciones de servicio de Maximiliano Jiménez: reservas, pagos y boleta de honorarios, plazos, cambios y cancelaciones de coaching, psicoterapia online, packs de sesiones y charlas o talleres para organizaciones." />
+  <meta name="author" content="Maximiliano Jiménez Rojas" />
+  <meta name="robots" content="index, follow" />
+  <title>Condiciones de servicio — Maximiliano Jiménez | mapsi.cl</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:        #080808;
+      --bg2:       #0f0f0f;
+      --bg3:       #161616;
+      --gold:      #c8a84b;
+      --gold2:     #e2c06a;
+      --gold3:     #f0d48a;
+      --gold-dim:  rgba(200,168,75,0.12);
+      --white:     #f2f0eb;
+      --grey1:     #9e9e96;
+      --grey2:     #5a5a54;
+      --grey3:     #2e2e2a;
+      --border:    rgba(200,168,75,0.16);
+      --border2:   rgba(255,255,255,0.06);
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --font-d:    'DM Serif Display', Georgia, serif;
+      --font-s:    'Instrument Sans', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg); color: var(--white);
+      font-family: var(--font-s); font-size: 17px; line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--gold2); text-decoration: none; }
+    strong, b { color: var(--white); font-weight: 600; }
+    ::selection { background: var(--gold); color: var(--bg); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,8,8,.85); backdrop-filter: saturate(1.4) blur(14px);
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom: 1px solid var(--border2);
+    }
+    .nav-in {
+      max-width: 1120px; margin: 0 auto;
+      padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .nav-logo { font-family: var(--font-d); font-size: 1.1rem; color: var(--white); white-space: nowrap; }
+    .nav-logo em { font-style: italic; color: var(--gold); }
+    .nav-back {
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--grey1); transition: color .3s; white-space: nowrap;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1120px; margin: 0 auto; padding: 5rem 2rem 2.5rem;
+      position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -10%; left: 10%;
+      width: 60vmax; height: 60vmax; border-radius: 50%; z-index: -1;
+      background: radial-gradient(circle, rgba(200,168,75,.06), transparent 62%);
+      pointer-events: none;
+    }
+    .label {
+      display: inline-flex; align-items: center; gap: .8rem;
+      font-size: .72rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .label::before { content: ''; width: 32px; height: 1px; background: var(--gold2); }
+    h1 {
+      font-family: var(--font-d); font-weight: 400;
+      font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.05; letter-spacing: -.01em;
+      color: var(--white); margin-bottom: 1.2rem;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .lead { font-size: 1.12rem; color: var(--grey1); max-width: 640px; line-height: 1.75; }
+    .upd { font-size: .82rem; color: var(--grey2); margin-top: 1.4rem; letter-spacing: .04em; }
+
+    /* ── LAYOUT ── */
+    .wrap {
+      max-width: 1120px; margin: 0 auto; padding: 0 2rem 6rem;
+      display: grid; grid-template-columns: 240px 1fr; gap: 4rem;
+    }
+    nav.toc { position: sticky; top: 90px; align-self: start; }
+    .toc .t {
+      font-size: .66rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--grey2); font-weight: 600; margin-bottom: 1rem;
+      padding-bottom: .8rem; border-bottom: 1px solid var(--border);
+    }
+    .toc a {
+      display: flex; gap: .7rem; align-items: baseline;
+      color: var(--grey1); font-size: .9rem; line-height: 1.4;
+      padding: .55rem 0; border-bottom: 1px solid var(--border2);
+      transition: color .3s;
+    }
+    .toc a span { color: var(--gold2); font-weight: 700; font-size: .78rem; min-width: 18px; }
+    .toc a:hover, .toc a.active { color: var(--white); }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 1rem 0 2.6rem; margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border2); scroll-margin-top: 90px;
+    }
+    section:last-of-type { border-bottom: none; }
+    .num {
+      font-family: var(--font-d); color: var(--gold2); font-size: 1rem;
+      letter-spacing: .1em; margin-bottom: .3rem;
+    }
+    h2 {
+      font-family: var(--font-d); font-weight: 400; color: var(--white);
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1.2; margin-bottom: .4rem;
+    }
+    .for {
+      font-size: .82rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.3rem;
+    }
+    h3 {
+      font-size: 1.05rem; color: var(--white); font-weight: 600;
+      margin: 1.8rem 0 .5rem;
+    }
+    p { color: var(--grey1); }
+    p + p { margin-top: .9rem; }
+    .lead, p strong { }
+
+    ul.list { list-style: none; margin-top: .9rem; display: flex; flex-direction: column; gap: .6rem; }
+    ul.list li {
+      position: relative; padding-left: 1.7rem; color: var(--grey1); line-height: 1.6;
+    }
+    ul.list li::before {
+      content: ''; position: absolute; left: 0; top: .62em;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: 14px; padding: 1.3rem 1.5rem; margin-top: 1.3rem;
+    }
+    .card .k {
+      font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+      font-weight: 700; color: var(--gold); margin-bottom: .5rem;
+    }
+    .card.alert { border-left: 2px solid var(--gold2); background: var(--gold-dim); }
+    .card.alert b { color: var(--gold3); }
+
+    /* ── RULES TABLE ── */
+    .rules {
+      width: 100%; border-collapse: collapse; margin-top: 1.1rem;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .rules th {
+      font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--grey2); font-weight: 600; text-align: left;
+      padding: .8rem 1rem .8rem 0; border-bottom: 1px solid var(--border2);
+    }
+    .rules td {
+      padding: 1rem 1rem 1rem 0; border-bottom: 1px solid var(--border2);
+      vertical-align: top; font-size: .95rem; color: var(--grey1);
+    }
+    .rules tr:last-child td { border-bottom: none; }
+    .rules td:first-child { width: 44%; color: var(--white); font-weight: 600; padding-right: 1.6rem; }
+    .rules td:first-child small { display: block; font-weight: 400; color: var(--grey2); font-size: .82rem; margin-top: .2rem; }
+
+    .note { font-size: .84rem; color: var(--grey2); margin-top: .9rem; line-height: 1.6; }
+
+    /* ── PAY STRIP ── */
+    .pay-strip {
+      display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.3rem;
+    }
+    .pay-pill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .6rem 1.1rem; border-radius: 100px;
+      background: var(--gold-dim); border: 1px solid var(--border);
+      font-size: .86rem; color: var(--white);
+    }
+
+    /* ── CTA ── */
+    .cta-row { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.4rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .55rem;
+      font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+      padding: .85rem 1.5rem; border-radius: 10px; transition: all .3s var(--ease);
+    }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-wa {
+      background: linear-gradient(90deg, var(--gold), var(--gold2)); color: var(--bg);
+    }
+    .btn-wa:hover { box-shadow: 0 8px 28px rgba(200,168,75,.35); transform: translateY(-2px); }
+    .btn-out {
+      border: 1px solid var(--border); color: var(--gold); background: rgba(200,168,75,.05);
+    }
+    .btn-out:hover { background: var(--gold-dim); border-color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border2); background: var(--bg2); }
+    .footer-in {
+      max-width: 1120px; margin: 0 auto; padding: 2.2rem 2rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+    }
+    .f-tag { font-family: var(--font-d); font-style: italic; color: var(--gold); font-size: 1.05rem; }
+    .f-copy { font-size: .78rem; color: var(--grey2); }
+
+    @media (max-width: 860px) {
+      .wrap { grid-template-columns: 1fr; gap: 1.5rem; }
+      nav.toc { position: static; margin-bottom: 1rem; }
+      .hero { padding: 3rem 1.5rem 2rem; }
+      .wrap { padding: 0 1.5rem 4rem; }
+      .nav-in { padding: 1rem 1.5rem; }
+      .footer-in { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 560px) {
+      body { font-size: 16px; }
+      .rules thead { display: none; }
+      .rules, .rules tbody, .rules tr, .rules td { display: block; width: 100%; }
+      .rules tr { padding: .9rem 0; border-bottom: 1px solid var(--border2); }
+      .rules tr:last-child { border-bottom: none; }
+      .rules td { border: none; padding: .15rem 0; }
+      .rules td:first-child { width: 100%; padding-right: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+
+<!-- Sprite de íconos -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+  <symbol id="ic-wa" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.516 5.26l-.999 3.648 3.732-.979zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></symbol>
+  <symbol id="ic-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+</svg>
+
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo">Maximiliano <em>Jiménez</em></a>
+    <a href="index.html" class="nav-back">← Volver a mapsi.cl</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="label">Condiciones de servicio</div>
+  <h1>Reglas claras,<br/><em>desde el inicio.</em></h1>
+  <p class="lead">Aquí reúno en un solo lugar cómo funcionan las reservas, los pagos y la boleta, los plazos y los cambios de cada servicio. Si algo no queda claro, escríbeme y lo conversamos.</p>
+  <p class="upd">Última actualización: septiembre de 2026</p>
+</div>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contenido">
+    <div class="t">Contenido</div>
+    <a href="#cortesia"><span>1</span>Llamadas de cortesía</a>
+    <a href="#pagos"><span>2</span>Pagos y boleta</a>
+    <a href="#sesiones"><span>3</span>Sesiones individuales</a>
+    <a href="#packs"><span>4</span>Packs de sesiones</a>
+    <a href="#empresas"><span>5</span>Charlas y Team Building</a>
+    <a href="#psicoterapia"><span>6</span>Atención psicológica</a>
+    <a href="#contacto"><span>7</span>Contacto</a>
+  </nav>
+
+  <main>
+    <section id="cortesia">
+      <div class="num">01</div>
+      <h2>Llamadas de cortesía</h2>
+      <p class="for">Para todos los servicios</p>
+      <p>Antes de cualquier proceso conversamos sin costo ni compromiso:</p>
+      <ul class="list">
+        <li><b>Sesión de claridad, 30 minutos</b> — para los servicios de coaching.</li>
+        <li><b>Llamada «clarifica tus dudas», 15 minutos</b> — para la atención psicológica.</li>
+      </ul>
+      <p>Son espacios gratuitos para resolver dudas, conocernos y sentar las bases de un trabajo posterior. <b>No constituyen una sesión de coaching ni de psicoterapia.</b> La reserva se confirma de inmediato en mi agenda en línea.</p>
+      <div class="cta-row">
+        <a href="#" data-cal class="btn btn-wa" target="_blank" rel="noopener"><svg><use href="#ic-cal"/></svg>Agendar mi llamada gratuita</a>
+      </div>
+    </section>
+
+    <section id="pagos">
+      <div class="num">02</div>
+      <h2>Pagos y boleta de honorarios</h2>
+      <p class="for">Para todos los servicios</p>
+      <p>Puedes pagar por los medios que ya están disponibles en el sitio:</p>
+      <div class="pay-strip">
+        <span class="pay-pill">🏦 Transferencia electrónica</span>
+        <span class="pay-pill">💳 Mercado Pago — tarjetas de crédito y débito, en cuotas</span>
+        <span class="pay-pill">🧾 Boleta de honorarios por cada pago</span>
+      </div>
+      <p style="margin-top:1.3rem;">Por cada pago se emite <b>boleta de honorarios</b>. En los servicios para organizaciones la boleta se emite a nombre de la empresa: la empresa retiene el impuesto correspondiente (15,25% en 2026) y lo paga al SII, por eso las cotizaciones indican el <b>monto líquido</b> y el <b>monto bruto</b> de cada boleta.</p>
+    </section>
+
+    <section id="sesiones">
+      <div class="num">03</div>
+      <h2>Sesiones individuales</h2>
+      <p class="for">Coaching y psicoterapia online · sesión única o dentro de un pack</p>
+      <p>Todas las sesiones son online y se reservan en mi agenda en línea. Si necesitas cambiar una sesión:</p>
+      <table class="rules">
+        <thead><tr><th>Si necesitas…</th><th>Qué pasa</th></tr></thead>
+        <tbody>
+          <tr><td>Reagendar o cancelar<small>avisando con 24 horas o más</small></td><td>La sesión se reagenda sin costo.</td></tr>
+          <tr><td>Reagendar o cancelar<small>avisando con menos de 24 horas, o no asistir</small></td><td>La sesión se considera realizada.</td></tr>
+          <tr><td>Si soy yo quien no puede<small>por cualquier motivo</small></td><td>Reagendamos sin costo, en el horario que te acomode.</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Las 24 horas se cuentan hasta la hora de inicio de la sesión. Los avisos se hacen por WhatsApp o correo electrónico.</p>
+    </section>
+
+    <section id="packs">
+      <div class="num">04</div>
+      <h2>Packs de sesiones</h2>
+      <p class="for">Coaching para el Desarrollo Profesional y Coaching para tu Marca Personal</p>
+      <ul class="list">
+        <li><b>Plazo de un año.</b> Las sesiones deben tomarse dentro de 1 año desde la compra. Cumplido el plazo, el proceso se cierra.</li>
+        <li><b>Pack de 8 sesiones transferible.</b> Si has usado hasta 4 sesiones, puedes transferir las restantes a otra persona.</li>
+        <li><b>En cuotas.</b> El pack de 8 sesiones se puede pagar en cuotas con tarjeta de crédito a través de Mercado Pago.</li>
+        <li>Cada sesión del pack se rige por las reglas de cambio de la sección anterior.</li>
+      </ul>
+    </section>
+
+    <section id="empresas">
+      <div class="num">05</div>
+      <h2>Charlas, talleres y Team Building</h2>
+      <p class="for">Para organizaciones · formato online o presencial</p>
+
+      <h3>La reserva</h3>
+      <p>Cada actividad se confirma con un <b>abono del 25%</b> del valor acordado. Ese abono reserva la fecha y cubre la preparación de la jornada. El <b>75% restante se paga el día de la actividad</b>, y solo si se realiza.</p>
+
+      <h3>Si la organización necesita hacer un cambio</h3>
+      <p>Lo único que está en juego es la reserva:</p>
+      <table class="rules">
+        <thead><tr><th>Si la organización decide…</th><th>Qué pasa con la reserva</th></tr></thead>
+        <tbody>
+          <tr><td>Reprogramar<small>avisando con más de 48 horas</small></td><td>Se traslada a la nueva fecha, sin costo. Una vez por actividad, dentro de los 60 días siguientes.</td></tr>
+          <tr><td>Reprogramar<small>avisando con menos de 48 horas</small></td><td>Queda como pago de la fecha original. La nueva fecha requiere un nuevo abono.</td></tr>
+          <tr><td>Cancelar sin nueva fecha<small>con cualquier anticipación</small></td><td>El abono no se devuelve. El saldo no se cobra.</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Las 48 horas se cuentan hasta la hora de inicio de la actividad. Los avisos se hacen por correo electrónico. Si se contratan varias jornadas, cada una se rige por separado.</p>
+
+      <h3>Si soy yo quien no puede realizarla</h3>
+      <p>Por enfermedad u otra causa propia, la organización elige entre reprogramar sin costo o recibir la devolución del 100% de lo pagado.</p>
+
+      <h3>Fuerza mayor</h3>
+      <p>Ante hechos ajenos a ambas partes —emergencias, catástrofes o alertas sanitarias— la actividad se reprograma sin costo y la reserva se mantiene.</p>
+
+      <h3>Devoluciones y participantes</h3>
+      <p>Las devoluciones se hacen por transferencia dentro de 10 días hábiles desde el aviso. Reemplazar a un participante no tiene costo si se avisa antes de la actividad.</p>
+
+      <h3>Logística</h3>
+      <p>Salvo que la cotización diga otra cosa, la organización coordina el lugar, la alimentación y la atención de los asistentes. El traslado del relator dentro de la Región de Coquimbo está incluido; fuera de la región se cotiza aparte.</p>
+    </section>
+
+    <section id="psicoterapia">
+      <div class="num">06</div>
+      <h2>Atención psicológica y confidencialidad</h2>
+      <p class="for">Sesiones de psicoterapia individual online</p>
+      <ul class="list">
+        <li>La psicoterapia es <b>atención psicológica clínica</b>, distinta de mis servicios de coaching: aquí el foco es tu bienestar emocional.</li>
+        <li>Estoy inscrito en el <b>Registro Nacional de Prestadores Individuales de Salud</b> de la Superintendencia de Salud, N.º 406732.</li>
+        <li>Lo que conversamos en sesiones individuales es <b>confidencial</b>, también cuando el acompañamiento lo contrata una empresa: a la organización solo se le informa la asistencia, salvo que tú autorices compartir algo más.</li>
+        <li>La frecuencia sugerida es semanal y se define contigo en la primera sesión.</li>
+      </ul>
+      <div class="card alert">
+        <div class="k">No es un servicio de urgencia</div>
+        <p style="color:var(--white);">Si atraviesas una crisis grave que requiere atención psiquiátrica o de urgencia, te oriento hacia el recurso adecuado. Si estás en riesgo ahora, llama al <b>*4141</b> (línea de prevención del suicidio del Ministerio de Salud, gratuita y disponible todo el día), al <b>131</b> (SAMU), o acude al servicio de urgencia más cercano.</p>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="num">07</div>
+      <h2>Contacto</h2>
+      <p>Para avisos de cambio, consultas o cualquier duda sobre estas condiciones:</p>
+      <ul class="list">
+        <li><b>WhatsApp Business:</b> respondo en menos de 24 horas.</li>
+        <li><b>Correo:</b> <a href="mailto:maximiliano.jimenezr@gmail.com">maximiliano.jimenezr@gmail.com</a></li>
+        <li><b>Sitio:</b> <a href="index.html">mapsi.cl</a> · <a href="https://www.instagram.com/mapsicl/" target="_blank" rel="noopener">@mapsicl</a></li>
+      </ul>
+      <div class="cta-row">
+        <a href="#" data-wa class="btn btn-wa" target="_blank" rel="noopener"><svg><use href="#ic-wa"/></svg>Escríbeme por WhatsApp</a>
+        <a href="#" data-cal class="btn btn-out" target="_blank" rel="noopener"><svg><use href="#ic-cal"/></svg>Agendar llamada gratuita</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="footer-in">
+    <span class="f-tag">Reconquista tu mapa.</span>
+    <span class="f-copy">© 2026 Maximiliano Jiménez · Psicólogo &amp; Coach · La Serena, Chile</span>
+  </div>
+</footer>
+
+<script defer>
+(function () {
+  function safe(fn, n) { try { fn(); } catch(e) { console.warn('['+n+']', e); } }
+
+  /* ── WhatsApp y Calendario ofuscados (mismo patrón que el sitio) ── */
+  safe(function() {
+    var _w = atob('aHR0cHM6Ly93YS5tZS9tZXNzYWdlLzc2VkEzVVpKTVdVS0Ix');
+    var _c = atob('aHR0cHM6Ly9jYWxlbmRhci5hcHAuZ29vZ2xlL011S0JNRWp3MnlKSGNqNEc4');
+    document.addEventListener('click', function(e) {
+      var w = e.target.closest('[data-wa]');
+      if (w) {
+        e.preventDefault();
+        var msg = w.getAttribute('data-msg');
+        window.open(msg ? _w + '?text=' + encodeURIComponent(msg) : _w, '_blank', 'noopener,noreferrer');
+        return;
+      }
+      var c = e.target.closest('[data-cal]');
+      if (c) { e.preventDefault(); window.open(_c, '_blank', 'noopener,noreferrer'); }
+    });
+  }, 'links');
+
+  /* ── Resalta en el índice la sección visible ── */
+  safe(function() {
+    var links = document.querySelectorAll('.toc a');
+    var map = {};
+    links.forEach(function(a) { map[a.getAttribute('href').slice(1)] = a; });
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(en) {
+        if (en.isIntersecting) {
+          links.forEach(function(a) { a.classList.remove('active'); });
+          if (map[en.target.id]) map[en.target.id].classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('section[id]').forEach(function(s) { io.observe(s); });
+  }, 'toc-spy');
+})();
+</script>
+
+</body>
+</html>
