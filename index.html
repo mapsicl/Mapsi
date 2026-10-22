@@ -2799,63 +2799,256 @@
     }
     @media (max-width: 640px) { .cm-nav { display: none; } }
 
-    /* ── 4 · Servicios: resumen comparativo ── */
-    .svc-compare {
-      max-width: 1100px; margin: 3rem auto 3.4rem;
+    /* ── 4 · Servicios: las tarjetas cerradas SON la tabla; se abren en el lugar, sin saltos ── */
+    html[data-theme="pro"] .svc-grid {
+      max-width: 1100px; gap: 0; margin-top: 3.4rem;
       border-top: 1px solid rgba(243,241,236,.18);
     }
-    .sc-row {
-      display: grid; grid-template-columns: 1.25fr 1.6fr .9fr .95fr 44px;
-      align-items: center; gap: 1.2rem;
-      padding: 1.25rem .4rem; border-bottom: 1px solid rgba(243,241,236,.1);
-      font-family: var(--font-s); font-size: .92rem; color: rgba(243,241,236,.66);
-      position: relative; transition: background .4s var(--ease), color .3s;
+    html[data-theme="pro"] .svc-card {
+      background: transparent !important; border: none !important; border-radius: 0;
+      border-bottom: 1px solid rgba(243,241,236,.1) !important;
+      box-shadow: none !important; overflow: visible;
+      transition: background .45s var(--ease);
     }
-    a.sc-row::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
-      background: var(--p-accent); transform: scaleY(0); transform-origin: bottom;
-      transition: transform .45s var(--ease);
+    html[data-theme="pro"] .svc-card:hover { background: rgba(243,241,236,.03) !important; }
+    html[data-theme="pro"] .svc-card.sv-open { background: rgba(243,241,236,.045) !important; }
+    /* Marca lateral: se dibuja al pasar el mouse y queda fija en la fila abierta */
+    html[data-theme="pro"] .svc-card::before {
+      display: block; content: ''; position: absolute; left: 0; top: 0; bottom: 0; right: auto;
+      width: 2px; height: auto; opacity: 1; background: var(--p-accent);
+      transform: scaleY(0); transform-origin: top; transition: transform .5s var(--ease);
     }
-    a.sc-row:hover { background: rgba(243,241,236,.04); color: rgba(243,241,236,.85); }
-    a.sc-row:hover::before { transform: scaleY(1); }
-    .sc-head {
-      padding-top: .9rem; padding-bottom: .9rem;
-      font-size: .66rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
-      color: rgba(243,241,236,.42);
+    html[data-theme="pro"] .svc-card:hover::before,
+    html[data-theme="pro"] .svc-card.sv-open::before { transform: scaleY(1); }
+    html[data-theme="pro"] #svc-terapia::before { background: #8fb5a3; }
+    html[data-theme="pro"] .svc-head { padding: 1.5rem 3.6rem 1.5rem 1.4rem; }
+    html[data-theme="pro"] .svc-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: transparent; border: 1px solid rgba(243,241,236,.18);
     }
-    .sc-name { font-family: var(--font-d); font-size: 1.22rem; color: var(--p-bone); line-height: 1.25; }
-    .sc-name em {
-      display: inline-block; vertical-align: middle; margin-left: .45rem;
-      font-family: var(--font-s); font-style: normal; font-size: .58rem; font-weight: 600;
-      letter-spacing: .12em; text-transform: uppercase;
-      background: var(--p-bone); color: var(--p-ink); padding: .2rem .5rem; border-radius: 100px;
+    html[data-theme="pro"] .svc-name { font-size: 1.4rem; }
+    html[data-theme="pro"] .svc-card.feat .svc-head { padding-top: 2.2rem; }
+    html[data-theme="pro"] .svc-feat-tag {
+      position: absolute; top: .7rem; right: auto; left: calc(1.4rem + 44px + 1.2rem); margin: 0;
+      background: var(--p-bone); color: var(--p-ink); box-shadow: none;
+      border-radius: 100px; font-size: .56rem; padding: .22rem .6rem;
     }
-    .sc-price { font-family: var(--font-d); font-size: 1.2rem; color: var(--p-bone); line-height: 1.2; }
-    .sc-price small { display: block; font-family: var(--font-s); font-size: .7rem; color: rgba(243,241,236,.45); margin-top: .15rem; }
-    .sc-go {
-      width: 38px; height: 38px; border-radius: 50%; justify-self: end;
-      border: 1px solid rgba(243,241,236,.2); color: var(--p-bone);
-      display: inline-flex; align-items: center; justify-content: center;
-      transition: background .35s, color .35s, transform .45s var(--ease), border-color .35s;
+    html[data-theme="pro"] .svc-body, html[data-theme="pro"] .svc-foot { padding-left: calc(1.4rem + 44px + 1.2rem); }
+    html[data-theme="pro"] .svc-qualify-btn { border-top-color: rgba(243,241,236,.08); background: transparent; }
+    @media (max-width: 640px) {
+      html[data-theme="pro"] .svc-head { padding: 1.2rem 2.8rem 1.2rem .9rem; }
+      html[data-theme="pro"] .svc-card.feat .svc-head { padding-top: 2rem; }
+      html[data-theme="pro"] .svc-feat-tag { left: calc(.9rem + 44px + .9rem); top: .6rem; }
+      html[data-theme="pro"] .svc-body, html[data-theme="pro"] .svc-foot { padding-left: 1.1rem; }
     }
-    .sc-go svg { width: 16px; height: 16px; }
-    a.sc-row:hover .sc-go { background: var(--p-bone); color: var(--p-ink); border-color: transparent; transform: translateX(4px); }
-    /* Psicoterapia conserva su acento clínico verde azulado */
-    .sc-clinic .sc-name { color: #c2ddd1; }
-    .sc-clinic::before { background: #8fb5a3 !important; }
-    .sc-foot { margin-top: 1.1rem; font-family: var(--font-s); font-size: .8rem; color: rgba(243,241,236,.45); }
-    @media (max-width: 760px) {
-      .sc-head { display: none; }
-      .sc-row {
-        grid-template-columns: 1fr auto; grid-template-areas: "name price" "who who" "mode go";
-        gap: .35rem 1rem; padding: 1.2rem .2rem;
+
+    /* Bloque de venta junto al titular */
+    .svc-pitch .sp-lead {
+      font-family: var(--font-s); font-size: 1.15rem; line-height: 1.7; color: rgba(243,241,236,.82);
+    }
+    .svc-pitch .sp-lead strong, .svc-pitch .sp-proof strong { color: var(--p-bone); font-weight: 600; }
+    .svc-pitch .sp-proof {
+      margin-top: 1rem; font-family: var(--font-s); font-size: 1rem; line-height: 1.75; color: rgba(243,241,236,.58);
+    }
+    .sp-call {
+      margin-top: 1.8rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .3rem 1.2rem;
+      padding: 1.2rem 1.3rem 1.2rem 1.5rem; border-radius: 16px;
+      border: 1px solid rgba(243,241,236,.18); background: rgba(243,241,236,.03);
+      transition: background .4s var(--ease), border-color .4s, transform .4s var(--ease);
+    }
+    .sp-call-k {
+      font-family: var(--font-s); font-size: .68rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--p-accent);
+    }
+    .sp-call-t { grid-column: 1; font-family: var(--font-d); font-size: 1.2rem; color: var(--p-bone); line-height: 1.35; }
+    .sp-call-go {
+      grid-column: 2; grid-row: 1 / span 2;
+      width: 44px; height: 44px; border-radius: 50%; background: var(--p-bone); color: var(--p-ink);
+      display: inline-flex; align-items: center; justify-content: center; transition: transform .45s var(--ease);
+    }
+    .sp-call-go svg { width: 18px; height: 18px; }
+    .sp-call:hover { background: rgba(243,241,236,.07); border-color: rgba(243,241,236,.35); }
+    .sp-call:hover .sp-call-go { transform: rotate(-45deg); }
+
+    /* =============================================
+       PRO · ASÍ ILUMINO TU MAPA — escenario fijo + capítulos con scroll
+    ============================================= */
+    #pro-proceso { background: var(--p-ink); color: var(--p-bone); padding: 8rem 6vw 6rem; position: relative; }
+    .pp-head { max-width: 1240px; margin: 0 auto 3rem; }
+    .pp-intro { max-width: 560px; font-family: var(--font-s); font-size: 1.08rem; line-height: 1.75; color: rgba(243,241,236,.62); }
+    .pp-grid {
+      max-width: 1240px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.05fr .95fr; gap: 5vw; align-items: start;
+    }
+    .pp-stage-col { position: sticky; top: 92px; order: 2; }
+    .pp-steps { order: 1; }
+    .pp-stage {
+      position: relative; aspect-ratio: 1 / 1; max-height: calc(100vh - 130px); margin-left: auto;
+      border-radius: 26px; overflow: hidden;
+      background: radial-gradient(ellipse 80% 70% at 30% 80%, rgba(200,168,75,.08), transparent 60%), #111112;
+      border: 1px solid rgba(243,241,236,.08);
+    }
+    .pp-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .pp-topo { transition: transform 1.4s var(--ease); transform-origin: center; }
+    .pp-stage[data-step="1"] .pp-topo { transform: scale(1.06) translate(-8px, 6px); }
+    .pp-stage[data-step="2"] .pp-topo { transform: scale(1.12) translate(-14px, 10px); }
+    .pp-svg-label { font-family: 'Inter Tight', sans-serif; font-size: 15px; fill: rgba(243,241,236,.7); letter-spacing: .02em; }
+    .pp-pulse { animation: pp-pulse 2.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
+    @keyframes pp-pulse { 0%,100% { transform: scale(.75); opacity: .55; } 50% { transform: scale(1.15); opacity: 1; } }
+
+    /* Ruta */
+    .pp-route-base { stroke: rgba(243,241,236,.16); stroke-width: 1.5; stroke-dasharray: 3 7; opacity: 0; transition: opacity .8s var(--ease); }
+    .pp-route { stroke-width: 3; stroke-linecap: round; opacity: 0; transition: stroke-dashoffset 1.6s var(--ease), opacity .6s; filter: drop-shadow(0 0 6px rgba(240,212,138,.45)); }
+    .pp-trail { stroke-width: 5; stroke-linecap: round; opacity: 0; filter: drop-shadow(0 0 10px rgba(240,212,138,.7)); }
+    .pp-stage[data-step="1"] .pp-route-base, .pp-stage[data-step="2"] .pp-route-base { opacity: 1; }
+    .pp-stage[data-step="1"] .pp-route { opacity: 1; }
+    .pp-stage[data-step="2"] .pp-route { opacity: .3; }
+    .pp-stage[data-step="2"] .pp-trail { opacity: 1; }
+    .pp-dest { opacity: 0; transition: opacity .8s var(--ease) .3s; }
+    .pp-stage[data-step="1"] .pp-dest, .pp-stage[data-step="2"] .pp-dest { opacity: 1; }
+
+    /* Puntos de foco */
+    .pp-wp { cursor: pointer; opacity: 0; transition: opacity .6s var(--ease); }
+    .pp-stage[data-step="1"] .pp-wp { opacity: 1; }
+    .pp-wp .ring { fill: none; stroke: rgba(243,241,236,.35); stroke-width: 1.5; transition: stroke .4s, r .4s; }
+    .pp-wp .core { fill: rgba(243,241,236,.35); transition: fill .4s; }
+    .pp-wp.on .ring { stroke: #f0d48a; }
+    .pp-wp.on .core { fill: #f0d48a; }
+    .pp-wp text { font-family: 'Inter Tight', sans-serif; font-size: 14px; fill: rgba(243,241,236,.5); transition: fill .4s; }
+    .pp-wp.on text { fill: #f3f1ec; }
+
+    /* Etapas (capítulo 3) */
+    .pp-st { opacity: 0; transition: opacity .6s var(--ease); }
+    .pp-stage[data-step="2"] .pp-st { opacity: 1; }
+    .pp-st .halo { fill: url(#pp-glow); opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(.4); transition: opacity .6s, transform .8s var(--ease); }
+    .pp-st .dot { fill: #1a1a1b; stroke: rgba(243,241,236,.35); stroke-width: 1.5; transition: fill .5s, stroke .5s; }
+    .pp-st.lit .halo { opacity: 1; transform: scale(1); }
+    .pp-st.lit .dot { fill: #f0d48a; stroke: #f0d48a; }
+    .pp-st text { font-family: 'Inter Tight', sans-serif; font-size: 13.5px; fill: rgba(243,241,236,.4); transition: fill .5s; }
+    .pp-st.lit text { fill: #f3f1ec; }
+    .pp-traveler { opacity: 0; transition: opacity .5s; }
+    .pp-stage[data-step="2"] .pp-traveler { opacity: 1; }
+
+    /* Chat (capítulo 1) */
+    .pp-chat {
+      position: absolute; left: 7%; right: 7%; top: 7%;
+      display: flex; flex-direction: column; gap: .55rem;
+      transition: opacity .6s var(--ease), transform .8s var(--ease);
+    }
+    .pp-stage:not([data-step="0"]) .pp-chat { opacity: 0; transform: translateY(-24px); pointer-events: none; }
+    .pp-chat-top {
+      display: inline-flex; align-items: center; gap: .55rem; align-self: flex-start;
+      font-family: var(--font-s); font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+      color: rgba(243,241,236,.55); margin-bottom: .4rem;
+    }
+    .pp-rec { width: 7px; height: 7px; border-radius: 50%; background: #e06a5c; animation: pp-blink 1.6s ease-in-out infinite; }
+    @keyframes pp-blink { 50% { opacity: .25; } }
+    .pp-chat { bottom: 24%; }   /* termina sobre el punto "Tú, hoy" */
+    .pp-msgs { display: flex; flex-direction: column; gap: .55rem; flex: 1; min-height: 0; overflow: hidden; justify-content: flex-end; }
+    .pp-msg {
+      max-width: 82%; padding: .7rem 1rem; border-radius: 16px;
+      font-family: var(--font-s); font-size: .95rem; line-height: 1.45;
+      opacity: 0; transform: translateY(10px) scale(.97);
+      animation: pp-in .55s var(--ease) forwards;
+    }
+    @keyframes pp-in { to { opacity: 1; transform: none; } }
+    .pp-msg.max { align-self: flex-start; background: #f3f1ec; color: #0b0b0c; border-bottom-left-radius: 4px; }
+    .pp-msg.you { align-self: flex-end; background: rgba(243,241,236,.1); color: #f3f1ec; border-bottom-right-radius: 4px; }
+    .pp-msg.max .who { display: block; font-size: .64rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #8a6a1c; margin-bottom: .2rem; }
+    .pp-typing { align-self: flex-start; display: inline-flex; gap: 4px; padding: .8rem 1rem; border-radius: 16px; background: rgba(243,241,236,.9); }
+    .pp-typing i { width: 6px; height: 6px; border-radius: 50%; background: #0b0b0c; opacity: .35; animation: pp-dot 1s infinite; }
+    .pp-typing i:nth-child(2) { animation-delay: .15s; } .pp-typing i:nth-child(3) { animation-delay: .3s; }
+    @keyframes pp-dot { 50% { opacity: 1; transform: translateY(-3px); } }
+    .pp-replay {
+      align-self: flex-start; margin-top: .3rem; background: none; border: none; cursor: pointer;
+      font-family: var(--font-s); font-size: .78rem; color: rgba(243,241,236,.5); opacity: 0; transition: opacity .4s, color .3s;
+    }
+    .pp-replay.show { opacity: 1; }
+    .pp-replay:hover { color: var(--p-bone); }
+
+    .pp-legend, .pp-chapter {
+      position: absolute; bottom: 1.1rem; font-family: var(--font-s); font-size: .72rem;
+      color: rgba(243,241,236,.5); letter-spacing: .04em;
+    }
+    .pp-legend { left: 1.3rem; opacity: 0; transition: opacity .5s; }
+    .pp-stage[data-step="1"] .pp-legend { opacity: 1; }
+    .pp-chapter { right: 1.3rem; font-family: var(--font-d); font-size: .95rem; letter-spacing: 0; }
+    .pp-chapter span { color: var(--p-bone); }
+
+    /* Capítulos de texto */
+    .pp-step {
+      min-height: 88vh; padding: 6vh 0; display: flex; flex-direction: column; justify-content: center;
+      opacity: .28; transition: opacity .7s var(--ease);
+    }
+    .pp-step.active { opacity: 1; }
+    .pp-num { font-family: var(--font-d); font-weight: 300; font-size: 3.4rem; line-height: 1; color: var(--p-accent); margin-bottom: 1rem; }
+    .pp-title { font-family: var(--font-d); font-weight: 300; font-size: clamp(2rem, 3.6vw, 3rem); line-height: 1.08; letter-spacing: -.02em; margin-bottom: 1.2rem; }
+    .pp-text { font-family: var(--font-s); font-size: 1.08rem; line-height: 1.75; color: rgba(243,241,236,.7); max-width: 520px; }
+    .pp-text strong { color: var(--p-bone); font-weight: 600; }
+    .pp-points { list-style: none; margin: 1.6rem 0 0; display: flex; flex-direction: column; }
+    .pp-points li {
+      font-family: var(--font-s); font-size: .95rem; color: rgba(243,241,236,.75);
+      padding: .8rem 0 .8rem 1.6rem; border-top: 1px solid rgba(243,241,236,.1); position: relative;
+    }
+    .pp-points li::before { content: ''; position: absolute; left: 0; top: 1.25rem; width: 8px; height: 1px; background: var(--p-accent); }
+    .pp-cta { margin-top: 2rem; align-self: flex-start; }
+    .pp-try { margin-top: 1.6rem; font-family: var(--font-s); font-size: .85rem; color: var(--p-accent); }
+    .pp-chips { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .9rem; }
+    .pp-chip {
+      font-family: var(--font-s); font-size: .9rem; cursor: pointer;
+      padding: .65rem 1.1rem; border-radius: 100px;
+      border: 1px solid rgba(243,241,236,.22); background: transparent; color: rgba(243,241,236,.7);
+      transition: background .35s, color .35s, border-color .35s, transform .35s var(--ease);
+    }
+    .pp-chip:hover { border-color: rgba(243,241,236,.5); transform: translateY(-2px); }
+    .pp-chip.on { background: var(--p-bone); color: var(--p-ink); border-color: transparent; }
+    .pp-stops { list-style: none; margin: 1.6rem 0 0; counter-reset: stop; }
+    .pp-stops li {
+      counter-increment: stop; position: relative;
+      padding: .9rem 0 .9rem 2.6rem; border-top: 1px solid rgba(243,241,236,.1);
+      font-family: var(--font-s); font-size: .9rem; line-height: 1.55; color: rgba(243,241,236,.45);
+      transition: color .5s;
+    }
+    .pp-stops li b { display: block; font-weight: 600; font-size: 1rem; color: rgba(243,241,236,.55); transition: color .5s; }
+    .pp-stops li::before {
+      content: counter(stop); position: absolute; left: 0; top: .95rem;
+      width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(243,241,236,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; color: rgba(243,241,236,.5); transition: background .5s, color .5s, border-color .5s;
+    }
+    .pp-stops li.lit { color: rgba(243,241,236,.75); }
+    .pp-stops li.lit b { color: var(--p-bone); }
+    .pp-stops li.lit::before { background: #f0d48a; color: #0b0b0c; border-color: transparent; }
+    .pp-link { margin-top: 1.8rem; align-self: flex-start; color: var(--p-bone); }
+
+    @media (max-width: 900px) {
+      #pro-proceso { padding: 6rem 1.4rem 4rem; }
+      .pp-grid { grid-template-columns: 1fr; gap: 0; }
+      /* Efecto A: franja superior sólida + el texto se disuelve en "niebla" bajo el mapa */
+      .pp-stage-col {
+        order: 0; top: 0; z-index: 2;
+        margin: 0 -1.4rem; padding: 74px 1.4rem 0;
+        background: var(--p-ink);
       }
-      .sc-name { grid-area: name; font-size: 1.12rem; }
-      .sc-price { grid-area: price; text-align: right; font-size: 1.08rem; }
-      .sc-who { grid-area: who; font-size: .86rem; }
-      .sc-mode { grid-area: mode; font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(243,241,236,.45); align-self: center; }
-      .sc-go { grid-area: go; width: 34px; height: 34px; }
-      .sc-name em { display: table; margin: .35rem 0 0; }
+      .pp-stage-col::after {
+        content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 110px; pointer-events: none;
+        background: linear-gradient(var(--p-ink) 0%, rgba(11,11,12,.88) 30%, rgba(11,11,12,.45) 65%, transparent 100%);
+        -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+        -webkit-mask-image: linear-gradient(#000 35%, transparent); mask-image: linear-gradient(#000 35%, transparent);
+      }
+      .pp-head { margin-bottom: .5rem; }
+      .pp-steps { position: relative; z-index: 1; }
+      .pp-stage { aspect-ratio: auto; height: 46vh; max-height: none; margin: 0 auto; max-width: 520px; }
+      .pp-step { min-height: 70vh; padding: 4vh 0; }
+      .pp-num { font-size: 2.4rem; }
+      .pp-msg { font-size: .84rem; padding: .55rem .8rem; }
+      .pp-chat { top: 5%; left: 5%; right: 5%; }
+      .pp-svg-label { font-size: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pp-pulse, .pp-rec, .pp-typing i { animation: none; }
+      .pp-msg { animation: none; opacity: 1; transform: none; }
+      .pp-route { transition: none; }
     }
 
     /* ── 5 · Footer Pro: cierre de marca ── */
@@ -3524,59 +3717,27 @@
   <div class="wrap sec">
     <div class="services-intro-grid">
       <div>
-        <p class="label rv">Servicios · 100% Online</p>
-        <h2 class="h2 rv d1">El bloqueo no es<br/><em>lo que falta saber.</em></h2>
+        <p class="label rv">Servicios · Online · presencial para empresas</p>
+        <h2 class="h2 rv d1 mapa-only">El bloqueo no es<br/><em>lo que falta saber.</em></h2>
+        <h2 class="h2 rv d1 pro-only">Ya hiciste el curso.<br/><em>Y sigues en el mismo lugar.</em></h2>
       </div>
-      <div class="rv d2">
+      <div class="rv d2 mapa-only">
         <p class="body-text" style="max-width:100%;margin-bottom:1.2rem;">Casi siempre es confianza, claridad o autovaloración. Antes de cualquier compromiso, conversamos 30 minutos sin costo — para saber si soy la persona indicada para acompañarte. Todos los servicios son online; las charlas para empresas también pueden ser presenciales.</p>
         <div class="process-note">
           <strong><span class="emo">🧭 </span>Sesión de claridad de 30 min — siempre</strong>
           Cuéntame dónde estás y hacia dónde quieres ir. Sin presión. Solo una conversación honesta.
         </div>
       </div>
-    </div>
-    <!-- PRO · Resumen comparativo: decidir en un vistazo, el detalle está en cada tarjeta -->
-    <div class="svc-compare pro-only rv d2" role="table" aria-label="Resumen de servicios">
-      <div class="sc-row sc-head" role="row">
-        <span role="columnheader">Servicio</span><span role="columnheader">Para quién</span>
-        <span role="columnheader">Modalidad</span><span role="columnheader">Desde</span><span aria-hidden="true"></span>
+      <!-- PRO · Voz sin filtro: nombra la excusa, explica por qué funciona, cierra con la llamada -->
+      <div class="rv d2 pro-only svc-pitch">
+        <p class="sp-lead">Porque nunca te faltó información. Te falta <strong>confianza, claridad y autovaloración</strong> — y eso no se arregla con otro tutorial ni otra lista de consejos.</p>
+        <p class="sp-proof">Después de más de 3.700 personas y 300 asesorías, veo el mismo patrón cada semana: gente capaz que se frena sola. <strong>Yo trabajo justo ahí.</strong></p>
+        <a href="#" data-cal class="sp-call" target="_blank" rel="noopener">
+          <span class="sp-call-k">Sesión de claridad · 30 min · sin costo</span>
+          <span class="sp-call-t">Si no soy la persona indicada, te lo digo de frente.</span>
+          <span class="sp-call-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
       </div>
-      <a class="sc-row" role="row" href="#svc-insercion" data-goto="svc-insercion">
-        <span class="sc-name" role="cell">Inserción Laboral</span>
-        <span class="sc-who" role="cell">Recién egresados y profesionales senior</span>
-        <span class="sc-mode" role="cell">Online</span>
-        <span class="sc-price" role="cell">$45.900<small>/ sesión</small></span>
-        <span class="sc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="sc-row" role="row" href="#svc-desarrollo" data-goto="svc-desarrollo">
-        <span class="sc-name" role="cell">Desarrollo Profesional <em>Más solicitado</em></span>
-        <span class="sc-who" role="cell">Profesionales que sienten que se estancaron</span>
-        <span class="sc-mode" role="cell">Online</span>
-        <span class="sc-price" role="cell">$54.900<small>/ sesión · pack 8</small></span>
-        <span class="sc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="sc-row" role="row" href="#svc-marca" data-goto="svc-marca">
-        <span class="sc-name" role="cell">Marca Personal</span>
-        <span class="sc-who" role="cell">Quienes quieren visibilidad real en redes</span>
-        <span class="sc-mode" role="cell">Online</span>
-        <span class="sc-price" role="cell">$54.900<small>/ sesión · pack 8</small></span>
-        <span class="sc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="sc-row sc-clinic" role="row" href="#svc-terapia" data-goto="svc-terapia">
-        <span class="sc-name" role="cell">Psicoterapia Individual</span>
-        <span class="sc-who" role="cell">Adultos · espacio clínico y confidencial</span>
-        <span class="sc-mode" role="cell">Online</span>
-        <span class="sc-price" role="cell">$50.000<small>/ sesión</small></span>
-        <span class="sc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <a class="sc-row" role="row" href="#svc-equipos" data-goto="svc-equipos">
-        <span class="sc-name" role="cell">Charlas &amp; Team Building</span>
-        <span class="sc-who" role="cell">Organizaciones y equipos</span>
-        <span class="sc-mode" role="cell">Online o presencial</span>
-        <span class="sc-price" role="cell">Cotización<small>a medida</small></span>
-        <span class="sc-go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </a>
-      <p class="sc-foot">Toca un servicio para ver el detalle, qué incluye y si es para ti. Precios en CLP, con boleta de honorarios.</p>
     </div>
 
     <div class="svc-grid">
@@ -3961,7 +4122,8 @@
 </div>
 
 <!-- ===================== PROCESO ===================== -->
-<section id="proceso">
+<div id="como-trabajo" aria-hidden="true"></div>
+<section id="proceso" class="mapa-only">
   <!-- Topographic map texture -->
   <div class="proc-topo" aria-hidden="true"></div>
 
@@ -4027,6 +4189,120 @@
 
       </div><!-- /proceso-steps -->
     </div><!-- /proceso-map-wrap -->
+  </div>
+</section>
+
+<!-- ===================== PRO · ASÍ ILUMINO TU MAPA (escena interactiva con scroll) =====================
+     Protagonista: la ruta dorada. 1) conversación que se escribe sola · 2) mapa que el visitante
+     rediseña eligiendo su foco · 3) un viajero recorre la ruta y enciende cada etapa del proceso. -->
+<section id="pro-proceso" class="pro-only">
+  <div class="pp-head">
+    <p class="label rv">Cómo trabajo</p>
+    <h2 class="h2 rv d1">Así ilumino<br/><em>tu mapa.</em></h2>
+    <p class="pp-intro rv d2">No te vendo un programa armado. Te muestro cómo es, paso a paso, antes de que gastes un peso.</p>
+  </div>
+
+  <div class="pp-grid">
+    <!-- Escenario fijo -->
+    <div class="pp-stage-col">
+      <div class="pp-stage" id="pp-stage" data-step="0">
+        <svg class="pp-map" viewBox="0 0 600 600" aria-hidden="true">
+          <defs>
+            <linearGradient id="pp-grad" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#8a6a1c"/><stop offset=".6" stop-color="#c8a84b"/><stop offset="1" stop-color="#f0d48a"/>
+            </linearGradient>
+            <radialGradient id="pp-glow"><stop offset="0" stop-color="#f0d48a" stop-opacity=".9"/><stop offset="1" stop-color="#f0d48a" stop-opacity="0"/></radialGradient>
+          </defs>
+          <!-- Curvas de nivel (textura de mapa) -->
+          <g class="pp-topo" fill="none" stroke="#f3f1ec" stroke-width="1">
+            <ellipse cx="150" cy="420" rx="170" ry="95" opacity=".05"/><ellipse cx="150" cy="420" rx="120" ry="66" opacity=".06"/><ellipse cx="150" cy="420" rx="70" ry="38" opacity=".07"/>
+            <ellipse cx="460" cy="170" rx="190" ry="110" opacity=".05"/><ellipse cx="460" cy="170" rx="130" ry="74" opacity=".06"/><ellipse cx="460" cy="170" rx="72" ry="40" opacity=".07"/>
+            <ellipse cx="350" cy="430" rx="110" ry="60" opacity=".04"/><ellipse cx="350" cy="430" rx="60" ry="32" opacity=".05"/>
+          </g>
+          <!-- Ruta: base punteada + trazo dorado + estela del viajero -->
+          <path id="pp-route-base" class="pp-route-base" d="" fill="none"/>
+          <path id="pp-route" class="pp-route" d="" fill="none" stroke="url(#pp-grad)"/>
+          <path id="pp-trail" class="pp-trail" d="" fill="none" stroke="url(#pp-grad)"/>
+          <!-- Puntos de foco (capítulo 2) -->
+          <g id="pp-wps"></g>
+          <!-- Etapas del proceso (capítulo 3) -->
+          <g id="pp-stations"></g>
+          <!-- Origen y destino -->
+          <g class="pp-origin" transform="translate(90 500)">
+            <circle r="34" fill="url(#pp-glow)" class="pp-pulse"/>
+            <circle r="7" fill="#f3f1ec"/>
+            <text x="16" y="28" class="pp-svg-label">Tú, hoy</text>
+          </g>
+          <g class="pp-dest" transform="translate(510 110)">
+            <circle r="9" fill="none" stroke="#f0d48a" stroke-width="1.5"/>
+            <circle r="3.5" fill="#f0d48a"/>
+            <text x="-14" y="-18" text-anchor="end" class="pp-svg-label">Donde decides llegar</text>
+          </g>
+          <!-- Viajero -->
+          <g id="pp-traveler" class="pp-traveler">
+            <circle r="26" fill="url(#pp-glow)"/>
+            <circle r="6" fill="#fff8e0"/>
+          </g>
+        </svg>
+
+        <!-- Capítulo 1: conversación de ejemplo que se escribe sola -->
+        <div class="pp-chat" id="pp-chat" aria-live="polite">
+          <div class="pp-chat-top"><span class="pp-rec"></span>Sesión de claridad · 30 min · ejemplo</div>
+          <div class="pp-msgs" id="pp-msgs"></div>
+          <button type="button" class="pp-replay" id="pp-replay">Ver de nuevo ↺</button>
+        </div>
+
+        <!-- Leyenda del capítulo 2 -->
+        <div class="pp-legend" id="pp-legend">Ruta de ejemplo · <span id="pp-legend-n">2</span> focos · 4 a 8 sesiones</div>
+
+        <!-- Etiqueta de capítulo -->
+        <div class="pp-chapter"><span id="pp-chapter-n">01</span> / 03</div>
+      </div>
+    </div>
+
+    <!-- Capítulos (texto que avanza) -->
+    <div class="pp-steps">
+      <article class="pp-step" data-step="0">
+        <div class="pp-num">01</div>
+        <h3 class="pp-title">La conversación inicial</h3>
+        <p class="pp-text">30 minutos por videollamada, sin costo. Te escucho, te hago las preguntas que nadie te ha hecho y te digo con honestidad si puedo ayudarte. <strong>Si no soy la persona indicada, te lo digo de frente.</strong></p>
+        <ul class="pp-points">
+          <li>Dónde estás hoy y qué te tiene parado</li>
+          <li>Qué cambiaría si lo resuelves</li>
+          <li>Si el proceso es para ti — y cuál</li>
+        </ul>
+        <a href="#" data-cal class="p-btn pr-magnet pp-cta" target="_blank" rel="noopener">
+          Agendar mi conversación
+          <span class="p-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </article>
+
+      <article class="pp-step" data-step="1">
+        <div class="pp-num">02</div>
+        <h3 class="pp-title">Diseñamos el camino</h3>
+        <p class="pp-text">El coaching es diseño conjunto: <strong>tú pones el destino, yo pongo el método.</strong> Definimos el foco, el ritmo y cuántas sesiones necesitas. Nada de plantillas.</p>
+        <p class="pp-try">Pruébalo: elige en qué quieres trabajar y mira cómo cambia tu ruta.</p>
+        <div class="pp-chips" id="pp-chips" role="group" aria-label="Elige tus focos">
+          <button type="button" class="pp-chip on" data-wp="confianza" aria-pressed="true">Confianza</button>
+          <button type="button" class="pp-chip on" data-wp="claridad" aria-pressed="true">Claridad</button>
+          <button type="button" class="pp-chip" data-wp="autovaloracion" aria-pressed="false">Autovaloración</button>
+          <button type="button" class="pp-chip" data-wp="visibilidad" aria-pressed="false">Visibilidad</button>
+        </div>
+      </article>
+
+      <article class="pp-step" data-step="2">
+        <div class="pp-num">03</div>
+        <h3 class="pp-title">Caminamos juntos</h3>
+        <p class="pp-text">Sesiones de profundidad real. No te dejo con una lista de tareas: te acompaño mientras recorres cada tramo.</p>
+        <ol class="pp-stops" id="pp-stops">
+          <li data-i="0"><b>Conversaciones profundas</b>Las que incomodan lo justo para moverte.</li>
+          <li data-i="1"><b>Herramientas concretas</b>DISC, PNL e inteligencia emocional, aplicadas a tu caso.</li>
+          <li data-i="2"><b>Recomendaciones entre sesiones</b>Acciones pequeñas para que el cambio pase en tu semana, no solo en la sesión.</li>
+          <li data-i="3"><b>Seguimiento post-proceso</b>Cuando terminamos, seguimos en contacto para consolidar lo logrado.</li>
+        </ol>
+        <a href="#servicios" class="p-link pp-link">Ver servicios y precios</a>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -4179,7 +4455,7 @@
       <li><a href="#sobre-mi">Sobre mí</a></li>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#logros">Credenciales</a></li>
-      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#como-trabajo">Proceso</a></li>
       <li><a href="#redes">Redes</a></li>
       <li><a href="condiciones.html">Condiciones</a></li>
       <li><a href="test.html">Test</a></li>
@@ -4455,7 +4731,8 @@
     var cards = document.querySelectorAll('.svc-card');
     if (!cards.length) return;
     cards.forEach(function(card) {
-      if (card.classList.contains('feat')) card.classList.add('sv-open');
+      // En Pro la lista parte cerrada: se lee como menú y el visitante elige qué abrir
+      if (card.classList.contains('feat') && document.documentElement.getAttribute('data-theme') !== 'pro') card.classList.add('sv-open');
       var head = card.querySelector('.svc-head');
       if (!head) return;
       head.addEventListener('click', function() {
@@ -4775,6 +5052,208 @@
     window.addEventListener('mj-theme', check);
     check();
   }, 'pro-wa-float');
+
+  /* ── PRO · ASÍ ILUMINO TU MAPA: escena con scroll (chat → mapa editable → viajero) ── */
+  safe(function() {
+    var stage = document.getElementById('pp-stage');
+    if (!stage) return;
+    var NS = 'http://www.w3.org/2000/svg';
+    var route = document.getElementById('pp-route');
+    var base = document.getElementById('pp-route-base');
+    var trail = document.getElementById('pp-trail');
+    var wpG = document.getElementById('pp-wps');
+    var stG = document.getElementById('pp-stations');
+    var trav = document.getElementById('pp-traveler');
+    var steps = Array.prototype.slice.call(document.querySelectorAll('.pp-step'));
+    var chips = Array.prototype.slice.call(document.querySelectorAll('.pp-chip'));
+    var stops = Array.prototype.slice.call(document.querySelectorAll('#pp-stops li'));
+    var chapN = document.getElementById('pp-chapter-n');
+    var legendN = document.getElementById('pp-legend-n');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var START = { x: 90, y: 500 }, END = { x: 510, y: 110 };
+    var WPS = {
+      confianza:      { x: 175, y: 345, label: 'Confianza' },
+      claridad:       { x: 335, y: 440, label: 'Claridad' },
+      autovaloracion: { x: 240, y: 200, label: 'Autovaloración' },
+      visibilidad:    { x: 445, y: 300, label: 'Visibilidad' }
+    };
+    var STOPS = [
+      { f: .16, label: 'Conversaciones' }, { f: .40, label: 'Herramientas' },
+      { f: .64, label: 'Recomendaciones' }, { f: .88, label: 'Seguimiento' }
+    ];
+    var step = -1, len = 0, travelT = 0;
+
+    function el(tag, attrs) {
+      var n = document.createElementNS(NS, tag);
+      for (var k in attrs) n.setAttribute(k, attrs[k]);
+      return n;
+    }
+    // Avance de un punto a lo largo de la diagonal origen → destino (ordena la ruta)
+    function along(p) {
+      var dx = END.x - START.x, dy = END.y - START.y;
+      return ((p.x - START.x) * dx + (p.y - START.y) * dy) / (dx * dx + dy * dy);
+    }
+    // Curva suave que pasa por todos los puntos (Catmull-Rom → Bézier)
+    function smooth(pts) {
+      var d = 'M' + pts[0].x + ' ' + pts[0].y;
+      for (var i = 0; i < pts.length - 1; i++) {
+        var p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+        d += ' C' + (p1.x + (p2.x - p0.x) / 6) + ' ' + (p1.y + (p2.y - p0.y) / 6) + ' ' +
+             (p2.x - (p3.x - p1.x) / 6) + ' ' + (p2.y - (p3.y - p1.y) / 6) + ' ' + p2.x + ' ' + p2.y;
+      }
+      return d;
+    }
+
+    // Puntos de foco clicables sobre el mapa
+    Object.keys(WPS).forEach(function(k) {
+      var w = WPS[k];
+      var g = el('g', { 'class': 'pp-wp', 'data-wp': k, transform: 'translate(' + w.x + ' ' + w.y + ')' });
+      g.appendChild(el('circle', { 'class': 'ring', r: 13 }));
+      g.appendChild(el('circle', { 'class': 'core', r: 4.5 }));
+      var t = el('text', { x: w.x > 400 ? -20 : 20, y: 5, 'text-anchor': w.x > 400 ? 'end' : 'start' });
+      t.textContent = w.label;
+      g.appendChild(t);
+      g.addEventListener('click', function() { toggle(k); });
+      wpG.appendChild(g);
+    });
+
+    function selected() {
+      return chips.filter(function(c) { return c.classList.contains('on'); }).map(function(c) { return c.getAttribute('data-wp'); });
+    }
+    function toggle(k) {
+      var c = chips.filter(function(x) { return x.getAttribute('data-wp') === k; })[0];
+      if (!c) return;
+      var on = !c.classList.contains('on');
+      c.classList.toggle('on', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      draw(true);
+    }
+    chips.forEach(function(c) { c.addEventListener('click', function() { toggle(c.getAttribute('data-wp')); }); });
+
+    function draw(animate) {
+      var keys = selected();
+      wpG.querySelectorAll('.pp-wp').forEach(function(g) { g.classList.toggle('on', keys.indexOf(g.getAttribute('data-wp')) > -1); });
+      var mids = keys.map(function(k) { return WPS[k]; }).sort(function(a, b) { return along(a) - along(b); });
+      if (!mids.length) mids = [{ x: 290, y: 360 }];   // sin foco: ruta directa con una curva suave
+      var d = smooth([START].concat(mids, [END]));
+      route.setAttribute('d', d); base.setAttribute('d', d); trail.setAttribute('d', d);
+      len = route.getTotalLength();
+      route.style.strokeDasharray = len; trail.style.strokeDasharray = len;
+      if (animate && !reduced && step >= 1) {
+        route.style.transition = 'none';
+        route.style.strokeDashoffset = len;
+        route.getBoundingClientRect();
+        route.style.transition = '';
+      }
+      route.style.strokeDashoffset = step >= 1 ? 0 : len;
+      if (legendN) legendN.textContent = keys.length;
+      placeStations();
+      travel(travelT);
+    }
+
+    function placeStations() {
+      while (stG.firstChild) stG.removeChild(stG.firstChild);
+      STOPS.forEach(function(s, i) {
+        var p = route.getPointAtLength(len * s.f);
+        var g = el('g', { 'class': 'pp-st', 'data-i': i, transform: 'translate(' + p.x.toFixed(1) + ' ' + p.y.toFixed(1) + ')' });
+        g.appendChild(el('circle', { 'class': 'halo', r: 30 }));
+        g.appendChild(el('circle', { 'class': 'dot', r: 7 }));
+        var right = p.x > 380;
+        var t = el('text', { x: right ? -16 : 16, y: -12, 'text-anchor': right ? 'end' : 'start' });
+        t.textContent = s.label;
+        g.appendChild(t);
+        stG.appendChild(g);
+      });
+    }
+
+    // El viajero avanza con el scroll del capítulo 3 y enciende cada etapa al pasar
+    function travel(t) {
+      travelT = t;
+      if (!len) return;
+      var p = route.getPointAtLength(len * t);
+      trav.setAttribute('transform', 'translate(' + p.x.toFixed(1) + ' ' + p.y.toFixed(1) + ')');
+      trail.style.strokeDashoffset = len * (1 - t);
+      STOPS.forEach(function(s, i) {
+        var lit = t >= s.f - .015;
+        var g = stG.querySelector('[data-i="' + i + '"]');
+        if (g) g.classList.toggle('lit', lit);
+        if (stops[i]) stops[i].classList.toggle('lit', lit);
+      });
+    }
+
+    /* Capítulo 1: conversación de ejemplo que se escribe sola */
+    var msgs = document.getElementById('pp-msgs');
+    var replay = document.getElementById('pp-replay');
+    var SCRIPT = [
+      ['max', 'Cuéntame, ¿dónde estás hoy?'],
+      ['you', 'Tengo experiencia, pero siento que no avanzo.'],
+      ['max', '¿Qué te frena más: no saber hacia dónde ir, o no atreverte a ir?'],
+      ['you', 'Creo que lo segundo…'],
+      ['max', 'Entonces no te falta otro curso. Ya sé por dónde empezamos.']
+    ];
+    var timers = [], played = false;
+    function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+    function bubble(who, text) {
+      var b = document.createElement('div');
+      b.className = 'pp-msg ' + who;
+      if (who === 'max') { var w = document.createElement('span'); w.className = 'who'; w.textContent = 'Max'; b.appendChild(w); }
+      b.appendChild(document.createTextNode(text));
+      msgs.appendChild(b);
+    }
+    function play() {
+      clearTimers(); played = true;
+      msgs.innerHTML = ''; replay.classList.remove('show');
+      if (reduced) { SCRIPT.forEach(function(m) { bubble(m[0], m[1]); }); replay.classList.add('show'); return; }
+      var t = 300;
+      SCRIPT.forEach(function(m) {
+        if (m[0] === 'max') {
+          timers.push(setTimeout(function() {
+            var ty = document.createElement('div');
+            ty.className = 'pp-typing'; ty.innerHTML = '<i></i><i></i><i></i>';
+            msgs.appendChild(ty);
+            timers.push(setTimeout(function() { ty.remove(); bubble('max', m[1]); }, 900));
+          }, t));
+          t += 900 + 1500;
+        } else {
+          timers.push(setTimeout(function() { bubble('you', m[1]); }, t));
+          t += 1500;
+        }
+      });
+      timers.push(setTimeout(function() { replay.classList.add('show'); }, t));
+    }
+    replay.addEventListener('click', play);
+
+    function setStep(n) {
+      if (n === step) return;
+      var prev = step;
+      step = n;
+      stage.setAttribute('data-step', n);
+      if (chapN) chapN.textContent = '0' + (n + 1);
+      steps.forEach(function(s, i) { s.classList.toggle('active', i === n); });
+      if (n === 0 && !played) play();
+      if (n >= 1 && prev < 1) draw(true);
+      if (n < 1) route.style.strokeDashoffset = len;
+    }
+
+    var ticking = false;
+    function onScroll() {
+      ticking = false;
+      if (document.documentElement.getAttribute('data-theme') !== 'pro') return;
+      var vh = window.innerHeight, mark = vh * 0.55, n = 0;
+      steps.forEach(function(s, i) { if (s.getBoundingClientRect().top < mark) n = i; });
+      setStep(n);
+      var r = steps[2].getBoundingClientRect();
+      travel(Math.max(0, Math.min(1, (mark - r.top) / (r.height * 0.75))));
+    }
+    window.addEventListener('scroll', function() {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('mj-theme', function() { draw(false); onScroll(); });
+    draw(false);
+    onScroll();
+  }, 'pro-proceso');
 
   /* ── PROCESO MAP — lantern animation ── */
   safe(function() {
