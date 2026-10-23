@@ -3173,6 +3173,10 @@
     html[data-theme="pro"] .ph-item b, html[data-theme="pro"] strong { font-weight: 600; }
     html[data-theme="pro"] :is(.pa-n, .pp-num, .shp-n, .pt-price, .sc-price) { font-weight: 200; }
     html[data-theme="pro"] .p-btn, html[data-theme="pro"] .btn-wa { font-weight: 500; }
+    /* Tildes de mayúsculas (Á É Í Ó Ú): la máscara de las líneas recortaba su parte superior.
+       Se amplía la caja hacia arriba y se compensa con margen negativo: el texto no se mueve. */
+    html[data-theme="pro"] .pr-lines .ln,
+    html[data-theme="pro"] .ph-item .ln { padding-top: .22em; margin-top: -.22em; }
 
     /* =============================================
        PRO · ESCENA DEL PROCESO: sin "aire" y con señales de scroll
@@ -3226,6 +3230,38 @@
       }
     }
     @media (prefers-reduced-motion: reduce) { .pp-hint svg, .pp-next svg { animation: none; } }
+
+    /* ── Escena del proceso en escritorio: escenario grande, centrado en la pantalla y alineado al texto ── */
+    @media (min-width: 901px) {
+      .pp-grid { max-width: 1400px; grid-template-columns: .9fr 1.1fr; gap: 4vw; }
+      .pp-stage-col {
+        top: 76px; height: calc(100vh - 76px);
+        display: flex; align-items: center;
+      }
+      .pp-stage { width: min(100%, calc(100vh - 140px), 760px); max-height: none; margin: 0 0 0 auto; }
+      /* Capítulos con alto acotado: en monitores altos ya no flotan en un vacío */
+      .pp-step { min-height: min(78vh, 680px); justify-content: center; padding: 6vh 0; }
+      .pp-step:first-child { padding-top: 6vh; }
+    }
+
+    /* =============================================
+       PANTALLAS GRANDES (monitores de 24"–27" y más)
+       El sitio escala un poco y los contenedores se ensanchan, para no quedar perdido al centro
+    ============================================= */
+    @media (min-width: 1600px) {
+      html[data-theme="pro"] { font-size: 17px; }
+      html[data-theme="pro"] :is(.ps-grid, .pa-in, .pp-head, .footer-inner, .svc-pitch-wrap) { max-width: 1400px; }
+      html[data-theme="pro"] .wrap { max-width: 1480px; }
+      html[data-theme="pro"] .svc-grid { max-width: 1240px; }
+      html[data-theme="pro"] .ph-inner { max-width: 1120px; }
+    }
+    @media (min-width: 1920px) {
+      html[data-theme="pro"] { font-size: 18px; }
+      html[data-theme="pro"] :is(.ps-grid, .pa-in, .pp-head, .footer-inner) { max-width: 1560px; }
+      html[data-theme="pro"] .pp-grid { max-width: 1560px; }
+      html[data-theme="pro"] .wrap { max-width: 1640px; }
+      html[data-theme="pro"] .svc-grid { max-width: 1360px; }
+    }
 
     /* Pro: "Quién soy" deja solo el Mapa de Max (foto y cita ya están en SOY MAX) */
     html[data-theme="pro"] #sobre-mi .about-grid { grid-template-columns: 1fr; max-width: 1240px; margin: 0 auto; }
