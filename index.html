@@ -2735,6 +2735,8 @@
     html[data-theme="pro"] .mapa-max.on .ruta:nth-child(3) .ruta-list li:nth-child(2) { transition-delay: .47s; }
 
     /* ── 2b · Conoce a Max: galería que avanza a voluntad (sin bucle infinito) ── */
+    /* Espacio superior propio: antes dependía del margen de la sección anterior y el título quedaba montado */
+    html[data-theme="pro"] #conoce-max { padding-top: clamp(4.5rem, 8vw, 7rem); }
     html[data-theme="pro"] .conoce-track { animation: none; transform: none; padding: .5rem 5vw 2rem; }
     html[data-theme="pro"] .cc[aria-hidden="true"] { display: none; }
     html[data-theme="pro"] .conoce-track-outer {
