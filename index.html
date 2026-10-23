@@ -17,7 +17,7 @@
   <!-- Fonts: Instrument Sans (cuerpo, carácter sutil) + DM Serif Display (titulares y cursivas editoriales) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=DM+Serif+Display:ital@0;1&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=DM+Serif+Display:ital@0;1&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
   <!-- Tema: "pro" por defecto, "mapa" opcional; se aplica antes de pintar para evitar parpadeo -->
   <script>
     (function () {
@@ -2290,8 +2290,8 @@
     html:not([data-theme="pro"]) .pro-only { display: none !important; }
     html[data-theme="pro"] .mapa-only { display: none !important; }
     html[data-theme="pro"] {
-      --font-d: 'Fraunces', Georgia, serif;
-      --font-s: 'Inter Tight', system-ui, sans-serif;
+      --font-d: 'Poppins', system-ui, sans-serif;
+      --font-s: 'Poppins', system-ui, sans-serif;
       --p-bone:   #f3f1ec;
       --p-bone2:  #e9e6df;
       --p-ink:    #0b0b0c;
@@ -2892,7 +2892,7 @@
     .pp-topo { transition: transform 1.4s var(--ease); transform-origin: center; }
     .pp-stage[data-step="1"] .pp-topo { transform: scale(1.06) translate(-8px, 6px); }
     .pp-stage[data-step="2"] .pp-topo { transform: scale(1.12) translate(-14px, 10px); }
-    .pp-svg-label { font-family: 'Inter Tight', sans-serif; font-size: 15px; fill: rgba(243,241,236,.7); letter-spacing: .02em; }
+    .pp-svg-label { font-family: 'Poppins', sans-serif; font-size: 15px; fill: rgba(243,241,236,.7); letter-spacing: .02em; }
     .pp-pulse { animation: pp-pulse 2.4s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
     @keyframes pp-pulse { 0%,100% { transform: scale(.75); opacity: .55; } 50% { transform: scale(1.15); opacity: 1; } }
 
@@ -2914,7 +2914,7 @@
     .pp-wp .core { fill: rgba(243,241,236,.35); transition: fill .4s; }
     .pp-wp.on .ring { stroke: #f0d48a; }
     .pp-wp.on .core { fill: #f0d48a; }
-    .pp-wp text { font-family: 'Inter Tight', sans-serif; font-size: 14px; fill: rgba(243,241,236,.5); transition: fill .4s; }
+    .pp-wp text { font-family: 'Poppins', sans-serif; font-size: 14px; fill: rgba(243,241,236,.5); transition: fill .4s; }
     .pp-wp.on text { fill: #f3f1ec; }
 
     /* Etapas (capítulo 3) */
@@ -2924,7 +2924,7 @@
     .pp-st .dot { fill: #1a1a1b; stroke: rgba(243,241,236,.35); stroke-width: 1.5; transition: fill .5s, stroke .5s; }
     .pp-st.lit .halo { opacity: 1; transform: scale(1); }
     .pp-st.lit .dot { fill: #f0d48a; stroke: #f0d48a; }
-    .pp-st text { font-family: 'Inter Tight', sans-serif; font-size: 13.5px; fill: rgba(243,241,236,.4); transition: fill .5s; }
+    .pp-st text { font-family: 'Poppins', sans-serif; font-size: 13.5px; fill: rgba(243,241,236,.4); transition: fill .5s; }
     .pp-st.lit text { fill: #f3f1ec; }
     .pp-traveler { opacity: 0; transition: opacity .5s; }
     .pp-stage[data-step="2"] .pp-traveler { opacity: 1; }
@@ -3151,6 +3151,81 @@
       html[data-theme="pro"] .perfil-inner { grid-template-columns: 1fr; gap: .7rem; padding: 1.6rem .2rem; }
       html[data-theme="pro"] .testi-text { font-size: 1.12rem; }
     }
+
+    /* =============================================
+       PRO · TIPOGRAFÍA POPPINS (misma familia y lógica que vilmanunez.com)
+       Títulos muy finos en MAYÚSCULAS, texto 300–400, énfasis en 600
+    ============================================= */
+    html[data-theme="pro"] body { font-weight: 300; }
+    html[data-theme="pro"] :is(.h2, .ps-title, .pm-h, .pa-h, .f-statement) {
+      font-weight: 200; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.04;
+    }
+    html[data-theme="pro"] .ps-title { font-weight: 100; font-size: clamp(3.6rem, 9.5vw, 8.4rem); }
+    html[data-theme="pro"] .ps-title em, html[data-theme="pro"] .pm-h em, html[data-theme="pro"] .f-statement em {
+      font-style: normal; font-weight: 200;
+    }
+    html[data-theme="pro"] .pm-h { font-size: clamp(2.4rem, 6.6vw, 5.8rem); }
+    html[data-theme="pro"] .f-statement { font-weight: 100; }
+    html[data-theme="pro"] :is(.ph-item, .cta-h, .pp-title, .perfil-q, .testi-text, .svc-name, .ruta-title, .red-name, .sc-name) {
+      font-weight: 300; letter-spacing: -.01em;
+    }
+    html[data-theme="pro"] .ph-item em { font-style: normal; }
+    html[data-theme="pro"] .ph-item b, html[data-theme="pro"] strong { font-weight: 600; }
+    html[data-theme="pro"] :is(.pa-n, .pp-num, .shp-n, .pt-price, .sc-price) { font-weight: 200; }
+    html[data-theme="pro"] .p-btn, html[data-theme="pro"] .btn-wa { font-weight: 500; }
+
+    /* =============================================
+       PRO · ESCENA DEL PROCESO: sin "aire" y con señales de scroll
+    ============================================= */
+    .pp-step { justify-content: flex-start; min-height: 78vh; padding: 1.5rem 0 12vh; }
+    .pp-step:first-child { padding-top: 0; }
+    /* El primer mensaje del chat se desvanece arriba en vez de cortarse */
+    .pp-msgs {
+      -webkit-mask-image: linear-gradient(transparent 0, #000 22%);
+              mask-image: linear-gradient(transparent 0, #000 22%);
+    }
+    /* Progreso por capítulo: tres barras que se llenan con el scroll */
+    .pp-bars { position: absolute; top: 1.15rem; right: 1.3rem; display: flex; gap: 5px; z-index: 2; }
+    .pp-bars i {
+      display: block; width: 26px; height: 2px; border-radius: 2px; overflow: hidden;
+      background: rgba(243,241,236,.18); position: relative;
+    }
+    .pp-bars i::after {
+      content: ''; position: absolute; inset: 0; background: var(--p-bone);
+      transform-origin: left; transform: scaleX(var(--p, 0));
+    }
+    /* Indicación "sigue bajando" dentro del escenario */
+    .pp-hint {
+      position: absolute; left: 50%; bottom: 1rem; transform: translateX(-50%);
+      display: inline-flex; align-items: center; gap: .45rem; z-index: 2;
+      font-family: var(--font-s); font-size: .72rem; letter-spacing: .06em; color: rgba(243,241,236,.6);
+      transition: opacity .5s;
+    }
+    .pp-hint svg { width: 14px; height: 14px; animation: pp-bob 1.6s ease-in-out infinite; }
+    @keyframes pp-bob { 50% { transform: translateY(4px); } }
+    .pp-stage[data-step="2"] .pp-hint { opacity: 0; }
+    .pp-stage[data-step="1"] .pp-legend { bottom: 2.6rem; }
+    /* Enlace al capítulo siguiente al final de cada texto */
+    .pp-next {
+      margin-top: 2.4rem; align-self: flex-start; display: inline-flex; align-items: center; gap: .6rem;
+      background: none; border: none; cursor: pointer; padding: 0;
+      font-family: var(--font-s); font-size: .9rem; color: rgba(243,241,236,.6);
+      border-bottom: 1px solid rgba(243,241,236,.25); padding-bottom: .2rem; transition: color .3s, border-color .3s;
+    }
+    .pp-next:hover { color: var(--p-bone); border-color: var(--p-bone); }
+    .pp-next svg { width: 15px; height: 15px; animation: pp-bob 1.6s ease-in-out infinite; }
+    /* Línea de progreso a la izquierda de los capítulos (desktop) */
+    @media (min-width: 901px) {
+      .pp-steps { position: relative; padding-left: 2.2rem; }
+      .pp-steps::before {
+        content: ''; position: absolute; left: 0; top: .6rem; bottom: 0; width: 1px; background: rgba(243,241,236,.12);
+      }
+      .pp-steps::after {
+        content: ''; position: absolute; left: 0; top: .6rem; width: 1px; height: calc(var(--pp-total, 0) * (100% - .6rem));
+        background: linear-gradient(var(--p-accent), #f0d48a);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) { .pp-hint svg, .pp-next svg { animation: none; } }
 
     /* Pro: "Quién soy" deja solo el Mapa de Max (foto y cita ya están en SOY MAX) */
     html[data-theme="pro"] #sobre-mi .about-grid { grid-template-columns: 1fr; max-width: 1240px; margin: 0 auto; }
@@ -4330,8 +4405,10 @@
         <!-- Leyenda del capítulo 2 -->
         <div class="pp-legend" id="pp-legend">Ruta de ejemplo · <span id="pp-legend-n">2</span> focos · 4 a 8 sesiones</div>
 
-        <!-- Etiqueta de capítulo -->
+        <!-- Etiqueta de capítulo + progreso + invitación a seguir -->
         <div class="pp-chapter"><span id="pp-chapter-n">01</span> / 03</div>
+        <div class="pp-bars" id="pp-bars" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="pp-hint" aria-hidden="true">Sigue bajando<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></div>
       </div>
     </div>
 
@@ -4350,6 +4427,7 @@
           Agendar mi conversación
           <span class="p-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
+        <button type="button" class="pp-next" data-next="1">Siguiente: diseñamos el camino<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
       </article>
 
       <article class="pp-step" data-step="1">
@@ -4363,6 +4441,7 @@
           <button type="button" class="pp-chip" data-wp="autovaloracion" aria-pressed="false">Autovaloración</button>
           <button type="button" class="pp-chip" data-wp="visibilidad" aria-pressed="false">Visibilidad</button>
         </div>
+        <button type="button" class="pp-next" data-next="2">Siguiente: caminamos juntos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
       </article>
 
       <article class="pp-step" data-step="2">
@@ -5320,7 +5399,26 @@
       setStep(n);
       var r = steps[2].getBoundingClientRect();
       travel(Math.max(0, Math.min(1, (mark - r.top) / (r.height * 0.75))));
+      // Barras del escenario + línea lateral: cuánto llevas de cada capítulo y del total
+      var total = 0;
+      steps.forEach(function(s, i) {
+        var b = s.getBoundingClientRect();
+        var p = Math.max(0, Math.min(1, (mark - b.top) / (b.height * 0.8)));
+        total += p / steps.length;
+        if (bars[i]) bars[i].style.setProperty('--p', p.toFixed(3));
+      });
+      stepsBox.style.setProperty('--pp-total', total.toFixed(3));
     }
+    var bars = Array.prototype.slice.call(document.querySelectorAll('#pp-bars i'));
+    var stepsBox = document.querySelector('.pp-steps');
+    document.querySelectorAll('.pp-next').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var t = steps[+btn.getAttribute('data-next')];
+        if (!t) return;
+        var y = t.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.3;
+        window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
+      });
+    });
     window.addEventListener('scroll', function() {
       if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
     }, { passive: true });
