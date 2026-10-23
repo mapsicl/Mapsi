@@ -3077,6 +3077,81 @@
     }
     html[data-theme="pro"] .f-disclaimer strong { color: rgba(243,241,236,.7); }
 
+    /* =============================================
+       PRO · MENOS PLANTILLA (fase 1 anti-"hecho con IA")
+    ============================================= */
+    /* Etiquetas "—— MAYÚSCULAS": solo quedan las que orientan (credenciales, Servicios, Cómo trabajo) */
+    html[data-theme="pro"] .label:not(.keep),
+    html[data-theme="pro"] .p-eyebrow:not(.keep) { display: none !important; }
+
+    /* Cursiva de color: solo en "Soy Max.", el manifiesto y el cierre */
+    html[data-theme="pro"] .h2 em, html[data-theme="pro"] .cta-h em, html[data-theme="pro"] .pa-h em {
+      font-style: normal; color: inherit;
+    }
+
+    /* Animación: solo hero, Soy Max, manifiesto, proceso y cierre. El resto simplemente está */
+    html[data-theme="pro"] section:not(#pro-soy):not(#pro-manifesto):not(#pro-proceso) :is(.rv, .rv-l, .rv-r, .rv-z),
+    html[data-theme="pro"] .conoce-track-outer .cc,
+    html[data-theme="pro"] .mapa-max .ruta .ruta-list li {
+      opacity: 1 !important; transform: none !important; transition: none !important;
+    }
+    html[data-theme="pro"] section:not(#pro-soy):not(#pro-manifesto):not(#pro-proceso) .pr-lines .ln > span {
+      transform: none !important; transition: none !important;
+    }
+    html[data-theme="pro"] .marquee-wrap, html[data-theme="pro"] .ph-scroll { display: none; }
+
+    /* Íconos genéricos y números fantasma fuera */
+    html[data-theme="pro"] .svc-icon, html[data-theme="pro"] .ab-icon,
+    html[data-theme="pro"] .li-ic, html[data-theme="pro"] .perfil-card .area-n { display: none; }
+    html[data-theme="pro"] .ruta-head::before { content: none; }
+    html[data-theme="pro"] .svc-body, html[data-theme="pro"] .svc-foot { padding-left: 1.4rem; }
+    html[data-theme="pro"] .svc-card.feat .svc-feat-tag { left: 1.4rem; }
+    html[data-theme="pro"] .svc-list li { padding-left: 1.1rem; position: relative; }
+    html[data-theme="pro"] .svc-list li::before {
+      content: ''; position: absolute; left: 0; top: .78em; width: 6px; height: 1px; background: currentColor; opacity: .6;
+    }
+
+    /* Un solo radio (6 px) en vez de 14 distintos; botones rectos con flecha simple */
+    html[data-theme="pro"] :is(.testi-card, .red-card, .cc, .ps-photo, .pp-stage, .sp-call, .price-tier,
+      .pay-strip, .process-note, .nav-wa, .theme-tg, .pp-chip, .pa-cred, .cm-btn, .f-soc, .svc-mode,
+      .btn-wa, .btn-svc, .pt-tag, .svc-feat-tag, .ps-tag, .pp-msg, .pp-typing) { border-radius: 6px !important; }
+    html[data-theme="pro"] .p-btn { border-radius: 6px; padding: 1rem 1.5rem; gap: .8rem; }
+    html[data-theme="pro"] .p-btn .p-arr { width: auto; height: auto; background: none; color: inherit; }
+    html[data-theme="pro"] .p-btn:hover .p-arr { transform: translateX(4px); }
+    html[data-theme="pro"] .sp-call-go { border-radius: 6px; }
+    html[data-theme="pro"] .sp-call:hover .sp-call-go { transform: translateX(4px); }
+
+    /* Formato propio por sección: perfiles como lista de frases grandes, no como tres tarjetas */
+    html[data-theme="pro"] .perfil-grid { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--p-line); }
+    html[data-theme="pro"] .perfil-card {
+      background: transparent !important; border: none; border-bottom: 1px solid var(--p-line);
+      border-radius: 0; box-shadow: none !important;
+    }
+    html[data-theme="pro"] .perfil-card:hover { transform: none; background: rgba(11,11,12,.035) !important; }
+    html[data-theme="pro"] .perfil-inner {
+      display: grid; grid-template-columns: 1.35fr 1fr auto; gap: 2.4rem; align-items: center; padding: 2.1rem .4rem;
+    }
+    html[data-theme="pro"] .perfil-q {
+      font-style: normal; font-weight: 300; font-size: clamp(1.45rem, 2.6vw, 2.15rem);
+      line-height: 1.15; letter-spacing: -.015em; margin: 0; padding: 0;
+    }
+    html[data-theme="pro"] .perfil-d { margin: 0; font-size: .95rem; }
+    html[data-theme="pro"] .perfil-cta { white-space: nowrap; }
+    html[data-theme="pro"] .perfil-org { border-radius: 0; border-left: none; border-right: none; }
+
+    /* Testimonios: citas abiertas, sin caja */
+    html[data-theme="pro"] .testi-card {
+      background: transparent; border: none; border-top: 1px solid var(--p-line);
+      border-radius: 0 !important; padding: 2rem 0 0;
+    }
+    html[data-theme="pro"] .testi-text { font-size: 1.3rem; line-height: 1.5; }
+    html[data-theme="pro"] .stars { display: none; }
+
+    @media (max-width: 760px) {
+      html[data-theme="pro"] .perfil-inner { grid-template-columns: 1fr; gap: .7rem; padding: 1.6rem .2rem; }
+      html[data-theme="pro"] .testi-text { font-size: 1.12rem; }
+    }
+
     /* Pro: "Quién soy" deja solo el Mapa de Max (foto y cita ya están en SOY MAX) */
     html[data-theme="pro"] #sobre-mi .about-grid { grid-template-columns: 1fr; max-width: 1240px; margin: 0 auto; }
     html[data-theme="pro"] #sobre-mi .about-grid > .rv-l,
@@ -3206,7 +3281,7 @@
   </div>
   <div class="ph-shade" aria-hidden="true"></div>
   <div class="ph-inner">
-    <div class="p-eyebrow ph-eyebrow">Psicólogo · Coach PNL · Magíster en Liderazgo</div>
+    <div class="p-eyebrow ph-eyebrow keep">Psicólogo · Coach PNL · Magíster en Liderazgo</div>
     <h1 class="ph-rot" id="ph-rot" aria-live="polite">
       <span class="ph-item on"><span class="ln"><span>Tu primera entrevista</span></span><span class="ln"><span><em><b>SÍ</b> puede ser la que abra la puerta.</em></span></span></span>
       <span class="ph-item"><span class="ln"><span>Tu carrera</span></span><span class="ln"><span><em><b>SÍ</b> puede volver a avanzar.</em></span></span></span>
@@ -3214,7 +3289,7 @@
       <span class="ph-item"><span class="ln"><span>Tu equipo</span></span><span class="ln"><span><em><b>SÍ</b> puede entenderse de otra manera.</em></span></span></span>
       <span class="ph-item"><span class="ln"><span>Tu bienestar</span></span><span class="ln"><span><em><b>SÍ</b> puede ser prioridad.</em></span></span></span>
     </h1>
-    <p class="ph-sub">Acompaño a personas y equipos a recuperar la confianza, la claridad y la autovaloración — con método, cercanía y avances desde la primera sesión.</p>
+    <p class="ph-sub">Trabajo con personas y equipos que tienen talento pero se están frenando. Sesiones online, con método, y avances que se notan desde la primera.</p>
     <div class="ph-actions">
       <a href="#" data-cal class="p-btn pr-magnet" target="_blank" rel="noopener">
         Agenda tu sesión de claridad
@@ -3256,7 +3331,7 @@
       <span class="italic"><span class="word">para lograr tus objetivos.</span></span>
     </h1>
     <p class="hero-sub rv d3">
-      Acompaño a <strong>profesionales y recién egresados</strong> a desbloquear eso que los tiene parados. Un acompañamiento cercano y disfrutable — y en pocas sesiones empiezas a notar el cambio.
+      Acompaño a <strong>profesionales y recién egresados</strong> a desbloquear eso que los tiene parados. Un acompañamiento cercano y disfrutable, y en pocas sesiones empiezas a notar el cambio.
     </p>
     <div class="hero-quick rv d4">
       <a class="hq-item" href="#svc-insercion" data-goto="svc-insercion">
@@ -3354,9 +3429,9 @@
       <div class="pa-stat rv d4"><div class="pa-n" data-count="10" data-suffix="k+">0</div><div class="pa-l">Personas en mi comunidad en redes</div></div>
     </div>
     <div class="pa-creds rv d2">
-      <span class="pa-cred">Psicólogo — U. Santo Tomás</span>
-      <span class="pa-cred">Magíster en Liderazgo — ULS</span>
-      <span class="pa-cred">Coach PNL certificado — SCPNL</span>
+      <span class="pa-cred">Psicólogo, U. Santo Tomás</span>
+      <span class="pa-cred">Magíster en Liderazgo, ULS</span>
+      <span class="pa-cred">Coach PNL certificado, SCPNL</span>
       <span class="pa-cred">Registro Superintendencia de Salud N.º 406732</span>
     </div>
   </div>
@@ -3365,7 +3440,7 @@
 <!-- ===================== PRO · MANIFIESTO ===================== -->
 <section id="pro-manifesto" class="pro-only">
   <h2 class="pm-h pr-lines rv"><span class="ln"><span>El problema no es</span></span><span class="ln"><span><em>lo que sabes.</em></span></span></h2>
-  <p class="pm-sub rv d2">Es la confianza, la claridad y la autovaloración. Eso es exactamente lo que trabajamos — y por eso los cambios se notan pronto.</p>
+  <p class="pm-sub rv d2">Es la confianza, la claridad y la autovaloración. Eso es lo que trabajamos en sesión, y por eso los cambios se notan pronto.</p>
 </section>
 
 <!-- MARQUEE -->
@@ -3411,7 +3486,7 @@
             src="img/Max.JPG"
             srcset="img/opt/Max-640.jpg 640w, img/Max.JPG 1200w"
             sizes="(max-width:900px) 320px, 50vw"
-            alt="Maximiliano Jiménez — Psicólogo y Coach"
+            alt="Maximiliano Jiménez, psicólogo y coach"
             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;z-index:0;"
             onerror="this.style.display='none'"
           />
@@ -3446,9 +3521,9 @@
             </button>
             <div class="ruta-panel">
               <ul class="ruta-list">
-                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-graduation"/></svg></span><span><strong>Psicólogo y Lic. en Psicología</strong> — Universidad Santo Tomás, 2016</span></li>
-                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-ruler"/></svg></span><span><strong>Magíster en Liderazgo</strong>, Dirección y Comunicación Estratégica — ULS, 2019</span></li>
-                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-key"/></svg></span><span><strong>Coach en PNL</strong> Certificado por SCPNL, 2022 — Herramientas y técnicas para el cambio</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-graduation"/></svg></span><span><strong>Psicólogo y Lic. en Psicología</strong>, Universidad Santo Tomás, 2016</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-ruler"/></svg></span><span><strong>Magíster en Liderazgo</strong>, Dirección y Comunicación Estratégica. ULS, 2019</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-key"/></svg></span><span><strong>Coach en PNL</strong> certificado por SCPNL, 2022. Herramientas y técnicas para el cambio</span></li>
               </ul>
             </div>
           </div>
@@ -3464,7 +3539,7 @@
             <div class="ruta-panel">
               <ul class="ruta-list">
                 <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-bar-chart"/></svg></span><span>Más de <strong>300 asesorías</strong> de apresto laboral · <strong>+3.700 personas</strong> impactadas en charlas y talleres</span></li>
-                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-landmark"/></svg></span><span>Coordinador de la <strong>Red de Titulados</strong> — Universidad de La Serena (Oficina Alumni)</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-landmark"/></svg></span><span>Coordinador de la <strong>Red de Titulados</strong> de la Universidad de La Serena (Oficina Alumni)</span></li>
                 <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-star"/></svg></span><span>Miembro del equipo de <strong>Marca Personal con David Ávila</strong> (Macro Creador Chileno) · 5 versiones</span></li>
                 <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-smartphone"/></svg></span><span><strong>Creador de contenido</strong> con comunidad de más de 10k en redes sociales</span></li>
               </ul>
@@ -3482,7 +3557,7 @@
             <div class="ruta-panel">
               <ul class="ruta-list">
                 <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-activity"/></svg></span><span><strong>14 años</strong> de disciplina física · Ex Embajador de marca deportiva por 5 años</span></li>
-                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-mountain"/></svg></span><span>Viví un retiro de <strong>7 días en silencio</strong> total — Sí, el silencio puede hablarte fuerte</span></li>
+                <li><span class="ab-icon"><svg viewBox="0 0 24 24"><use href="#ic-mountain"/></svg></span><span>Viví un retiro de <strong>7 días en silencio</strong> total. Sí, el silencio también habla fuerte</span></li>
               </ul>
             </div>
           </div>
@@ -3525,7 +3600,7 @@
       </div>
 
       <!-- 2. Max perfil -->
-      <div class="cc" data-tag="Marca personal" data-title="Maximiliano Jiménez — @mapsicl" data-desc="Psicólogo, Coach PNL y Magíster en Liderazgo. La Serena, Chile.">
+      <div class="cc" data-tag="Marca personal" data-title="Maximiliano Jiménez · @mapsicl" data-desc="Psicólogo, Coach PNL y Magíster en Liderazgo. La Serena, Chile.">
         <img loading="lazy" decoding="async" src="img/Max.JPG" srcset="img/opt/Max-640.jpg 640w, img/Max.JPG 1200w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano Jiménez" style="object-position:center 20%;" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
@@ -3543,7 +3618,7 @@
         <div class="cc-info">
           <span class="cc-tag">Conferencista · Turismo aventura</span>
           <div class="cc-title">Caminatas con sentido</div>
-          <div class="cc-desc">Bienestar paso a paso — 1ª Cumbre Internacional Norte Chileno.</div>
+          <div class="cc-desc">Bienestar paso a paso, en la 1ª Cumbre Internacional del Norte Chileno.</div>
         </div>
         <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
       </div>
@@ -3564,7 +3639,7 @@
       <div class="cc cc-text" data-skip-lb="true">
         <div class="cc-quote">
           "Alumbrar el mapa de otras personas para ayudarlas a llegar a sus metas es lo que más me apasiona en la vida."
-          <div class="cc-quote-by">— Max (Mapsi)</div>
+          <div class="cc-quote-by">Max (Mapsi)</div>
         </div>
       </div>
 
@@ -3593,7 +3668,7 @@
       </div>
 
       <!-- 8. USerena -->
-      <div class="cc" data-tag="Universidad de La Serena" data-title="Coordinador de la Red de Titulados" data-desc="Única universidad estatal de la Región de Coquimbo, Chile. Oficina Alumni — Red de titulados.">
+      <div class="cc" data-tag="Universidad de La Serena" data-title="Coordinador de la Red de Titulados" data-desc="Única universidad estatal de la Región de Coquimbo, Chile. Oficina Alumni, Red de Titulados.">
         <img loading="lazy" decoding="async" src="img/Userena.JPEG" srcset="img/opt/Userena-640.jpg 640w, img/Userena.JPEG 1600w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano en Universidad de La Serena" />
         <div class="cc-overlay"></div>
         <div class="cc-info">
@@ -3637,7 +3712,7 @@
   <div class="wrap sec">
     <p class="label rv">¿Dónde estás tú hoy?</p>
     <h2 class="h2 rv d1">Tres perfiles. <em>Un denominador común.</em></h2>
-    <p class="body-text rv d2">Confianza, claridad y autovaloración. Eso es lo que desbloqueo — sin importar en qué etapa profesional estés. Encuentra tu punto de partida:</p>
+    <p class="body-text rv d2">Cada etapa tiene su propio atasco. Elige la frase que más se parece a la tuya:</p>
 
     <div class="perfil-grid">
       <button class="perfil-card rv d1" data-goto="svc-insercion">
@@ -3717,20 +3792,20 @@
   <div class="wrap sec">
     <div class="services-intro-grid">
       <div>
-        <p class="label rv">Servicios · Online · presencial para empresas</p>
+        <p class="label rv keep">Servicios · Online · presencial para empresas</p>
         <h2 class="h2 rv d1 mapa-only">El bloqueo no es<br/><em>lo que falta saber.</em></h2>
         <h2 class="h2 rv d1 pro-only">Ya hiciste el curso.<br/><em>Y sigues en el mismo lugar.</em></h2>
       </div>
       <div class="rv d2 mapa-only">
-        <p class="body-text" style="max-width:100%;margin-bottom:1.2rem;">Casi siempre es confianza, claridad o autovaloración. Antes de cualquier compromiso, conversamos 30 minutos sin costo — para saber si soy la persona indicada para acompañarte. Todos los servicios son online; las charlas para empresas también pueden ser presenciales.</p>
+        <p class="body-text" style="max-width:100%;margin-bottom:1.2rem;">Casi siempre es confianza, claridad o autovaloración. Antes de cualquier compromiso, conversamos 30 minutos sin costo, para saber si soy la persona indicada para acompañarte. Todos los servicios son online; las charlas para empresas también pueden ser presenciales.</p>
         <div class="process-note">
-          <strong><span class="emo">🧭 </span>Sesión de claridad de 30 min — siempre</strong>
+          <strong><span class="emo">🧭 </span>Sesión de claridad de 30 min, siempre gratis</strong>
           Cuéntame dónde estás y hacia dónde quieres ir. Sin presión. Solo una conversación honesta.
         </div>
       </div>
       <!-- PRO · Voz sin filtro: nombra la excusa, explica por qué funciona, cierra con la llamada -->
       <div class="rv d2 pro-only svc-pitch">
-        <p class="sp-lead">Porque nunca te faltó información. Te falta <strong>confianza, claridad y autovaloración</strong> — y eso no se arregla con otro tutorial ni otra lista de consejos.</p>
+        <p class="sp-lead">Porque nunca te faltó información. Lo que te frena es otra cosa, y <strong>eso no se arregla con otro tutorial</strong> ni con otra lista de consejos.</p>
         <p class="sp-proof">Después de más de 3.700 personas y 300 asesorías, veo el mismo patrón cada semana: gente capaz que se frena sola. <strong>Yo trabajo justo ahí.</strong></p>
         <a href="#" data-cal class="sp-call" target="_blank" rel="noopener">
           <span class="sp-call-k">Sesión de claridad · 30 min · sin costo</span>
@@ -3757,8 +3832,8 @@
           </div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">¿Llegas a las entrevistas y te bloqueas? El problema no es tu CV — es la confianza frente al entrevistador. Trabajamos eso juntos, con resultados rápidos y concretos.</p>
-          <p class="svc-outcome"><strong>El objetivo:</strong> que llegues a la entrevista con la confianza de quien sabe lo que vale — no solo a "aprender a buscar trabajo". Cercano, directo y con avances desde la primera sesión.</p>
+          <p class="svc-desc">¿Llegas a la entrevista y te quedas en blanco? Tu CV probablemente está bien. Lo que falla es cómo te paras frente a quien te entrevista, y eso se entrena.</p>
+          <p class="svc-outcome"><strong>El objetivo:</strong> que llegues sabiendo qué contar de ti y cómo decirlo. Simulamos entrevistas reales hasta que dejen de darte miedo.</p>
           <div class="price-table">
             <a href="#" data-wa data-msg="Hola Maxi, soy recién egresado (18 a 25) y quiero la sesión de apresto laboral ($45.900 · 60 min)." class="price-tier" target="_blank" rel="noopener">
               <span class="pt-name">Recién egresados · 18 a 25 años</span>
@@ -3819,7 +3894,7 @@
           </div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">¿Sabes lo que vales pero no sabes hacia dónde ir? Tienes el talento — te falta claridad y la confianza para el siguiente salto. No es solo reflexión: es equipamiento con herramientas reales.</p>
+          <p class="svc-desc">Llevas años en lo mismo y ya no sabes si quedarte, cambiar o pedir más. Lo ordenamos con herramientas concretas como DISC, y sales con un plan para el siguiente paso.</p>
           <p class="svc-outcome"><strong>El objetivo:</strong> en 4 a 8 sesiones, pasar de "sé que valgo pero no sé hacia dónde" a un plan claro y la confianza para ejecutarlo. Un proceso cercano y 100% aplicable.</p>
           <div class="price-table">
             <a href="#" data-wa data-msg="Hola Maxi, quiero la sesión única de Desarrollo Profesional ($64.900)." class="price-tier" target="_blank" rel="noopener">
@@ -3891,8 +3966,8 @@
           </div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">Tienes más valor del que crees — solo necesitas saber cómo mostrarlo. El bloqueo no es técnico: es autovaloración. Construimos tu marca en LinkedIn, Instagram y las redes donde está tu audiencia — desde la autenticidad, no desde el ruido.</p>
-          <p class="svc-outcome"><strong>El objetivo:</strong> en 4 a 8 sesiones, dejar de ser invisible — una marca que te representa y la seguridad para mostrarte. Desde lo que ya eres, sin fórmulas vacías.</p>
+          <p class="svc-desc">Tienes más valor del que muestras. Construimos tu marca en LinkedIn, Instagram y las redes donde está tu audiencia, partiendo de lo que de verdad haces bien.</p>
+          <p class="svc-outcome"><strong>El objetivo:</strong> en 4 a 8 sesiones, dejar de ser invisible: una marca que te representa y la seguridad para mostrarte. Desde lo que ya eres, sin fórmulas vacías.</p>
           <div class="price-table">
             <a href="#" data-wa data-msg="Hola Maxi, quiero la sesión única para mi Marca Personal ($64.900)." class="price-tier" target="_blank" rel="noopener">
               <span class="pt-name">Sesión única</span>
@@ -3939,10 +4014,10 @@
             <ul class="svc-q-list">
               <li><span class="svc-q-check"></span>Quieres visibilidad en tus redes pero no sabes cómo empezar o no tienes consistencia</li>
               <li><span class="svc-q-check"></span>Sientes que no tienes nada "suficientemente valioso" que mostrar al mundo</li>
-              <li><span class="svc-q-check"></span>Hay una oportunidad próxima —entrevista, ascenso, proyecto— y necesitas que te vean</li>
+              <li><span class="svc-q-check"></span>Se viene una entrevista, un ascenso o un proyecto, y necesitas que te vean</li>
               <li><span class="svc-q-check"></span>Has intentado construir tu marca solo/a pero algo siempre te detiene</li>
             </ul>
-            <div class="svc-qualify-cta">El bloqueo no es técnico — es de autovaloración. <strong>Eso es exactamente lo que trabajamos juntos.</strong></div>
+            <div class="svc-qualify-cta">Casi nunca es un tema técnico. <strong>Es cuánto te crees lo que vales, y eso es lo que trabajamos.</strong></div>
           </div>
         </div>
       </div>
@@ -3963,7 +4038,7 @@
         </div>
         <div class="svc-body">
           <p class="svc-desc">Charlas y talleres que van más allá de la motivación: conversaciones honestas que hacen que los equipos se entiendan de otra manera. En formato online o presencial, según tu organización.</p>
-          <p class="svc-outcome"><strong>El objetivo:</strong> que tu equipo se entienda distinto y tome mejores decisiones — una experiencia honesta, no un taller de motivación más.</p>
+          <p class="svc-outcome"><strong>El objetivo:</strong> que tu equipo se entienda distinto y tome mejores decisiones. Una conversación honesta, lejos del típico taller motivacional.</p>
           <ul class="svc-list">
             <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-search"/></svg></span>Diagnóstico del equipo y objetivos claros</li>
             <li><span class="li-ic"><svg viewBox="0 0 24 24"><use href="#ic-messages"/></svg></span>Comunicación y cohesión desde el propósito</li>
@@ -4008,7 +4083,7 @@
           </div>
         </div>
         <div class="svc-body">
-          <p class="svc-desc">Un espacio confidencial y sin juicios para trabajar lo que te está pesando: ansiedad, estrés, momentos de crisis, duelos, autoestima, decisiones vitales o esa sensación difusa de que algo no anda bien. No es una conversación cualquiera — es un proceso con método, ritmo y dirección.</p>
+          <p class="svc-desc">Un espacio confidencial y sin juicios para trabajar lo que te está pesando: ansiedad, estrés, momentos de crisis, duelos, autoestima, decisiones vitales o esa sensación difusa de que algo no anda bien. Trabajamos con método, a tu ritmo y con una dirección clara.</p>
           <p class="svc-outcome"><strong>El objetivo:</strong> que entiendas mejor lo que te pasa y por qué, y que salgas de cada sesión con algo más de claridad y herramientas concretas. Un trabajo cercano, a tu ritmo, sin fórmulas ni recetas.</p>
           <div class="price-table">
             <a href="#" data-wa data-msg="Hola Maxi, me interesan las sesiones de psicoterapia individual ($50.000 · 45–50 min · online)." class="price-tier" target="_blank" rel="noopener">
@@ -4020,8 +4095,8 @@
           </div>
           <div class="svc-terms">
             <span><span class="emo">🧠 </span><strong>Atención psicológica clínica</strong>, distinta de mis servicios de coaching: aquí el foco es tu bienestar emocional.</span>
-            <span><span class="emo">🗓 </span>Frecuencia sugerida: <strong>semanal</strong> — se define contigo en la primera sesión, según tu momento y tu proceso.</span>
-            <span><span class="emo">🩺 </span>Inscrito en el <strong>Registro Nacional de Prestadores Individuales de Salud</strong> — Superintendencia de Salud, N° 406732.</span>
+            <span><span class="emo">🗓 </span>Frecuencia sugerida: <strong>semanal</strong>. La definimos en la primera sesión, según tu momento.</span>
+            <span><span class="emo">🩺 </span>Inscrito en el <strong>Registro Nacional de Prestadores Individuales de Salud</strong> de la Superintendencia de Salud, N° 406732.</span>
             <span><span class="emo">🧾 </span>Se entrega <strong>boleta de honorarios</strong>.</span>
           </div>
         </div>
@@ -4042,7 +4117,7 @@
               <li><span class="svc-q-check"></span>Cargas con algo hace tiempo y nunca te has dado el espacio de mirarlo</li>
               <li><span class="svc-q-check"></span>Quieres entenderte mejor: tus reacciones, tus vínculos, tus decisiones</li>
             </ul>
-            <div class="svc-qualify-cta">Si algo de esto te resuena, clarifica tus dudas en una llamada de cortesía de 15 min — sin costo ni compromiso, y sin ser aún una sesión. <strong>Y con la misma honestidad: si atraviesas una crisis grave que requiere atención psiquiátrica o de urgencia, te oriento hacia el recurso adecuado.</strong></div>
+            <div class="svc-qualify-cta">Si algo de esto te resuena, clarifica tus dudas en una llamada de cortesía de 15 min, sin costo ni compromiso (todavía no es una sesión). <strong>Y con la misma honestidad: si atraviesas una crisis grave que requiere atención psiquiátrica o de urgencia, te oriento hacia el recurso adecuado.</strong></div>
           </div>
         </div>
       </div>
@@ -4052,7 +4127,7 @@
     <!-- Medios de pago -->
     <div class="pay-strip rv">
       <span><span class="emo">🏦 </span>Transferencia electrónica</span>
-      <span><span class="emo">💳 </span>Mercado Pago — tarjetas de crédito y débito, en cuotas</span>
+      <span><span class="emo">💳 </span>Mercado Pago: tarjetas de crédito y débito, en cuotas</span>
       <span><span class="emo">🧾 </span>Se entrega boleta de honorarios</span>
       <a href="condiciones.html" class="pay-cond"><span class="emo">📋 </span>Ver condiciones de servicio →</a>
     </div>
@@ -4067,10 +4142,10 @@
 
     <!-- Credenciales en franja compacta -->
     <div class="cred-strip rv d2">
-      <span class="cred-pill"><span class="emo">🧠 </span>Psicólogo — U. Santo Tomás</span>
-      <span class="cred-pill"><span class="emo">🩺 </span>Prestador de Salud — Registro N° 406732</span>
-      <span class="cred-pill"><span class="emo">🎓 </span>Magíster en Liderazgo — ULS</span>
-      <span class="cred-pill"><span class="emo">🔑 </span>Coach PNL Certificado — SCPNL</span>
+      <span class="cred-pill"><span class="emo">🧠 </span>Psicólogo, U. Santo Tomás</span>
+      <span class="cred-pill"><span class="emo">🩺 </span>Prestador de Salud, Registro N° 406732</span>
+      <span class="cred-pill"><span class="emo">🎓 </span>Magíster en Liderazgo, ULS</span>
+      <span class="cred-pill"><span class="emo">🔑 </span>Coach PNL certificado, SCPNL</span>
       <span class="cred-pill"><span class="emo">🏛️ </span>10 años de experiencia</span>
     </div>
 
@@ -4131,7 +4206,7 @@
     <p class="label rv">Cómo trabajo</p>
     <h2 class="h2 rv d1">Así ilumino <em>tu mapa</em></h2>
     <p class="body-text rv d2" style="margin-bottom:0">
-      Antes de cualquier proceso, nos conocemos. No para venderte algo — sino para ver juntos dónde estás parado/a y hacia dónde quieres ir. El mapa ya existe. Solo hay que alumbrarlo.
+      Antes de cualquier proceso, nos conocemos. No para venderte algo, sino para ver juntos dónde estás parado/a y hacia dónde quieres ir. El mapa ya existe. Solo hay que alumbrarlo.
     </p>
 
     <div class="proceso-map-wrap" id="proceso-map">
@@ -4152,8 +4227,8 @@
           <div class="p-connector"></div>
           <div class="p-card">
             <div class="p-title">La conversación inicial</div>
-            <p class="p-desc">30 minutos por videollamada, agendados en mi calendario. Me cuentas dónde estás y hacia dónde quieres ir. Sin costo. Sin compromiso. Solo honestidad.</p>
-            <span class="p-tag"><span class="emo">🧭 </span>Sin costo — siempre</span>
+            <p class="p-desc">30 minutos por videollamada, agendados en mi calendario. Me cuentas dónde estás y hacia dónde quieres ir. Sin costo ni compromiso, y con total honestidad.</p>
+            <span class="p-tag"><span class="emo">🧭 </span>Sin costo, siempre</span>
           </div>
         </div>
 
@@ -4167,7 +4242,7 @@
           <div class="p-connector"></div>
           <div class="p-card">
             <div class="p-title">Diseñamos el camino</div>
-            <p class="p-desc">Definimos juntos el servicio, el ritmo y las sesiones. Diseñado para tu realidad — no para una plantilla genérica.</p>
+            <p class="p-desc">Definimos juntos el servicio, el ritmo y las sesiones. Diseñado para tu realidad, no copiado de una plantilla.</p>
             <span class="p-tag"><span class="emo">🗺️ </span>Flexible · Personalizado</span>
           </div>
         </div>
@@ -4182,7 +4257,7 @@
           <div class="p-connector"></div>
           <div class="p-card">
             <div class="p-title">Caminamos juntos</div>
-            <p class="p-desc">Sesiones de profundidad real. Te acompaño mientras recorres el tramo — y seguimos en contacto después para consolidar el cambio.</p>
+            <p class="p-desc">Sesiones de profundidad real. Te acompaño mientras recorres el tramo, y seguimos en contacto después para consolidar el cambio.</p>
             <span class="p-tag"><span class="emo">🔦 </span>Seguimiento post-proceso</span>
           </div>
         </div>
@@ -4197,9 +4272,9 @@
      rediseña eligiendo su foco · 3) un viajero recorre la ruta y enciende cada etapa del proceso. -->
 <section id="pro-proceso" class="pro-only">
   <div class="pp-head">
-    <p class="label rv">Cómo trabajo</p>
+    <p class="label rv keep">Cómo trabajo</p>
     <h2 class="h2 rv d1">Así ilumino<br/><em>tu mapa.</em></h2>
-    <p class="pp-intro rv d2">No te vendo un programa armado. Te muestro cómo es, paso a paso, antes de que gastes un peso.</p>
+    <p class="pp-intro rv d2">Antes de que pagues algo, mira cómo funciona, paso a paso.</p>
   </div>
 
   <div class="pp-grid">
@@ -4269,7 +4344,7 @@
         <ul class="pp-points">
           <li>Dónde estás hoy y qué te tiene parado</li>
           <li>Qué cambiaría si lo resuelves</li>
-          <li>Si el proceso es para ti — y cuál</li>
+          <li>Si el proceso es para ti, y cuál</li>
         </ul>
         <a href="#" data-cal class="p-btn pr-magnet pp-cta" target="_blank" rel="noopener">
           Agendar mi conversación
@@ -4293,7 +4368,7 @@
       <article class="pp-step" data-step="2">
         <div class="pp-num">03</div>
         <h3 class="pp-title">Caminamos juntos</h3>
-        <p class="pp-text">Sesiones de profundidad real. No te dejo con una lista de tareas: te acompaño mientras recorres cada tramo.</p>
+        <p class="pp-text">Sesiones de profundidad real. Te acompaño mientras recorres cada tramo, sesión a sesión.</p>
         <ol class="pp-stops" id="pp-stops">
           <li data-i="0"><b>Conversaciones profundas</b>Las que incomodan lo justo para moverte.</li>
           <li data-i="1"><b>Herramientas concretas</b>DISC, PNL e inteligencia emocional, aplicadas a tu caso.</li>
@@ -4317,7 +4392,7 @@
           <!-- Perfil 1: Inserción laboral -->
           <div class="testi-card active">
             <div class="stars">★★★★★</div>
-            <p class="testi-text">"Llegué a las entrevistas y me bloqueaba. No sabía cómo hablar de mí sin sentirme impostora. Con Maxi trabajé eso desde adentro — a las 6 semanas entré a un programa de atracción temprana."</p>
+            <p class="testi-text">"Llegué a las entrevistas y me bloqueaba. No sabía cómo hablar de mí sin sentirme impostora. Con Maxi trabajé eso desde adentro. A las 6 semanas entré a un programa de atracción temprana."</p>
             <div class="testi-author">
               <div class="testi-av">VA</div>
               <div><div class="testi-name">Valentina A.</div><div class="testi-role">Ingeniera Comercial · Recién egresada</div></div>
@@ -4326,7 +4401,7 @@
           <!-- Perfil 2: Desarrollo profesional -->
           <div class="testi-card">
             <div class="stars">★★★★★</div>
-            <p class="testi-text">"Llevaba años preguntándome si esto era todo. Tenía el talento pero no tenía claridad. Maxi no me dijo qué hacer — me ayudó a entender quién quería ser en mi carrera. Eso lo cambió todo."</p>
+            <p class="testi-text">"Llevaba años preguntándome si esto era todo. Tenía el talento pero no tenía claridad. Maxi no me dijo qué hacer. Me ayudó a entender quién quería ser en mi carrera. Eso lo cambió todo."</p>
             <div class="testi-author">
               <div class="testi-av">CR</div>
               <div><div class="testi-name">Carlos R.</div><div class="testi-role">Jefe de Proyectos · Empresa tecnológica</div></div>
@@ -4344,7 +4419,7 @@
           <!-- Perfil 4: Team Building -->
           <div class="testi-card">
             <div class="stars">★★★★★</div>
-            <p class="testi-text">"No fue un taller de motivación más. Fue una conversación honesta que hizo que mi equipo se entendiera de otra manera. Lo que Maxi genera en una sala es difícil de explicar — hay que vivirlo."</p>
+            <p class="testi-text">"No fue un taller de motivación más. Fue una conversación honesta que hizo que mi equipo se entendiera de otra manera. Lo que Maxi genera en una sala es difícil de explicar. Hay que vivirlo."</p>
             <div class="testi-author">
               <div class="testi-av">PM</div>
               <div><div class="testi-name">Patricia M.</div><div class="testi-role">Gerente RRHH · Empresa retail</div></div>
@@ -4435,7 +4510,7 @@
   <div class="cta-inner">
     <p class="label rv" style="justify-content:center">El primer paso</p>
     <h2 class="cta-h rv d1">No sé si soy la persona indicada para ti.<br/><em>Por eso la primera conversación corre por mi cuenta.</em></h2>
-    <p class="cta-sub rv d2">30 minutos por videollamada. Eliges el horario que te acomode en mi calendario, me cuentas dónde estás y hacia dónde quieres ir. Yo te digo con honestidad si puedo ayudarte — y cómo.</p>
+    <p class="cta-sub rv d2">30 minutos por videollamada. Eliges el horario que te acomode en mi calendario, me cuentas dónde estás y hacia dónde quieres ir. Yo te digo con honestidad si puedo ayudarte, y cómo.</p>
     <div class="rv d3">
       <a href="#" data-cal class="btn-wa" target="_blank" rel="noopener" style="font-size:.9rem;padding:1.1rem 2.2rem;display:inline-flex;">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
