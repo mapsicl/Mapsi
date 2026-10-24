@@ -48,7 +48,7 @@
       --purple-glow: rgba(124,77,255,0.35);
       --white:     #f2f0eb;
       --grey1:     #9e9e96;
-      --grey2:     #5a5a54;
+      --grey2:     #8b8b84;   /* antes #5a5a54: 2,9:1 sobre negro; ahora ~5,8:1 */
       --grey3:     #2e2e2a;
       --border:    rgba(200,168,75,0.16);
       --border2:   rgba(255,255,255,0.06);
@@ -423,12 +423,12 @@
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
     .btn-wa {
       display: inline-flex; align-items: center; gap: .7rem;
-      background: #3a9e5f; color: #fff;
+      background: #2c7a48; color: #fff;   /* verde más profundo: texto blanco 5,3:1 */
       font-size: .82rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
       padding: .95rem 1.8rem; border-radius: 3px;
       transition: background .3s, transform .2s, box-shadow .3s;
     }
-    .btn-wa:hover { background: #2f8a50; transform: translateY(-2px); box-shadow: 0 10px 36px rgba(58,158,95,.28); }
+    .btn-wa:hover { background: #23653b; transform: translateY(-2px); box-shadow: 0 10px 36px rgba(58,158,95,.28); }
     .btn-outline {
       display: inline-flex; align-items: center; gap: .5rem;
       color: var(--grey1); font-size: .82rem; letter-spacing: .08em; text-transform: uppercase;
@@ -2296,7 +2296,7 @@
       --p-bone2:  #e9e6df;
       --p-ink:    #0b0b0c;
       --p-ink2:   #2c2c2f;
-      --p-muted:  #6b6a66;
+      --p-muted:  #57564f;   /* antes #6b6a66: 4,8:1 sobre hueso; ahora ~7:1 */
       --p-accent: #b8964a;
       --p-line:   rgba(11,11,12,.12);
     }
@@ -3175,6 +3175,33 @@
     html[data-theme="pro"] .ph-item b, html[data-theme="pro"] strong { font-weight: 600; }
     html[data-theme="pro"] :is(.pa-n, .pp-num, .shp-n, .pt-price, .sc-price) { font-weight: 200; }
     html[data-theme="pro"] .p-btn, html[data-theme="pro"] .btn-wa { font-weight: 500; }
+    /* =============================================
+       PRO · LEGIBILIDAD (auditoría WCAG): ningún texto bajo 4,5:1, y el texto chico ya no va en peso fino
+    ============================================= */
+    /* Poppins 300 en tamaños chicos se "deshace" en pantallas de bajo contraste: el cuerpo pasa a 400 */
+    html[data-theme="pro"] body { font-weight: 400; }
+    /* Tema Mapa: mismo criterio (Instrument Sans 300 en 11–14 px se perdía) */
+    html[data-theme="mapa"] body { font-weight: 400; }
+    /* Tarjeta "Próximamente" (YouTube): se nota que está pendiente, pero se puede leer */
+    .red-card.red-yt { opacity: .92 !important; }
+    /* Dorado sobre fondo claro: el tono claro daba 2,5:1; el oscuro da ~4,6:1 */
+    html[data-theme="pro"] .ps-title em { color: #8a6a1c; }
+    /* Grises sobre negro: mínimo 70 % de opacidad para texto chico */
+    html[data-theme="pro"] :is(.ph-note, .cm-hint, .pp-chat-top, .pp-chapter, .pp-hint, .pp-legend,
+      .sp-proof, .pp-intro, .sc-foot, .pp-try) { color: rgba(243,241,236,.74); }
+    html[data-theme="pro"] .ph-note { color: rgba(243,241,236,.78); }
+    html[data-theme="pro"] :is(.svc-sub, .shp-l, .pt-detail, .svc-terms span, .svc-qualify-cta, .svc-outcome) {
+      color: rgba(243,241,236,.78);
+    }
+    html[data-theme="pro"] .svc-sub { color: rgba(226,192,106,.92); }
+    html[data-theme="pro"] .pp-stops li { color: rgba(243,241,236,.62); }
+    html[data-theme="pro"] .pp-stops li b { color: rgba(243,241,236,.74); }
+    html[data-theme="pro"] :is(.red-desc, .red-handle) { color: rgba(243,241,236,.74); }
+    html[data-theme="pro"] .red-link { color: rgba(243,241,236,.82); }
+    /* Footer: los textos legales y enlaces también se tienen que poder leer */
+    html[data-theme="pro"] .f-links a { color: rgba(243,241,236,.74); }
+    html[data-theme="pro"] .f-disclaimer, html[data-theme="pro"] .f-copy { color: rgba(243,241,236,.66); font-size: .78rem; }
+
     /* Tildes de mayúsculas (Á É Í Ó Ú): la máscara de las líneas recortaba su parte superior.
        Se amplía la caja hacia arriba y se compensa con margen negativo: el texto no se mueve. */
     html[data-theme="pro"] .pr-lines .ln,
