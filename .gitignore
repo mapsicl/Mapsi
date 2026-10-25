@@ -1,2 +1,7 @@
 # Sitio Web Mapsi
 .DS_Store
+
+# Imágenes de respaldo: se guardan en el computador, no se publican
+img/respaldo/
+# Páginas retiradas del sitio (respaldo local)
+respaldo/

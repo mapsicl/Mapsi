@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/mapatest.html", "destination": "/test.html", "permanent": true },
+    { "source": "/mapatest", "destination": "/test.html", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/test", "destination": "/test.html" }
+  ]
+}

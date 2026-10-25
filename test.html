@@ -11,12 +11,30 @@
   <meta property="og:title" content="Test · Reconquista tu mapa — Maximiliano Jiménez" />
   <meta property="og:description" content="Dos test breves: hacia dónde te orienta lo que amas y con qué liderazgo rindes mejor. 2 minutos, sin registro, resultado al instante." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.mapsi.cl/test.html" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:image" content="https://www.mapsi.cl/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://www.mapsi.cl/test.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <title>Test · Reconquista tu mapa — Maximiliano Jiménez</title>
 
-  <!-- Fonts: marca (Instrument Sans + DM Serif Display) -->
+  <!-- Fonts: tema Mapa (Instrument Sans + DM Serif Display) y tema Pro (Poppins) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=DM+Serif+Display:ital@0;1&family=Poppins:wght@100;200;300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Mismo tema que eligió el visitante en mapsi.cl ("pro" por defecto) -->
+  <script>
+    (function () {
+      var t = 'pro';
+      try { t = localStorage.getItem('mj-theme') || 'pro'; } catch (e) {}
+      document.documentElement.setAttribute('data-theme', t === 'mapa' ? 'mapa' : 'pro');
+    })();
+  </script>
 
   <style>
     /* =============================================
@@ -199,6 +217,35 @@
 
     /* espacio bajo el nav fijo */
     main { padding-top: calc(72px + env(safe-area-inset-top)); }
+
+    /* Selector de tema (Pro / Mapa), igual al del sitio */
+    .nav-links { margin: 0 auto; }
+    .theme-tg {
+      display: inline-flex; align-items: center; gap: .45rem; margin-right: .8rem;
+      background: transparent; border: 1px solid rgba(255,255,255,.18); color: var(--grey1);
+      font-family: var(--font-s); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+      padding: .45rem .8rem; border-radius: 100px; cursor: pointer; transition: color .3s, border-color .3s;
+    }
+    .theme-tg:hover { color: var(--white); border-color: rgba(255,255,255,.4); }
+    .theme-tg svg { width: 13px; height: 13px; }
+    .tg-to-mapa, .tg-to-pro { display: none; }
+    html[data-theme="pro"] .tg-to-mapa, html[data-theme="mapa"] .tg-to-pro { display: inline; }
+    @media (max-width: 900px) { .theme-tg { margin-left: auto; } }
+    /* En pantallas chicas el botón de tema queda solo con su ícono, para no empujar el menú */
+    @media (max-width: 480px) {
+      .theme-tg { padding: .5rem; margin-right: .6rem; }
+      .theme-tg .tg-to-mapa, .theme-tg .tg-to-pro { display: none !important; }
+    }
+    .nav-logo, .nav-links a, .theme-tg, .nav-wa { white-space: nowrap; }
+    @media (min-width: 901px) and (max-width: 1240px) {
+      .nav-links { gap: 1.25rem; }
+      .nav-links a { font-size: .68rem; letter-spacing: .1em; }
+    }
+    /* Tema Pro en la barra y el pie */
+    html[data-theme="pro"] .theme-tg { border-radius: 6px; }
+    html[data-theme="pro"] .nav-wa { border-radius: 6px; background: #f3f1ec; color: #0b0b0c; }
+    html[data-theme="pro"] .nav-wa:hover { background: #f0d48a; }
+    html[data-theme="pro"] .f-logo em, html[data-theme="pro"] .nav-logo em { color: #e2c06a; }
   </style>
 </head>
 <body>
@@ -223,6 +270,10 @@
     <li><a href="index.html#redes">Redes</a></li>
     <li><a href="test.html" class="active">Test</a></li>
   </ul>
+  <button class="theme-tg" id="theme-tg" type="button" aria-label="Cambiar tema visual">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    <span class="tg-to-mapa">Tema Mapa</span><span class="tg-to-pro">Tema Pro</span>
+  </button>
   <a href="#" data-cal class="nav-wa" target="_blank" rel="noopener">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
     Agendar llamada
@@ -452,6 +503,103 @@
   .mapa .mp-screen.on .mp-badge{animation:none}
   .mapa .mp-track i,.mapa .mp-bar span{transition:none}
 }
+
+/* =========================================================
+   COMPONENTES NUEVOS (ambos temas)
+   ========================================================= */
+/* Recomendación de servicio según el momento de la persona */
+.mapa .mp-stages{display:flex;flex-wrap:wrap;gap:9px}
+.mapa .mp-stage{font-family:inherit;font-size:14.5px;cursor:pointer;color:var(--cream);background:rgba(255,255,255,.03);
+  border:1px solid var(--border2);border-radius:99px;padding:11px 18px;transition:border-color .25s,background .25s,color .25s}
+.mapa .mp-stage:hover{border-color:var(--line)}
+.mapa .mp-stage.on{background:var(--amber);border-color:var(--amber);color:#0a0a09;font-weight:500}
+.mapa .mp-rec{margin-top:18px;border:1px solid rgba(200,168,75,.35);border-radius:16px;padding:22px 22px 20px;
+  background:rgba(200,168,75,.05);animation:mp-q-in .45s var(--ease) both}
+.mapa .mp-rec-k{margin:0 0 6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--latte);font-weight:600}
+.mapa .mp-rec-name{margin:0 0 8px;font-family:var(--font-d);font-weight:400;font-size:clamp(20px,3vw,25px);color:var(--cream)}
+.mapa .mp-rec-why{margin:0 0 8px;font-size:15px;line-height:1.6;color:var(--cream)}
+.mapa .mp-rec-fit{margin:0 0 16px;font-size:14px;line-height:1.6;color:var(--latte)}
+.mapa .mp-rec-fit b{color:var(--oro);font-weight:500}
+.mapa .mp-rec-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.mapa .mp-rec-price{font-size:14px;color:var(--oro);font-variant-numeric:tabular-nums}
+.mapa .mp-rec-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+/* Lo exclusivo del tema Pro queda oculto en Mapa */
+.mapa .mp-routebar,.mapa .mp-routemap,.mapa #mp-tracing{display:none}
+
+/* =========================================================
+   TEMA PRO: mismo contenido, lenguaje de mapsi.cl
+   (Poppins fina en mayúsculas, negro/hueso, ruta dorada, radios de 6 px)
+   ========================================================= */
+html[data-theme="pro"]{--font-d:'Poppins',system-ui,sans-serif;--font-s:'Poppins',system-ui,sans-serif}
+html[data-theme="pro"] body{cursor:auto;font-weight:400}
+html[data-theme="pro"] #c-dot,html[data-theme="pro"] #c-ring{display:none}
+html[data-theme="pro"] .mapa{background:#0b0b0c;--r:6px;--latte:rgba(243,241,236,.74);--latte-dim:rgba(243,241,236,.62)}
+html[data-theme="pro"] .mapa .mp-eyebrow{color:rgba(243,241,236,.7);font-weight:500;letter-spacing:.24em}
+html[data-theme="pro"] .mapa .mp-eyebrow::before{background:currentColor;opacity:.6}
+html[data-theme="pro"] .mapa h1.mp-title{font-weight:200;text-transform:uppercase;letter-spacing:-.01em;line-height:1.02;text-wrap:balance}
+html[data-theme="pro"] .mapa h1.mp-title em{font-style:normal;color:#f0d48a}
+html[data-theme="pro"] .mapa .mp-lead{font-weight:400}
+html[data-theme="pro"] .mapa .mp-facts li{border-radius:6px;background:transparent}
+html[data-theme="pro"] .mapa .mp-facts li svg{stroke:rgba(243,241,236,.7)}
+html[data-theme="pro"] .mapa .mp-choice{border-radius:6px;background:#131314;border-color:rgba(243,241,236,.1)}
+html[data-theme="pro"] .mapa .mp-choice:hover{background:#18181a;border-color:rgba(243,241,236,.3)}
+html[data-theme="pro"] .mapa .mp-cnum{color:#f0d48a}
+html[data-theme="pro"] .mapa .mp-cname{font-weight:300;text-transform:uppercase;letter-spacing:-.005em}
+html[data-theme="pro"] .mapa .mp-cdesc{font-weight:400}
+html[data-theme="pro"] .mapa .mp-cgo{color:var(--white)}
+/* Preguntas */
+html[data-theme="pro"] .mapa .mp-bar{display:none}
+html[data-theme="pro"] .mapa .mp-routebar{display:block;width:100%;height:26px;overflow:visible}
+html[data-theme="pro"] .mapa .rb-base{fill:none;stroke:rgba(243,241,236,.16);stroke-width:1.5;stroke-dasharray:3 6;vector-effect:non-scaling-stroke}
+html[data-theme="pro"] .mapa .rb-line{fill:none;stroke:#e2c06a;stroke-width:2.5;stroke-linecap:round;vector-effect:non-scaling-stroke;
+  transition:stroke-dashoffset .7s var(--ease);filter:drop-shadow(0 0 4px rgba(240,212,138,.5))}
+html[data-theme="pro"] .mapa .rb-dot{fill:#fff8e0;transition:cx .7s var(--ease),cy .7s var(--ease);filter:drop-shadow(0 0 6px rgba(240,212,138,.9))}
+html[data-theme="pro"] .mapa .mp-back{border-radius:6px}
+html[data-theme="pro"] .mapa .mp-q{font-weight:300;letter-spacing:-.015em;max-width:24ch;text-wrap:balance}
+html[data-theme="pro"] .mapa .mp-opt{border-radius:6px;font-weight:400;background:#131314;border-color:rgba(243,241,236,.1)}
+html[data-theme="pro"] .mapa .mp-opt:hover{background:#18181a;border-color:rgba(243,241,236,.35)}
+html[data-theme="pro"] .mapa .mp-opt.picked{background:#f3f1ec;color:#0b0b0c;border-color:#f3f1ec}
+/* Revelación */
+html[data-theme="pro"] .mapa #mp-tracing.on{display:grid;place-items:center;min-height:52vh}
+html[data-theme="pro"] .mapa .mp-tracing-in{text-align:center}
+html[data-theme="pro"] .mapa .mp-tracing-svg{width:min(320px,80vw);height:auto;overflow:visible}
+html[data-theme="pro"] .mapa #mp-tracing-path{stroke:#e2c06a;stroke-width:2.5;stroke-linecap:round;filter:drop-shadow(0 0 6px rgba(240,212,138,.6))}
+html[data-theme="pro"] .mapa .mp-tracing-k{margin-top:18px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:rgba(243,241,236,.74)}
+/* Resultado */
+html[data-theme="pro"] .mapa .mp-card{border-radius:6px;background:#121213;border-color:rgba(243,241,236,.12)}
+html[data-theme="pro"] .mapa .mp-card-top{flex-direction:column;align-items:stretch;gap:18px}
+html[data-theme="pro"] .mapa .mp-badge{display:none}
+html[data-theme="pro"] .mapa .mp-routemap{display:block;width:100%;aspect-ratio:3 / 1.15;border-radius:6px;overflow:hidden;
+  background:radial-gradient(ellipse 70% 80% at 20% 90%,rgba(200,168,75,.09),transparent 60%),#0d0d0e;border:1px solid rgba(243,241,236,.08)}
+html[data-theme="pro"] .mapa .mp-routemap svg{width:100%;height:100%;display:block}
+html[data-theme="pro"] .mapa .mp-zonetag{color:rgba(243,241,236,.7);font-weight:500}
+html[data-theme="pro"] .mapa .mp-zonename{font-weight:200;text-transform:uppercase;letter-spacing:-.01em;color:var(--white) !important}
+html[data-theme="pro"] .mapa .mp-zonelead{font-family:var(--font-s);font-style:normal;font-weight:400;color:#f0d48a}
+html[data-theme="pro"] .mapa .mp-zonedesc{font-weight:400}
+html[data-theme="pro"] .mapa .mp-track i{background:linear-gradient(90deg,#b8964a,#f0d48a) !important}
+html[data-theme="pro"] .mapa .mp-score .mp-dotk{display:none}
+.mapa .mp-score{grid-template-columns:minmax(118px,auto) 1fr 42px}
+.mapa .mp-score .mp-slabel{white-space:nowrap}
+html[data-theme="pro"] .mapa .mp-blocktitle,html[data-theme="pro"] .mapa .mp-cta h4,html[data-theme="pro"] .mapa .mp-rec-name{
+  font-weight:300;text-transform:uppercase;letter-spacing:-.005em}
+html[data-theme="pro"] .mapa .mp-keys li,html[data-theme="pro"] .mapa .mp-drain li,html[data-theme="pro"] .mapa .mp-ask li{
+  border-radius:6px;background:#131314;font-weight:400}
+html[data-theme="pro"] .mapa .mp-ask li{font-style:normal;color:var(--white)}
+html[data-theme="pro"] .mapa .mp-keys li::before{background:rgba(243,241,236,.1);color:var(--white)}
+html[data-theme="pro"] .mapa .mp-cell{border-radius:6px}
+html[data-theme="pro"] .mapa .mp-cta,html[data-theme="pro"] .mapa .mp-rec{border-radius:6px;background:#131314;border-color:rgba(243,241,236,.16)}
+html[data-theme="pro"] .mapa .mp-btn{border-radius:6px}
+html[data-theme="pro"] .mapa .mp-btn.primary{background:#f3f1ec;border-color:#f3f1ec;color:#0b0b0c}
+html[data-theme="pro"] .mapa .mp-btn.primary:hover{background:#f0d48a;border-color:#f0d48a}
+html[data-theme="pro"] .mapa .mp-btn.wa{color:#9fdcb7}
+html[data-theme="pro"] .mapa .mp-stage{border-radius:6px}
+html[data-theme="pro"] .mapa .mp-stage.on{background:#f3f1ec;border-color:#f3f1ec}
+html[data-theme="pro"] .mapa .mp-brand b,html[data-theme="pro"] .mapa .mp-rec-price,html[data-theme="pro"] .mapa .mp-rec-fit b{color:#f0d48a}
+html[data-theme="pro"] .mapa .mp-btn:active,html[data-theme="pro"] .mapa .mp-opt:active,html[data-theme="pro"] .mapa .mp-stage:active{transform:scale(.97)}
+@media (prefers-reduced-motion:reduce){
+  html[data-theme="pro"] .mapa .rb-line,html[data-theme="pro"] .mapa .rb-dot{transition:none}
+}
 </style>
 
 <div class="mp-wrap">
@@ -482,7 +630,7 @@
         <span class="mp-cmeta">8 preguntas</span>
         <span class="mp-cnum">Test II</span>
         <span class="mp-cname display">Cómo te gusta ser liderado/a</span>
-        <span class="mp-cdesc">Qué necesitas de un jefe o equipo para dar lo mejor de ti, y qué te apaga. Basado en el modelo DISC.</span>
+        <span class="mp-cdesc">Tu estilo según el modelo DISC (Dominancia, Influencia, Estabilidad o Cumplimiento): qué necesitas de un jefe o equipo y qué te apaga.</span>
         <span class="mp-cgo">Comenzar <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </button>
     </div>
@@ -509,11 +657,27 @@
           <span class="mp-pcount" id="mp-count"></span>
         </div>
         <div class="mp-bar"><span id="mp-fill"></span></div>
+        <!-- Tema Pro: el progreso es una ruta que se dibuja con cada respuesta -->
+        <svg class="mp-routebar" id="mp-routebar" viewBox="0 0 300 26" preserveAspectRatio="none" aria-hidden="true">
+          <path class="rb-base" d="" />
+          <path class="rb-line" d="" />
+          <circle class="rb-dot" r="4" cx="0" cy="13" />
+        </svg>
       </div>
     </div>
     <h2 class="mp-q display" id="mp-question">…</h2>
     <div class="mp-opts" id="mp-opts"></div>
     <p class="mp-qnote">No hay respuestas correctas. Elige la que te suene más honesta.</p>
+  </div>
+
+  <!-- ================= 2.5 · REVELACIÓN (tema Pro) ================= -->
+  <div class="mp-screen" id="mp-tracing" aria-live="polite">
+    <div class="mp-tracing-in">
+      <svg class="mp-tracing-svg" viewBox="0 0 300 160" aria-hidden="true">
+        <path id="mp-tracing-path" d="" fill="none" />
+      </svg>
+      <p class="mp-tracing-k">Trazando tu mapa…</p>
+    </div>
   </div>
 
   <!-- ================= 3 · RESULTADO ================= -->
@@ -522,6 +686,8 @@
     <div class="mp-card" id="mp-card">
       <div class="mp-card-top">
         <div class="mp-badge" id="mp-badge"></div>
+        <!-- Tema Pro: mapa único generado con tus respuestas (en Mapa se ve el sello en pixel art) -->
+        <div class="mp-routemap" id="mp-routemap" aria-hidden="true"></div>
         <div>
           <p class="mp-zonetag" id="mp-zonetag">Tu perfil</p>
           <h2 class="mp-zonename display" id="mp-zonename"></h2>
@@ -557,6 +723,32 @@
       <h3 class="mp-blocktitle display">Qué pedir, en tus palabras</h3>
       <p class="mp-blocklead">Tres frases que puedes usar tal cual en una reunión, una entrevista o un 1:1.</p>
       <ul class="mp-ask" id="mp-ask"></ul>
+    </div>
+
+    <!-- de perfil a siguiente paso: la persona elige su momento y ve el servicio que corresponde -->
+    <div class="mp-block mp-next">
+      <h3 class="mp-blocktitle display">Lo que más te serviría ahora</h3>
+      <p class="mp-blocklead">Tu perfil explica cómo funcionas. Lo que falta es decidir qué hacer con eso. ¿En qué momento estás?</p>
+      <div class="mp-stages" id="mp-stages" role="group" aria-label="Tu momento actual">
+        <button type="button" class="mp-stage" data-stage="insercion">Busco mi primer trabajo</button>
+        <button type="button" class="mp-stage" data-stage="desarrollo">Quiero avanzar o cambiar de rumbo</button>
+        <button type="button" class="mp-stage" data-stage="marca">Quiero que mi trabajo se vea</button>
+        <button type="button" class="mp-stage" data-stage="equipos">Lidero o acompaño un equipo</button>
+        <button type="button" class="mp-stage" data-stage="terapia">Lo que más me pesa es emocional</button>
+      </div>
+      <div class="mp-rec" id="mp-rec" hidden>
+        <p class="mp-rec-k">Te recomiendo</p>
+        <h4 class="mp-rec-name" id="mp-rec-name"></h4>
+        <p class="mp-rec-why" id="mp-rec-why"></p>
+        <p class="mp-rec-fit" id="mp-rec-fit"></p>
+        <div class="mp-rec-foot">
+          <span class="mp-rec-price" id="mp-rec-price"></span>
+          <div class="mp-rec-actions">
+            <a class="mp-btn primary" id="mp-rec-cta" data-cal href="#" target="_blank" rel="noopener">Agendar sesión de claridad</a>
+            <a class="mp-btn" id="mp-rec-link" href="index.html#servicios">Ver el servicio</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- conversión -->
@@ -687,7 +879,7 @@
         {q:'En unos años, te gustaría que dijeran de ti…',
           o:[['"hace su trabajo como un arte"','artesano'],['"dejó huella en quienes la rodearon"','faro'],['"lo que levanta es sólido"','arquitecto'],['"siempre encuentra el camino"','sembrador']]}
       ],
-      note:'Inspirado en el modelo Ikigai. La escala validada (Ikigai-9: Imai, Osada y Nishimura, 2012; traducción al inglés de Fido, Kotera y Asano, 2020) mide bienestar en torno a alegría, crecimiento y sentirse necesario; el diagrama de cuatro fuentes que ves aquí es la versión occidental popular. <b>Esto es una brújula para reflexionar, no un diagnóstico.</b>'
+      note:'Inspirado en el modelo Ikigai. La escala validada (Ikigai-9: Imai, Osada y Nishimura, 2012; traducción al inglés de Fido, Kotera y Asano, 2020) mide bienestar en torno a alegría, crecimiento y sentirse necesario; el diagrama de cuatro fuentes que ves aquí es la versión occidental popular. <b>Esto es una brújula para reflexionar, no una evaluación psicométrica ni un diagnóstico clínico.</b>'
     },
 
     disc:{
@@ -707,7 +899,7 @@
           lead:'"Avanzo mejor en buena compañía."',
           desc:'Valoras la cercanía, la lealtad y la previsibilidad. Das lo mejor cuando sientes respaldo, ritmo sostenible y un equipo confiable. Los cambios bruscos y la aspereza te incomodan: pide acompañamiento y constancia.',
           src:['Cercanía','Constancia']},
-        cartografo:{name:'El / La Cartógrafo/a', short:'Cartógrafo/a', disc:'C · Concienciación',
+        cartografo:{name:'El / La Cartógrafo/a', short:'Cartógrafo/a', disc:'C · Cumplimiento',
           lead:'"Dame el mapa claro y las reglas del terreno."',
           desc:'Funcionas con estructura: objetivos definidos, criterios y precisión. La ambigüedad y las reglas cambiantes te frenan. Pide claridad, datos y expectativas explícitas, y entregarás trabajo impecable.',
           src:['Estructura','Claridad']}
@@ -730,7 +922,7 @@
         {q:'En una reunión de equipo, tu aporte suele ser…',
           o:[['ir al grano y proponer la decisión','montaraz'],['subir la energía y lanzar ideas','bardo'],['cuidar que todos queden conformes','companero'],['poner los datos sobre la mesa','cartografo']]}
       ],
-      note:'Inspirado en el modelo DISC (Marston, 1928): Dominancia, Influencia, Estabilidad y Concienciación. DISC describe estilos de conducta y es muy usado en coaching y desarrollo de equipos; su validez predictiva es objeto de debate académico. <b>Tómalo como un espejo para conversar sobre cómo te gusta trabajar, no como una etiqueta fija.</b>'
+      note:'<b>Extracto orientativo inspirado en el modelo DISC</b> (Marston, 1928): Dominancia, Influencia, Estabilidad y Cumplimiento. Son 8 preguntas sobre tus preferencias de estilo, no la evaluación DISC completa. <b>No es una evaluación psicométrica validada ni cumple criterios de diagnóstico clínico.</b> Tómalo como un espejo para conversar sobre cómo te gusta trabajar, no como una etiqueta fija.'
     }
   };
 
@@ -789,6 +981,82 @@
     cartografo:['Funcionas con estructura: metas claras, criterios y precisión.','La ambigüedad y las reglas que cambian a medio camino te frenan.','Pide: claridad, datos y expectativas explícitas.']
   };
 
+  /* ---------- servicio según el momento que elige la persona ---------- */
+  var SERVICES={
+    insercion:{name:'Coaching para la Inserción Laboral', price:'Desde $45.900 por sesión', href:'index.html#svc-insercion',
+      why:'Para llegar a la entrevista sabiendo qué contar de ti y cómo decirlo, con simulaciones reales.'},
+    desarrollo:{name:'Coaching para el Desarrollo Profesional', price:'Desde $54.900 por sesión', href:'index.html#svc-desarrollo',
+      why:'Para ordenar hacia dónde vas y salir con un plan concreto para tu siguiente paso.'},
+    marca:{name:'Coaching para tu Marca Personal', price:'Desde $54.900 por sesión', href:'index.html#svc-marca',
+      why:'Para mostrar lo que de verdad haces bien, en las redes donde está tu audiencia.'},
+    equipos:{name:'Charlas & Team Building', price:'Cotización a medida', href:'index.html#svc-equipos',
+      why:'Para que tu equipo se entienda distinto y tome mejores decisiones juntos.'},
+    terapia:{name:'Psicoterapia individual online', price:'$50.000 por sesión · 45–50 min', href:'index.html#svc-terapia',
+      why:'Cuando lo que pesa es emocional, el primer paso es un espacio clínico, confidencial y sin juicios.', clinical:true}
+  };
+
+  /* ---------- ruta (tema Pro) ---------- */
+  function isPro(){return document.documentElement.getAttribute('data-theme')==='pro';}
+  var REDUCED=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Curva suave que pasa por todos los puntos (Catmull-Rom → Bézier)
+  function smoothPath(pts){
+    var d='M'+pts[0][0].toFixed(1)+' '+pts[0][1].toFixed(1);
+    for(var i=0;i<pts.length-1;i++){
+      var p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||p2;
+      d+=' C'+(p1[0]+(p2[0]-p0[0])/6).toFixed(1)+' '+(p1[1]+(p2[1]-p0[1])/6).toFixed(1)+' '+
+         (p2[0]-(p3[0]-p1[0])/6).toFixed(1)+' '+(p2[1]-(p3[1]-p1[1])/6).toFixed(1)+' '+p2[0].toFixed(1)+' '+p2[1].toFixed(1);
+    }
+    return d;
+  }
+  // Barra de progreso como ruta: un punto por pregunta, ondulado y siempre igual para cada test
+  function progressPoints(total){
+    var pts=[];for(var i=0;i<=total;i++){pts.push([6+i*(288/total),13+Math.sin(i*1.7)*7]);}
+    return pts;
+  }
+  function setProgress(done,total){
+    var svg=$('mp-routebar'); if(!svg) return;
+    var pts=progressPoints(total), d=smoothPath(pts);
+    var base=svg.querySelector('.rb-base'), line=svg.querySelector('.rb-line'), dot=svg.querySelector('.rb-dot');
+    if(base.getAttribute('d')!==d){base.setAttribute('d',d);line.setAttribute('d',d);}
+    var len=line.getTotalLength(), p=Math.min(done,total)/total;
+    line.style.strokeDasharray=len; line.style.strokeDashoffset=len*(1-p);
+    var pt=line.getPointAtLength(len*p); dot.setAttribute('cx',pt.x); dot.setAttribute('cy',pt.y);
+  }
+  // Mapa único: cada respuesta empuja la ruta hacia el rincón de ese perfil
+  function routePoints(ans,order,W,H){
+    var dir=[[-.9,-.55],[.25,-1],[1,-.2],[.55,.6]], x=W*.1, y=H*.82, pts=[[x,y]];
+    var stepX=(W*.8)/Math.max(ans.length,1);
+    ans.forEach(function(k,i){
+      var o=order.indexOf(k), d=dir[o<0?0:o];
+      x=W*.1+stepX*(i+1)+d[0]*W*.03;
+      y=Math.max(H*.14,Math.min(H*.86,y-(H*.62/ans.length)+d[1]*H*.09));
+      pts.push([x,y]);
+    });
+    return pts;
+  }
+  function routeSVG(ans,order,label){
+    var W=300,H=115,pts=routePoints(ans,order,W,H),d=smoothPath(pts),dots='';
+    for(var i=1;i<pts.length-1;i++) dots+='<circle cx="'+pts[i][0].toFixed(1)+'" cy="'+pts[i][1].toFixed(1)+'" r="1.8" fill="rgba(243,241,236,.55)"/>';
+    var e=pts[pts.length-1];
+    return '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tu mapa">'+
+      '<g fill="none" stroke="rgba(243,241,236,.07)" stroke-width=".8">'+
+        '<ellipse cx="60" cy="95" rx="70" ry="30"/><ellipse cx="60" cy="95" rx="42" ry="18"/>'+
+        '<ellipse cx="240" cy="25" rx="80" ry="34"/><ellipse cx="240" cy="25" rx="48" ry="20"/></g>'+
+      '<path d="'+d+'" fill="none" stroke="rgba(243,241,236,.14)" stroke-width="1.2" stroke-dasharray="2 4"/>'+
+      '<path class="rm-line" d="'+d+'" fill="none" stroke="#e2c06a" stroke-width="2" stroke-linecap="round" style="filter:drop-shadow(0 0 3px rgba(240,212,138,.6))"/>'+
+      dots+'<circle cx="'+pts[0][0]+'" cy="'+pts[0][1]+'" r="3.2" fill="#f3f1ec"/>'+
+      '<circle cx="'+e[0].toFixed(1)+'" cy="'+e[1].toFixed(1)+'" r="7" fill="none" stroke="#f0d48a" stroke-width="1.2"/>'+
+      '<circle cx="'+e[0].toFixed(1)+'" cy="'+e[1].toFixed(1)+'" r="3" fill="#f0d48a"/>'+
+      '<text x="'+(e[0]-11).toFixed(1)+'" y="'+(e[1]+4).toFixed(1)+'" text-anchor="end" font-family="Poppins,sans-serif" font-size="8.5" fill="rgba(243,241,236,.85)">'+label+'</text>'+
+    '</svg>';
+  }
+  function animateRoute(container){
+    var line=container.querySelector('.rm-line'); if(!line||REDUCED) return;
+    var len=line.getTotalLength(); line.style.strokeDasharray=len; line.style.strokeDashoffset=len;
+    line.getBoundingClientRect(); line.style.transition='stroke-dashoffset 1.6s cubic-bezier(.16,1,.3,1) .2s';
+    line.style.strokeDashoffset=0;
+  }
+
   /* ---------- estado + refs ---------- */
   var current='ikigai', qIndex=0, answers=[], tieBreak=null;
   var $=function(id){return document.getElementById(id);};
@@ -799,10 +1067,11 @@
     scoresEl:$('mp-scores'),date:$('mp-date'),sources:$('mp-sources'),note:$('mp-note'),keys:$('mp-keys'),
     combo:$('mp-combo'),drain:$('mp-drain'),ask:$('mp-ask'),
     ctatitle:$('mp-ctatitle'),wa:$('mp-wa'),
-    save:$('mp-save'),retry:$('mp-retry'),switch:$('mp-switch'),toast:$('mp-toast')};
+    save:$('mp-save'),retry:$('mp-retry'),switch:$('mp-switch'),toast:$('mp-toast'),
+    tracing:$('mp-tracing'),routemap:$('mp-routemap'),zonetag:$('mp-zonetag')};
 
   function show(el){
-    [EL.intro,EL.quiz,EL.result].forEach(function(s){s.classList.remove('on');});
+    [EL.intro,EL.quiz,EL.result,EL.tracing].forEach(function(s){if(s)s.classList.remove('on');});
     el.classList.add('on');
   }
   function toTop(){
@@ -821,7 +1090,7 @@
   function renderQuestion(){
     var d=DATA[current], item=d.questions[qIndex];
     EL.count.textContent=(qIndex+1)+' de '+d.total;
-    EL.fill.style.width=((qIndex)/d.total*100)+'%';
+    EL.fill.style.width=((qIndex)/d.total*100)+'%'; setProgress(qIndex,d.total);
     EL.question.textContent=item.q;
     EL.question.style.animation='none'; void EL.question.offsetWidth; EL.question.style.animation='';
     var h='';
@@ -836,7 +1105,7 @@
 
   function renderTieBreak(tied){
     EL.count.textContent='Última';
-    EL.fill.style.width='100%';
+    EL.fill.style.width='100%'; setProgress(DATA[current].total,DATA[current].total);
     EL.question.textContent='Quedaste entre dos caminos. Si tuvieras que renunciar a todo menos a una cosa, ¿cuál te costaría más perder?';
     EL.question.style.animation='none'; void EL.question.offsetWidth; EL.question.style.animation='';
     var h='';
@@ -860,7 +1129,7 @@
     answers[qIndex]=btn.getAttribute('data-p');
     var d=DATA[current];
     qIndex++;
-    EL.fill.style.width=(qIndex/d.total*100)+'%';
+    EL.fill.style.width=(qIndex/d.total*100)+'%'; setProgress(qIndex,d.total);
     setTimeout(function(){
       if(qIndex>=d.total){
         var s=tally(), mx=Math.max.apply(null,d.order.map(function(k){return s[k];}));
@@ -883,7 +1152,19 @@
     return s;
   }
 
+  // Revelación: en Pro, la ruta se dibuja un instante antes de mostrar el resultado
   function showResult(){
+    if(!isPro()||REDUCED||!EL.tracing){ renderResult(); return; }
+    var path=$('mp-tracing-path');
+    path.setAttribute('d',smoothPath(routePoints(answers,DATA[current].order,300,160)));
+    show(EL.tracing); toTop();
+    var len=path.getTotalLength(); path.style.transition='none';
+    path.style.strokeDasharray=len; path.style.strokeDashoffset=len; path.getBoundingClientRect();
+    path.style.transition='stroke-dashoffset 1.15s cubic-bezier(.16,1,.3,1)'; path.style.strokeDashoffset=0;
+    setTimeout(renderResult,1350);
+  }
+
+  function renderResult(){
     var d=DATA[current], scores=tally();
     var rk=d.order.map(function(k){return {k:k,v:scores[k]};}).sort(function(a,b){
       if(b.v!==a.v) return b.v-a.v;
@@ -895,19 +1176,27 @@
 
     show(EL.result); toTop();
 
-    EL.badge.innerHTML=sprite(BADGES[key],PAL);
-    EL.zonename.textContent=p.name; EL.zonename.style.color=d.colors[key];
+    // DISC: el resultado se nombra por el estilo real (D, I, S, C); el arquetipo queda como metáfora
+    var isDisc=d.kind==='disc';
+    var label=isDisc?p.disc:p.short;
+    lastResult={key:key,label:label,isDisc:isDisc,profile:p};
+
+    EL.badge.innerHTML=sprite(BADGES[key],PAL);   // tema Mapa: sello en pixel art
+    if(EL.routemap){ EL.routemap.innerHTML=routeSVG(answers,d.order,isDisc?p.disc.split(' · ')[0]+' · '+p.short:p.short); animateRoute(EL.routemap); }  // tema Pro: mapa único
+    if(EL.zonetag) EL.zonetag.textContent=isDisc?'Tu estilo predominante · en el mapa: '+p.short:'Tu perfil';
+    EL.zonename.textContent=isDisc?p.disc:p.name; EL.zonename.style.color=d.colors[key];
     EL.zonelead.textContent=p.lead;
     EL.zonedesc.textContent=p.desc;
 
     // perfil combinado: primario + secundario
     var second=rk[1], p2=d.profiles[second.k];
+    var label2=isDisc?p2.disc:p2.short;
     if(second.v>=2 && second.v>=rk[0].v-2){
-      EL.combo.innerHTML='Y no en estado puro: tienes un fuerte componente <b>'+p2.short+'</b>. '+
+      EL.combo.innerHTML='Y no en estado puro: tienes un fuerte componente <b>'+label2+'</b>. '+
         'Es decir, '+ESSENCE[key]+', pero también '+ESSENCE[second.k]+'. '+
         'Esa mezcla es la que mejor te describe.';
     } else if(second.v>=2){
-      EL.combo.innerHTML='Con un matiz de <b>'+p2.short+'</b>: '+ESSENCE[second.k]+'.';
+      EL.combo.innerHTML='Con un matiz de <b>'+label2+'</b>: '+ESSENCE[second.k]+'.';
     } else {
       EL.combo.innerHTML='Y de forma bastante marcada: este perfil se impone con claridad sobre los otros tres.';
     }
@@ -917,7 +1206,7 @@
     for(var i=0;i<d.order.length;i++){
       var k=d.order[i], pr=d.profiles[k], pct=Math.round((scores[k]||0)/total*100);
       sh+='<div class="mp-score'+(k===key?' top':'')+'">'+
-            '<span class="mp-slabel"><span class="mp-dotk" style="background:'+d.colors[k]+'"></span>'+pr.short+'</span>'+
+            '<span class="mp-slabel"><span class="mp-dotk" style="background:'+d.colors[k]+'"></span>'+(isDisc?pr.disc:pr.short)+'</span>'+
             '<span class="mp-track"><i style="background:'+d.colors[k]+'"></i></span>'+
             '<span class="mp-pct">'+pct+'%</span></div>';
     }
@@ -952,13 +1241,51 @@
     EL.ask.innerHTML=ah;
 
     // CTA personalizado + WhatsApp con mensaje prellenado
-    EL.ctatitle.textContent='¿Te hizo sentido, '+p.short+'?';
-    EL.wa.setAttribute('data-msg','Hola Max, hice el test de '+DATA[current].short+' en tu web y me salió '+p.short+
-      (second.v>=2?' con '+p2.short:'')+'. Me gustaría conversarlo.');
+    EL.ctatitle.textContent=isDisc?'¿Te hizo sentido tu estilo '+p.disc.split(' · ')[0]+'?':'¿Te hizo sentido, '+p.short+'?';
+    EL.wa.setAttribute('data-msg','Hola Max, hice el test de '+DATA[current].short+' en tu web y me salió '+label+
+      (second.v>=2?' con '+label2:'')+'. Me gustaría conversarlo.');
 
     var other=current==='ikigai'?'disc':'ikigai';
     EL.switch.textContent='Hacer el test de '+DATA[other].short;
     EL.switch.onclick=function(){start(other);};
+
+    // reinicia la recomendación (la persona elige su momento)
+    resetStages();
+    setSaveLabel();
+  }
+
+  /* ---------- recomendación de servicio ---------- */
+  var lastResult=null;
+  function resetStages(){
+    var b=document.querySelectorAll('.mp-stage'); for(var i=0;i<b.length;i++) b[i].classList.remove('on');
+    var r=$('mp-rec'); if(r) r.hidden=true;
+  }
+  function pickStage(stage){
+    var s=SERVICES[stage]; if(!s||!lastResult) return;
+    var b=document.querySelectorAll('.mp-stage');
+    for(var i=0;i<b.length;i++) b[i].classList.toggle('on',b[i].getAttribute('data-stage')===stage);
+    $('mp-rec-name').textContent=s.name;
+    $('mp-rec-why').textContent=s.why;
+    $('mp-rec-price').textContent=s.price;
+    $('mp-rec-link').setAttribute('href',s.href);
+    var fit=$('mp-rec-fit'), cta=$('mp-rec-cta');
+    if(s.clinical){
+      // en lo clínico, el perfil no "decide" nada: se ofrece la conversación de cortesía de 15 min
+      fit.innerHTML='Tu resultado puede ser un buen punto de partida para conversar, pero aquí lo importante es cómo estás tú.';
+      cta.textContent='Conversar 15 min sin costo';
+      cta.removeAttribute('data-cal'); cta.setAttribute('data-wa','');
+      cta.setAttribute('data-msg','Hola Max, hice tu test y me gustaría conversar sobre la psicoterapia. Quiero la llamada de 15 minutos.');
+    } else {
+      fit.innerHTML='Con tu perfil <b>'+lastResult.label+'</b>, '+ESSENCE[lastResult.key]+': lo tomamos en cuenta para diseñar el proceso a tu medida.';
+      cta.textContent='Agendar sesión de claridad';
+      cta.removeAttribute('data-wa'); cta.removeAttribute('data-msg'); cta.setAttribute('data-cal','');
+    }
+    var r=$('mp-rec'); r.hidden=false;
+    r.style.animation='none'; void r.offsetWidth; r.style.animation='';
+  }
+  var stageBtns=document.querySelectorAll('.mp-stage');
+  for(var sb=0;sb<stageBtns.length;sb++){
+    stageBtns[sb].addEventListener('click',function(e){pickStage(e.currentTarget.getAttribute('data-stage'));});
   }
 
   /* ---------- descargar tarjeta ---------- */
@@ -969,7 +1296,58 @@
     s.onload=function(){cb(true);}; s.onerror=function(){cb(false);};
     document.head.appendChild(s);
   }
+  function setSaveLabel(){ if(EL.save) EL.save.textContent=isPro()?'Guardar mi mapa (para historias)':'Descargar mi tarjeta'; }
+  window.addEventListener('mj-theme',setSaveLabel);
+
+  /* Tema Pro: imagen vertical 1080×1920 para historias, dibujada directamente (sin librerías externas) */
+  function wrapLines(ctx,text,maxW){
+    var words=text.split(' '),lines=[],cur='';
+    words.forEach(function(w){var t=cur?cur+' '+w:w; if(ctx.measureText(t).width>maxW&&cur){lines.push(cur);cur=w;}else cur=t;});
+    if(cur)lines.push(cur); return lines;
+  }
+  function saveStory(){
+    if(!lastResult) return;
+    var label='Guardar mi mapa (para historias)';
+    EL.save.textContent='Generando…';
+    var go=function(){
+      var W=1080,H=1920,c=document.createElement('canvas');c.width=W;c.height=H;var x=c.getContext('2d');
+      x.fillStyle='#0b0b0c';x.fillRect(0,0,W,H);
+      var g=x.createRadialGradient(260,1500,40,260,1500,900);g.addColorStop(0,'rgba(200,168,75,.16)');g.addColorStop(1,'rgba(200,168,75,0)');
+      x.fillStyle=g;x.fillRect(0,0,W,H);
+      // curvas de nivel
+      x.strokeStyle='rgba(243,241,236,.06)';x.lineWidth=2;
+      [[220,1520,420,170],[220,1520,260,104],[860,520,460,190],[860,520,280,116]].forEach(function(e){x.beginPath();x.ellipse(e[0],e[1],e[2],e[3],0,0,Math.PI*2);x.stroke();});
+      // encabezado
+      x.fillStyle='rgba(243,241,236,.72)';x.font='500 30px Poppins';x.fillText('MI MAPA · '+DATA[current].short.toUpperCase(),90,200);
+      x.fillStyle='#f3f1ec';
+      var title=(lastResult.isDisc?lastResult.profile.disc:lastResult.profile.short).toUpperCase();
+      // el título se achica hasta caber en una línea (mínimo 72 px); solo si no cabe, se parte
+      var fs=120; x.font='200 '+fs+'px Poppins';
+      while(x.measureText(title).width>910 && fs>72){ fs-=4; x.font='200 '+fs+'px Poppins'; }
+      var tl=wrapLines(x,title,910),ty=340;tl.forEach(function(l){x.fillText(l,84,ty);ty+=Math.round(fs*1.07);});
+      x.fillStyle='#f0d48a';x.font='400 46px Poppins';
+      wrapLines(x,lastResult.profile.lead,900).forEach(function(l){ty+=12;x.fillText(l,90,ty);ty+=56;});
+      // ruta
+      var pts=routePoints(answers,DATA[current].order,900,620).map(function(p){return [p[0]+90,p[1]+ty+80];});
+      x.setLineDash([6,12]);x.strokeStyle='rgba(243,241,236,.18)';x.lineWidth=3;x.stroke(new Path2D(smoothPath(pts)));
+      x.setLineDash([]);x.strokeStyle='#e2c06a';x.lineWidth=7;x.lineCap='round';x.shadowColor='rgba(240,212,138,.6)';x.shadowBlur=18;
+      x.stroke(new Path2D(smoothPath(pts)));x.shadowBlur=0;
+      x.fillStyle='#f3f1ec';x.beginPath();x.arc(pts[0][0],pts[0][1],12,0,Math.PI*2);x.fill();
+      var e=pts[pts.length-1];x.fillStyle='#f0d48a';x.beginPath();x.arc(e[0],e[1],13,0,Math.PI*2);x.fill();
+      x.strokeStyle='#f0d48a';x.lineWidth=3;x.beginPath();x.arc(e[0],e[1],28,0,Math.PI*2);x.stroke();
+      // pie
+      x.fillStyle='rgba(243,241,236,.72)';x.font='400 34px Poppins';x.fillText('¿Y tú? Haz el test en',90,H-210);
+      x.fillStyle='#f3f1ec';x.font='500 52px Poppins';x.fillText('mapsi.cl/test',90,H-140);
+      x.fillStyle='rgba(243,241,236,.62)';x.font='400 26px Poppins';x.fillText('Maximiliano Jiménez · Psicólogo y Coach',90,H-84);
+      var a=document.createElement('a');a.download='mi-mapa-mapsi.png';a.href=c.toDataURL('image/png');a.click();
+      EL.save.textContent=label;
+    };
+    try{ (document.fonts&&document.fonts.load?Promise.all([document.fonts.load('200 120px Poppins'),document.fonts.load('400 46px Poppins'),document.fonts.load('500 52px Poppins')]):Promise.resolve()).then(go,go); }
+    catch(err){ EL.save.textContent=label; toast('No se pudo generar la imagen. Toma una captura de pantalla.'); }
+  }
+
   function saveCard(){
+    if(isPro()) return saveStory();
     var card=$('mp-card'), label='Descargar mi tarjeta';
     EL.save.textContent='Generando…';
     ensureH2C(function(ok){
@@ -1069,6 +1447,19 @@
       window.open(_c, '_blank', 'noopener,noreferrer');
     });
   }, 'cal-links');
+
+  /* ── SELECTOR DE TEMA (Pro / Mapa): el mismo del sitio, recordado en este navegador ── */
+  safe(function() {
+    var btn = document.getElementById('theme-tg');
+    if (!btn) return;
+    btn.addEventListener('click', function() {
+      var root = document.documentElement;
+      var next = root.getAttribute('data-theme') === 'pro' ? 'mapa' : 'pro';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('mj-theme', next); } catch (e) {}
+      window.dispatchEvent(new Event('mj-theme'));
+    });
+  }, 'theme-toggle');
 
   /* ── NAV ── */
   safe(function() {
