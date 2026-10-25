@@ -1518,8 +1518,10 @@
     }
     .colab-intro strong { color: var(--gold); font-weight: 400; }
     .colab-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem;
     }
+    /* Nota discreta: menciona el contenido para NotCo sin presentarlo como cliente */
+    .colab-foot { margin-top: 1.4rem; font-size: .8rem; color: var(--grey1); font-style: italic; }
     .colab-card {
       background: var(--bg2); border: 1px solid var(--border2);
       border-radius: 12px; padding: 1.1rem 1rem 1.2rem;
@@ -1561,10 +1563,10 @@
       color: var(--gold); line-height: 1.6;
     }
     @media (max-width:900px) {
-      .colab-grid { grid-template-columns: repeat(2, 1fr); gap: .9rem; }
+      .colab-grid { grid-template-columns: repeat(3, 1fr); gap: .9rem; }
     }
     @media (max-width:480px) {
-      .colab-grid { grid-template-columns: repeat(2, 1fr); gap: .7rem; }
+      .colab-grid { grid-template-columns: 1fr; gap: .7rem; }
       .colab-logo { height: 64px; }
       .colab-name { font-size: .85rem; }
       .colab-role { font-size: .6rem; }
@@ -3092,12 +3094,12 @@
     }
 
     /* Animación: solo hero, Soy Max, manifiesto, proceso y cierre. El resto simplemente está */
-    html[data-theme="pro"] section:not(#pro-soy):not(#pro-manifesto):not(#pro-proceso) :is(.rv, .rv-l, .rv-r, .rv-z),
+    html[data-theme="pro"] section:not(#pro-soy):not(#pro-manifesto):not(#pro-proceso):not(#pro-tried) :is(.rv, .rv-l, .rv-r, .rv-z),
     html[data-theme="pro"] .conoce-track-outer .cc,
     html[data-theme="pro"] .mapa-max .ruta .ruta-list li {
       opacity: 1 !important; transform: none !important; transition: none !important;
     }
-    html[data-theme="pro"] section:not(#pro-soy):not(#pro-manifesto):not(#pro-proceso) .pr-lines .ln > span {
+    html[data-theme="pro"] section:not(#pro-soy):not(#pro-manifesto):not(#pro-proceso):not(#pro-tried) .pr-lines .ln > span {
       transform: none !important; transition: none !important;
     }
     html[data-theme="pro"] .marquee-wrap, html[data-theme="pro"] .ph-scroll { display: none; }
@@ -3206,6 +3208,160 @@
        Se amplía la caja hacia arriba y se compensa con margen negativo: el texto no se mueve. */
     html[data-theme="pro"] .pr-lines .ln,
     html[data-theme="pro"] .ph-item .ln { padding-top: .22em; margin-top: -.22em; }
+
+    /* =============================================
+       PRO · PIEZAS DE VENTA (inspiradas en la estructura de feedzy.io)
+    ============================================= */
+    /* Acceso al test desde el hero */
+    .ph-test {
+      display: inline-block; margin-top: 1.1rem; font-family: var(--font-s); font-size: .88rem;
+      color: var(--p-bone); border-bottom: 1px solid rgba(243,241,236,.35); padding-bottom: .15rem;
+      transition: border-color .3s, color .3s;
+    }
+    .ph-test:hover { color: #f0d48a; border-color: #f0d48a; }
+
+    /* Franja de marcas */
+    #pro-logos {
+      background: var(--p-ink); padding: 2.6rem 6vw 3rem;
+      display: flex; flex-direction: column; align-items: center; gap: 1.4rem;
+      border-top: 1px solid rgba(243,241,236,.08);
+    }
+    .pl-k { font-family: var(--font-s); font-size: .74rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(243,241,236,.7); }
+    .pl-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2.2rem 4.2rem; }
+    .pl-row img {
+      height: 46px; width: auto; max-width: 170px; object-fit: contain;
+      filter: grayscale(1) brightness(1.5); mix-blend-mode: screen; opacity: .85;
+      transition: opacity .3s;
+    }
+    .pl-row img.lg-invert { filter: invert(1) grayscale(1) brightness(1.25); }
+    .pl-row img.lg-contrast { filter: grayscale(1) brightness(1.05) contrast(2.6) brightness(1.3); }
+    .pl-row img:hover { opacity: 1; }
+    .pl-word { font-family: var(--font-s); font-weight: 500; font-size: .92rem; line-height: 1.15; letter-spacing: .02em; color: rgba(243,241,236,.85); text-align: left; }
+
+    /* Lo que ya intentaste */
+    #pro-tried { background: var(--p-ink); color: var(--p-bone); padding: 7rem 6vw 2rem; }
+    .pt-in { max-width: 1100px; margin: 0 auto; }
+    .pt-sub { max-width: 560px; margin-top: 1rem; font-family: var(--font-s); font-size: 1.05rem; line-height: 1.7; color: rgba(243,241,236,.74); }
+    .pt-table { margin-top: 3rem; border-top: 1px solid rgba(243,241,236,.2); }
+    .pt-row {
+      display: grid; grid-template-columns: 1.15fr .9fr 1.25fr; gap: 1.5rem;
+      padding: 1.15rem .3rem; border-bottom: 1px solid rgba(243,241,236,.1);
+      font-family: var(--font-s); font-size: 1rem; color: rgba(243,241,236,.78);
+    }
+    .pt-row span:first-child { color: var(--p-bone); font-weight: 500; }
+    .pt-row span:last-child { color: rgba(243,241,236,.9); }
+    .pt-head { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: rgba(243,241,236,.66); padding-top: .9rem; padding-bottom: .9rem; }
+    .pt-head span:first-child, .pt-head span:last-child { color: rgba(243,241,236,.66); font-weight: 400; }
+    .pt-me { margin-top: .6rem; border: 1px solid rgba(240,212,138,.45); border-radius: 6px; background: rgba(240,212,138,.06); padding: 1.3rem 1rem; }
+    .pt-me span { color: var(--p-bone) !important; }
+    .pt-me span:first-child { color: #f0d48a !important; }
+
+    /* Manifiesto: las palabras se encienden con el scroll */
+    html[data-theme="pro"] .wl { opacity: .2; transition: opacity .35s ease; }
+    html[data-theme="pro"] .wl.lit { opacity: 1; }
+
+    /* Reel: contenido real como prueba de voz */
+    .reel-proof {
+      display: grid; grid-template-columns: minmax(220px, 340px) 1fr; gap: 4vw; align-items: center;
+      margin: 2.4rem 0 3.4rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(243,241,236,.1);
+    }
+    .rp-media { position: relative; display: block; border-radius: 6px; overflow: hidden; aspect-ratio: 4 / 5; }
+    .rp-media img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .8s var(--ease); }
+    .rp-media:hover img { transform: scale(1.04); }
+    .rp-go {
+      position: absolute; left: .8rem; bottom: .8rem; padding: .5rem .8rem; border-radius: 6px;
+      background: rgba(11,11,12,.82); color: var(--p-bone); font-family: var(--font-s); font-size: .8rem;
+    }
+    .rp-h { font-family: var(--font-d); font-weight: 300; font-size: clamp(1.6rem, 3vw, 2.4rem); line-height: 1.12; letter-spacing: -.01em; color: var(--p-bone); }
+    .rp-sub { margin-top: 1rem; font-family: var(--font-s); font-size: 1rem; line-height: 1.7; color: rgba(243,241,236,.74); max-width: 520px; }
+    .rp-quotes { list-style: none; margin-top: 1.8rem; display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+    .rp-quotes li {
+      padding: 1rem 1.1rem; border-left: 2px solid rgba(240,212,138,.55); background: rgba(243,241,236,.04);
+      font-family: var(--font-s); font-size: .95rem; line-height: 1.5; color: var(--p-bone);
+    }
+    .rp-note { margin-top: 1rem; font-family: var(--font-s); font-size: .8rem; color: rgba(243,241,236,.66); }
+
+    /* Preguntas frecuentes */
+    #pro-faq { background: var(--p-ink); color: var(--p-bone); padding: 7rem 6vw; border-top: 1px solid rgba(243,241,236,.08); }
+    .fq-in { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: .8fr 1.2fr; gap: 5vw; align-items: start; }
+    .fq-head { position: sticky; top: 110px; }
+    .fq-sub { margin-top: 1rem; font-family: var(--font-s); font-size: 1rem; line-height: 1.7; color: rgba(243,241,236,.74); }
+    .fq-cond { display: inline-block; margin-top: 1.4rem; color: var(--p-bone); }
+    .fq-list { border-top: 1px solid rgba(243,241,236,.18); }
+    .fq { border-bottom: 1px solid rgba(243,241,236,.1); }
+    .fq summary {
+      list-style: none; cursor: pointer; position: relative;
+      padding: 1.35rem 2.6rem 1.35rem 0; font-family: var(--font-s); font-size: 1.05rem; font-weight: 500; color: var(--p-bone);
+    }
+    .fq summary::-webkit-details-marker { display: none; }
+    .fq summary::after {
+      content: '+'; position: absolute; right: .3rem; top: 50%; transform: translateY(-50%);
+      font-size: 1.5rem; font-weight: 300; color: #f0d48a; transition: transform .35s var(--ease);
+    }
+    .fq[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+    .fq p { padding: 0 2.6rem 1.4rem 0; font-family: var(--font-s); font-size: .98rem; line-height: 1.75; color: rgba(243,241,236,.8); }
+    .fq[open] p { animation: sv-in .4s var(--ease); }
+
+    /* Mini demostraciones dentro de los servicios (se animan al abrir la tarjeta) */
+    .svc-demo {
+      margin: 0 0 1.4rem; padding: 1.1rem 1.2rem; border-radius: 6px;
+      background: rgba(243,241,236,.04); border: 1px solid rgba(243,241,236,.1);
+      display: flex; flex-direction: column; gap: .55rem;
+    }
+    .sd-k { font-family: var(--font-s); font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(243,241,236,.7); }
+    .sd-msg {
+      max-width: 88%; padding: .6rem .85rem; border-radius: 6px; font-family: var(--font-s); font-size: .88rem; line-height: 1.45;
+      opacity: 0; transform: translateY(8px);
+    }
+    .sd-q { align-self: flex-start; background: var(--p-bone); color: var(--p-ink); }
+    .sd-a { align-self: flex-end; background: rgba(243,241,236,.1); color: var(--p-bone); }
+    .sd-bad { text-decoration: line-through; text-decoration-color: rgba(224,106,92,.85); color: rgba(243,241,236,.66); }
+    .sd-good { border: 1px solid rgba(240,212,138,.5); }
+    .sv-open .sd-msg { animation: pp-in .55s var(--ease) forwards; }
+    .sv-open .sd-msg:nth-of-type(2) { animation-delay: .9s; }
+    .sv-open .sd-msg:nth-of-type(3) { animation-delay: 1.9s; }
+    .sv-open .sd-msg:nth-of-type(1) { animation-delay: .2s; }
+    .sd-bar { display: grid; grid-template-columns: 1.2rem 1fr 6.5rem; align-items: center; gap: .7rem; font-family: var(--font-s); font-size: .8rem; color: rgba(243,241,236,.78); }
+    .sd-bar b { font-weight: 600; color: var(--p-bone); }
+    .sd-bar i { display: block; height: 6px; border-radius: 3px; background: rgba(243,241,236,.1); position: relative; overflow: hidden; }
+    .sd-bar i::after {
+      content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #b8964a, #f0d48a);
+      transform-origin: left; transform: scaleX(0); transition: transform 1.2s var(--ease);
+    }
+    .sv-open .sd-bar i::after { transform: scaleX(var(--v)); }
+    .sv-open .sd-bar:nth-of-type(2) i::after { transition-delay: .12s; }
+    .sv-open .sd-bar:nth-of-type(3) i::after { transition-delay: .24s; }
+    .sv-open .sd-bar:nth-of-type(4) i::after { transition-delay: .36s; }
+    .sd-read { margin-top: .3rem; font-family: var(--font-s); font-size: .85rem; color: var(--p-bone); }
+    .sd-before, .sd-after { font-family: var(--font-s); font-size: .95rem; line-height: 1.45; padding: .7rem .85rem; border-radius: 6px; }
+    .sd-before span, .sd-after span { display: block; font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; margin-bottom: .25rem; }
+    .sd-before { color: rgba(243,241,236,.66); text-decoration: line-through; text-decoration-color: rgba(224,106,92,.8); }
+    .sd-before span { color: rgba(243,241,236,.66); text-decoration: none; display: block; }
+    .sd-after { color: var(--p-bone); border: 1px solid rgba(240,212,138,.5); opacity: 0; transform: translateY(8px); }
+    .sd-after span { color: #f0d48a; }
+    .sv-open .sd-after { animation: pp-in .6s var(--ease) .9s forwards; }
+
+    @media (max-width: 900px) {
+      .reel-proof { grid-template-columns: 1fr; }
+      .rp-media { max-width: 340px; }
+      .fq-in { grid-template-columns: 1fr; }
+      .fq-head { position: static; }
+    }
+    @media (max-width: 640px) {
+      .pt-head { display: none; }
+      .pt-row { grid-template-columns: 1fr; gap: .25rem; }
+      .pt-row span:nth-child(2)::before { content: 'Te da: '; color: rgba(243,241,236,.66); }
+      .pt-row span:nth-child(3)::before { content: 'No te da: '; color: rgba(243,241,236,.66); }
+      .rp-quotes { grid-template-columns: 1fr; }
+      .pl-row { gap: 1.6rem 2.4rem; }
+      .pl-row img { height: 36px; }
+      #pro-tried, #pro-faq { padding: 5rem 1.4rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sd-msg, .sd-after { opacity: 1 !important; transform: none !important; animation: none !important; }
+      .sd-bar i::after { transform: scaleX(var(--v)); transition: none; }
+      html[data-theme="pro"] .wl { opacity: 1; }
+    }
 
     /* =============================================
        PRO · ESCENA DEL PROCESO: sin "aire" y con señales de scroll
@@ -3438,8 +3594,20 @@
       <a href="#servicios" class="p-link">Ver servicios y precios</a>
     </div>
     <p class="ph-note">30 minutos · online · sin costo ni compromiso</p>
+    <a href="test.html" class="ph-test">¿No sabes por dónde partir? Haz el test gratis de 2 minutos <span aria-hidden="true">→</span></a>
   </div>
   <div class="ph-scroll" aria-hidden="true"></div>
+</section>
+
+<!-- ===================== PRO · MARCAS CON LAS QUE HA TRABAJADO (prueba social temprana) ===================== -->
+<section id="pro-logos" class="pro-only" aria-label="Marcas e instituciones con las que he trabajado">
+  <p class="pl-k">Marcas e instituciones con las que he trabajado</p>
+  <div class="pl-row">
+    <img src="img/opt/Logodescubreelqui-sm.png" alt="Descubre Elqui" class="lg-contrast" loading="lazy" decoding="async" />
+    <img src="img/Logosportlife.png" alt="Sportlife Coquimbo" loading="lazy" decoding="async" />
+    <img src="img/opt/LogoCoquimboadventure-sm.png" alt="Coquimbo Adventure" class="lg-invert" loading="lazy" decoding="async" />
+    <span class="pl-word">Universidad de<br/>La Serena</span>
+  </div>
 </section>
 
 <!-- ===================== HERO (tema Mapa) ===================== -->
@@ -3578,6 +3746,23 @@
 </section>
 
 <!-- ===================== PRO · MANIFIESTO ===================== -->
+<!-- ===================== PRO · LO QUE YA INTENTASTE (nombra las alternativas sin atacarlas) ===================== -->
+<section id="pro-tried" class="pro-only">
+  <div class="pt-in">
+    <h2 class="h2 rv">No te faltó intentarlo.<br/>Te faltó otra cosa.</h2>
+    <p class="pt-sub rv d1">Cada una de estas opciones sirve para algo. Ninguna está pensada para lo que te tiene parado.</p>
+    <div class="pt-table" role="table" aria-label="Lo que ya probaste y lo que no te dio">
+      <div class="pt-row pt-head" role="row"><span role="columnheader">Lo que ya probaste</span><span role="columnheader">Lo que te da</span><span role="columnheader">Lo que no te da</span></div>
+      <div class="pt-row rv" role="row"><span role="cell">Otro curso o certificación</span><span role="cell">Información</span><span role="cell">La seguridad para usarla</span></div>
+      <div class="pt-row rv d1" role="row"><span role="cell">Videos y consejos en redes</span><span role="cell">Ideas generales</span><span role="cell">Algo pensado para tu caso</span></div>
+      <div class="pt-row rv d2" role="row"><span role="cell">Libros de autoayuda</span><span role="cell">Motivación</span><span role="cell">Un plan que dure más de una semana</span></div>
+      <div class="pt-row rv d3" role="row"><span role="cell">Hablarlo con amigos o familia</span><span role="cell">Cariño y apoyo</span><span role="cell">Alguien que te diga lo que no quieres oír</span></div>
+      <div class="pt-row rv d4" role="row"><span role="cell">Esperar "el momento"</span><span role="cell">Tranquilidad</span><span role="cell">Movimiento</span></div>
+      <div class="pt-row pt-me rv d5" role="row"><span role="cell">Un proceso conmigo</span><span role="cell">Método y acompañamiento</span><span role="cell">Pasos concretos que sostienes entre sesiones</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="pro-manifesto" class="pro-only">
   <h2 class="pm-h pr-lines rv"><span class="ln"><span>El problema no es</span></span><span class="ln"><span><em>lo que sabes.</em></span></span></h2>
   <p class="pm-sub rv d2">Es la confianza, la claridad y la autovaloración. Eso es lo que trabajamos en sesión, y por eso los cambios se notan pronto.</p>
@@ -3972,6 +4157,12 @@
           </div>
         </div>
         <div class="svc-body">
+          <div class="svc-demo sd-chat pro-only" aria-hidden="true">
+            <span class="sd-k">Simulación de entrevista · ejemplo</span>
+            <div class="sd-msg sd-q">Cuéntame de ti.</div>
+            <div class="sd-msg sd-a sd-bad">Eh… soy proactivo, trabajo en equipo y…</div>
+            <div class="sd-msg sd-a sd-good">Soy ingeniera comercial. En mi práctica ordené el inventario de una bodega y bajamos las pérdidas. Eso quiero hacer aquí.</div>
+          </div>
           <p class="svc-desc">¿Llegas a la entrevista y te quedas en blanco? Tu CV probablemente está bien. Lo que falla es cómo te paras frente a quien te entrevista, y eso se entrena.</p>
           <p class="svc-outcome"><strong>El objetivo:</strong> que llegues sabiendo qué contar de ti y cómo decirlo. Simulamos entrevistas reales hasta que dejen de darte miedo.</p>
           <div class="price-table">
@@ -4034,6 +4225,14 @@
           </div>
         </div>
         <div class="svc-body">
+          <div class="svc-demo sd-disc pro-only" aria-hidden="true">
+            <span class="sd-k">Perfil DISC · ejemplo</span>
+            <div class="sd-bar" style="--v:.42"><b>D</b><i></i><em>Dominancia</em></div>
+            <div class="sd-bar" style="--v:.78"><b>I</b><i></i><em>Influencia</em></div>
+            <div class="sd-bar" style="--v:.64"><b>S</b><i></i><em>Estabilidad</em></div>
+            <div class="sd-bar" style="--v:.30"><b>C</b><i></i><em>Cumplimiento</em></div>
+            <span class="sd-read">Lectura: comunicas bien y cuidas los vínculos; te cuesta imponer decisiones.</span>
+          </div>
           <p class="svc-desc">Llevas años en lo mismo y ya no sabes si quedarte, cambiar o pedir más. Lo ordenamos con herramientas concretas como DISC, y sales con un plan para el siguiente paso.</p>
           <p class="svc-outcome"><strong>El objetivo:</strong> en 4 a 8 sesiones, pasar de "sé que valgo pero no sé hacia dónde" a un plan claro y la confianza para ejecutarlo. Un proceso cercano y 100% aplicable.</p>
           <div class="price-table">
@@ -4106,6 +4305,11 @@
           </div>
         </div>
         <div class="svc-body">
+          <div class="svc-demo sd-bio pro-only" aria-hidden="true">
+            <span class="sd-k">Tu presentación · ejemplo</span>
+            <div class="sd-before"><span>Antes</span>Profesional proactivo y orientado a resultados.</div>
+            <div class="sd-after"><span>Después</span>Ayudo a equipos de ventas a dejar de perder clientes en la primera reunión.</div>
+          </div>
           <p class="svc-desc">Tienes más valor del que muestras. Construimos tu marca en LinkedIn, Instagram y las redes donde está tu audiencia, partiendo de lo que de verdad haces bien.</p>
           <p class="svc-outcome"><strong>El objetivo:</strong> en 4 a 8 sesiones, dejar de ser invisible: una marca que te representa y la seguridad para mostrarte. Desde lo que ya eres, sin fórmulas vacías.</p>
           <div class="price-table">
@@ -4295,24 +4499,20 @@
       <div class="colab-card rv-z d1">
         <div class="colab-logo"><img loading="lazy" decoding="async" class="lg-contrast" src="img/opt/Logodescubreelqui-sm.png" alt="Descubre Elqui" /></div>
         <div class="colab-name">Descubre Elqui</div>
-        <div class="colab-role">Ex Embajador</div>
+        <div class="colab-role">Ex Embajador · Relator en seminario de turismo aventura</div>
       </div>
       <div class="colab-card rv-z d2">
         <div class="colab-logo"><img loading="lazy" decoding="async" src="img/Logosportlife.png" alt="Sportlife Coquimbo" /></div>
         <div class="colab-name">Sportlife Coquimbo</div>
-        <div class="colab-role">Ex Embajador · 5 años · Relator</div>
+        <div class="colab-role">Ex Embajador · 5 años · Relator · Team building para equipos gerenciales</div>
       </div>
       <div class="colab-card rv-z d3">
-        <div class="colab-logo"><img loading="lazy" decoding="async" class="lg-invert" src="img/Logonotco.png" alt="NotCo" /></div>
-        <div class="colab-name">NotCo</div>
-        <div class="colab-role">Colaboraciones de contenido</div>
-      </div>
-      <div class="colab-card rv-z d4">
         <div class="colab-logo"><img loading="lazy" decoding="async" class="lg-invert" src="img/opt/LogoCoquimboadventure-sm.png" alt="Coquimbo Adventure" /></div>
         <div class="colab-name">Coquimbo Adventure</div>
         <div class="colab-role">Relator · Charla "Turismo y Bienestar"</div>
       </div>
     </div>
+    <p class="colab-foot">También he creado reels con productos que NotCo me envió como creador de contenido.</p>
   </div>
 </section>
 
@@ -4591,6 +4791,25 @@
     <p class="label rv">Encuéntrame en</p>
     <h2 class="h2 rv d1">Redes & <em>comunidad</em></h2>
     <p class="body-text rv d2">Comparto contenido de psicología, bienestar y desarrollo profesional. Sígueme para continuar el camino.</p>
+    <!-- PRO · Muestra de contenido real: sin cifras de alcance, solo la voz y lo que provoca -->
+    <div class="reel-proof pro-only">
+      <a class="rp-media" href="https://www.instagram.com/reel/DZxgqVBxm0E/" target="_blank" rel="noopener" aria-label="Ver el reel en Instagram">
+        <img src="img/reel-portada.jpg" alt="Maximiliano en un reel de Instagram, frente a una lámpara" loading="lazy" decoding="async" />
+        <span class="rp-go">Verlo en Instagram ↗</span>
+      </a>
+      <div class="rp-text">
+        <h3 class="rp-h">Así hablo cuando nadie<br/>me está pagando por hacerlo.</h3>
+        <p class="rp-sub">Si te hace sentido cómo lo digo, probablemente te va a hacer sentido trabajar conmigo.</p>
+        <ul class="rp-quotes">
+          <li>"Fuerte reflexión, me sirve sobre todo hoy, ni te imaginas. Gracias."</li>
+          <li>"Gracias, necesitaba esas palabras."</li>
+          <li>"Buena frase y mejor ejemplo."</li>
+          <li>"Lo mejor que he visto en meses."</li>
+        </ul>
+        <p class="rp-note">Comentarios reales en Instagram. No son testimonios de personas que atendí.</p>
+      </div>
+    </div>
+
     <div class="redes-grid">
       <!-- Instagram -->
       <a class="red-card red-ig rv d1" href="https://www.instagram.com/mapsicl/" target="_blank" rel="noopener">
@@ -4649,6 +4868,51 @@
 </section>
 
 <!-- ===================== CTA FINAL ===================== -->
+<!-- ===================== PRO · PREGUNTAS FRECUENTES (respuestas tomadas de condiciones.html) ===================== -->
+<section id="pro-faq" class="pro-only">
+  <div class="fq-in">
+    <div class="fq-head">
+      <h2 class="h2 rv">Preguntas<br/>frecuentes</h2>
+      <p class="fq-sub rv d1">Lo que casi todos preguntan antes de agendar. Si te queda una duda, la resolvemos en la sesión de claridad.</p>
+      <a href="condiciones.html" class="p-link fq-cond rv d2">Ver condiciones completas</a>
+    </div>
+    <div class="fq-list">
+      <details class="fq">
+        <summary>¿Coaching o psicoterapia? ¿Cuál necesito?</summary>
+        <p>El coaching sirve cuando quieres avanzar en algo concreto: conseguir trabajo, ordenar tu carrera o construir tu marca. La psicoterapia es para cuando lo que pesa es emocional: ansiedad, estrés, un duelo o una crisis. Si no lo tienes claro, la llamada de 15 minutos es justamente para eso.</p>
+      </details>
+      <details class="fq">
+        <summary>¿Las sesiones son online?</summary>
+        <p>Sí, todas son por videollamada. Las charlas y talleres para empresas pueden ser presenciales; dentro de la Región de Coquimbo el traslado está incluido.</p>
+      </details>
+      <details class="fq">
+        <summary>¿Qué pasa en la sesión de claridad de 30 minutos?</summary>
+        <p>Me cuentas dónde estás y hacia dónde quieres ir, y te digo con honestidad si puedo ayudarte y cómo. No tiene costo ni compromiso, y no es todavía una sesión de coaching.</p>
+      </details>
+      <details class="fq">
+        <summary>¿Cómo se paga? ¿Entregas boleta?</summary>
+        <p>Por transferencia o por Mercado Pago, con tarjeta de crédito o débito. Por cada pago entrego boleta de honorarios.</p>
+      </details>
+      <details class="fq">
+        <summary>¿Puedo pagar el pack en cuotas?</summary>
+        <p>Sí. El pack de 8 sesiones se puede pagar en cuotas con tarjeta de crédito a través de Mercado Pago.</p>
+      </details>
+      <details class="fq">
+        <summary>¿Qué pasa si no puedo asistir a una sesión?</summary>
+        <p>Si avisas con 24 horas o más, la reagendamos sin costo. Con menos de 24 horas, o si no te conectas, la sesión se considera realizada. Si soy yo quien no puede, la reagendamos sin costo cuando te acomode.</p>
+      </details>
+      <details class="fq">
+        <summary>¿Cuánto tiempo tengo para usar un pack?</summary>
+        <p>Un año desde la compra. En el pack de 8 sesiones, si ya usaste hasta 4, puedes traspasar las restantes a otra persona.</p>
+      </details>
+      <details class="fq">
+        <summary>¿Lo que conversamos es confidencial?</summary>
+        <p>Sí. También cuando el proceso lo paga una empresa: a la organización solo se le informa la asistencia, salvo que tú autorices compartir algo más.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <section id="cta-final" class="sec-full">
   <div class="cta-bg"></div>
   <div class="cta-inner">
@@ -5271,6 +5535,42 @@
     window.addEventListener('mj-theme', check);
     check();
   }, 'pro-wa-float');
+
+  /* ── PRO · MANIFIESTO: cada palabra se enciende a medida que bajas ── */
+  safe(function() {
+    var sec = document.getElementById('pro-manifesto');
+    if (!sec || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var words = [];
+    sec.querySelectorAll('.pm-h, .pm-sub').forEach(function(root) {
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      var nodes = [];
+      while (walker.nextNode()) if (walker.currentNode.textContent.trim()) nodes.push(walker.currentNode);
+      nodes.forEach(function(n) {
+        var frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function(part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          var s = document.createElement('span');
+          s.className = 'wl'; s.textContent = part;
+          frag.appendChild(s); words.push(s);
+        });
+        n.parentNode.replaceChild(frag, n);
+      });
+    });
+    var ticking = false;
+    function update() {
+      ticking = false;
+      if (document.documentElement.getAttribute('data-theme') !== 'pro') return;
+      var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+      // 0 cuando la sección asoma por abajo (85 % de la pantalla), 1 cuando su borde superior llega al 15 %
+      var p = Math.max(0, Math.min(1, (vh * 0.85 - r.top) / (vh * 0.7)));
+      var n = Math.round(p * words.length);
+      words.forEach(function(w, i) { w.classList.toggle('lit', i < n); });
+    }
+    window.addEventListener('scroll', function() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('mj-theme', update);
+    update();
+  }, 'pro-manifesto-words');
 
   /* ── PRO · ASÍ ILUMINO TU MAPA: escena con scroll (chat → mapa editable → viajero) ── */
   safe(function() {
