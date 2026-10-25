@@ -9,9 +9,51 @@
   <meta name="description" content="Maximiliano Jiménez — Psicólogo, Coach PNL y Magíster en Liderazgo. Coaching para inserción laboral, desarrollo profesional y marca personal en Chile. Sesiones de psicoterapia individual online. +3.700 personas impactadas." />
   <meta name="keywords" content="coach inserción laboral Chile, coaching desarrollo profesional, marca personal redes sociales Chile, psicólogo coach PNL, coach para entrevistas de trabajo, coaching carrera profesional, cómo conseguir primer empleo, coach profesional La Serena, psicólogo online Chile, psicoterapia individual online, terapia psicológica online" />
   <meta name="author" content="Maximiliano Jiménez Rojas" />
-  <meta property="og:title" content="Maximiliano Jiménez — Psicólogo & Coach PNL" />
-  <meta property="og:description" content="Coaching para inserción laboral, desarrollo profesional y marca personal. +3.700 personas impactadas en Chile." />
+  <link rel="canonical" href="https://www.mapsi.cl/" />
+  <!-- Vista previa al compartir (WhatsApp, LinkedIn, Instagram, X) -->
+  <meta property="og:title" content="Maximiliano Jiménez · Psicólogo y Coach PNL" />
+  <meta property="og:description" content="Coaching para inserción laboral, desarrollo profesional y marca personal, y psicoterapia online. Reconquista tu mapa." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.mapsi.cl/" />
+  <meta property="og:site_name" content="Maximiliano Jiménez" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:image" content="https://www.mapsi.cl/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Maximiliano Jiménez en el escenario. Reconquista tu mapa." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Íconos -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Ficha profesional para buscadores -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Maximiliano Jiménez · Psicólogo y Coach",
+    "url": "https://www.mapsi.cl/",
+    "image": "https://www.mapsi.cl/img/og-image.jpg",
+    "description": "Coaching para inserción laboral, desarrollo profesional y marca personal, psicoterapia individual online y charlas para organizaciones.",
+    "priceRange": "$45.900 – $64.900 CLP por sesión",
+    "areaServed": "CL",
+    "address": { "@type": "PostalAddress", "addressLocality": "La Serena", "addressRegion": "Coquimbo", "addressCountry": "CL" },
+    "founder": {
+      "@type": "Person",
+      "name": "Maximiliano Jiménez Rojas",
+      "jobTitle": "Psicólogo, Coach PNL y Magíster en Liderazgo",
+      "sameAs": ["https://www.instagram.com/mapsicl/", "https://www.linkedin.com/in/maximiliano-jimenez-rojas-b252bbba/"]
+    },
+    "makesOffer": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Coaching para la Inserción Laboral" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Coaching para el Desarrollo Profesional" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Coaching para tu Marca Personal" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Psicoterapia individual online" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Charlas y Team Building para organizaciones" } }
+    ]
+  }
+  </script>
   <title>Maximiliano Jiménez — Psicólogo & Coach PNL | La Serena, Chile</title>
 
   <!-- Fonts: Instrument Sans (cuerpo, carácter sutil) + DM Serif Display (titulares y cursivas editoriales) -->
@@ -3448,6 +3490,76 @@
       html[data-theme="pro"] .svc-grid { max-width: 1360px; }
     }
 
+    /* =============================================
+       TERMINACIONES (detalles que se notan sin que se vean)
+    ============================================= */
+    /* Títulos con líneas parejas y párrafos sin palabras huérfanas */
+    h1, h2, h3, .h2, .ph-item, .pp-title, .perfil-q, .rp-h, .cta-h, .svc-name, .fq summary { text-wrap: balance; }
+    p, li, .svc-desc, .pp-text, .fq p, .testi-text { text-wrap: pretty; }
+    /* Cifras del mismo ancho: precios y contadores quedan alineados */
+    .pt-price, .shp-n, .pa-n, .h-stat-n, .sc-price, .svc-price { font-variant-numeric: tabular-nums; }
+
+    /* Botones que "ceden" al presionarlos */
+    :is(.p-btn, .btn-wa, .btn-svc, .nav-wa, .pp-chip, .cm-btn, .sp-call, .theme-tg, .price-tier, .mcta a):active {
+      transform: scale(.97); transition-duration: .08s;
+    }
+
+    /* Subrayado que se dibuja de izquierda a derecha */
+    html[data-theme="pro"] :is(.p-link, .ph-test, .pp-next, .fq-cond) {
+      border-bottom: none; padding-bottom: .2rem;
+      background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+    }
+    html[data-theme="pro"] :is(.p-link, .ph-test, .pp-next, .fq-cond):hover { animation: ul-draw .55s var(--ease); }
+    @keyframes ul-draw { from { background-size: 0 1px; } to { background-size: 100% 1px; } }
+
+    /* Menú: marca la sección en la que estás */
+    .nav-links a { position: relative; }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px;
+      background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .45s var(--ease);
+    }
+    .nav-links a.is-active { color: var(--white); }
+    .nav-links a.is-active::after { transform: scaleX(1); }
+    /* Menú: se esconde al bajar y vuelve al subir */
+    nav#nav { transition: transform .45s var(--ease), background .4s, border-color .4s, backdrop-filter .4s; }
+    nav#nav.nav-hidden { transform: translateY(-105%); }
+
+    /* Barra fija para agendar (solo celular, tema Pro) */
+    .mcta { display: none; }
+    @media (max-width: 760px) {
+      html[data-theme="pro"] .mcta {
+        display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 850;
+        padding: .7rem 1rem calc(.7rem + env(safe-area-inset-bottom));
+        background: rgba(11,11,12,.92); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        border-top: 1px solid rgba(243,241,236,.12);
+        transform: translateY(110%); transition: transform .45s var(--ease);
+      }
+      html[data-theme="pro"] .mcta.show { transform: none; }
+      html[data-theme="pro"] .mcta a {
+        flex: 1; display: flex; align-items: center; justify-content: center; gap: .6rem;
+        padding: .85rem 1rem; border-radius: 6px; background: var(--p-bone); color: var(--p-ink);
+        font-family: var(--font-s); font-weight: 500; font-size: .95rem; white-space: nowrap;
+      }
+      html[data-theme="pro"] .mcta small { font-size: .78rem; color: var(--p-ink2); font-weight: 400; }
+      /* WhatsApp sube para no quedar tapado por la barra */
+      html[data-theme="pro"] body.mcta-on #wa-float { bottom: calc(5.4rem + env(safe-area-inset-bottom)); transition: bottom .45s var(--ease), opacity .5s, transform .5s; }
+    }
+
+    /* Hora local en La Serena (footer) */
+    .f-local { width: 100%; text-align: center; font-family: var(--font-s); font-size: .8rem; color: var(--grey1); margin-top: .4rem; }
+    .f-local b { font-weight: 500; color: var(--white); font-variant-numeric: tabular-nums; }
+    .f-local .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: .45rem; vertical-align: 1px; background: #7cc49a; }
+
+    /* Transición suave entre páginas del sitio (inicio ↔ condiciones) */
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .35s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      @view-transition { navigation: none; }
+      nav#nav.nav-hidden { transform: none; }
+      html[data-theme="pro"] :is(.p-link, .ph-test, .pp-next, .fq-cond):hover { animation: none; }
+    }
+
     /* Pro: "Quién soy" deja solo el Mapa de Max (foto y cita ya están en SOY MAX) */
     html[data-theme="pro"] #sobre-mi .about-grid { grid-template-columns: 1fr; max-width: 1240px; margin: 0 auto; }
     html[data-theme="pro"] #sobre-mi .about-grid > .rv-l,
@@ -3501,6 +3613,11 @@
 <div id="c-ring" aria-hidden="true"></div>
 
 <!-- FLOATING WA -->
+<!-- Barra fija para agendar en celular (tema Pro): aparece tras el hero y se retira en el cierre -->
+<div class="mcta" id="mcta">
+  <a href="#" data-cal target="_blank" rel="noopener">Agenda tu sesión gratis de 30 min <span aria-hidden="true">→</span></a>
+</div>
+
 <a id="wa-float" href="#" data-wa target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.108.549 4.1 1.508 5.836L.057 23.5a.5.5 0 0 0 .61.61l5.666-1.451A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.002-1.371l-.357-.212-3.727.955.974-3.655-.233-.375A9.818 9.818 0 1 1 12 21.818z"/></svg>
 </a>
@@ -4955,6 +5072,7 @@
       </a>
     </div>
     <div class="f-disclaimer"><strong>Sobre las llamadas de cortesía:</strong> la sesión de claridad de 30 min (servicios de coaching) y la llamada "clarifica tus dudas" de 15 min (atención psicológica) son espacios gratuitos para resolver dudas, conocernos y sentar las bases de un trabajo posterior. No constituyen una sesión de coaching ni de psicoterapia.</div>
+    <p class="f-local" id="f-local" hidden><span class="dot" aria-hidden="true"></span>En La Serena son las <b id="f-time">--:--</b> · respondo en menos de 24 horas</p>
     <div class="f-copy">© 2026 Maximiliano Jiménez · Psicólogo & Coach · La Serena, Chile</div>
   </div>
 </footer>
@@ -5535,6 +5653,64 @@
     window.addEventListener('mj-theme', check);
     check();
   }, 'pro-wa-float');
+
+  /* ── TERMINACIONES: hora en La Serena, sección activa, menú inteligente y barra de agendar ── */
+  safe(function() {
+    // Hora local en La Serena (Chile continental), se actualiza cada 30 s
+    var box = document.getElementById('f-local'), t = document.getElementById('f-time');
+    if (box && t && window.Intl) {
+      var fmt = new Intl.DateTimeFormat('es-CL', { timeZone: 'America/Santiago', hour: '2-digit', minute: '2-digit', hour12: false });
+      var tick = function() { t.textContent = fmt.format(new Date()); };
+      tick(); box.hidden = false; setInterval(tick, 30000);
+    }
+  }, 'local-time');
+
+  safe(function() {
+    // El menú marca la sección visible
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var map = {};
+    links.forEach(function(a) { var s = document.querySelector(a.getAttribute('href')); if (s) map[s.id] = a; });
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function(a) { a.classList.remove('is-active'); });
+        if (map[e.target.id]) map[e.target.id].classList.add('is-active');
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    Object.keys(map).forEach(function(id) { io.observe(document.getElementById(id)); });
+  }, 'nav-active');
+
+  safe(function() {
+    // El menú se esconde al bajar y vuelve al subir; la barra de agendar aparece en celular tras el hero
+    var nav = document.getElementById('nav');
+    var burger = document.getElementById('burger');
+    var bar = document.getElementById('mcta');
+    var hero = document.getElementById('pro-hero');
+    var end = document.getElementById('cta-final');
+    var lastY = window.scrollY, ticking = false;
+    function update() {
+      ticking = false;
+      var y = window.scrollY, dy = y - lastY;
+      var menuOpen = burger && burger.classList.contains('open');
+      if (nav && !menuOpen) {
+        if (y < 300 || dy < -4) nav.classList.remove('nav-hidden');
+        else if (dy > 6) nav.classList.add('nav-hidden');
+      }
+      lastY = y;
+      if (bar && hero) {
+        var pro = document.documentElement.getAttribute('data-theme') === 'pro';
+        var vh = window.innerHeight;
+        var show = pro && hero.getBoundingClientRect().bottom < vh * 0.3 &&
+                   !(end && end.getBoundingClientRect().top < vh * 0.85);
+        bar.classList.toggle('show', show);
+        document.body.classList.toggle('mcta-on', show && window.innerWidth <= 760);
+      }
+    }
+    window.addEventListener('scroll', function() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('mj-theme', update);
+    update();
+  }, 'nav-smart');
 
   /* ── PRO · MANIFIESTO: cada palabra se enciende a medida que bajas ── */
   safe(function() {

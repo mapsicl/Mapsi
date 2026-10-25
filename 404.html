@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="robots" content="noindex" />
+  <title>Te saliste del mapa · Maximiliano Jiménez</title>
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ink: #0b0b0c; --bone: #f3f1ec; --gold: #f0d48a; --muted: rgba(243,241,236,.74); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--ink); color: var(--bone);
+      font-family: 'Poppins', system-ui, sans-serif; font-weight: 400;
+      display: flex; align-items: center; justify-content: center; padding: 2rem 1.4rem;
+      -webkit-font-smoothing: antialiased; overflow: hidden;
+    }
+    /* Curvas de nivel de fondo: el "mapa" del que te saliste */
+    .topo { position: fixed; inset: 0; z-index: 0; opacity: .5; pointer-events: none; }
+    .wrap { position: relative; z-index: 1; max-width: 640px; text-align: center; }
+    .code { font-size: .78rem; letter-spacing: .3em; color: var(--muted); margin-bottom: 1.6rem; }
+    h1 {
+      font-weight: 200; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.02;
+      font-size: clamp(2.6rem, 9vw, 5.2rem); text-wrap: balance;
+    }
+    h1 em { font-style: normal; color: var(--gold); }
+    p { margin: 1.6rem auto 0; max-width: 460px; font-size: 1.05rem; line-height: 1.7; color: var(--muted); text-wrap: pretty; }
+    .actions { margin-top: 2.4rem; display: flex; gap: 1.6rem; justify-content: center; align-items: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .7rem; padding: 1rem 1.5rem; border-radius: 6px;
+      background: var(--bone); color: var(--ink); font-weight: 500; text-decoration: none;
+      transition: background .3s, transform .08s;
+    }
+    .btn:hover { background: var(--gold); }
+    .btn:active { transform: scale(.97); }
+    .link { color: var(--bone); text-decoration: none; padding-bottom: .2rem;
+      background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; }
+    .you { position: fixed; z-index: 1; width: 12px; height: 12px; border-radius: 50%; background: var(--bone);
+      box-shadow: 0 0 0 0 rgba(240,212,138,.6); animation: ping 2.4s ease-out infinite; }
+    @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(240,212,138,.55); } 100% { box-shadow: 0 0 0 26px rgba(240,212,138,0); } }
+    @media (prefers-reduced-motion: reduce) { .you { animation: none; } }
+  </style>
+</head>
+<body>
+  <svg class="topo" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#f3f1ec" stroke-width="1">
+      <ellipse cx="250" cy="600" rx="340" ry="190" opacity=".05"/><ellipse cx="250" cy="600" rx="230" ry="128" opacity=".06"/><ellipse cx="250" cy="600" rx="120" ry="66" opacity=".07"/>
+      <ellipse cx="950" cy="200" rx="380" ry="210" opacity=".05"/><ellipse cx="950" cy="200" rx="250" ry="140" opacity=".06"/><ellipse cx="950" cy="200" rx="130" ry="72" opacity=".07"/>
+    </g>
+  </svg>
+  <!-- Un punto "Tú" fuera del camino: la metáfora del error -->
+  <span class="you" style="right: 12%; bottom: 18%;" aria-hidden="true"></span>
+
+  <main class="wrap">
+    <div class="code">ERROR 404</div>
+    <h1>Te saliste<br/><em>del mapa.</em></h1>
+    <p>La página que buscas no existe o cambió de lugar. Pasa hasta en los mejores caminos: lo importante es saber volver.</p>
+    <div class="actions">
+      <a class="btn" href="/">Volver al inicio <span aria-hidden="true">→</span></a>
+      <a class="link" href="/#servicios">Ver servicios</a>
+    </div>
+  </main>
+</body>
+</html>

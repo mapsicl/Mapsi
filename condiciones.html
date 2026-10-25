@@ -14,6 +14,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=DM+Serif+Display:ital@0;1&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <link rel="canonical" href="https://www.mapsi.cl/condiciones.html" />
+  <meta property="og:title" content="Condiciones de servicio · Maximiliano Jiménez" />
+  <meta property="og:description" content="Reservas, pagos y boleta, plazos y cambios de cada servicio, en un solo lugar." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.mapsi.cl/condiciones.html" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:image" content="https://www.mapsi.cl/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <!-- Mismo tema que eligió el visitante en mapsi.cl ("pro" por defecto) -->
   <script>
     (function () {
@@ -280,6 +294,14 @@
     html[data-theme="pro"] .f-tag { color: #b8964a; }
     html[data-theme="pro"] .f-copy { color: rgba(243,241,236,.66); }
     html[data-theme="pro"] ::selection { background: #0b0b0c; color: #f3f1ec; }
+
+    /* Terminaciones: líneas parejas, transición suave entre páginas, botones que ceden */
+    h1, h2, h3 { text-wrap: balance; }
+    p, li { text-wrap: pretty; }
+    .btn:active { transform: scale(.97); }
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .35s; }
+    @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
   </style>
 </head>
 <body>
