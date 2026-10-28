@@ -3279,6 +3279,70 @@
       .pp-step { min-height: min(78vh, 680px); justify-content: center; padding: 6vh 0; }
       .pp-step:first-child { padding-top: 6vh; }
     }
+    /* En escritorio la tarjeta no existe como caja: el texto se comporta como siempre */
+    .pp-card { display: contents; }
+
+    /* ── Escena del proceso en CELULAR: el mapa es el fondo a pantalla completa,
+          una "cámara" lo recorre y el texto flota encima en tarjetas de vidrio ── */
+    @media (max-width: 900px) {
+      #pro-proceso { padding: 6rem 0 0; }
+      .pp-head { padding: 0 1.4rem; margin-bottom: 1rem; }
+      .pp-grid { display: block; }
+      .pp-stage-col {
+        position: sticky; top: 0; height: 100svh; margin: 0; padding: 0;
+        background: none; z-index: 0; overflow: hidden;
+      }
+      /* fundido arriba y abajo: el mapa nace y se funde en el negro de la sección */
+      .pp-stage-col::after {
+        content: ''; position: absolute; inset: 0; top: 0; height: auto; pointer-events: none;
+        background: linear-gradient(180deg, var(--p-ink) 0%, rgba(11,11,12,0) 20%, rgba(11,11,12,0) 50%, rgba(11,11,12,.75) 82%, var(--p-ink) 100%);
+        -webkit-backdrop-filter: none; backdrop-filter: none; -webkit-mask-image: none; mask-image: none;
+      }
+      .pp-stage {
+        width: 100%; height: 100%; max-width: none; max-height: none; aspect-ratio: auto; margin: 0;
+        border: none; border-radius: 0;
+        background: radial-gradient(ellipse 90% 55% at 35% 62%, rgba(200,168,75,.10), transparent 65%), var(--p-ink);
+      }
+      /* la cámara: JS fija el punto de foco, el desplazamiento y el zoom */
+      .pp-map {
+        transform-origin: var(--fx, 50%) var(--fy, 50%);
+        transform: translate(var(--tx, 0%), var(--ty, 0%)) scale(var(--sc, 1));
+        transition: transform 1.2s cubic-bezier(.16,1,.3,1);
+      }
+      .pp-stage[data-step="2"] .pp-map { transition-duration: .7s; }
+      .pp-chat { top: calc(env(safe-area-inset-top) + 92px); bottom: 50%; left: 1.2rem; right: 1.2rem; }
+      .pp-hint, .pp-chapter, .pp-legend { display: none; }
+      .pp-bars { top: calc(env(safe-area-inset-top) + 78px); right: 1.2rem; }
+      /* capítulos encima del fondo */
+      .pp-steps { position: relative; z-index: 1; margin-top: -100svh; padding: 0 1rem; }
+      /* Cada capítulo dura 1,7 pantallas: primero se ve la escena sola y luego sube la tarjeta */
+      .pp-step { min-height: 170svh; justify-content: flex-end; padding: 0 0 14vh; opacity: 1; }
+      /* el capítulo 3 tiene la tarjeta más larga y el viaje completo: necesita más recorrido */
+      .pp-step[data-step="2"] { min-height: 230svh; }
+      .pp-step:first-child { padding-top: 0; }
+      .pp-card {
+        display: flex; flex-direction: column;
+        padding: 1.5rem 1.35rem 1.4rem; border-radius: 6px;
+        background: rgba(11,11,12,.6);
+        -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2);
+        border: 1px solid rgba(243,241,236,.1);
+        box-shadow: 0 20px 60px rgba(0,0,0,.45);
+        transition: opacity .6s var(--ease), transform .8s var(--ease);
+      }
+      .pp-step:not(.active) .pp-card { opacity: .45; transform: translateY(14px) scale(.985); }
+      .pp-num { font-size: 2rem; margin-bottom: .5rem; }
+      .pp-title { font-size: 1.7rem; margin-bottom: .8rem; }
+      .pp-text { font-size: .98rem; }
+      .pp-points { margin-top: 1rem; }
+      .pp-points li { padding: .6rem 0 .6rem 1.4rem; font-size: .9rem; }
+      .pp-points li::before { top: 1.05rem; }
+      .pp-cta { margin-top: 1.3rem; }
+      .pp-stops li { padding: .7rem 0 .7rem 2.4rem; }
+      .pp-stops li::before { top: .75rem; }
+    }
+    @media (max-width: 900px) and (prefers-reduced-motion: reduce) {
+      .pp-map, .pp-card { transition: none; }
+    }
 
     /* =============================================
        PANTALLAS GRANDES (monitores de 24"–27" y más)
@@ -4606,6 +4670,7 @@
     <!-- Capítulos (texto que avanza) -->
     <div class="pp-steps">
       <article class="pp-step" data-step="0">
+        <div class="pp-card">
         <div class="pp-num">01</div>
         <h3 class="pp-title">La conversación inicial</h3>
         <p class="pp-text">30 minutos por videollamada, sin costo. Te escucho, te hago las preguntas que nadie te ha hecho y te digo con honestidad si puedo ayudarte. <strong>Si no soy la persona indicada, te lo digo de frente.</strong></p>
@@ -4619,9 +4684,11 @@
           <span class="p-arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </a>
         <button type="button" class="pp-next" data-next="1">Siguiente: diseñamos el camino<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
+        </div>
       </article>
 
       <article class="pp-step" data-step="1">
+        <div class="pp-card">
         <div class="pp-num">02</div>
         <h3 class="pp-title">Diseñamos el camino</h3>
         <p class="pp-text">El coaching es diseño conjunto: <strong>tú pones el destino, yo pongo el método.</strong> Definimos el foco, el ritmo y cuántas sesiones necesitas. Nada de plantillas.</p>
@@ -4633,9 +4700,11 @@
           <button type="button" class="pp-chip" data-wp="visibilidad" aria-pressed="false">Visibilidad</button>
         </div>
         <button type="button" class="pp-next" data-next="2">Siguiente: caminamos juntos<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></button>
+        </div>
       </article>
 
       <article class="pp-step" data-step="2">
+        <div class="pp-card">
         <div class="pp-num">03</div>
         <h3 class="pp-title">Caminamos juntos</h3>
         <p class="pp-text">Sesiones de profundidad real. Te acompaño mientras recorres cada tramo, sesión a sesión.</p>
@@ -4646,6 +4715,7 @@
           <li data-i="3"><b>Seguimiento post-proceso</b>Cuando terminamos, seguimos en contacto para consolidar lo logrado.</li>
         </ol>
         <a href="#servicios" class="p-link pp-link">Ver servicios y precios</a>
+        </div>
       </article>
     </div>
   </div>
@@ -5667,7 +5737,36 @@
         if (g) g.classList.toggle('lit', lit);
         if (stops[i]) stops[i].classList.toggle('lit', lit);
       });
+      if (step === 2) aimCamera();
     }
+
+    /* Cámara (solo celular): el mapa a pantalla completa se acerca, se aleja y sigue al viajero.
+       x, y en coordenadas del mapa (600 × 600); tx, ty = dónde queda ese punto en la pantalla (%). */
+    var mqMobile = window.matchMedia('(max-width: 900px)');
+    var mapSvg = stage.querySelector('.pp-map');
+    var CAM_VARS = ['--fx', '--fy', '--tx', '--ty', '--sc'];
+    function cam(x, y, sc, tx, ty) {
+      if (!mqMobile.matches) { CAM_VARS.forEach(function(v) { mapSvg.style.removeProperty(v); }); return; }
+      var W = stage.clientWidth, H = stage.clientHeight;
+      if (!W || !H) return;
+      // el SVG usa "meet": el cuadrado 600 × 600 queda centrado dentro del escenario
+      var s = Math.min(W, H) / 600, ox = (W - 600 * s) / 2, oy = (H - 600 * s) / 2;
+      var px = (ox + x * s) / W * 100, py = (oy + y * s) / H * 100;
+      mapSvg.style.setProperty('--fx', px.toFixed(2) + '%');
+      mapSvg.style.setProperty('--fy', py.toFixed(2) + '%');
+      mapSvg.style.setProperty('--tx', (tx - px).toFixed(2) + '%');
+      mapSvg.style.setProperty('--ty', (ty - py).toFixed(2) + '%');
+      mapSvg.style.setProperty('--sc', sc);
+    }
+    function aimCamera() {
+      if (step === 0) cam(90, 500, 1.9, 30, 58);            // primer plano: "Tú, hoy"
+      else if (step === 1) cam(300, 300, 1.15, 50, 38);      // plano general: la ruta completa
+      else if (step === 2 && len) {                          // seguimiento: el viajero
+        var p = route.getPointAtLength(len * travelT);
+        cam(p.x, p.y, 1.6, 50, 24);
+      }
+    }
+    if (mqMobile.addEventListener) mqMobile.addEventListener('change', aimCamera);
 
     /* Capítulo 1: conversación de ejemplo que se escribe sola */
     var msgs = document.getElementById('pp-msgs');
@@ -5721,6 +5820,7 @@
       if (n === 0 && !played) play();
       if (n >= 1 && prev < 1) draw(true);
       if (n < 1) route.style.strokeDashoffset = len;
+      aimCamera();
     }
 
     var ticking = false;
@@ -5755,7 +5855,7 @@
     window.addEventListener('scroll', function() {
       if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
     }, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener('resize', function() { onScroll(); aimCamera(); });
     window.addEventListener('mj-theme', function() { draw(false); onScroll(); });
     draw(false);
     onScroll();
