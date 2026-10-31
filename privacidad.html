@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#080808" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="description" content="Qué datos personales se tratan en mapsi.cl, para qué, con quién se comparten y cómo ejercer tus derechos." />
+  <meta name="author" content="Maximiliano Jiménez Rojas" />
+  <meta name="robots" content="index, follow" />
+  <title>Política de privacidad — Maximiliano Jiménez | mapsi.cl</title>
+  <link href="/fonts/fonts.css" rel="stylesheet" />
+  <link rel="canonical" href="https://www.mapsi.cl/privacidad.html" />
+  <meta property="og:title" content="Política de privacidad · Maximiliano Jiménez" />
+  <meta property="og:description" content="Qué datos personales se tratan en mapsi.cl, para qué, con quién se comparten y cómo ejercer tus derechos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.mapsi.cl/privacidad.html" />
+  <meta property="og:locale" content="es_CL" />
+  <meta property="og:image" content="https://www.mapsi.cl/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- Mismo tema que eligió el visitante en mapsi.cl ("pro" por defecto) -->
+  <script>
+    (function () {
+      var t = 'pro';
+      try { t = localStorage.getItem('mj-theme') || 'pro'; } catch (e) {}
+      document.documentElement.setAttribute('data-theme', t === 'mapa' ? 'mapa' : 'pro');
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg:        #080808;
+      --bg2:       #0f0f0f;
+      --bg3:       #161616;
+      --gold:      #c8a84b;
+      --gold2:     #e2c06a;
+      --gold3:     #f0d48a;
+      --gold-dim:  rgba(200,168,75,0.12);
+      --white:     #f2f0eb;
+      --grey1:     #9e9e96;
+      --grey2:     #8b8b84;
+      --grey3:     #2e2e2a;
+      --border:    rgba(200,168,75,0.16);
+      --border2:   rgba(255,255,255,0.06);
+      --ease:      cubic-bezier(0.16, 1, 0.3, 1);
+      --font-d:    'DM Serif Display', Georgia, serif;
+      --font-s:    'Instrument Sans', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg); color: var(--white);
+      font-family: var(--font-s); font-size: 17px; line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--gold2); text-decoration: none; }
+    strong, b { color: var(--white); font-weight: 600; }
+    ::selection { background: var(--gold); color: var(--bg); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,8,8,.85); backdrop-filter: saturate(1.4) blur(14px);
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom: 1px solid var(--border2);
+    }
+    .nav-in {
+      max-width: 1120px; margin: 0 auto;
+      padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .nav-logo { font-family: var(--font-d); font-size: 1.1rem; color: var(--white); white-space: nowrap; }
+    .nav-logo em { font-style: italic; color: var(--gold); }
+    .nav-back {
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--grey1); transition: color .3s; white-space: nowrap;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 1120px; margin: 0 auto; padding: 5rem 2rem 2.5rem;
+      position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -10%; left: 10%;
+      width: 60vmax; height: 60vmax; border-radius: 50%; z-index: -1;
+      background: radial-gradient(circle, rgba(200,168,75,.06), transparent 62%);
+      pointer-events: none;
+    }
+    .label {
+      display: inline-flex; align-items: center; gap: .8rem;
+      font-size: .72rem; letter-spacing: .24em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 1.2rem;
+    }
+    .label::before { content: ''; width: 32px; height: 1px; background: var(--gold2); }
+    h1 {
+      font-family: var(--font-d); font-weight: 400;
+      font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.05; letter-spacing: -.01em;
+      color: var(--white); margin-bottom: 1.2rem;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .lead { font-size: 1.12rem; color: var(--grey1); max-width: 640px; line-height: 1.75; }
+    .upd { font-size: .82rem; color: var(--grey2); margin-top: 1.4rem; letter-spacing: .04em; }
+
+    /* ── LAYOUT ── */
+    .wrap {
+      max-width: 1120px; margin: 0 auto; padding: 0 2rem 6rem;
+      display: grid; grid-template-columns: 240px 1fr; gap: 4rem;
+    }
+    nav.toc { position: sticky; top: 90px; align-self: start; }
+    .toc .t {
+      font-size: .66rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--grey2); font-weight: 600; margin-bottom: 1rem;
+      padding-bottom: .8rem; border-bottom: 1px solid var(--border);
+    }
+    .toc a {
+      display: flex; gap: .7rem; align-items: baseline;
+      color: var(--grey1); font-size: .9rem; line-height: 1.4;
+      padding: .55rem 0; border-bottom: 1px solid var(--border2);
+      transition: color .3s;
+    }
+    .toc a span { color: var(--gold2); font-weight: 700; font-size: .78rem; min-width: 18px; }
+    .toc a:hover, .toc a.active { color: var(--white); }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 1rem 0 2.6rem; margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border2); scroll-margin-top: 90px;
+    }
+    section:last-of-type { border-bottom: none; }
+    .num {
+      font-family: var(--font-d); color: var(--gold2); font-size: 1rem;
+      letter-spacing: .1em; margin-bottom: .3rem;
+    }
+    h2 {
+      font-family: var(--font-d); font-weight: 400; color: var(--white);
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1.2; margin-bottom: .4rem;
+    }
+    .for {
+      font-size: .82rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.3rem;
+    }
+    h3 {
+      font-size: 1.05rem; color: var(--white); font-weight: 600;
+      margin: 1.8rem 0 .5rem;
+    }
+    p { color: var(--grey1); }
+    p + p { margin-top: .9rem; }
+    .lead, p strong { }
+
+    ul.list { list-style: none; margin-top: .9rem; display: flex; flex-direction: column; gap: .6rem; }
+    ul.list li {
+      position: relative; padding-left: 1.7rem; color: var(--grey1); line-height: 1.6;
+    }
+    ul.list li::before {
+      content: ''; position: absolute; left: 0; top: .62em;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--bg2); border: 1px solid var(--border2);
+      border-radius: 14px; padding: 1.3rem 1.5rem; margin-top: 1.3rem;
+    }
+    .card .k {
+      font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+      font-weight: 700; color: var(--gold); margin-bottom: .5rem;
+    }
+    .card.alert { border-left: 2px solid var(--gold2); background: var(--gold-dim); }
+    .card.alert b { color: var(--gold3); }
+
+    /* ── RULES TABLE ── */
+    .rules {
+      width: 100%; border-collapse: collapse; margin-top: 1.1rem;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .rules th {
+      font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--grey2); font-weight: 600; text-align: left;
+      padding: .8rem 1rem .8rem 0; border-bottom: 1px solid var(--border2);
+    }
+    .rules td {
+      padding: 1rem 1rem 1rem 0; border-bottom: 1px solid var(--border2);
+      vertical-align: top; font-size: .95rem; color: var(--grey1);
+    }
+    .rules tr:last-child td { border-bottom: none; }
+    .rules td:first-child { width: 44%; color: var(--white); font-weight: 600; padding-right: 1.6rem; }
+    .rules td:first-child small { display: block; font-weight: 400; color: var(--grey2); font-size: .82rem; margin-top: .2rem; }
+
+    .note { font-size: .84rem; color: var(--grey2); margin-top: .9rem; line-height: 1.6; }
+
+    /* ── PAY STRIP ── */
+    .pay-strip {
+      display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.3rem;
+    }
+    .pay-pill {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .6rem 1.1rem; border-radius: 100px;
+      background: var(--gold-dim); border: 1px solid var(--border);
+      font-size: .86rem; color: var(--white);
+    }
+
+    /* ── CTA ── */
+    .cta-row { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.4rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .55rem;
+      font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+      padding: .85rem 1.5rem; border-radius: 10px; transition: all .3s var(--ease);
+    }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-wa {
+      background: linear-gradient(90deg, var(--gold), var(--gold2)); color: var(--bg);
+    }
+    .btn-wa:hover { box-shadow: 0 8px 28px rgba(200,168,75,.35); transform: translateY(-2px); }
+    .btn-out {
+      border: 1px solid var(--border); color: var(--gold); background: rgba(200,168,75,.05);
+    }
+    .btn-out:hover { background: var(--gold-dim); border-color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border2); background: var(--bg2); }
+    .footer-in {
+      max-width: 1120px; margin: 0 auto; padding: 2.2rem 2rem;
+      display: flex; justify-content: space-between; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+    }
+    .f-tag { font-family: var(--font-d); font-style: italic; color: var(--gold); font-size: 1.05rem; }
+    .f-copy { font-size: .78rem; color: var(--grey2); }
+
+    @media (max-width: 860px) {
+      .wrap { grid-template-columns: 1fr; gap: 1.5rem; }
+      nav.toc { position: static; margin-bottom: 1rem; }
+      .hero { padding: 3rem 1.5rem 2rem; }
+      .wrap { padding: 0 1.5rem 4rem; }
+      .nav-in { padding: 1rem 1.5rem; }
+      .footer-in { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 560px) {
+      body { font-size: 16px; }
+      .rules thead { display: none; }
+      .rules, .rules tbody, .rules tr, .rules td { display: block; width: 100%; }
+      .rules tr { padding: .9rem 0; border-bottom: 1px solid var(--border2); }
+      .rules tr:last-child { border-bottom: none; }
+      .rules td { border: none; padding: .15rem 0; }
+      .rules td:first-child { width: 100%; padding-right: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    /* =============================================
+       TEMA PRO: documento claro y editorial, como las secciones de lectura del sitio
+    ============================================= */
+    html[data-theme="pro"] {
+      --bg:       #f3f1ec;
+      --bg2:      #e9e6df;
+      --bg3:      #e2ded5;
+      --gold:     #6e5212;   /* dorado legible sobre hueso (~6:1) */
+      --gold2:    #6e5212;
+      --gold3:    #5a430e;
+      --gold-dim: rgba(184,150,74,.12);
+      --white:    #0b0b0c;
+      --grey1:    #3d3c39;
+      --grey2:    #57564f;
+      --grey3:    #c9c5bc;
+      --border:   rgba(11,11,12,.16);
+      --border2:  rgba(11,11,12,.09);
+      --font-d:   'Poppins', system-ui, sans-serif;
+      --font-s:   'Poppins', system-ui, sans-serif;
+    }
+    html[data-theme="pro"] nav { background: rgba(243,241,236,.88); }
+    html[data-theme="pro"] .hero::before { background: radial-gradient(circle, rgba(184,150,74,.10), transparent 62%); }
+    html[data-theme="pro"] h1, html[data-theme="pro"] h2 { font-weight: 300; letter-spacing: -.025em; }
+    html[data-theme="pro"] h1 em, html[data-theme="pro"] h2 em { color: #7a5c14; }
+    html[data-theme="pro"] .num { font-weight: 300; font-size: 1.6rem; letter-spacing: 0; }
+    html[data-theme="pro"] .card { background: #fff; }
+    html[data-theme="pro"] .card.alert { background: rgba(184,150,74,.1); }
+    html[data-theme="pro"] .card.alert b { color: var(--white); }
+    html[data-theme="pro"] .pay-pill { background: #fff; }
+    html[data-theme="pro"] .btn { text-transform: none; letter-spacing: 0; font-size: .92rem; border-radius: 100px; padding: .9rem 1.6rem; }
+    html[data-theme="pro"] .btn-wa { background: #0b0b0c; color: #f3f1ec; }
+    html[data-theme="pro"] .btn-wa:hover { background: #b8964a; color: #0b0b0c; box-shadow: 0 12px 30px rgba(184,150,74,.25); }
+    html[data-theme="pro"] .btn-out { background: transparent; color: #0b0b0c; border-color: rgba(11,11,12,.25); }
+    html[data-theme="pro"] .btn-out:hover { background: #0b0b0c; color: #f3f1ec; border-color: transparent; }
+    html[data-theme="pro"] footer { background: #0b0b0c; border-top: none; }
+    html[data-theme="pro"] .f-tag { color: #b8964a; }
+    html[data-theme="pro"] .f-copy { color: rgba(243,241,236,.66); }
+    html[data-theme="pro"] ::selection { background: #0b0b0c; color: #f3f1ec; }
+
+    /* Terminaciones: líneas parejas, transición suave entre páginas, botones que ceden */
+    h1, h2, h3 { text-wrap: balance; }
+    p, li { text-wrap: pretty; }
+    .btn:active { transform: scale(.97); }
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .35s; }
+    @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
+  </style>
+</head>
+<body>
+
+<!-- Sprite de íconos -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+  <symbol id="ic-wa" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 0 1 8.413 3.488 11.824 11.824 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 0 0 1.516 5.26l-.999 3.648 3.732-.979zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></symbol>
+  <symbol id="ic-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+</svg>
+
+<nav>
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo">Maximiliano <em>Jiménez</em></a>
+    <a href="index.html" class="nav-back">← Volver a mapsi.cl</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="label">Política de privacidad</div>
+  <h1>Tus datos,<br/><em>sin letra chica.</em></h1>
+  <p class="lead">Este sitio recoge lo mínimo. Aquí explico qué datos se tratan cuando lo visitas, me escribes o agendas, para qué se usan y cómo ejercer tus derechos.</p>
+  <p class="upd">Versión 1.0 · 31 de octubre de 2026</p>
+</div>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Contenido">
+    <div class="t">Contenido</div>
+    <a href="#responsable"><span>1</span>Responsable</a>
+    <a href="#datos"><span>2</span>Datos y finalidades</a>
+    <a href="#test"><span>3</span>Los test</a>
+    <a href="#cookies"><span>4</span>Cookies</a>
+    <a href="#destinatarios"><span>5</span>Destinatarios</a>
+    <a href="#conservacion"><span>6</span>Conservación</a>
+    <a href="#seguridad"><span>7</span>Seguridad</a>
+    <a href="#derechos"><span>8</span>Tus derechos</a>
+    <a href="#menores"><span>9</span>Menores de edad</a>
+    <a href="#cambios"><span>10</span>Cambios</a>
+  </nav>
+
+  <main>
+    <section id="responsable">
+      <div class="num">01</div>
+      <h2>Quién es responsable de tus datos</h2>
+      <p><b>Maximiliano Jiménez Rojas</b>, psicólogo y coach, La Serena, Chile, es el responsable de los datos personales que se tratan a través de mapsi.cl y de sus canales de contacto.</p>
+      <p>Para cualquier solicitud sobre tus datos: <a href="mailto:maximiliano.jimenezr@gmail.com">maximiliano.jimenezr@gmail.com</a></p>
+    </section>
+
+    <section id="datos">
+      <div class="num">02</div>
+      <h2>Qué datos se tratan y para qué</h2>
+      <p>Navegar por este sitio no requiere registro, y el sitio no tiene formularios ni cuentas de usuario. Los datos se tratan solo en estos casos:</p>
+      <table class="rules">
+        <thead><tr><th>Cuándo</th><th>Qué datos, para qué y con qué base</th></tr></thead>
+        <tbody>
+          <tr><td>Al visitar el sitio</td><td>Dirección IP y datos técnicos de la conexión, que el proveedor de alojamiento registra para entregar la página y mantenerla segura. Base: interés legítimo en el funcionamiento y la seguridad del sitio.</td></tr>
+          <tr><td>Al escribirme<small>WhatsApp o correo</small></td><td>Tu nombre, número o correo y lo que decidas contarme, para responderte. Base: tu consentimiento, al escribirme.</td></tr>
+          <tr><td>Al agendar<small>agenda en línea</small></td><td>Los datos que pide la agenda, para confirmar y gestionar la reunión. Base: gestiones previas a un posible servicio, a tu solicitud.</td></tr>
+          <tr><td>Al contratar un servicio</td><td>Los datos necesarios para prestarlo, cobrarlo y emitir la boleta. Base: la relación contractual y las obligaciones legales y tributarias.</td></tr>
+        </tbody>
+      </table>
+      <p class="note">Para el primer contacto basta con lo esencial. Te pido no enviar detalles de salud por WhatsApp ni por correo: podemos conversarlos en la llamada.</p>
+      <p>Lo que compartes en un proceso de acompañamiento o de atención psicológica se rige además por la <a href="condiciones.html#psicoterapia">confidencialidad descrita en las condiciones</a>. Los datos de salud son datos sensibles y requieren tu consentimiento expreso, salvo las excepciones que establece la ley.</p>
+    </section>
+
+    <section id="test">
+      <div class="num">03</div>
+      <h2>Los test del sitio</h2>
+      <p>Los test se calculan en tu navegador. <b>Tus respuestas y tu resultado no se envían a este sitio ni quedan guardados.</b> Solo llegan a mí si decides compartirlos, por ejemplo con el botón «Comentar mi resultado», que abre WhatsApp con un mensaje que puedes revisar o borrar antes de enviarlo.</p>
+      <p>Los test son una herramienta de autoconocimiento. No son una evaluación psicológica ni un diagnóstico.</p>
+    </section>
+
+    <section id="cookies">
+      <div class="num">04</div>
+      <h2>Cookies y almacenamiento</h2>
+      <p>Este sitio no usa cookies propias de publicidad ni herramientas de analítica o seguimiento. Solo guarda en tu navegador el tema visual que elegiste, para recordarlo en tu próxima visita. Puedes borrarlo desde los ajustes de tu navegador.</p>
+      <p>Al salir hacia WhatsApp, Google Calendar, Instagram o LinkedIn, se aplican las políticas de esos servicios, incluido su uso de cookies.</p>
+    </section>
+
+    <section id="destinatarios">
+      <div class="num">05</div>
+      <h2>Con quién se comparten</h2>
+      <p>No vendo tus datos ni los uso para publicidad de terceros. Para operar uso estos proveedores:</p>
+      <ul class="list">
+        <li><b>Vercel:</b> alojamiento del sitio.</li>
+        <li><b>Google:</b> agenda en línea, correo y videollamadas de las sesiones (Google Meet).</li>
+        <li><b>Meta:</b> WhatsApp Business, para consultas y dudas.</li>
+      </ul>
+      <p>También puedo entregar datos cuando una ley o una autoridad competente lo exija.</p>
+      <p><b>Transferencia internacional:</b> estos proveedores pueden tratar los datos fuera de Chile, incluso en países sin una declaración de nivel adecuado de protección. En esos casos, el tratamiento se rige por las condiciones y garantías que ofrece cada proveedor.</p>
+    </section>
+
+    <section id="conservacion">
+      <div class="num">06</div>
+      <h2>Cuánto tiempo se conservan</h2>
+      <p>Conservo los datos mientras sean necesarios para la finalidad por la que los entregaste, y después solo el tiempo que exijan las obligaciones legales, tributarias o sanitarias, o el necesario para atender posibles reclamos. Los registros técnicos del sitio se conservan según los plazos del proveedor de alojamiento.</p>
+    </section>
+
+    <section id="seguridad">
+      <div class="num">07</div>
+      <h2>Seguridad</h2>
+      <p>El sitio funciona con conexión cifrada (HTTPS), no almacena una base de datos de visitantes y solo yo accedo a los datos de quienes atiendo. Ninguna medida elimina todos los riesgos; si ocurre un incidente que deba informarse, lo comunicaré como exige la ley.</p>
+    </section>
+
+    <section id="derechos">
+      <div class="num">08</div>
+      <h2>Tus derechos</h2>
+      <p>Puedes solicitar <b>acceso, rectificación, supresión, oposición, portabilidad y bloqueo temporal</b> de tus datos, y retirar tu consentimiento en cualquier momento, sin efecto retroactivo.</p>
+      <p>Escribe a <a href="mailto:maximiliano.jimenezr@gmail.com">maximiliano.jimenezr@gmail.com</a> indicando tu nombre, qué solicitas y un correo para responderte. Es gratis y recibirás respuesta dentro de 30 días corridos, plazo que la ley permite prorrogar una vez por el mismo período.</p>
+      <p>Si tu solicitud es rechazada o no recibes respuesta a tiempo, puedes reclamar ante la Agencia de Protección de Datos Personales.</p>
+    </section>
+
+    <section id="menores">
+      <div class="num">09</div>
+      <h2>Menores de edad</h2>
+      <p>Este sitio y mis servicios están dirigidos a personas mayores de 18 años. No atiendo a menores de edad.</p>
+    </section>
+
+    <section id="cambios">
+      <div class="num">10</div>
+      <h2>Cambios en esta política</h2>
+      <p>Si esta política cambia, publicaré aquí la nueva versión con su fecha.</p>
+      <p class="note">Versión 1.0 · 31 de octubre de 2026</p>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="footer-in">
+    <span class="f-tag">Reconquista tu mapa.</span>
+    <span class="f-copy">© 2026 Maximiliano Jiménez · Psicólogo &amp; Coach · La Serena, Chile</span>
+  </div>
+</footer>
+
+<script defer>
+(function () {
+  function safe(fn, n) { try { fn(); } catch(e) { console.warn('['+n+']', e); } }
+
+  /* ── WhatsApp y Calendario ofuscados (mismo patrón que el sitio) ── */
+  safe(function() {
+    var _w = atob('aHR0cHM6Ly93YS5tZS9tZXNzYWdlLzc2VkEzVVpKTVdVS0Ix');
+    var _c = atob('aHR0cHM6Ly9jYWxlbmRhci5hcHAuZ29vZ2xlL011S0JNRWp3MnlKSGNqNEc4');
+    document.addEventListener('click', function(e) {
+      var w = e.target.closest('[data-wa]');
+      if (w) {
+        e.preventDefault();
+        var msg = w.getAttribute('data-msg');
+        window.open(msg ? _w + '?text=' + encodeURIComponent(msg) : _w, '_blank', 'noopener,noreferrer');
+        return;
+      }
+      var c = e.target.closest('[data-cal]');
+      if (c) { e.preventDefault(); window.open(_c, '_blank', 'noopener,noreferrer'); }
+    });
+  }, 'links');
+
+  /* ── Resalta en el índice la sección visible ── */
+  safe(function() {
+    var links = document.querySelectorAll('.toc a');
+    var map = {};
+    links.forEach(function(a) { map[a.getAttribute('href').slice(1)] = a; });
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(en) {
+        if (en.isIntersecting) {
+          links.forEach(function(a) { a.classList.remove('active'); });
+          if (map[en.target.id]) map[en.target.id].classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    document.querySelectorAll('section[id]').forEach(function(s) { io.observe(s); });
+  }, 'toc-spy');
+})();
+</script>
+
+</body>
+</html>
