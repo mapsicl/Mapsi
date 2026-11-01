@@ -2992,6 +2992,29 @@
     html[data-theme="pro"] .perfil-cta { white-space: nowrap; }
     html[data-theme="pro"] .perfil-org { border-radius: 0; border-left: none; border-right: none; }
 
+    /* Testimonios: referencia destacada (la foto manda, una idea por vez) */
+    .testi-feature { margin: 3rem 0 4.5rem; }
+    .tf-lead { font-size: clamp(2.1rem, 5.4vw, 4.6rem); line-height: 1.05; letter-spacing: -.02em; text-align: center; margin: 0 auto 2.4rem; max-width: 16ch; text-wrap: balance; }
+    .tf-frame { position: relative; max-width: 640px; margin: 0 auto; border-radius: 24px; overflow: hidden; }
+    .tf-photo { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: 50% 42%; display: block; }
+    .tf-place { position: absolute; left: 1.2rem; bottom: 1.1rem; padding: .45rem .85rem; border-radius: 99px; font-size: .78rem; color: #fff; background: rgba(11,11,12,.55); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+    .tf-body { max-width: 640px; margin: 2.6rem auto 0; }
+    .tf-quote { margin: 0; font-size: 1.12rem; line-height: 1.7; }
+    .tf-quote p { margin: 0 0 1rem; }
+    .tf-author { margin-top: 1.5rem; display: flex; align-items: center; gap: .85rem; font-size: .92rem; }
+    .tf-author b, .tf-author span { display: block; }
+    .tf-author span { opacity: .72; }
+    .tf-avatar { width: 52px; height: 52px; flex: none; border-radius: 50%; object-fit: cover; object-position: 50% 30%; }
+    @media (max-width: 760px) {
+      .testi-feature { margin: 2rem 0 3rem; }
+      .tf-lead { margin-bottom: 1.6rem; }
+      .tf-frame { border-radius: 16px; }
+      .tf-photo { aspect-ratio: 4 / 5; object-position: 50% 40%; }
+      .tf-body { margin-top: 1.8rem; }
+      .tf-quote { font-size: 1.02rem; }
+    }
+    html[data-theme="pro"] .tf-lead { font-weight: 200; }
+
     /* Testimonios: citas abiertas, sin caja */
     html[data-theme="pro"] .testi-card {
       background: transparent; border: none; border-top: 1px solid var(--p-line);
@@ -3956,6 +3979,18 @@
         </div>
       </div>
 
+      <!-- Cierre Marca Personal 2026 -->
+      <div class="cc" data-tag="Equipo de David Ávila" data-title="Cierre Marca Personal 2026" data-desc="Cierre del programa de Marca Personal 2026, junto al grupo. Soy parte del equipo de David Ávila.">
+        <img loading="lazy" decoding="async" src="img/opt/cierre-marca-personal-2026.jpg" srcset="img/opt/cierre-marca-personal-2026-640.jpg 640w, img/opt/cierre-marca-personal-2026.jpg 1600w" sizes="(max-width:900px) 80vw, 310px" style="object-position:6% 50%" alt="Maximiliano Jiménez con el grupo en el cierre del programa de Marca Personal 2026" />
+        <div class="cc-overlay"></div>
+        <div class="cc-info">
+          <span class="cc-tag">Equipo de David Ávila</span>
+          <div class="cc-title">Cierre Marca Personal 2026</div>
+          <div class="cc-desc">Con el grupo del programa, como parte del equipo.</div>
+        </div>
+        <div class="cc-zoom"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div>
+      </div>
+
       <!-- 6. David Ávila -->
       <div class="cc" data-tag="Mentor & tallerista" data-title="Con David Ávila" data-desc="4 programas continuos de 'Potencia Tu Marca Personal'. 6 semanas cada uno. Porque yo también soy cliente de lo que enseño.">
         <img loading="lazy" decoding="async" src="img/Davidavila.JPG" srcset="img/opt/Davidavila-640.jpg 640w, img/Davidavila.JPG 1600w" sizes="(max-width:900px) 80vw, 310px" alt="Maximiliano con David Ávila" />
@@ -4724,6 +4759,21 @@
   <div class="wrap sec">
     <p class="label rv">Lo que dicen</p>
     <h2 class="h2 rv d1">Historias de <em>transformación</em></h2>
+    <!-- Referencia con nombre real: va fuera del carrusel -->
+    <figure class="testi-feature rv d2">
+      <p class="tf-lead">"Uno quiere volver a trabajar con él."</p>
+      <div class="tf-frame">
+        <img class="tf-photo" loading="lazy" decoding="async" src="img/opt/david-max.jpg" srcset="img/opt/david-max-800.jpg 800w, img/opt/david-max.jpg 1290w" sizes="(max-width:760px) 92vw, 640px" alt="David Ávila y Maximiliano Jiménez en Emprende Tu Mente 2024" />
+        <span class="tf-place">Con David en Emprende Tu Mente 2024</span>
+      </div>
+      <div class="tf-body">
+        <blockquote class="tf-quote">
+          <p>"Cuando Max se plantea un objetivo, agota todas las instancias posibles para lograrlo. Lo demostró cuando quiso llegar a mí. Y una vez que ejecuta un proyecto, la expectativa siempre se cumple, e incluso es mejor: lo validé cuando fui a La Serena y vi cómo se preocupó de los detalles.</p>
+          <p>Es un profesional muy íntegro, en lo técnico y en lo emocional, y puede conversar a distintos niveles, desde lo técnico hasta el liderazgo. Siempre responde con lo que plantea que va a realizar. Por eso uno quiere volver a trabajar con él, como profesional y como persona, porque además el trabajo se vuelve muy entretenido."</p>
+        </blockquote>
+        <figcaption class="tf-author"><img class="tf-avatar" loading="lazy" decoding="async" src="img/opt/david-avatar.jpg" alt="" width="52" height="52" /><div><b>David Ávila</b><span>Creador de contenido · Cofundador y CEO de Planius.ai</span></div></figcaption>
+      </div>
+    </figure>
     <div class="testi-carousel-wrap rv d2">
       <div class="testi-track-outer">
         <div class="testi-track" id="testi-track">
